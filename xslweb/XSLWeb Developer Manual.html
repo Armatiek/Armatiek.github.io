@@ -8,7 +8,7 @@
 <meta name="description" content="XSLWeb Developer Manual">
 <meta name="keywords" content="XSLWeb XML, XSLT, XML Schema, Schematron, Web development">
 <meta name="author" content="Authors: Maarten Kroon, Arjan Loeffen">
-<title>XSLWeb version 3.2.2 Developer Manual</title>
+<title>XSLWeb version 3.3.0 Developer Manual</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -438,7 +438,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
-<h1>XSLWeb version 3.2.2 Developer Manual</h1>
+<h1>XSLWeb version 3.3.0 Developer Manual</h1>
 <div class="details">
 <span id="author" class="author">Authors: Maarten Kroon, Arjan Loeffen</span><br>
 </div>
@@ -486,59 +486,73 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#development-mode">5. Development mode and production mode</a></li>
 <li><a href="#logging">6. Logging</a></li>
 <li><a href="#response-caching">7. Response caching</a></li>
-<li><a href="#job-scheduling">8. Job scheduling</a></li>
-<li><a href="#user-authentication">9. User authentication</a></li>
-<li><a href="#global-properties">10. Global configuration properties</a></li>
-<li><a href="#xpath-extension-function-library">11. XPath extension function library</a>
+<li><a href="#cache-busting">8. Cache busting</a></li>
+<li><a href="#job-scheduling">9. Job scheduling</a></li>
+<li><a href="#security">10. Security: authentication and authorization</a>
 <ul class="sectlevel2">
-<li><a href="#built-in-extension-functions">11.1. Built in extension functions</a></li>
-<li><a href="#response-functions">11.2. Response functions</a></li>
-<li><a href="#session-functions">11.3. Session functions</a></li>
-<li><a href="#webapp-functions">11.4. Webapp functions</a></li>
-<li><a href="#context-functions">11.5. Context functions</a></li>
-<li><a href="#expath-file-functions">11.6. EXPath File</a></li>
-<li><a href="#expath-http-client-functions">11.7. EXPath HTTP Client</a></li>
-<li><a href="#base64-functions">11.8. Base64</a></li>
-<li><a href="#external-functions">11.9. Execute external processes</a></li>
-<li><a href="#logging-functions">11.10. Logging functions</a></li>
-<li><a href="#email-functions">11.11. Email</a></li>
-<li><a href="#serialization-functions">11.12. Serialization</a></li>
-<li><a href="#caching-functions">11.13. Caching</a></li>
-<li><a href="#image-processing-functions">11.14. Image processing</a></li>
-<li><a href="#io-functions">11.15. Input/Output</a></li>
-<li><a href="#util-functions">11.16. Utilities</a></li>
-<li><a href="#zip-functions">11.17. Zip/Unzip</a></li>
-<li><a href="#uuid-functions">11.18. UUID</a></li>
-<li><a href="#json-functions">11.19. JSON</a></li>
-<li><a href="#dynfunc-functions">11.20. Dynamic (scripted) extension functions</a></li>
-<li><a href="#sql-functions">11.21. SQL</a></li>
-<li><a href="#custom-extension-functions">11.22. Custom extension functions</a></li>
-<li><a href="#side-effects">11.23. Extension functions with side effects</a></li>
+<li><a href="#basic-user-authentication-deprecated">10.1. Basic user authentication (deprecated)</a></li>
 </ul>
 </li>
-<li><a href="#install">12. Download, install and run XSLWeb</a>
+<li><a href="#global-properties">11. Global configuration properties</a></li>
+<li><a href="#xpath-extension-function-library">12. XPath extension function library</a>
 <ul class="sectlevel2">
-<li><a href="#install-jar">12.1. The single executable jar distribution</a>
+<li><a href="#built-in-extension-functions">12.1. Built in extension functions</a></li>
+<li><a href="#response-functions">12.2. Response functions</a></li>
+<li><a href="#session-functions">12.3. Session functions</a></li>
+<li><a href="#webapp-functions">12.4. Webapp functions</a></li>
+<li><a href="#context-functions">12.5. Context functions</a></li>
+<li><a href="#security-functions">12.6. Security (authentication/authorzation)</a></li>
+<li><a href="#expath-file-functions">12.7. EXPath File</a>
 <ul class="sectlevel3">
-<li><a href="#download">12.1.1. Download</a></li>
-<li><a href="#install-2">12.1.2. Install</a></li>
-<li><a href="#run">12.1.3. Run</a></li>
+<li><a href="#file-properties">12.7.1. File properties</a></li>
+<li><a href="#inputoutput">12.7.2. Input/output</a></li>
+<li><a href="#paths">12.7.3. Paths</a></li>
+<li><a href="#system-properties">12.7.4. System properties</a></li>
 </ul>
 </li>
-<li><a href="#install-war">12.2. The Web Application Archive (.war) distribution</a>
+<li><a href="#expath-http-client-functions">12.8. EXPath HTTP Client</a></li>
+<li><a href="#base64-functions">12.9. Base64</a></li>
+<li><a href="#external-functions">12.10. Execute external processes</a></li>
+<li><a href="#logging-functions">12.11. Logging functions</a></li>
+<li><a href="#email-functions">12.12. Email</a></li>
+<li><a href="#serialization-functions">12.13. Serialization</a></li>
+<li><a href="#caching-functions">12.14. Caching</a></li>
+<li><a href="#image-processing-functions">12.15. Image processing</a></li>
+<li><a href="#io-functions">12.16. Input/Output</a></li>
+<li><a href="#util-functions">12.17. Utilities</a></li>
+<li><a href="#zip-functions">12.18. Zip/Unzip</a></li>
+<li><a href="#uuid-functions">12.19. UUID</a></li>
+<li><a href="#json-functions">12.20. JSON</a></li>
+<li><a href="#dynfunc-functions">12.21. Dynamic (scripted) extension functions</a></li>
+<li><a href="#sql-functions">12.22. SQL</a></li>
+<li><a href="#custom-extension-functions">12.23. Custom extension functions</a></li>
+<li><a href="#side-effects">12.24. Extension functions with side effects</a></li>
+</ul>
+</li>
+<li><a href="#webdav-access">13. WebDAV access</a></li>
+<li><a href="#install">14. Download, install and run XSLWeb</a>
+<ul class="sectlevel2">
+<li><a href="#install-jar">14.1. The single executable jar distribution</a>
 <ul class="sectlevel3">
-<li><a href="#download-2">12.2.1. Download</a></li>
-<li><a href="#install-3">12.2.2. Install</a></li>
-<li><a href="#run-2">12.2.3. Run</a></li>
+<li><a href="#download">14.1.1. Download</a></li>
+<li><a href="#install-2">14.1.2. Install</a></li>
+<li><a href="#run">14.1.3. Run</a></li>
 </ul>
 </li>
-<li><a href="#install-xslweb-as-a-windows-service-or-linuxmacos-daemon">12.3. Install XSLWeb as a Windows service or Linux/macOS daemon</a></li>
+<li><a href="#install-war">14.2. The Web Application Archive (.war) distribution</a>
+<ul class="sectlevel3">
+<li><a href="#download-2">14.2.1. Download</a></li>
+<li><a href="#install-3">14.2.2. Install</a></li>
+<li><a href="#run-2">14.2.3. Run</a></li>
 </ul>
 </li>
-<li><a href="#support-for-saxon-pe-professional-and-ee-enterprise-edition">13. Support for Saxon PE (Professional) and EE (Enterprise Edition)</a></li>
-<li><a href="#appendix-request-xml-example">14. Appendix A: Request XML example</a></li>
-<li><a href="#appendix-response-xml-example">15. Appendix B: Response XML example</a></li>
-<li><a href="#appendix-webapp-xml-example">16. Appendix C: Webapp XML example</a></li>
+<li><a href="#install-xslweb-as-a-windows-service-or-linuxmacos-daemon">14.3. Install XSLWeb as a Windows service or Linux/macOS daemon</a></li>
+</ul>
+</li>
+<li><a href="#support-for-saxon-pe-professional-and-ee-enterprise-edition">15. Support for Saxon PE (Professional) and EE (Enterprise Edition)</a></li>
+<li><a href="#appendix-request-xml-example">16. Appendix A: Request XML example</a></li>
+<li><a href="#appendix-response-xml-example">17. Appendix B: Response XML example</a></li>
+<li><a href="#appendix-webapp-xml-example">18. Appendix C: Webapp XML example</a></li>
 </ul>
 </div>
 </div>
@@ -1592,7 +1606,119 @@ If you have comments, remarks or questions about this manual, please use the <a 
 </div>
 </div>
 <div class="sect1">
-<h2 id="job-scheduling"><a class="anchor" href="#job-scheduling"></a><a class="link" href="#job-scheduling">8. Job scheduling</a></h2>
+<h2 id="cache-busting"><a class="anchor" href="#cache-busting"></a><a class="link" href="#cache-busting">8. Cache busting</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When a static file gets cached it can be stored for very long periods of time before it ends up expiring. This can be an annoyance in the event that you make an update to a site however, since the cached version of the file is stored in your visitors' browsers, they may be unable to see the changes made. This is due to the fact that a visitor&#8217;s browser will locally store a cached copy of your static assets given that your website is configured to leverage browser caching.</p>
+</div>
+<div class="paragraph">
+<p>Cache busting solves the browser caching issue by using a unique file version identifier to tell the browser that a new version of the file is available. Therefore the browser doesn&#8217;t retrieve the old file from cache but rather makes a request to the origin server for the new file.</p>
+</div>
+<div class="paragraph">
+<p>When you want to use this approach in XSLWeb, you can define an element <em>cache-buster-id</em> in your webapp.xml:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;webapp
+  xmlns="http://www.armatiek.com/xslweb/webapp"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.armatiek.com/xslweb/webapp ../../config/xsd/xslweb/webapp.xsd"&gt;
+
+  &lt;title&gt;My website&lt;/title&gt;
+
+  &lt;!-- Resources to serve straight away: --&gt;
+  &lt;resources&gt;
+    &lt;cache-buster-id&gt;.v1&lt;/cache-buster-id&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+    &lt;resource pattern=".+\.png$" media-type="image/png" duration="P1Y"/&gt;
+  &lt;/resources&gt;
+
+  &lt;!-- ... parts removed ... --&gt;
+
+&lt;/webapp&gt;</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>cache-buster-id element</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <em>cache-buster-id</em> is then passed by XSLWeb as a stylesheet parameter to every transformation within a request dispatcher pipeline. You can use the id as part of references to static files like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;xsl:stylesheet
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:resp="http://www.armatiek.com/xslweb/response"
+  xmlns:config="http://www.armatiek.com/xslweb/configuration"
+  exclude-result-prefixes="#all"
+  version="3.0"&gt;
+
+  &lt;xsl:output method="html" version="5.0" indent="no"/&gt;
+
+  &lt;xsl:param name="config:cache-buster-id" as="xs:string?"/&gt;
+
+  &lt;xsl:variable
+    name="base-path"
+    select="/*/req:context-path || /*/req:webapp-path"
+    as="xs:string"/&gt;
+
+  &lt;xsl:template name="/"&gt;
+    &lt;resp:response status="200"&gt;
+      &lt;resp:headers&gt;
+        &lt;resp:header name="Content-Type"&gt;text/html; charset=utf-8&lt;/resp:header&gt;
+      &lt;/resp:headers&gt;
+      &lt;resp:body&gt;
+        &lt;html&gt;
+          &lt;head&gt;
+            &lt;title&gt;My website&lt;/title&gt;
+            &lt;link
+              rel="stylesheet"
+              href="{$base-path}/static/css/main{$config:cache-buster-id}.css"/&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+          &lt;/head&gt;
+          &lt;body&gt;
+            &lt;p class="hello"&gt;Hello World!&lt;/p&gt;
+          &lt;/body&gt;
+        &lt;/html&gt;
+      &lt;/resp:body&gt;
+    &lt;/resp:response&gt;
+  &lt;/xsl:template&gt;
+
+&lt;/xsl:stylesheet&gt;</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Use of the cache-buster-id stylesheet parameter</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <em>cache-buster-id</em> <strong>does not have to be part of the filename of the physical static file</strong>, XSLWeb will ignore the <em>cache-buster-id</em> part of the request and will serve the file without the id in the name. Therefore you can change the value of the <em>cache-buster-id</em> in your webapp.xml (and bust the clients caches), without touching your static resources.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Do not use the value of <em>cache-buster-id</em> as part of the filenames of your physical files.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="job-scheduling"><a class="anchor" href="#job-scheduling"></a><a class="link" href="#job-scheduling">9. Job scheduling</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>When you want to execute a pipeline (repeatedly) on a certain moment without user interaction, you can use the job scheduling functionality of XSLWeb. The jobs can be defined and scheduled in the <em>webapp.xml</em> configuration file, for example:</p>
@@ -1631,8 +1757,95 @@ If you have comments, remarks or questions about this manual, please use the <a 
 </div>
 </div>
 <div class="sect1">
-<h2 id="user-authentication"><a class="anchor" href="#user-authentication"></a><a class="link" href="#user-authentication">9. User authentication</a></h2>
+<h2 id="security"><a class="anchor" href="#security"></a><a class="link" href="#security">10. Security: authentication and authorization</a></h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>For authentication and authorization XSLWeb makes use of the Java security framework <a href="https://shiro.apache.org/" target="_blank" rel="noopener">Apache Shiro</a>. Apache Shiro is a powerful, easy-to-use and "battle-tested" Java security framework that performs authentication (Basic, Token based, LDAP, JDBC, ActiveDirectory, etc), authorization (subject/role/permission based), cryptography, and session management.</p>
+</div>
+<div class="paragraph">
+<p>All of the Apache Shiro documentation on <a href="https://shiro.apache.org/documentation.html" class="bare" target="_blank" rel="noopener">https://shiro.apache.org/documentation.html</a> and <a href="https://shiro.apache.org/web.html" class="bare" target="_blank" rel="noopener">https://shiro.apache.org/web.html</a> is relevant to the integration of Shiro in XSLWeb except for the following points:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://shiro.apache.org/web.html" class="bare" target="_blank" rel="noopener">https://shiro.apache.org/web.html</a> describes how to configure Shiro in a Java webapplication using a single WebEnvironment/SecurityManager that is configured in a single INI file in /WEB-INF/shiro.ini or at the root of the class path. In XSLWeb, every webapp has it&#8217;s own WebEnvironment/SecurityManager that is configured within the security/shiro-ini section of it&#8217;s webapp.xml configuration file, for example:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Security configuration example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;?xml version="1.0"?&gt;
+&lt;webapp
+  xmlns="http://www.armatiek.com/xslweb/webapp"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:saxon-config="http://saxon.sf.net/ns/configuration"
+  xsi:schemaLocation="http://www.armatiek.com/xslweb/webapp ../../config/xsd/xslweb/webapp.xsd"&gt;
+
+  &lt;title&gt;Apache Shiro configuration example&lt;/title&gt;
+
+  &lt;!-- ... parts removed ... --&gt;
+
+  &lt;security&gt;
+    &lt;shiro-ini&gt;&lt;![CDATA[
+[main]
+shiro.loginUrl = /${webapp-name}/security/login.html
+shiro.postOnlyLogout = true
+
+authcBasic.enabled = true
+
+sessionManager = org.apache.shiro.web.session.mgt.DefaultWebSessionManager
+sessionManager.sessionIdCookie.sameSite = NONE
+
+securityManager.sessionManager = $sessionManager
+securityManager.sessionManager.sessionIdUrlRewritingEnabled = false
+
+# We need to set the cipherKey, if you want the rememberMe cookie to work after restarting or on multiple nodes.
+# YOU MUST SET THIS TO A UNIQUE STRING
+securityManager.rememberMeManager.cipherKey = kPH+bIxk5D2deZiIxcaaaA==
+
+[users]
+# format: username = password, role1, role2, ..., roleN
+root = secret,admin,user,webdav
+guest = guest,guest
+jdoe = test123,user
+
+[roles]
+# format: roleName = permission1, permission2, ..., permissionN
+admin = *
+user = portal:read,portal:write
+webdav = *
+
+[urls]
+/${webapp-name}/security/login.html = authc
+/${webapp-name}/security/secured-for-admin-role.html = authc, roles[admin]
+/${webapp-name}/security/secured-for-read-permission.html = authc, perms["portal:read"]
+/${webapp-name}/security/logout.html = logout
+/${webapp-name}/webdav/** = authcBasic]]&gt;
+    &lt;/shiro-ini&gt;
+  &lt;/security&gt;
+
+  &lt;!-- ... parts removed ... --&gt;
+
+&lt;/webapp&gt;</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>There is no need to make changes to the web.xml of XSLWeb itself, like adding a Shiro servlet filter or listener.</p>
+</li>
+<li>
+<p>Because in the Shiro configuration all urls must be relative to the contextpath of the Java servlet, all urls must be prepended with the webapp&#8217;s name. For this you can use the variable ${webapp-name} (see the example above).</p>
+</li>
+<li>
+<p>The Shiro web support contains a <a href="https://shiro.apache.org/web.html#Web-JSP%2FGSPTagLibrary" target="_blank" rel="noopener">JSP/GSP tag Library</a>. Comparable functionality of this tag library is available in XSLWeb as a set of XPath extension functions (see <a href="#security-functions">Security (authentication/authorzation)</a>).</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="basic-user-authentication-deprecated"><a class="anchor" href="#basic-user-authentication-deprecated"></a><a class="link" href="#basic-user-authentication-deprecated">10.1. Basic user authentication (deprecated)</a></h3>
 <div class="paragraph">
 <p>You can implement (BASIC) user authentication by performing the following steps:</p>
 </div>
@@ -1655,13 +1868,11 @@ If you have comments, remarks or questions about this manual, please use the <a 
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>N.B. DIGEST or other authentication methods are not yet supported. BASIC (and DIGEST) authentication is only secure if HTTPS is used!</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="global-properties"><a class="anchor" href="#global-properties"></a><a class="link" href="#global-properties">10. Global configuration properties</a></h2>
+<h2 id="global-properties"><a class="anchor" href="#global-properties"></a><a class="link" href="#global-properties">11. Global configuration properties</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>In <em>«xslweb-home»/config/xslweb.properties</em> two global properties can be set:</p>
@@ -1679,21 +1890,21 @@ If you have comments, remarks or questions about this manual, please use the <a 
 </div>
 </div>
 <div class="sect1">
-<h2 id="xpath-extension-function-library"><a class="anchor" href="#xpath-extension-function-library"></a><a class="link" href="#xpath-extension-function-library">11. XPath extension function library</a></h2>
+<h2 id="xpath-extension-function-library"><a class="anchor" href="#xpath-extension-function-library"></a><a class="link" href="#xpath-extension-function-library">12. XPath extension function library</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="built-in-extension-functions"><a class="anchor" href="#built-in-extension-functions"></a><a class="link" href="#built-in-extension-functions">11.1. Built in extension functions</a></h3>
+<h3 id="built-in-extension-functions"><a class="anchor" href="#built-in-extension-functions"></a><a class="link" href="#built-in-extension-functions">12.1. Built in extension functions</a></h3>
 <div class="paragraph">
 <p>XSLWeb contains a set of readily available XPath extension functions. To use these extension functions in your XSLT stylesheets you only have to declare the namespace they are defined in.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="response-functions"><a class="anchor" href="#response-functions"></a><a class="link" href="#response-functions">11.2. Response functions</a></h3>
+<h3 id="response-functions"><a class="anchor" href="#response-functions"></a><a class="link" href="#response-functions">12.2. Response functions</a></h3>
 <div class="paragraph">
 <p>These functions can be used to set/change specific information in the HTTP response. For a large part this information can also be specified in the Response XML document, see <a href="#appendix-response-xml-example">Appendix B: Response XML example</a> for an example of a Response XML document.</p>
 </div>
 <div class="paragraph">
-<p>Namespace: <em>http://www.armatiek.com/xslweb/request</em></p>
+<p>Namespace uri: <em>http://www.armatiek.com/xslweb/request</em>. In the function signatures below this namespace uri is bound to the prefix <em>resp</em>.</p>
 </div>
 <div class="paragraph">
 <p>Functions:</p>
@@ -1809,7 +2020,7 @@ If you have comments, remarks or questions about this manual, please use the <a 
 </div>
 </div>
 <div class="sect2">
-<h3 id="session-functions"><a class="anchor" href="#session-functions"></a><a class="link" href="#session-functions">11.3. Session functions</a></h3>
+<h3 id="session-functions"><a class="anchor" href="#session-functions"></a><a class="link" href="#session-functions">12.3. Session functions</a></h3>
 <div class="paragraph">
 <p>HTTP protocol and Web Servers are stateless, what it means is that for web server every request is a new request to process and they can’t identify if it’s coming from client that has been sending request previously.</p>
 </div>
@@ -1823,7 +2034,7 @@ If you have comments, remarks or questions about this manual, please use the <a 
 <p>XSLWeb makes use of the <a href="https://www.codejava.net/java-ee/servlet/how-to-use-session-in-java-web-application">session mechanism</a> of the Java Application Server is runs on, see <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSession.html">HttpSession</a>.</p>
 </div>
 <div class="paragraph">
-<p>Namespace: <em>http://www.armatiek.com/xslweb/session</em></p>
+<p>Namespace uri: <em>http://www.armatiek.com/xslweb/session</em>. In the function signatures below this namespace uri is bound to the prefix <em>session</em>.</p>
 </div>
 <div class="paragraph">
 <p>Functions:</p>
@@ -1873,12 +2084,12 @@ If you have comments, remarks or questions about this manual, please use the <a 
 </div>
 </div>
 <div class="sect2">
-<h3 id="webapp-functions"><a class="anchor" href="#webapp-functions"></a><a class="link" href="#webapp-functions">11.4. Webapp functions</a></h3>
+<h3 id="webapp-functions"><a class="anchor" href="#webapp-functions"></a><a class="link" href="#webapp-functions">12.4. Webapp functions</a></h3>
 <div class="paragraph">
 <p>These functions can be used to get and set web application specific attributes. These can be used to share session independent attribute between multiple requests within one web application.</p>
 </div>
 <div class="paragraph">
-<p>Namespace: <em>http://www.armatiek.com/xslweb/functions/webapp</em></p>
+<p>Namespace uri: <em>http://www.armatiek.com/xslweb/functions/webapp</em>. In the function signatures below this namespace uri is bound to the prefix <em>webapp</em>.</p>
 </div>
 <div class="paragraph">
 <p>Functions:</p>
@@ -1908,12 +2119,12 @@ If you have comments, remarks or questions about this manual, please use the <a 
 </div>
 </div>
 <div class="sect2">
-<h3 id="context-functions"><a class="anchor" href="#context-functions"></a><a class="link" href="#context-functions">11.5. Context functions</a></h3>
+<h3 id="context-functions"><a class="anchor" href="#context-functions"></a><a class="link" href="#context-functions">12.5. Context functions</a></h3>
 <div class="paragraph">
 <p>These functions can be used to get and set “XSLWeb context” specific attributes. These can be used to share attributes between web applications.</p>
 </div>
 <div class="paragraph">
-<p>Namespace: <em>http://www.armatiek.com/xslweb/functions/context</em></p>
+<p>Namespace uri: <em>http://www.armatiek.com/xslweb/functions/context</em>. In the function signatures below this namespace uri is bound to the prefix <em>context</em>.</p>
 </div>
 <div class="paragraph">
 <p>Functions:</p>
@@ -1933,41 +2144,207 @@ If you have comments, remarks or questions about this manual, please use the <a 
 </div>
 </div>
 <div class="sect2">
-<h3 id="expath-file-functions"><a class="anchor" href="#expath-file-functions"></a><a class="link" href="#expath-file-functions">11.6. EXPath File</a></h3>
+<h3 id="security-functions"><a class="anchor" href="#security-functions"></a><a class="link" href="#security-functions">12.6. Security (authentication/authorzation)</a></h3>
 <div class="paragraph">
-<p>EXPath File is a standard file system API for XPath. It defines extension functions to perform file system related operations such as listing, reading, writing, copying and moving files or directories. The API is described <a href="http://expath.org/spec/file">here</a>.</p>
+<p>These functions can be used to get information about the identity and authorization state of the current subject/user making te request.</p>
 </div>
 <div class="paragraph">
-<p>Namespace: <em><a href="http://expath.org/ns/file" class="bare">http://expath.org/ns/file</a></em></p>
+<p>Namespace uri: <em>http://www.armatiek.com/xslweb/functions/security</em>. In the function signatures below this namespace uri is bound to the prefix <em>sec</em>.</p>
 </div>
 <div class="paragraph">
 <p>Functions:</p>
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function sec:is-guest() as xs:boolean</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This function returns true() if the current Subject is considered a 'guest'. A 'guest' is any Subject that does not have an identity. That is, we don&#8217;t know who the user is because they have not logged in and they are not remembered (from 'RememberMe' services) from a previous site visit.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function sec:is-user() as xs:boolean</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This function returns true() if the current Subject is considered a 'user'. A 'user' in this context is defined as a Subject with a known identity, either from a successful authentication or from 'RememberMe' services. Note that this function is semantically different from the <em>is-authenticated()</em> function, which is more restrictive.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function sec:is-authenticated() as xs:boolean</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This function returns true() if the current Subject has successfully authenticated during their current session. It is more restrictive than the <em>is-user()</em> function. The <em>is-authenticated()</em> function will return true() only if the current Subject has successfully authenticated during their current session. It is a more restrictive function than the <em>is-user()</em> function, which is used to guarantee identity in sensitive workflows.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function sec:principal() as xs:string?</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This function will return the Subject’s principal (identifying attribute, like a username). Without any parameters, this function will render the toString() value of the principal.</p>
+</div>
+<div class="paragraph">
+<p>The Java equivalent of this function is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityUtils.getSubject().getPrincipal().toString()</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function sec:principal($type as xs:string?) as xs:string?</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <em>principal()</em> function assumes by default that the principal to return is the subject.getPrincipal() value. But if you wanted to obtain a value that is not the primary principal, but another value in the Subject&#8217;s <a href="https://shiro.apache.org/static/1.5.3/apidocs/org/apache/shiro/subject/Subject.html#getPrincipals--" target="_blank" rel="noopener">principal collection</a>, you can acquire that principal by type. The type is a qualified Java class name, like "java.lang.Integer".</p>
+</div>
+<div class="paragraph">
+<p>The Java equivalent of this function is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityUtils.getSubject().getPrincipals().oneByType(Integer.class).toString()</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function sec:principal($type as xs:string?, $property as xs:string) as xs:string?</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>But what if the principal (either the default primary principal or 'typed' principal above) is a complex object and not a simple string, and you wanted to reference a property on that principal? You can use the <em>$property</em> parameter to indicate the name of the property to obtain (must be accessible via a JavaBeans-compatible getter method). For example (assuming the primary principal is a User object), the Java equivalent of:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">sec:principal('com.foo.User', 'firstName')</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityUtils.getSubject().getPrincipals().oneByType(com.foo.User.class).getFirstName().toString()</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function sec:has-role($name as xs:string+) as xs:boolean</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This function will return true() if the current Subject is assigned any of the specified roles names.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function sec:has-permission($name as xs:string) as xs:boolean</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This function returns true() if the current Subject 'has' (implies) the specified permission. That is, the user has the specified ability.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="expath-file-functions"><a class="anchor" href="#expath-file-functions"></a><a class="link" href="#expath-file-functions">12.7. EXPath File</a></h3>
+<div class="paragraph">
+<p>EXPath File is a standard file system API for XPath. It defines extension functions to perform file system related operations such as listing, reading, writing, copying and moving files or directories. The API is described <a href="http://expath.org/spec/file">here</a>.</p>
+</div>
+<div class="paragraph">
+<p>Namespace uri: <em>http://expath.org/ns/file</em>. In the function signatures below this namespace uri is bound to the prefix <em>file</em>.</p>
+</div>
+<div class="paragraph">
+<p>Functions:</p>
+</div>
+<div class="sect3">
+<h4 id="file-properties"><a class="anchor" href="#file-properties"></a><a class="link" href="#file-properties">12.7.1. File properties</a></h4>
+<div class="listingblock">
+<div class="content">
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:exists($path as xs:string) as xs:boolean</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Tests if the file or directory pointed by <em>$path</em> exists.</p>
+</div>
+<div class="paragraph">
+<p>This function is nondeterministic.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:is-dir($path as xs:string) as xs:boolean</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Tests if <em>$path</em> points to a directory. On UNIX-based systems the root and the volume roots are considered directories.</p>
+</div>
+<div class="paragraph">
+<p>This function is nondeterministic.</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:is-file($path as xs:string) as xs:boolean</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Tests if <em>$path</em> points to a file.</p>
+</div>
+<div class="paragraph">
+<p>This function is nondeterministic.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:last-modified($path as xs:string) as xs:dateTime</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Returns the last modification time of a file or directory.</p>
+</div>
+<div class="paragraph">
+<p>This function is nondeterministic.</p>
+</div>
+<div class="paragraph">
+<p><strong>Error Conditions</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>[<a href="#expath-file-errors">file:not-found</a>] is raised if the <em>$path</em> path does not exist.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:io-error</a>] is raised if any other error occurs.</p>
+</li>
+</ul>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:size($file as xs:string) as xs:integer</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Returns the byte size of a file, or the value 0 for directories.</p>
+</div>
+<div class="paragraph">
+<p>This function is nondeterministic.</p>
+</div>
+<div class="paragraph">
+<p><strong>Error Conditions</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>[<a href="#expath-file-errors">file:not-found</a>] is raised if the <em>$path</em> path does not exist.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:io-error</a>] is raised if any other error occurs.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="inputoutput"><a class="anchor" href="#inputoutput"></a><a class="link" href="#inputoutput">12.7.2. Input/output</a></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:append($file as xs:string, $items as item()*) as xs:boolean?</code></pre>
@@ -1978,10 +2355,63 @@ If you have comments, remarks or questions about this manual, please use the <a 
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:append($file as xs:string, $items as item()*, $params as element(output:serialization-parameters)) as xs:boolean?</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Appends a sequence of items to a file. If the file pointed by <em>$file</em> does not exist, a new file will be created.</p>
+</div>
+<div class="paragraph">
+<p><em>$params</em> controls the way the <em>$items</em> items are serialized. The semantics of <em>$params</em> is the same as for the <em>fn:serialize()</em> function in [XQuery and XPath Functions and Operators 3.0]. This consists of an <em>output:serialization-parameters</em> element whose format is defined in <a href="https://www.w3.org/TR/xslt-xquery-serialization-30/" target="_blank" rel="noopener">XSLT and XQuery Serialization 3.0</a>. In contrast to <em>fn:serialize()</em>, the encoding stage will not be skipped by this function.</p>
+</div>
+<div class="paragraph">
+<p>The function returns the empty sequence if the operation is successful.</p>
+</div>
+<div class="paragraph">
+<p>This function is nondeterministic.</p>
+</div>
+<div class="paragraph">
+<p><strong>Error Conditions</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>[<a href="#expath-file-errors">file:no-dir</a>] is raised if the parent directory of <em>$file</em> does not exist.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:is-dir</a>] is raised if <em>$file</em> points to a directory.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:io-error</a>] is raised if any other error occurs.</p>
+</li>
+</ul>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:append-binary($file as xs:string, $value as xs:base64Binary) as xs:boolean?</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Appends a Base64 item as binary to a file. If the file pointed by <em>$file</em> does not exist, a new file will be created.</p>
+</div>
+<div class="paragraph">
+<p>The function returns the empty sequence if the operation is successful.</p>
+</div>
+<div class="paragraph">
+<p>This function is nondeterministic.</p>
+</div>
+<div class="paragraph">
+<p><strong>Error Conditions</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>[<a href="#expath-file-errors">file:no-dir</a>] is raised if the parent directory of <em>$file</em> does not exist.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:is-dir</a>] is raised if <em>$file</em> points to a directory.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:io-error</a>] is raised if any other error occurs.</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1993,6 +2423,37 @@ If you have comments, remarks or questions about this manual, please use the <a 
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:append-text($file as xs:string, $value as xs:string, $encoding as xs:string) as xs:boolean?</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Appends a string to a file. If the file pointed by <em>$file</em> does not exist, a new file will be created.</p>
+</div>
+<div class="paragraph">
+<p>The optional parameter <em>$encoding</em>, if not provided, is considered to be UTF-8.</p>
+</div>
+<div class="paragraph">
+<p>The function returns the empty sequence if the operation is successful.</p>
+</div>
+<div class="paragraph">
+<p>This function is nondeterministic.</p>
+</div>
+<div class="paragraph">
+<p><strong>Error Conditions</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>[<a href="#expath-file-errors">file:no-dir</a>] is raised if the parent directory of <em>$file</em> does not exist.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:is-dir</a>] is raised if <em>$file</em> points to a directory.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:unknown-encoding</a>] is raised if <em>$encoding</em> is invalid or not supported by the implementation.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:io-error</a>] is raised if any other error occurs.</p>
+</li>
+</ul>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:append-text-lines($file as xs:string, $values as xs:string*) as xs:boolean?</code></pre>
@@ -2003,15 +2464,128 @@ If you have comments, remarks or questions about this manual, please use the <a 
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:append-text-lines($file as xs:string, $lines as xs:string*, $encoding as xs:string) as xs:boolean?</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Appends a sequence of strings to a file, each followed by the system-dependent newline character. If the file pointed by <em>$file</em> does not exist, a new file will be created.</p>
+</div>
+<div class="paragraph">
+<p>The optional parameter <em>$encoding</em>, if not provided, is considered to be UTF-8.</p>
+</div>
+<div class="paragraph">
+<p>The function returns the empty sequence if the operation is successful.</p>
+</div>
+<div class="paragraph">
+<p>This function is nondeterministic.</p>
+</div>
+<div class="paragraph">
+<p><strong>Error Conditions</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>[<a href="#expath-file-errors">file:no-dir</a>] is raised if the parent directory of <em>$file</em> does not exist.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:is-dir</a>] is raised if <em>$file</em> points to a directory.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:unknown-encoding</a>] is raised if <em>$encoding</em> is invalid or not supported by the implementation.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:io-error</a>] is raised if any other error occurs.</p>
+</li>
+</ul>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:copy($source as xs:string, $target as xs:string) as xs:boolean?</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Copies a file or a directory given a source and a target path/URI. The following cases may occur if $source points to a file:</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>if <em>$target</em> does not exist, it will be created.</p>
+</li>
+<li>
+<p>if <em>$target</em> is a file, it will be overwritten.</p>
+</li>
+<li>
+<p>if <em>$target</em> is a directory, the file will be created in that directory with the name of the source file. If a file already exists, it will be overwritten.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The following cases may occur if <em>$source</em> points to a directory:</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>if <em>$target</em> does not exist, it will be created as directory, and all files of the source directory are copied to this directory with their existing local names.</p>
+</li>
+<li>
+<p>if <em>$target</em> is a directory, the source directory with all its files will be copied into the target directory. At each level, if a file already exists in the target with the same name as in the source, it is overwritten. If a directory already exists in the target with the same name as in the source, it is not removed, it is recursed in place (if it does not exist, it is created before recursing).</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Other cases will raise one of the errors listed below.</p>
+</div>
+<div class="paragraph">
+<p>The function returns the empty sequence if the operation is successful. If an error occurs during the operation, no rollback to the original state will be possible</p>
+</div>
+<div class="paragraph">
+<p>This function is nondeterministic.</p>
+</div>
+<div class="paragraph">
+<p><strong>Error Conditions</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>[<a href="#expath-file-errors">file:not-found</a>] is raised if the <em>$source</em> path does not exist.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:exists</a>] is raised if <em>$source</em> points to a directory and <em>$target</em> points to an existing file.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:no-dir</a>] is raised if the parent directory of $source does not exist.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:is-dir</a>] is raised if <em>$source</em> points to a file and $target points to a directory, in which a subdirectory exists with the name of the source file.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:io-error</a>] is raised if any other error occurs.</p>
+</li>
+</ul>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:create-dir($dir as xs:string) as xs:boolean?</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Creates a directory, or does nothing if the directory already exists. The operation will create all non-existing parent directories.</p>
+</div>
+<div class="paragraph">
+<p>The function returns the empty sequence if the operation is successful.</p>
+</div>
+<div class="paragraph">
+<p>This function is nondeterministic.</p>
+</div>
+<div class="paragraph">
+<p><strong>Error Conditions</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>[<a href="#expath-file-errors">file:exists</a>] is raised if the specified path, or any of its parent directories, points to an existing file.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:io-error</a>] is raised if any other error occurs.</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2023,6 +2597,31 @@ If you have comments, remarks or questions about this manual, please use the <a 
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:create-temp-dir($prefix as xs:string, $suffix as xs:string, $dir as xs:string) as xs:string</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Creates a temporary directory and all non-existing parent directories and returns the full path to the created directory.</p>
+</div>
+<div class="paragraph">
+<p>The temporary directory will not be automatically deleted after query execution. It is guaranteed to not already exist when the function is called.</p>
+</div>
+<div class="paragraph">
+<p>If <em>$dir</em> is not given, the directory will be created inside the system-dependent default temporary-file directory.</p>
+</div>
+<div class="paragraph">
+<p>This function is ·nondeterministic·.</p>
+</div>
+<div class="paragraph">
+<p><strong>Error Conditions</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>[<a href="#expath-file-errors">file:no-dir</a>] is raised if the specified directory does not exist or points to a file.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:io-error</a>] is raised if any other error occurs.</p>
+</li>
+</ul>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:create-temp-file($prefix as xs:string, $suffix as xs:string) as xs:string</code></pre>
@@ -2033,6 +2632,31 @@ If you have comments, remarks or questions about this manual, please use the <a 
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:create-temp-file($prefix as xs:string, $suffix as xs:string, $dir as xs:string) as xs:string</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Creates a temporary file and all non-existing parent directories and returns the full path to the created file.</p>
+</div>
+<div class="paragraph">
+<p>The temporary file will not be automatically deleted after query execution. It is guaranteed to not already exist when the function is called.</p>
+</div>
+<div class="paragraph">
+<p>If <em>$dir</em> is not given, the directory will be created inside the system-dependent default temporary-file directory.</p>
+</div>
+<div class="paragraph">
+<p>This function is nondeterministic.</p>
+</div>
+<div class="paragraph">
+<p><strong>Error Conditions</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>[<a href="#expath-file-errors">file:no-dir</a>] is raised if the specified directory does not exist or points to a file.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:io-error</a>] is raised if any other error occurs.</p>
+</li>
+</ul>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:delete($path as xs:string) as xs:boolean?</code></pre>
@@ -2042,6 +2666,34 @@ If you have comments, remarks or questions about this manual, please use the <a 
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:delete($path as xs:string, $recursive as xs:boolean) as xs:boolean?</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Deletes a file or a directory from the file system.</p>
+</div>
+<div class="paragraph">
+<p>If the optional parameter <em>$recursive</em> is set to true(), sub-directories will be deleted as well.</p>
+</div>
+<div class="paragraph">
+<p>The function returns the empty sequence if the operation is successful.</p>
+</div>
+<div class="paragraph">
+<p>This function is ·nondeterministic·.</p>
+</div>
+<div class="paragraph">
+<p><strong>Error Conditions</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>[<a href="#expath-file-errors">file:not-found</a>] is raised if <em>$path</em> does not exist.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:is-dir</a>] is raised if <em>$file</em> points to a non-empty directory.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:io-error</a>] is raised if any other error occurs.</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2058,10 +2710,108 @@ If you have comments, remarks or questions about this manual, please use the <a 
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:list($dir as xs:string, $recursive as xs:boolean, $pattern as xs:string) as xs:string*</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Lists all files and directories in a given directory. The order of the items in the resulting sequence is not defined. The "." and ".." items are never returned. The returned paths are relative to the provided directory <em>$dir</em>.</p>
+</div>
+<div class="paragraph">
+<p>If the optional parameter <em>$recursive</em> is set to true(), all directories and files will be returned that are found while recursively traversing the given directory.</p>
+</div>
+<div class="paragraph">
+<p>The optional <em>$pattern</em> parameter defines a name pattern in the glob syntax. If this is provided, only the paths of the files and directories whose names are matching the pattern will be returned.</p>
+</div>
+<div class="paragraph">
+<p>An implementation must support at least the following glob syntax for the pattern:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>* for matching any number of unknown characters and</p>
+</li>
+<li>
+<p>? for matching one unknown character.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A related function is file:children.</p>
+</div>
+<div class="paragraph">
+<p>This function is nondeterministic.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>[<a href="#expath-file-errors">file:no-dir</a>] is raised if <em>$dir</em> does not point to an existing directory.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:io-error</a>] is raised if any other error occurs.</p>
+</li>
+</ul>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:move($source as xs:string, $target as xs:string) as xs:boolean?</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Moves a file or a directory given a source and a target path/URI. The following cases may occur if $source points to a file:</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>if <em>$target</em> does not exist, it will be created.</p>
+</li>
+<li>
+<p>if <em>$target</em> is a file, it will be overwritten.</p>
+</li>
+<li>
+<p>if <em>$target</em> is a directory, the file will be created in that directory with the name of the source file. If a file already exists, it will be overwritten.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The following cases may occur if $source points to a directory:</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>if <em>$target</em> does not exist, it will be created as directory, and all files of the source directory are moved to this directory with their existing local names.</p>
+</li>
+<li>
+<p>if <em>$target</em> is a directory, the source directory with all its files will be moved into the target directory. If the target directory contains a directory with the same name as the source, the error [file:is-dir] is raised.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Other cases will raise one of the errors listed below.</p>
+</div>
+<div class="paragraph">
+<p>The function returns the empty sequence if the operation is successful. If an error occurs during the operation, no rollback to the original state will be possible</p>
+</div>
+<div class="paragraph">
+<p>This function is nondeterministic.</p>
+</div>
+<div class="paragraph">
+<p><strong>Error Conditions</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>[<a href="#expath-file-errors">file:not-found</a>] is raised if the <em>$source</em> path does not exist.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:exists</a>] is raised if_$source_ points to a directory and <em>$target</em> points to an existing file.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:no-dir</a>] is raised if the parent directory of <em>$source</em> does not exist.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:is-dir</a>] is raised if <em>$target</em> points to a directory, in which a subdirectory exists with the name of the source.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:io-error</a>] is raised if any other error occurs.</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2078,6 +2828,34 @@ If you have comments, remarks or questions about this manual, please use the <a 
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:read-binary($file as xs:string, $offset as xs:integer, $length as xs:integer) as xs:base64Binary</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Returns the content of a file in its Base64 representation.</p>
+</div>
+<div class="paragraph">
+<p>The optional parameters <em>$offset</em> and <em>$length</em> can be used to read chunks of a file.</p>
+</div>
+<div class="paragraph">
+<p>This function is nondeterministic.</p>
+</div>
+<div class="paragraph">
+<p><strong>Error Conditions</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>[<a href="#expath-file-errors">file:not-found</a>] is raised if <em>$file</em> does not exist.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:is-dir</a>] is raised if <em>$file</em> points to a directory.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:out-of-range</a>] is raised if <em>$offset</em> or <em>$length</em> is negative, or if the chosen values would exceed the file bounds.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:io-error</a>] is raised if any other error occurs.</p>
+</li>
+</ul>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:read-text($file as xs:string) as xs:string</code></pre>
@@ -2087,6 +2865,34 @@ If you have comments, remarks or questions about this manual, please use the <a 
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:read-text($file as xs:string, $encoding as xs:string) as xs:string</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Returns the content of a file in its string representation.</p>
+</div>
+<div class="paragraph">
+<p>The optional parameter <em>$encoding</em>, if not provided, is considered to be UTF-8.</p>
+</div>
+<div class="paragraph">
+<p>This function is nondeterministic.</p>
+</div>
+<div class="paragraph">
+<p><strong>Error Conditions</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>[<a href="#expath-file-errors">file:not-found</a>] is raised if <em>$file</em> does not exist.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:is-dir</a>] is raised if <em>$file</em> points to a directory.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:unknown-encoding</a>] is raised if $encoding is invalid or not supported by the implementation.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:io-error</a>] is raised if any other error occurs.</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2098,6 +2904,37 @@ If you have comments, remarks or questions about this manual, please use the <a 
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:read-text-lines($file as xs:string, $encoding as xs:string) as xs:string*</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Returns the contents of a file as a sequence of strings, separated at newline boundaries.</p>
+</div>
+<div class="paragraph">
+<p>The optional parameter <em>$encoding</em>, if not provided, is considered to be UTF-8.</p>
+</div>
+<div class="paragraph">
+<p>The newline handling is the same as for the fn:unparsed-text-lines function in [XQuery and XPath Functions and Operators 3.0].</p>
+</div>
+<div class="paragraph">
+<p>This function is nondeterministic.</p>
+</div>
+<div class="paragraph">
+<p><strong>Error Conditions</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>[<a href="#expath-file-errors">file:not-found</a>] is raised if <em>$file</em> does not exist.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:is-dir</a>] is raised if <em>$file</em> points to a directory.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:unknown-encoding</a>] is raised if $encoding is invalid or not supported by the implementation.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:io-error</a>] is raised if any other error occurs.</p>
+</li>
+</ul>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:write($file as xs:string, $items as item()*) as xs:boolean?</code></pre>
@@ -2107,6 +2944,34 @@ If you have comments, remarks or questions about this manual, please use the <a 
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:write($file as xs:string, $items as item()*, $params as element(output:serialization-parameters)) as xs:boolean?</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Writes a sequence of items to a file. If <em>$file</em> already exists, it will be overwritten; otherwise, it will be created.</p>
+</div>
+<div class="paragraph">
+<p><em>$params</em> controls the way the <em>$items</em> items are serialized. The semantics of <em>$params</em> is the same as for the <em>fn:serialize</em> function in [XQuery and XPath Functions and Operators 3.0]. This consists of an <em>output:serialization-parameters</em> element whose format is defined in <a href="http://www.w3.org/TR/xslt-xquery-serialization-30/">XSLT and XQuery Serialization 3.0</a>. In contrast to <em>fn:serialize</em>, the encoding stage will not be skipped by this function.</p>
+</div>
+<div class="paragraph">
+<p>The function returns the empty sequence if the operation is successful.</p>
+</div>
+<div class="paragraph">
+<p>This function is nondeterministic.</p>
+</div>
+<div class="paragraph">
+<p><strong>Error Conditions</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>[<a href="#expath-file-errors">file:no-dir</a>] is raised if the parent directory of <em>$file</em> does not exist.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:is-dir</a>] is raised if <em>$file</em> points to a directory.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:io-error</a>] is raised if any other error occurs.</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2118,6 +2983,34 @@ If you have comments, remarks or questions about this manual, please use the <a 
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:write-binary($file as xs:string, $value as xs:base64Binary, $offset as xs:integer) as xs:boolean?</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Writes a Base64 item as binary to a file. If <em>$file</em> already exists, it will be overwritten; otherwise, it will be created.</p>
+</div>
+<div class="paragraph">
+<p>If the optional parameter <em>$offset</em> is specified, data will be written to this file position. An existing file may be resized by that operation.</p>
+</div>
+<div class="paragraph">
+<p>The function returns the empty sequence if the operation is successful.</p>
+</div>
+<div class="paragraph">
+<p>This function is nondeterministic.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>[<a href="#expath-file-errors">file:no-dir</a>] is raised if the parent directory of <em>$file</em> does not exist.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:is-dir</a>] is raised if <em>$file</em> points to a directory.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:out-of-range</a>]is raised if $offset is negative, or if it exceeds the current file size.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:io-error</a>] is raised if any other error occurs.</p>
+</li>
+</ul>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:write-text($file as xs:string, $value as xs:string) as xs:boolean?</code></pre>
@@ -2127,6 +3020,37 @@ If you have comments, remarks or questions about this manual, please use the <a 
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:write-text($file as xs:string, $value as xs:string, $encoding as xs:string) as xs:boolean?</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Writes a string to a file. If <em>$file</em> already exists, it will be overwritten.</p>
+</div>
+<div class="paragraph">
+<p>The optional parameter <em>$encoding</em>, if not provided, is considered to be UTF-8.</p>
+</div>
+<div class="paragraph">
+<p>The function returns the empty sequence if the operation is successful.</p>
+</div>
+<div class="paragraph">
+<p>This function is nondeterministic.</p>
+</div>
+<div class="paragraph">
+<p><strong>Error Conditions</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>[<a href="#expath-file-errors">file:no-dir</a>] is raised if the parent directory of <em>$file</em> does not exist.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:is-dir</a>] is raised if <em>$file</em> points to a directory.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:unknown-encoding</a>] is raised if <em>$encoding</em> is invalid or not supported by the implementation.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:io-error</a>] is raised if any other error occurs.</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2138,45 +3062,185 @@ If you have comments, remarks or questions about this manual, please use the <a 
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:write-text-lines($file as xs:string, $values as xs:string*, $encoding as xs:string) as xs:boolean?</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Writes a sequence of strings to a file, each followed by the system-dependent newline character. If <em>$file</em> already exists, it will be overwritten; otherwise, it will be created.</p>
+</div>
+<div class="paragraph">
+<p>The optional parameter <em>$encoding</em>, if not provided, is considered to be UTF-8.</p>
+</div>
+<div class="paragraph">
+<p>The function returns the empty sequence if the operation is successful.</p>
+</div>
+<div class="paragraph">
+<p>This function is nondeterministic.</p>
+</div>
+<div class="paragraph">
+<p><strong>Error Conditions</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>[<a href="#expath-file-errors">file:no-dir</a>] is raised if the parent directory of <em>$file</em> does not exist.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:is-dir</a>] is raised if <em>$file</em> points to a directory.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:unknown-encoding</a>] is raised if <em>$encoding</em> is invalid or not supported by the implementation.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:io-error</a>] is raised if any other error occurs.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="paths"><a class="anchor" href="#paths"></a><a class="link" href="#paths">12.7.3. Paths</a></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:name($path as xs:string) as xs:string</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Returns the name of a file or directory.</p>
+</div>
+<div class="paragraph">
+<p>An empty string is returned if <em>$path</em> points to the root directory, or if it contains no directory separators.</p>
+</div>
+<div class="paragraph">
+<p>This function is deterministic (no path existence check is made).</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:parent($path as xs:string) as xs:string?</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Transforms the given <em>$path</em> into an absolute path, as specified by <em>file:resolve-path</em>, and returns the parent directory.</p>
+</div>
+<div class="paragraph">
+<p>The inverse function is <em>file:children</em>.</p>
+</div>
+<div class="paragraph">
+<p>An empty sequence is returned if the path points to a root directory.</p>
+</div>
+<div class="paragraph">
+<p>This function is nondeterministic.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:children($path as xs:string) as xs:string*</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Returns the paths of all files and directories that are located in the given directory. The order of the items in the resulting sequence is not defined. The "." and ".." items are never returned.</p>
+</div>
+<div class="paragraph">
+<p>The inverse function is <em>file:parent</em>; a related function is <em>file:list</em>.</p>
+</div>
+<div class="paragraph">
+<p>This function is nondeterministic.</p>
+</div>
+<div class="paragraph">
+<p><strong>Error Conditions</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>[<a href="#expath-file-errors">file:no-dir</a>] is raised if <em>$path</em> does not point to an existing directory.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:io-error</a>] is raised if any other error occurs.</p>
+</li>
+</ul>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:path-to-native($path as xs:string) as xs:string</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Transforms a URI, an absolute path, or relative path to a canonical, system-dependent path representation. A canonical path is both absolute and unique and thus contains no redirections such as references to parent directories or symbolic links.</p>
+</div>
+<div class="paragraph">
+<p>If the resulting path points to a directory, it will be suffixed with the system-specific directory separator.</p>
+</div>
+<div class="paragraph">
+<p>This function is nondeterministic.</p>
+</div>
+<div class="paragraph">
+<p><strong>Error Conditions</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>[<a href="#expath-file-errors">file:not-found</a>] is raised if $path does not exist.</p>
+</li>
+<li>
+<p>[<a href="#expath-file-errors">file:io-error</a>] is raised if an error occurs while trying to obtain the native path.</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:path-to-uri($path as xs:string) as xs:anyURI</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Transforms a file system path into a URI with the file:// scheme. If the path is relative, it is first resolved against the current working directory.</p>
+</div>
+<div class="paragraph">
+<p>This function is deterministic (no path existence check is made).</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:resolve-path($path as xs:string) as xs:string</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Transforms a relative path into an absolute operating system path by resolving it against the current working directory.</p>
+</div>
+<div class="paragraph">
+<p>If the resulting path points to a directory, it will be suffixed with the system-specific directory separator.</p>
+</div>
+<div class="paragraph">
+<p>This function is nondeterministic.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="system-properties"><a class="anchor" href="#system-properties"></a><a class="link" href="#system-properties">12.7.4. System properties</a></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:dir-separator() as xs:string</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Returns the value of the operating system-specific directory separator, which usually is / on UNIX-based systems and \ on Windows systems.</p>
+</div>
+<div class="paragraph">
+<p>This function is nondeterministic.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:line-separator() as xs:string</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Returns the value of the operating system-specific line separator, which usually is &#10; on UNIX-based systems, &#13;&#10; on Windows systems and &#13; on Mac systems.</p>
+</div>
+<div class="paragraph">
+<p>This function is nondeterministic.</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:path-separator() as xs:string</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Returns the value of the operating system-specific path separator, which usually is : on UNIX-based systems and ; on Windows systems.</p>
+</div>
+<div class="paragraph">
+<p>This function is nondeterministic.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2184,11 +3248,68 @@ If you have comments, remarks or questions about this manual, please use the <a 
 </div>
 </div>
 <div class="paragraph">
-<p>The structure of <em>element(output:serialization-parameters)</em> is described in <a href="http://www.w3.org/TR/xslt-xquery-serialization-30/">XSLT and XQuery Serialization 3.0</a>. See example 10 how to use some of the EXPath File functions.</p>
+<p>Returns the path to the default temporary-file directory of an operating system.</p>
+</div>
+<div class="paragraph">
+<p>This function is nondeterministic.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:base-dir() as xs:string</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Returns the parent directory of the static base URI. If the Base URI property is undefined, the empty sequence is returned. - If a static base URI exists, and if points to a local file path, this function returns the same result as the expression <em>file:parent(static-base-uri())</em>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Summary of Error Conditions</strong></p>
+</div>
+<div id="expath-file-errors" class="ulist">
+<ul>
+<li>
+<p><strong>file:not-found</strong><br>
+The specified path does not exist.</p>
+</li>
+<li>
+<p><strong>file:invalid-path</strong><br>
+The specified path is invalid.</p>
+</li>
+<li>
+<p><strong>file:exists</strong><br>
+The specified path already exists.</p>
+</li>
+<li>
+<p><strong>file:no-dir</strong><br>
+The specified path does not point to a directory.</p>
+</li>
+<li>
+<p><strong>file:is-dir</strong><br>
+The specified path points to a directory.</p>
+</li>
+<li>
+<p><strong>file:unknown-encoding</strong><br>
+The specified encoding is not supported.</p>
+</li>
+<li>
+<p><strong>file:out-of-range</strong><br>
+The specified offset or length is negative, or the chosen values would exceed the file bounds.</p>
+</li>
+<li>
+<p><strong>file:io-error</strong><br>
+A generic file system error occurred.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The structure of <em>element(output:serialization-parameters)</em> is described in <a href="http://www.w3.org/TR/xslt-xquery-serialization-30/">XSLT and XQuery Serialization 3.0</a>.</p>
+</div>
+<div class="paragraph">
+<p>See example 10 how to use some of the EXPath File functions.</p>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="expath-http-client-functions"><a class="anchor" href="#expath-http-client-functions"></a><a class="link" href="#expath-http-client-functions">11.7. EXPath HTTP Client</a></h3>
+<h3 id="expath-http-client-functions"><a class="anchor" href="#expath-http-client-functions"></a><a class="link" href="#expath-http-client-functions">12.8. EXPath HTTP Client</a></h3>
 <div class="paragraph">
 <p>These functions are an implementation of the specification: <a href="http://expath.org/spec/http-client">EXPath - HTTP Client Module</a> based on the Java HTTP client library <a href="https://square.github.io/okhttp/">OkHttp</a>. It is an XSLWeb “native” implementation. The API defines one extension function to perform HTTP requests and handle responses.</p>
 </div>
@@ -2254,15 +3375,31 @@ If you have comments, remarks or questions about this manual, please use the <a 
 </ul>
 </div>
 <div class="paragraph">
-<p>Namespace: <em><a href="http://expath.org/ns/http-client" class="bare">http://expath.org/ns/http-client</a></em></p>
+<p>Namespace uri: <em>http://expath.org/ns/http-client</em>. In the function signatures below this namespace uri is bound to the prefix <em>http</em>.</p>
 </div>
 <div class="paragraph">
 <p>Functions:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function http:send-request($request as element(http:request)) as item()</code></pre>
+<pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function http:send-request($request as element(http:request)?, $href as xs:string?, $bodies as item()*) as item()+</code></pre>
 </div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>$request</em> contains the various parameters of the request, for instance the HTTP method to use or the HTTP headers. Among other things, it can also contain the other param&#8217;s values: the URI and the bodies. If they are not set as parameter to the function, their value in <em>$request</em>, if any, is used instead. See <a href="http://expath.org/spec/http-client#d2e178" target="_blank" rel="noopener">Sending a request</a> for the detailed definition of the <em>http:request</em> element. If the parameter does not follow the grammar defined in this spec, this is an error [<a href="#expath-http-client-errors">err:HC005</a>].</p>
+</li>
+<li>
+<p><em>$href</em> is the HTTP or HTTPS URI to send the request to. It is an xs:anyURI, but is declared as a string to be able to pass literal strings (without requiring to explicitly cast it to an xs:anyURI).</p>
+</li>
+<li>
+<p><em>$bodies</em> is the request body content, for HTTP methods that can contain a body in the request (e.g. POST). This is an error if this param is not the empty sequence for methods that must be empty (e.g. DELETE). The details of the methods are defined in their respective specs (e.g. <a href="http://www.ietf.org/rfc/rfc2616.txt" target="_blank" rel="noopener">RFC 2616</a> or <a href="http://www.ietf.org/rfc/rfc4918.txt" target="_blank" rel="noopener">RFC 4918</a>). In case of a multipart request, it can be a sequence of several items, each one is the body of the corresponding body descriptor in <em>$request</em>. See below for details.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Besides the 3-params signature above, there are 2 other signatures that are convenient shortcuts (corresponding to the full version in which corresponding params have been set to the empty sequence). They are:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2271,17 +3408,48 @@ If you have comments, remarks or questions about this manual, please use the <a 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function http:send-request($request as element(http:request)?, $href as xs:string?, $bodies as item()*) as item()+</code></pre>
+<pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function http:send-request($request as element(http:request)) as item()</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p><strong>Summary of Error Conditions</strong></p>
+</div>
+<div id="expath-http-client-errors" class="ulist">
+<ul>
+<li>
+<p><strong>err:HC001</strong><br>
+An HTTP error occurred.</p>
+</li>
+<li>
+<p><strong>err:HC002</strong><br>
+Error parsing the entity content as XML or HTML.</p>
+</li>
+<li>
+<p><strong>err:HC003</strong><br>
+With a multipart response, the override-media-type must be either a multipart media type or application/octet-stream.</p>
+</li>
+<li>
+<p><strong>err:HC004</strong><br>
+The src attribute on the body element is mutually exclusive with all other attribute (except the media-type).</p>
+</li>
+<li>
+<p><strong>err:HC005</strong><br>
+The request element is not valid.</p>
+</li>
+<li>
+<p><strong>err:HC006</strong><br>
+A timeout occurred waiting for the response.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>See examples 11 and 21 how to use some of the EXPath HTTP Client function.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="base64-functions"><a class="anchor" href="#base64-functions"></a><a class="link" href="#base64-functions">11.8. Base64</a></h3>
+<h3 id="base64-functions"><a class="anchor" href="#base64-functions"></a><a class="link" href="#base64-functions">12.9. Base64</a></h3>
 <div class="paragraph">
-<p>Namespace: <em>http://www.armatiek.com/xslweb/functions/base64</em></p>
+<p>Namespace uri: <em>http://www.armatiek.com/xslweb/functions/base64</em>. In the function signatures below this namespace uri is bound to the prefix <em>base64</em>.</p>
 </div>
 <div class="paragraph">
 <p>Functions:</p>
@@ -2304,9 +3472,9 @@ If you have comments, remarks or questions about this manual, please use the <a 
 </div>
 </div>
 <div class="sect2">
-<h3 id="external-functions"><a class="anchor" href="#external-functions"></a><a class="link" href="#external-functions">11.9. Execute external processes</a></h3>
+<h3 id="external-functions"><a class="anchor" href="#external-functions"></a><a class="link" href="#external-functions">12.10. Execute external processes</a></h3>
 <div class="paragraph">
-<p>Namespace: <em>http://www.armatiek.com/xslweb/functions/exec</em></p>
+<p>Namespace uri: <em>http://www.armatiek.com/xslweb/functions/exec</em>. In the function signatures below this namespace uri is bound to the prefix <em>external</em>.</p>
 </div>
 <div class="paragraph">
 <p>Functions:</p>
@@ -2326,12 +3494,12 @@ If you have comments, remarks or questions about this manual, please use the <a 
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging-functions"><a class="anchor" href="#logging-functions"></a><a class="link" href="#logging-functions">11.10. Logging functions</a></h3>
+<h3 id="logging-functions"><a class="anchor" href="#logging-functions"></a><a class="link" href="#logging-functions">12.11. Logging functions</a></h3>
 <div class="paragraph">
 <p>Logging functionality. The logging information is written to the main XSLWeb log file, default <em>«xslweb-home»</em>/logs/xslweb.log.</p>
 </div>
 <div class="paragraph">
-<p>Namespace: <em>http://www.armatiek.com/xslweb/functions/log</em></p>
+<p>Namespace uri: <em>http://www.armatiek.com/xslweb/functions/log</em>. In the function signatures below this namespace uri is bound to the prefix <em>log</em>.</p>
 </div>
 <div class="paragraph">
 <p>Functions:</p>
@@ -2354,12 +3522,12 @@ If you have comments, remarks or questions about this manual, please use the <a 
 </div>
 </div>
 <div class="sect2">
-<h3 id="email-functions"><a class="anchor" href="#email-functions"></a><a class="link" href="#email-functions">11.11. Email</a></h3>
+<h3 id="email-functions"><a class="anchor" href="#email-functions"></a><a class="link" href="#email-functions">12.12. Email</a></h3>
 <div class="paragraph">
 <p>Functionality for sending e-mail via SMTP.</p>
 </div>
 <div class="paragraph">
-<p>Namespace: <em>http://www.armatiek.com/xslweb/functions/email</em></p>
+<p>Namespace uri: <em>http://www.armatiek.com/xslweb/functions/email</em>. In the function signatures below this namespace uri is bound to the prefix <em>email</em>.</p>
 </div>
 <div class="paragraph">
 <p>Functions:</p>
@@ -2374,12 +3542,12 @@ If you have comments, remarks or questions about this manual, please use the <a 
 </div>
 </div>
 <div class="sect2">
-<h3 id="serialization-functions"><a class="anchor" href="#serialization-functions"></a><a class="link" href="#serialization-functions">11.12. Serialization</a></h3>
+<h3 id="serialization-functions"><a class="anchor" href="#serialization-functions"></a><a class="link" href="#serialization-functions">12.13. Serialization</a></h3>
 <div class="paragraph">
 <p>Functionality for serializing a node to a string.</p>
 </div>
 <div class="paragraph">
-<p>Namespace: <em>http://www.armatiek.com/xslweb/functions/serialize</em></p>
+<p>Namespace uri: <em>http://www.armatiek.com/xslweb/functions/serialize</em>. In the function signatures below this namespace uri is bound to the prefix <em>ser</em>.</p>
 </div>
 <div class="paragraph">
 <p>Functions:</p>
@@ -2406,9 +3574,9 @@ If you have comments, remarks or questions about this manual, please use the <a 
 </div>
 </div>
 <div class="sect2">
-<h3 id="caching-functions"><a class="anchor" href="#caching-functions"></a><a class="link" href="#caching-functions">11.13. Caching</a></h3>
+<h3 id="caching-functions"><a class="anchor" href="#caching-functions"></a><a class="link" href="#caching-functions">12.14. Caching</a></h3>
 <div class="paragraph">
-<p>Namespace: <em>http://www.armatiek.com/xslweb/functions/cache</em></p>
+<p>Namespace uri: <em>http://www.armatiek.com/xslweb/functions/cache</em>. In the function signatures below this namespace uri is bound to the prefix <em>cache</em>.</p>
 </div>
 <div class="paragraph">
 <p>Functions:</p>
@@ -2423,9 +3591,9 @@ If you have comments, remarks or questions about this manual, please use the <a 
 </div>
 </div>
 <div class="sect2">
-<h3 id="image-processing-functions"><a class="anchor" href="#image-processing-functions"></a><a class="link" href="#image-processing-functions">11.14. Image processing</a></h3>
+<h3 id="image-processing-functions"><a class="anchor" href="#image-processing-functions"></a><a class="link" href="#image-processing-functions">12.15. Image processing</a></h3>
 <div class="paragraph">
-<p>Namespace: <em>http://www.armatiek.com/xslweb/functions/image</em></p>
+<p>Namespace uri: <em>http://www.armatiek.com/xslweb/functions/image</em>. In the function signatures below this namespace uri is bound to the prefix <em>img</em>.</p>
 </div>
 <div class="paragraph">
 <p>Functions:</p>
@@ -2440,9 +3608,9 @@ If you have comments, remarks or questions about this manual, please use the <a 
 </div>
 </div>
 <div class="sect2">
-<h3 id="io-functions"><a class="anchor" href="#io-functions"></a><a class="link" href="#io-functions">11.15. Input/Output</a></h3>
+<h3 id="io-functions"><a class="anchor" href="#io-functions"></a><a class="link" href="#io-functions">12.16. Input/Output</a></h3>
 <div class="paragraph">
-<p>Namespace: <em>http://www.armatiek.com/xslweb/functions/io</em></p>
+<p>Namespace uri: <em>http://www.armatiek.com/xslweb/functions/io</em>. In the function signatures below this namespace uri is bound to the prefix <em>io</em>.</p>
 </div>
 <div class="paragraph">
 <p>Functions:</p>
@@ -2457,9 +3625,9 @@ If you have comments, remarks or questions about this manual, please use the <a 
 </div>
 </div>
 <div class="sect2">
-<h3 id="util-functions"><a class="anchor" href="#util-functions"></a><a class="link" href="#util-functions">11.16. Utilities</a></h3>
+<h3 id="util-functions"><a class="anchor" href="#util-functions"></a><a class="link" href="#util-functions">12.17. Utilities</a></h3>
 <div class="paragraph">
-<p>Namespace: <em>http://www.armatiek.com/xslweb/functions/util</em></p>
+<p>Namespace uri: <em>http://www.armatiek.com/xslweb/functions/util</em>. In the function signatures below this namespace uri is bound to the prefix <em>util</em>.</p>
 </div>
 <div class="paragraph">
 <p>Functions:</p>
@@ -2494,12 +3662,12 @@ If you have comments, remarks or questions about this manual, please use the <a 
 </div>
 </div>
 <div class="sect2">
-<h3 id="zip-functions"><a class="anchor" href="#zip-functions"></a><a class="link" href="#zip-functions">11.17. Zip/Unzip</a></h3>
+<h3 id="zip-functions"><a class="anchor" href="#zip-functions"></a><a class="link" href="#zip-functions">12.18. Zip/Unzip</a></h3>
 <div class="paragraph">
 <p>(Un)zip functionality</p>
 </div>
 <div class="paragraph">
-<p>Namespace: <em>http://www.armatiek.com/xslweb/functions/zip</em></p>
+<p>Namespace uri: <em>http://www.armatiek.com/xslweb/functions/zip</em>. In the function signatures below this namespace uri is bound to the prefix <em>zip</em>.</p>
 </div>
 <div class="paragraph">
 <p>Functions:</p>
@@ -2525,9 +3693,9 @@ If you have comments, remarks or questions about this manual, please use the <a 
 </div>
 </div>
 <div class="sect2">
-<h3 id="uuid-functions"><a class="anchor" href="#uuid-functions"></a><a class="link" href="#uuid-functions">11.18. UUID</a></h3>
+<h3 id="uuid-functions"><a class="anchor" href="#uuid-functions"></a><a class="link" href="#uuid-functions">12.19. UUID</a></h3>
 <div class="paragraph">
-<p>Namespace: <em>http://www.armatiek.com/xslweb/functions/uuid</em></p>
+<p>Namespace uri: <em>http://www.armatiek.com/xslweb/functions/uuid</em>. In the function signatures below this namespace uri is bound to the prefix <em>uuid</em>.</p>
 </div>
 <div class="paragraph">
 <p>Functions:</p>
@@ -2542,12 +3710,12 @@ If you have comments, remarks or questions about this manual, please use the <a 
 </div>
 </div>
 <div class="sect2">
-<h3 id="json-functions"><a class="anchor" href="#json-functions"></a><a class="link" href="#json-functions">11.19. JSON</a></h3>
+<h3 id="json-functions"><a class="anchor" href="#json-functions"></a><a class="link" href="#json-functions">12.20. JSON</a></h3>
 <div class="paragraph">
 <p>(Experimental)</p>
 </div>
 <div class="paragraph">
-<p>Namespace: <em>http://www.armatiek.com/xslweb/functions/json</em></p>
+<p>Namespace uri: <em>http://www.armatiek.com/xslweb/functions/json</em>. In the function signatures below this namespace uri is bound to the prefix <em>json</em>.</p>
 </div>
 <div class="paragraph">
 <p>Functions:</p>
@@ -2601,9 +3769,9 @@ Alternative: now you can also use the standard XPath 3.1 functions, see: <a href
 </div>
 </div>
 <div class="sect2">
-<h3 id="dynfunc-functions"><a class="anchor" href="#dynfunc-functions"></a><a class="link" href="#dynfunc-functions">11.20. Dynamic (scripted) extension functions</a></h3>
+<h3 id="dynfunc-functions"><a class="anchor" href="#dynfunc-functions"></a><a class="link" href="#dynfunc-functions">12.21. Dynamic (scripted) extension functions</a></h3>
 <div class="paragraph">
-<p>Namespace: <em>http://www.armatiek.com/xslweb/functions/dynfunc</em></p>
+<p>Namespace uri: <em>http://www.armatiek.com/xslweb/functions/dynfunc</em>. In the function signatures below this namespace uri is bound to the prefix <em>dynfunc</em>.</p>
 </div>
 <div class="paragraph">
 <p>Functions:</p>
@@ -3060,7 +4228,7 @@ public class MyExtensionFunctions {
 </div>
 </div>
 <div class="sect2">
-<h3 id="sql-functions"><a class="anchor" href="#sql-functions"></a><a class="link" href="#sql-functions">11.21. SQL</a></h3>
+<h3 id="sql-functions"><a class="anchor" href="#sql-functions"></a><a class="link" href="#sql-functions">12.22. SQL</a></h3>
 <div class="paragraph">
 <p>Functionality to query data from and store data in a relational database. These extension functions make use of the <a href="http://en.wikipedia.org/wiki/Java_Database_Connectivity">Java JDBC</a> framework. You can place the JDBC driver for your database in the directory <em>«xslweb-home»/common/lib</em> (restart required). Then you can define a datasource in the <em>datasources</em> section of the application’s <em>webapp.xml</em>, for instance for a <a href="http://www.h2database.com/html/main.html">H2</a> database:</p>
 </div>
@@ -3087,7 +4255,7 @@ public class MyExtensionFunctions {
 <p>JDBC drivers are available for most relational database systems (like MySQL, Oracle, PostgreSQL, MSSQL Server, Sybase, Cloudscape and Firebird), but also for non-relational database datasources like CSV files and LDAP directory services (untested).</p>
 </div>
 <div class="paragraph">
-<p>Namespace: <em>http://www.armatiek.com/xslweb/functions/sql</em></p>
+<p>Namespace uri: <em>http://www.armatiek.com/xslweb/functions/sql</em>. In the function signatures below this namespace uri is bound to the prefix <em>sql</em>.</p>
 </div>
 <div class="paragraph">
 <p>Functions:</p>
@@ -3166,7 +4334,7 @@ public class MyExtensionFunctions {
 </div>
 </div>
 <div class="sect2">
-<h3 id="custom-extension-functions"><a class="anchor" href="#custom-extension-functions"></a><a class="link" href="#custom-extension-functions">11.22. Custom extension functions</a></h3>
+<h3 id="custom-extension-functions"><a class="anchor" href="#custom-extension-functions"></a><a class="link" href="#custom-extension-functions">12.23. Custom extension functions</a></h3>
 <div class="paragraph">
 <p>It is also possible to write your own custom XPath extension functions in Java and add them to an XSLWeb web application. These extension functions must be <a href="http://www.saxonica.com/html/documentation/extensibility/integratedfunctions/ext-full-J.html">integrated extension functions</a> that use the full interface of Saxon version 9.9.</p>
 </div>
@@ -3175,7 +4343,7 @@ public class MyExtensionFunctions {
 </div>
 </div>
 <div class="sect2">
-<h3 id="side-effects"><a class="anchor" href="#side-effects"></a><a class="link" href="#side-effects">11.23. Extension functions with side effects</a></h3>
+<h3 id="side-effects"><a class="anchor" href="#side-effects"></a><a class="link" href="#side-effects">12.24. Extension functions with side effects</a></h3>
 <div class="paragraph">
 <p>A number of the extension functions described in previous sections perform a certain task and thereby change the state of something outside the stylesheet, like write or log to a file, send an e-mail etc. These functions don’t have any return information and should have an empty sequence as their return type. In XSLWeb, the return type of these functions is actually declared as <em>xs:boolean?</em> The reason is that in that case the Saxon XSLT optimizer cannot ignore these functions, because they could add something to the result tree (a boolean value). In reality, these functions never return this boolean value and always return an empty sequence. Therefore it is safe to do something like:</p>
 </div>
@@ -3191,7 +4359,110 @@ public class MyExtensionFunctions {
 </div>
 </div>
 <div class="sect1">
-<h2 id="install"><a class="anchor" href="#install"></a><a class="link" href="#install">12. Download, install and run XSLWeb</a></h2>
+<h2 id="webdav-access"><a class="anchor" href="#webdav-access"></a><a class="link" href="#webdav-access">13. WebDAV access</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>XSLWeb provides Web Distributed Authoring and Versioning (WebDAV) access to the webapp resources, like the XSLT stylesheets, the webapp.xml and the static resources like css and javascript files. WebDAV is an extension of the <a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol" target="_blank" rel="noopener">Hypertext Transfer Protocol (HTTP)</a> that allows clients to perform remote Web content authoring operations. WebDAV is defined in <a href="https://tools.ietf.org/html/rfc4918" target="_blank" rel="noopener">RFC 4918</a> by a working group of the Internet Engineering Task Force. See also <a href="https://en.wikipedia.org/wiki/WebDAV" target="_blank" rel="noopener">WebDAV on Wikipedia</a>.</p>
+</div>
+<div class="paragraph">
+<p>To use the WebDAV protocol you need a WebDAV client like <a href="http://rei.to/carotdav_en.html" target="_blank" rel="noopener">CarotDAV (Windows - Free)</a>, <a href="http://www.bitkinex.com/" target="_blank" rel="noopener">Bitkinex (Windows)</a>, <a href="https://www.netdrive.net/" target="_blank" rel="noopener">Netdrive (Windows;macOS)</a>, <a href="http://www.webdav.org/cadaver/" target="_blank" rel="noopener">cadaver (Linux - Free)</a> or the WebDAV data source within the <a href="https://www.oxygenxml.com/xml_editor.html" target="_blank" rel="noopener">&lt;oXygen/&gt; XML Editor (Linux;macOS;Windows)</a>.</p>
+</div>
+<div class="paragraph">
+<p>Every XSLWeb webapp has it&#8217;s own WebDAV configuration. WebDAV access is disabled by default. You can enable WebDAV access in the webapp.xml within the element &lt;webdav&gt;:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;?xml version="1.0"?&gt;
+&lt;webapp
+  xmlns="http://www.armatiek.com/xslweb/webapp"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:saxon-config="http://saxon.sf.net/ns/configuration"
+  xsi:schemaLocation="http://www.armatiek.com/xslweb/webapp ../../config/xsd/xslweb/webapp.xsd"&gt;
+
+  &lt;title&gt;WebDAV access example&lt;/title&gt;
+
+  &lt;!-- ... parts removed ... --&gt;
+
+  &lt;webdav&gt;
+    &lt;enabled&gt;true&lt;/enabled&gt;
+    &lt;lazy-folder-creation-on-put&gt;true&lt;/lazy-folder-creation-on-put&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+  &lt;/webdav&gt;
+
+  &lt;!-- ... parts removed ... --&gt;
+
+&lt;/webapp&gt;</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Overriding RFC 2518, the folders of resources being created, can be created too if they do not exist.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You can access the top-level WebDAV folder using the url <a href="http://my-domain:my-port/my-webapp/webdav/" class="bare">http://my-domain:my-port/my-webapp/webdav/</a>, for instance <a href="http://localhost:8080/examples/webdav/" class="bare">http://localhost:8080/examples/webdav/</a>.</p>
+</div>
+<div class="paragraph">
+<p>When you enable WebDAV access you probably want to authenticate users before accessing the resources, see <a href="#security">Security: authentication and authorization</a>. By default there is no authentication.</p>
+</div>
+<div class="paragraph">
+<p>Example how to configure authentication for WebDAV requests:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;?xml version="1.0"?&gt;
+&lt;webapp
+  xmlns="http://www.armatiek.com/xslweb/webapp"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:saxon-config="http://saxon.sf.net/ns/configuration"
+  xsi:schemaLocation="http://www.armatiek.com/xslweb/webapp ../../config/xsd/xslweb/webapp.xsd"&gt;
+
+  &lt;title&gt;WebDAV access example&lt;/title&gt;
+
+  &lt;!-- ... parts removed ... --&gt;
+
+  &lt;webdav&gt;
+    &lt;enabled&gt;true&lt;/enabled&gt;
+    &lt;lazy-folder-creation-on-put&gt;true&lt;/lazy-folder-creation-on-put&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+  &lt;/webdav&gt;
+
+  &lt;security&gt;
+    &lt;shiro-ini&gt;&lt;![CDATA[
+[main]
+authcBasic.enabled = true
+
+sessionManager = org.apache.shiro.web.session.mgt.DefaultWebSessionManager
+sessionManager.sessionIdCookie.sameSite = NONE
+
+securityManager.sessionManager = $sessionManager
+securityManager.sessionManager.sessionIdUrlRewritingEnabled = false
+
+[users]
+# format: username = password, role1, role2, ..., roleN
+webdavuser = secret,webdav
+
+[roles]
+# format: roleName = permission1, permission2, ..., permissionN
+webdav = *
+
+[urls]
+/${webapp-name}/webdav/** = authcBasic]]&gt;
+    &lt;/shiro-ini&gt;
+  &lt;/security&gt;
+
+  &lt;!-- ... parts removed ... --&gt;
+
+&lt;/webapp&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="install"><a class="anchor" href="#install"></a><a class="link" href="#install">14. Download, install and run XSLWeb</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The sources of XSLWeb can be found on <a href="https://github.com/Armatiek/xslweb">GitHub</a>. XSLWeb is licensed under the Apache License version 2.0.</p>
@@ -3210,12 +4481,12 @@ public class MyExtensionFunctions {
 </ol>
 </div>
 <div class="sect2">
-<h3 id="install-jar"><a class="anchor" href="#install-jar"></a><a class="link" href="#install-jar">12.1. The single executable jar distribution</a></h3>
+<h3 id="install-jar"><a class="anchor" href="#install-jar"></a><a class="link" href="#install-jar">14.1. The single executable jar distribution</a></h3>
 <div class="paragraph">
 <p>This distribution contains the XSLWeb home directory and a single executable java library (xslweb.jar) with embedded application server (Tomcat 7). This distribution is the easiest to install and run and is most suitable to try out and develop applications in XSLWeb.</p>
 </div>
 <div class="sect3">
-<h4 id="download"><a class="anchor" href="#download"></a><a class="link" href="#download">12.1.1. Download</a></h4>
+<h4 id="download"><a class="anchor" href="#download"></a><a class="link" href="#download">14.1.1. Download</a></h4>
 <div class="paragraph">
 <p>You can download the archives from the following locations:</p>
 </div>
@@ -3231,7 +4502,7 @@ public class MyExtensionFunctions {
 </div>
 </div>
 <div class="sect3">
-<h4 id="install-2"><a class="anchor" href="#install-2"></a><a class="link" href="#install-2">12.1.2. Install</a></h4>
+<h4 id="install-2"><a class="anchor" href="#install-2"></a><a class="link" href="#install-2">14.1.2. Install</a></h4>
 <div class="paragraph">
 <p>Extract the archive to a directory of your choice. You will need the Java Runtime Environment (JRE) version 1.8 or higher. At a command line, check your Java version like this:</p>
 </div>
@@ -3248,7 +4519,7 @@ OpenJDK 64-Bit Server VM (build 13.0.2+8, mixed mode, sharing)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="run"><a class="anchor" href="#run"></a><a class="link" href="#run">12.1.3. Run</a></h4>
+<h4 id="run"><a class="anchor" href="#run"></a><a class="link" href="#run">14.1.3. Run</a></h4>
 <div class="paragraph">
 <p>The embedded jar version of XSLWeb can be started from the directory where the archive was extracted using the following command (one line):</p>
 </div>
@@ -3285,12 +4556,12 @@ OpenJDK 64-Bit Server VM (build 13.0.2+8, mixed mode, sharing)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="install-war"><a class="anchor" href="#install-war"></a><a class="link" href="#install-war">12.2. The Web Application Archive (.war) distribution</a></h3>
+<h3 id="install-war"><a class="anchor" href="#install-war"></a><a class="link" href="#install-war">14.2. The Web Application Archive (.war) distribution</a></h3>
 <div class="paragraph">
 <p>This distribution contains the XSLWeb home directory and a web application archive (.war) and is most suitable to run XSLWeb in a production setting. The web application archive is a standard J2EE web application that can be installed on any Java application server that supports Servlet Spec 3.0 (Tomcat 7+, TomEE 1.6+, WebLogic, Jetty 8+, Glassfish 3+, JBoss AS 6.x/7.x etc.).</p>
 </div>
 <div class="sect3">
-<h4 id="download-2"><a class="anchor" href="#download-2"></a><a class="link" href="#download-2">12.2.1. Download</a></h4>
+<h4 id="download-2"><a class="anchor" href="#download-2"></a><a class="link" href="#download-2">14.2.1. Download</a></h4>
 <div class="paragraph">
 <p>You can download the archives from the following locations:</p>
 </div>
@@ -3306,7 +4577,7 @@ OpenJDK 64-Bit Server VM (build 13.0.2+8, mixed mode, sharing)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="install-3"><a class="anchor" href="#install-3"></a><a class="link" href="#install-3">12.2.2. Install</a></h4>
+<h4 id="install-3"><a class="anchor" href="#install-3"></a><a class="link" href="#install-3">14.2.2. Install</a></h4>
 <div class="paragraph">
 <p>Extract the archive to a directory of your choice. This directory will contain the directory xslweb-3.0.1 containing a directory called <em>home</em> and a file called <em>xslweb.war</em>. The installation of a war is application server specific, so please consult the manual of your server for that. Regardless of which application server is used, two settings are essential:</p>
 </div>
@@ -3322,7 +4593,7 @@ OpenJDK 64-Bit Server VM (build 13.0.2+8, mixed mode, sharing)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="run-2"><a class="anchor" href="#run-2"></a><a class="link" href="#run-2">12.2.3. Run</a></h4>
+<h4 id="run-2"><a class="anchor" href="#run-2"></a><a class="link" href="#run-2">14.2.3. Run</a></h4>
 <div class="paragraph">
 <p>Start your application server. Open a web browser and go to the address:</p>
 </div>
@@ -3335,7 +4606,7 @@ OpenJDK 64-Bit Server VM (build 13.0.2+8, mixed mode, sharing)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="install-xslweb-as-a-windows-service-or-linuxmacos-daemon"><a class="anchor" href="#install-xslweb-as-a-windows-service-or-linuxmacos-daemon"></a><a class="link" href="#install-xslweb-as-a-windows-service-or-linuxmacos-daemon">12.3. Install XSLWeb as a Windows service or Linux/macOS daemon</a></h3>
+<h3 id="install-xslweb-as-a-windows-service-or-linuxmacos-daemon"><a class="anchor" href="#install-xslweb-as-a-windows-service-or-linuxmacos-daemon"></a><a class="link" href="#install-xslweb-as-a-windows-service-or-linuxmacos-daemon">14.3. Install XSLWeb as a Windows service or Linux/macOS daemon</a></h3>
 <div class="paragraph">
 <p>One way to install XSLWeb as a Windows service or Linux/macOS daemon is to use <a href="http://yajsw.sourceforge.net/">YAJSW (Yet Another Java Service Wrapper)</a>. This installation involves the following steps:</p>
 </div>
@@ -3457,7 +4728,7 @@ java -jar wrapper.jar --start conf\wrapper.xslweb.conf</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="support-for-saxon-pe-professional-and-ee-enterprise-edition"><a class="anchor" href="#support-for-saxon-pe-professional-and-ee-enterprise-edition"></a><a class="link" href="#support-for-saxon-pe-professional-and-ee-enterprise-edition">13. Support for Saxon PE (Professional) and EE (Enterprise Edition)</a></h2>
+<h2 id="support-for-saxon-pe-professional-and-ee-enterprise-edition"><a class="anchor" href="#support-for-saxon-pe-professional-and-ee-enterprise-edition"></a><a class="link" href="#support-for-saxon-pe-professional-and-ee-enterprise-edition">15. Support for Saxon PE (Professional) and EE (Enterprise Edition)</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The downloadable binaries of XSLWeb contain the open source Home Edition (HE) of the Saxon XSLT processor. You can build a version of XSLWeb that contains Saxon PE or EE by following these steps:</p>
@@ -3534,7 +4805,7 @@ or</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="appendix-request-xml-example"><a class="anchor" href="#appendix-request-xml-example"></a><a class="link" href="#appendix-request-xml-example">14. Appendix A: Request XML example</a></h2>
+<h2 id="appendix-request-xml-example"><a class="anchor" href="#appendix-request-xml-example"></a><a class="link" href="#appendix-request-xml-example">16. Appendix A: Request XML example</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -3618,7 +4889,7 @@ or</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="appendix-response-xml-example"><a class="anchor" href="#appendix-response-xml-example"></a><a class="link" href="#appendix-response-xml-example">15. Appendix B: Response XML example</a></h2>
+<h2 id="appendix-response-xml-example"><a class="anchor" href="#appendix-response-xml-example"></a><a class="link" href="#appendix-response-xml-example">17. Appendix B: Response XML example</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -3670,7 +4941,7 @@ or</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="appendix-webapp-xml-example"><a class="anchor" href="#appendix-webapp-xml-example"></a><a class="link" href="#appendix-webapp-xml-example">16. Appendix C: Webapp XML example</a></h2>
+<h2 id="appendix-webapp-xml-example"><a class="anchor" href="#appendix-webapp-xml-example"></a><a class="link" href="#appendix-webapp-xml-example">18. Appendix C: Webapp XML example</a></h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -3761,7 +5032,7 @@ or</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-08-12 13:14:21 +0200
+Last updated 2020-08-20 17:02:17 +0200
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/agate.min.css">
