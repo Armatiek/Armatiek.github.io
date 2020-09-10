@@ -8,7 +8,7 @@
 <meta name="description" content="XSLWeb Developer Manual">
 <meta name="keywords" content="XSLWeb XML, XSLT, XML Schema, Schematron, Web development">
 <meta name="author" content="Authors: Maarten Kroon, Arjan Loeffen">
-<title>XSLWeb version 3.3.0 Developer Manual</title>
+<title>XSLWeb version 4.0.0-RC1 Developer Manual</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -438,7 +438,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
-<h1>XSLWeb version 3.3.0 Developer Manual</h1>
+<h1>XSLWeb version 4.0.0-RC1 Developer Manual</h1>
 <div class="details">
 <span id="author" class="author">Authors: Maarten Kroon, Arjan Loeffen</span><br>
 </div>
@@ -530,23 +530,29 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="#webdav-access">13. WebDAV access</a></li>
-<li><a href="#install">14. Download, install and run XSLWeb</a>
+<li><a href="#installation">14. Installation</a>
 <ul class="sectlevel2">
-<li><a href="#install-jar">14.1. The single executable jar distribution</a>
+<li><a href="#installation-ready-to-run">14.1. Installation of the ready-to-run distribution</a>
 <ul class="sectlevel3">
-<li><a href="#download">14.1.1. Download</a></li>
-<li><a href="#install-2">14.1.2. Install</a></li>
-<li><a href="#run">14.1.3. Run</a></li>
+<li><a href="#download-ready-to-run">14.1.1. Download</a></li>
+<li><a href="#unpack-ready-to-run">14.1.2. Unpack</a></li>
+<li><a href="#run-and-install-ready-to-run">14.1.3. Run and install</a></li>
 </ul>
 </li>
-<li><a href="#install-war">14.2. The Web Application Archive (.war) distribution</a>
+<li><a href="#optional-install-xslweb-as-a-windows-service-or-linuxmacos-daemon">14.2. Optional: install XSLWeb as a Windows service or Linux/macOS daemon</a>
 <ul class="sectlevel3">
-<li><a href="#download-2">14.2.1. Download</a></li>
-<li><a href="#install-3">14.2.2. Install</a></li>
-<li><a href="#run-2">14.2.3. Run</a></li>
+<li><a href="#linux">14.2.1. Linux</a></li>
+<li><a href="#macos">14.2.2. macOS</a></li>
+<li><a href="#windows">14.2.3. Windows</a></li>
 </ul>
 </li>
-<li><a href="#install-xslweb-as-a-windows-service-or-linuxmacos-daemon">14.3. Install XSLWeb as a Windows service or Linux/macOS daemon</a></li>
+<li><a href="#installation-war">14.3. Installation of the Web Application Archive (.war) distribution</a>
+<ul class="sectlevel3">
+<li><a href="#download-war">14.3.1. Download</a></li>
+<li><a href="#install">14.3.2. Install</a></li>
+<li><a href="#run">14.3.3. Run</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#support-for-saxon-pe-professional-and-ee-enterprise-edition">15. Support for Saxon PE (Professional) and EE (Enterprise Edition)</a></li>
@@ -4462,122 +4468,409 @@ webdav = *
 </div>
 </div>
 <div class="sect1">
-<h2 id="install"><a class="anchor" href="#install"></a><a class="link" href="#install">14. Download, install and run XSLWeb</a></h2>
+<h2 id="installation"><a class="anchor" href="#installation"></a><a class="link" href="#installation">14. Installation</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The sources of XSLWeb can be found on <a href="https://github.com/Armatiek/xslweb">GitHub</a>. XSLWeb is licensed under the Apache License version 2.0.</p>
+<p>The sources of XSLWeb can be found on <a href="https://github.com/Armatiek/xslweb">GitHub</a>. XSLWeb is licensed under the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License version 2.0</a>.</p>
 </div>
 <div class="paragraph">
-<p>Compiled binaries of XSLWeb 3.0.1 can be downloaded in two distributions:</p>
+<p>Compiled binaries of XSLWeb 4.0.0-RC1 can be downloaded in two distributions:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>As a .zip (Windows) or .tgz (Linux/macOS) archive, containing a single executable java library (.jar) with embedded application server (Apache Tomcat 7).</p>
+<p>As a .zip (Windows) or .tar.gz (Linux/macOS) archive, containing a ready-to-run installation of XSLWeb.</p>
 </li>
 <li>
-<p>As a web application archive (.war)</p>
+<p>As a standard web application archive (.war) which can be installed on your favorite Java Application Server.</p>
 </li>
 </ol>
 </div>
 <div class="sect2">
-<h3 id="install-jar"><a class="anchor" href="#install-jar"></a><a class="link" href="#install-jar">14.1. The single executable jar distribution</a></h3>
-<div class="paragraph">
-<p>This distribution contains the XSLWeb home directory and a single executable java library (xslweb.jar) with embedded application server (Tomcat 7). This distribution is the easiest to install and run and is most suitable to try out and develop applications in XSLWeb.</p>
-</div>
+<h3 id="installation-ready-to-run"><a class="anchor" href="#installation-ready-to-run"></a><a class="link" href="#installation-ready-to-run">14.1. Installation of the ready-to-run distribution</a></h3>
 <div class="sect3">
-<h4 id="download"><a class="anchor" href="#download"></a><a class="link" href="#download">14.1.1. Download</a></h4>
+<h4 id="download-ready-to-run"><a class="anchor" href="#download-ready-to-run"></a><a class="link" href="#download-ready-to-run">14.1.1. Download</a></h4>
 <div class="paragraph">
-<p>You can download the archives from the following locations:</p>
+<p>The ready-to-run distribution can be downloaded from:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://github.com/Armatiek/xslweb/releases/download/v3.0.1/xslweb-3.0.1-jar.zip" class="bare">https://github.com/Armatiek/xslweb/releases/download/v3.0.1/xslweb-3.0.1-jar.zip</a> (Windows)</p>
+<p><a href="https://github.com/Armatiek/xslweb/releases/download/v4.0.0-RC1/xslweb-ready-to-run-v4.0.0-RC1-linux-x64.tar.gz" class="bare">https://github.com/Armatiek/xslweb/releases/download/v4.0.0-RC1/xslweb-ready-to-run-v4.0.0-RC1-linux-x64.tar.gz</a> (for Linux 64-bits machines)</p>
 </li>
 <li>
-<p><a href="https://github.com/Armatiek/xslweb/releases/download/v3.0.1/xslweb-3.0.1-jar.tgz" class="bare">https://github.com/Armatiek/xslweb/releases/download/v3.0.1/xslweb-3.0.1-jar.tgz</a> (Linux/macOS).</p>
+<p><a href="https://github.com/Armatiek/xslweb/releases/download/v4.0.0-RC1/xslweb-ready-to-run-v4.0.0-RC1-osx-x64.tar.gz" class="bare">https://github.com/Armatiek/xslweb/releases/download/v4.0.0-RC1/xslweb-ready-to-run-v4.0.0-RC1-osx-x64.tar.gz</a> (for macOS 64-bits machines)</p>
+</li>
+<li>
+<p><a href="https://github.com/Armatiek/xslweb/releases/download/v4.0.0-RC1/xslweb-ready-to-run-v4.0.0-RC1-windows-x64.zip" class="bare">https://github.com/Armatiek/xslweb/releases/download/v4.0.0-RC1/xslweb-ready-to-run-v4.0.0-RC1-windows-x64.zip</a> (for Windows 64-bits machines)</p>
 </li>
 </ul>
 </div>
-</div>
-<div class="sect3">
-<h4 id="install-2"><a class="anchor" href="#install-2"></a><a class="link" href="#install-2">14.1.2. Install</a></h4>
 <div class="paragraph">
-<p>Extract the archive to a directory of your choice. You will need the Java Runtime Environment (JRE) version 1.8 or higher. At a command line, check your Java version like this:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ java -version
-openjdk version "13.0.2" 2020-01-14
-OpenJDK Runtime Environment (build 13.0.2+8)
-OpenJDK 64-Bit Server VM (build 13.0.2+8, mixed mode, sharing)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The output will vary, but you need to make sure you have version 1.8 or higher. If no JRE/JDK is installed yet or you have an older version, download or install an <a href="https://www.oracle.com/technetwork/java/javase/downloads/index.html">Oracle JDK</a> or an <a href="https://jdk.java.net/14/">OpenJDK download</a> / <a href="https://openjdk.java.net/install/">OpenJDK install</a>. <a href="https://blog.joda.org/2018/09/do-not-fall-into-oracles-java-11-trap.html">This article</a> will help you decide which to choose (TL;DR : Do not download or use the Oracle JDK unless you intend to pay for it).</p>
+<p>Apart from the .war file, each distribution file contains a platform specific custom OpenJDK version 13 JRE, the Jetty Java application server and several platform specific batch files or shell scripts.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="run"><a class="anchor" href="#run"></a><a class="link" href="#run">14.1.3. Run</a></h4>
+<h4 id="unpack-ready-to-run"><a class="anchor" href="#unpack-ready-to-run"></a><a class="link" href="#unpack-ready-to-run">14.1.2. Unpack</a></h4>
 <div class="paragraph">
-<p>The embedded jar version of XSLWeb can be started from the directory where the archive was extracted using the following command (one line):</p>
+<p>After downloading, the distribution file may be unzipped/untarred in a directory of your choice, under Windows and macOS by double clicking on the file and under Linux and macOS by running the following command in a shell:</p>
 </div>
 <div class="listingblock">
+<div class="title">Unpacking the zipped tar file on Linux</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">java -Dxslweb.home=./home -cp xslweb.jar;home/config org.apache.tomcat.maven.runner.Tomcat7RunnerCli</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">tar -xzvf xslweb-v{xslweb-version}-linux-x64.tar.gz</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>The following additional arguments are supported:</p>
 </div>
 <div class="listingblock">
+<div class="title">Unpacking the zipped tar file on macOS</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">-ajpPort &lt;ajpPort&gt; ajp port to use
--clientAuth enable client authentication for https
--D &lt;arg&gt; key=value
--extractDirectory &lt;extractDirectory&gt; path to extract war content, default value: .extract
--h,--help help
--httpPort &lt;httpPort&gt; http port to use
--httpProtocol &lt;httpProtocol&gt; http protocol to use: HTTP/1.1 or org.apache.coyote.http11.Http11Nio Protocol
--httpsPort &lt;httpsPort&gt; https port to use
--maxPostSize &lt;maxPostSize&gt; max post size in bytes to use
--keyAlias &lt;keyAlias&gt; alias from keystore for ssl
--loggerName &lt;loggerName&gt; logger to use: slf4j to use slf4j bridge on top of jul
--obfuscate &lt;password&gt; obfuscate the password and exit
--resetExtract clean previous extract directory
--serverXmlPath &lt;serverXmlPath&gt; server.xml to use, optional
--X,--debug debug</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">tar -xzvf xslweb-v{xslweb-version}-osx-x64.tar.gz</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Now you can open a browser and go to the address <a href="http://localhost:8080" class="bare">http://localhost:8080</a>. A web page with the text “It works!” should appear. From here you can go to the examples and the documentation.</p>
+<p>In case the browser already zipped the file during the download process, the commands are:</p>
+</div>
+<div class="listingblock">
+<div class="title">Unpacking the tar file on Linux</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">tar -xvf xslweb-v{xslweb-version}-linux-x64.tar</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Unpacking the tar file on macOS</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">tar -xvf xslweb-v{xslweb-version}-osx-x64.tar</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="run-and-install-ready-to-run"><a class="anchor" href="#run-and-install-ready-to-run"></a><a class="link" href="#run-and-install-ready-to-run">14.1.3. Run and install</a></h4>
+<div class="paragraph">
+<p>XSLWeb can be started by running the batch file <code>&lt;install-dir&gt;\bin\run-service.bat</code> (Windows) or <code>&lt;install-dir&gt;/bin/run-service.sh</code> (*nix). After the service is started, the correct installation can be tested by opening a browser and going to the url <a href="http://localhost:8152" class="bare">http://localhost:8152</a>. XSLWeb can be stopped by running the corresponding batch file <code>stop-service.bat</code> or shell script <code>stop-service.sh</code> from another command prompt or shell.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+To increase or decrease the Java heap memory size that is available to the XSLWeb process please alter the variable <code>MAXMEM</code> in the file <code>&lt;install-dir&gt;\bin\service\config.cmd</code> (Windows) or <code>&lt;install-dir&gt;/bin/run-service.sh</code> (Linux and macOS). The default is 256m (megabytes).
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="install-war"><a class="anchor" href="#install-war"></a><a class="link" href="#install-war">14.2. The Web Application Archive (.war) distribution</a></h3>
+<h3 id="optional-install-xslweb-as-a-windows-service-or-linuxmacos-daemon"><a class="anchor" href="#optional-install-xslweb-as-a-windows-service-or-linuxmacos-daemon"></a><a class="link" href="#optional-install-xslweb-as-a-windows-service-or-linuxmacos-daemon">14.2. Optional: install XSLWeb as a Windows service or Linux/macOS daemon</a></h3>
+<div class="paragraph">
+<p>The following sections explain how XSLWeb can be installed as an "always-on" Windows service or Linux/macOS daemon.</p>
+</div>
+<div class="sect3">
+<h4 id="linux"><a class="anchor" href="#linux"></a><a class="link" href="#linux">14.2.1. Linux</a></h4>
+<div class="paragraph">
+<p>The way XSLWeb can be installed as a daemon on Linux is dependent on the (version of) the Linux distribution and in particular the init system that it uses. The three most common init systems are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>System V, for instance on:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Debian 6 and earlier</p>
+</li>
+<li>
+<p>Ubuntu 9.04 and earlier</p>
+</li>
+<li>
+<p>CentOS 5 and earlier</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Upstart, for instance on:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Ubuntu 9.10 to Ubuntu 14.10, including Ubuntu 14.04</p>
+</li>
+<li>
+<p>CentOS 6</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>systemd is the init system for the most recent distributions:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Debian 7 and Debian 8</p>
+</li>
+<li>
+<p>Ubuntu 15.04 and newer</p>
+</li>
+<li>
+<p>CentOS 7</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Only the installation for the systemd init system is discussed in this manual. When your distribution uses another init system than systemd, please consult the documentation for that particular distribution and init system.</p>
+</div>
+<div class="paragraph">
+<p>Execute the following steps:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Give the script file execute permissions by executing the following command (replace <code>&lt;install-dir&gt;</code>):</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">chmod +x &lt;install-dir&gt;/bin/run-service.sh</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Create a unit file <code>/etc/systemd/system/xslweb.service</code> as root with the content below (replace &lt;install-dir&gt;):</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">[Unit]
+Description=XSLWeb
+
+[Service]
+ExecStart=/bin/bash &lt;install-dir&gt;/bin/run-service.sh
+ExecStop=/bin/bash &lt;install-dir&gt;/bin/stop-service.sh
+WorkingDirectory=&lt;install-dir&gt;/bin
+Restart=always
+
+[Install]
+WantedBy=multi-user.target</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Change the access permissions of the unit file :</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo chmod 644 /etc/systemd/system/xslweb.service</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Use the 'enable' command to ensure that the service starts whenever the system boots:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo systemctl enable xslweb</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Reload the unit file:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo systemctl daemon-reload</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now the daemon is installed.</p>
+</div>
+<div class="paragraph">
+<p>You can start, stop and restart the service using the following commands:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo systemctl start xslweb</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo systemctl stop xslweb</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo systemctl restart xslweb</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="macos"><a class="anchor" href="#macos"></a><a class="link" href="#macos">14.2.2. macOS</a></h4>
+<div class="paragraph">
+<p>XSLWeb can be installed as a daemon under macOS by adding the script <code>run-service.sh</code> to the Launch Daemon process of macOS. Execute the following steps:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Give the script file execute permissions by executing the following command (replace <code>&lt;install-dir&gt;</code>):</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo chmod +x &lt;install-dir&gt;/bin/run-service.sh</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Create the daemon property list file <code>/Library/LaunchDaemons/com.xslweb.plist</code> as root user, and give it the XML configuration below. Replace [install-dir] and [root-user] with values appropriate for your system. See <a href="https://www.launchd.info" class="bare">https://www.launchd.info</a> for more information on all possible configuration properties.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
+&lt;plist version="1.0"&gt;
+  &lt;dict&gt;
+    &lt;key&gt;EnvironmentVariables&lt;/key&gt;
+    &lt;dict&gt;
+      &lt;key&gt;PATH&lt;/key&gt;
+      &lt;string&gt;/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:&lt;/string&gt;
+    &lt;/dict&gt;
+    &lt;key&gt;Label&lt;/key&gt;
+    &lt;string&gt;com.xslweb&lt;/string&gt;
+    &lt;key&gt;Program&lt;/key&gt;
+    &lt;string&gt;[install-dir]/bin/run-service.sh&lt;/string&gt;
+    &lt;key&gt;WorkingDirectory&lt;/key&gt;
+    &lt;string&gt;[install-dir]/bin&lt;/string&gt;
+    &lt;key&gt;RunAtLoad&lt;/key&gt;
+    &lt;true/&gt;
+    &lt;key&gt;KeepAlive&lt;/key&gt;
+    &lt;false/&gt;
+    &lt;key&gt;LaunchOnlyOnce&lt;/key&gt;
+    &lt;true/&gt;
+    &lt;key&gt;StandardOutPath&lt;/key&gt;
+    &lt;string&gt;/tmp/startup.stdout&lt;/string&gt;
+    &lt;key&gt;StandardErrorPath&lt;/key&gt;
+    &lt;string&gt;/tmp/startup.stderr&lt;/string&gt;
+    &lt;key&gt;UserName&lt;/key&gt;
+    &lt;string&gt;[root-user]&lt;/string&gt;
+    &lt;key&gt;GroupName&lt;/key&gt;
+    &lt;string&gt;admin&lt;/string&gt;
+    &lt;key&gt;InitGroups&lt;/key&gt;
+    &lt;true/&gt;
+  &lt;/dict&gt;
+&lt;/plist&gt;</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>After you add the property list file onto the launchctl using the command below, the daemon is installed permanently:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo launchctl load -w /Library/LaunchDaemons/com.xslweb.plist</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You can permanently remove the plist from the Launch Daemon by executing:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo launchctl load -w /Library/LaunchDaemons/com.xslweb.plist</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>and to stop the launchctl process:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo launchctl stop /Library/LaunchDaemons/com.xslweb.plist</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>and to start the launchctl process:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo launchctl start /Library/LaunchDaemons/com.xslweb.plist</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="windows"><a class="anchor" href="#windows"></a><a class="link" href="#windows">14.2.3. Windows</a></h4>
+<div class="paragraph">
+<p>The XSLWeb ready-to-run distribution is shipped with a copy of the Windows service manager <a href="https://nssm.cc/">NSSM</a> that can be used to install, start, stop, restart and remove XSLWeb  as a Window service using the corresponding batch files in the directory <code>&lt;install-dir&gt;\bin</code>. Once the service is installed it can also be managed from the standard Windows Services Manager application.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+After a change to the variable <code>MAXMEM</code> in the file <code>&lt;install-dir&gt;\bin\config.cmd</code> the service must be removed and reinstalled.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="installation-war"><a class="anchor" href="#installation-war"></a><a class="link" href="#installation-war">14.3. Installation of the Web Application Archive (.war) distribution</a></h3>
 <div class="paragraph">
 <p>This distribution contains the XSLWeb home directory and a web application archive (.war) and is most suitable to run XSLWeb in a production setting. The web application archive is a standard J2EE web application that can be installed on any Java application server that supports Servlet Spec 3.0 (Tomcat 7+, TomEE 1.6+, WebLogic, Jetty 8+, Glassfish 3+, JBoss AS 6.x/7.x etc.).</p>
 </div>
 <div class="sect3">
-<h4 id="download-2"><a class="anchor" href="#download-2"></a><a class="link" href="#download-2">14.2.1. Download</a></h4>
+<h4 id="download-war"><a class="anchor" href="#download-war"></a><a class="link" href="#download-war">14.3.1. Download</a></h4>
 <div class="paragraph">
 <p>You can download the archives from the following locations:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://github.com/Armatiek/xslweb/releases/download/v3.0.1/xslweb-3.0.1-war.zip" class="bare">https://github.com/Armatiek/xslweb/releases/download/v3.0.1/xslweb-3.0.1-war.zip</a> (Windows)</p>
+<p><a href="https://github.com/Armatiek/xslweb/releases/download/v4.0.0-RC1/xslweb-war-v4.0.0-RC1.tar.gz" class="bare">https://github.com/Armatiek/xslweb/releases/download/v4.0.0-RC1/xslweb-war-v4.0.0-RC1.tar.gz</a> (Linux/macOS)</p>
 </li>
 <li>
-<p><a href="https://github.com/Armatiek/xslweb/releases/download/v3.0.1/xslweb-3.0.1-war.tgz" class="bare">https://github.com/Armatiek/xslweb/releases/download/v3.0.1/xslweb-3.0.1-war.tgz</a> (Linux/macOS)</p>
+<p><a href="https://github.com/Armatiek/xslweb/releases/download/v4.0.0-RC1/xslweb-war-v4.0.0-RC1.zip" class="bare">https://github.com/Armatiek/xslweb/releases/download/v4.0.0-RC1/xslweb-war-v4.0.0-RC1.zip</a> (Windows)</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="install-3"><a class="anchor" href="#install-3"></a><a class="link" href="#install-3">14.2.2. Install</a></h4>
+<h4 id="install"><a class="anchor" href="#install"></a><a class="link" href="#install">14.3.2. Install</a></h4>
 <div class="paragraph">
 <p>Extract the archive to a directory of your choice. This directory will contain the directory xslweb-3.0.1 containing a directory called <em>home</em> and a file called <em>xslweb.war</em>. The installation of a war is application server specific, so please consult the manual of your server for that. Regardless of which application server is used, two settings are essential:</p>
 </div>
@@ -4593,7 +4886,7 @@ OpenJDK 64-Bit Server VM (build 13.0.2+8, mixed mode, sharing)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="run-2"><a class="anchor" href="#run-2"></a><a class="link" href="#run-2">14.2.3. Run</a></h4>
+<h4 id="run"><a class="anchor" href="#run"></a><a class="link" href="#run">14.3.3. Run</a></h4>
 <div class="paragraph">
 <p>Start your application server. Open a web browser and go to the address:</p>
 </div>
@@ -4603,126 +4896,6 @@ OpenJDK 64-Bit Server VM (build 13.0.2+8, mixed mode, sharing)</code></pre>
 <div class="paragraph">
 <p>where port is the port your application server runs on. A web page with the text “It works!” should appear. From here you can go to the examples and the documentation.</p>
 </div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="install-xslweb-as-a-windows-service-or-linuxmacos-daemon"><a class="anchor" href="#install-xslweb-as-a-windows-service-or-linuxmacos-daemon"></a><a class="link" href="#install-xslweb-as-a-windows-service-or-linuxmacos-daemon">14.3. Install XSLWeb as a Windows service or Linux/macOS daemon</a></h3>
-<div class="paragraph">
-<p>One way to install XSLWeb as a Windows service or Linux/macOS daemon is to use <a href="http://yajsw.sourceforge.net/">YAJSW (Yet Another Java Service Wrapper)</a>. This installation involves the following steps:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Execute the steps described in sections 12.1.1 and 12.1.2.</p>
-</li>
-<li>
-<p>Download YAJSW version 12.11+ from <a href="https://sourceforge.net/projects/yajsw/files/" class="bare">https://sourceforge.net/projects/yajsw/files/</a> and extract the archive in the directory created in step 1.</p>
-</li>
-<li>
-<p>Create YAJSW wrapper config file <em>wrapper.xslweb.conf</em> and place it in YAJSW&#8217;s <em>conf</em> folder. You can use the example below. You may need to modify this example to:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Specify the location of java (wrapper.java.command)</p>
-</li>
-<li>
-<p>Specify the installation directory of XSLWeb (wrapper.working.dir)</p>
-</li>
-<li>
-<p>Change the amount of memory available to XSLWeb from 1024m (for example, 512m or 2048m)</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties"># YAJSW configuration for XSLWeb
-
-wrapper.java.command=C:/ProgramData/Oracle/Java/javapath/java.exe
-wrapper.working.dir=D:\\xslweb-3.0.1
-wrapper.java.app.mainclass=org.apache.tomcat.maven.runner.Tomcat7RunnerCli
-wrapper.java.classpath.1 = xslweb.jar
-wrapper.java.classpath.2 = home/config
-
-wrapper.java.additional.1 = -Xmx1024m
-wrapper.java.additional.2 = -Dfile.encoding=utf-8
-wrapper.java.additional.3 = -Dxslweb.home=./home
-wrapper.java.additional.4 = -Dorg.terracotta.quartz.skipUpdateCheck=true
-
-wrapper.ntservice.name= XSLWEB_3_0
-wrapper.ntservice.displayname= XSLWeb 3.0.1
-wrapper.ntservice.description= XSLWeb 3.0.1
-wrapper.ntservice.starttype=DELAYED_AUTO_START
-
-wrapper.console.loglevel=INFO
-wrapper.logfile=$\{wrapper.working.dir}/home/logs/wrapper-xslweb.log
-wrapper.logfile.maxsize=10m
-wrapper.logfile.maxfiles=10
-
-wrapper.on_exit.0=SHUTDOWN
-wrapper.on_exit.default=RESTART</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You can add any optional arguments mentioned in section 12.1.3 as <em>wrapper.app.parameter.NN.</em></p>
-</div>
-<div class="paragraph">
-<p>After you have created the wrapper configuration file:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Open a command prompt as administrator (Windows) or shell (Linux/macOS)</p>
-</li>
-<li>
-<p>Navigate to the YAJSW folder</p>
-</li>
-<li>
-<p>Install the service:<br>
-java -jar wrapper.jar --install conf\wrapper.xslweb.conf</p>
-</li>
-<li>
-<p>Start the service:<br>
-java -jar wrapper.jar --start conf\wrapper.xslweb.conf</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>XSLWeb is now running as a service/daemon, and will start automatically when the operating system starts. Open a web browser and go to the address:</p>
-</div>
-<div class="paragraph">
-<p><a href="http://localhost:8080" class="bare">http://localhost:8080</a></p>
-</div>
-<div class="paragraph">
-<p>A web page with the text “It works!” should appear. From here you can go to the examples and the documentation.</p>
-</div>
-<div class="paragraph">
-<p>If you make changes to the configuration you can follow this sequence:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Stop the service:<br>
-java -jar wrapper.jar --stop conf\wrapper.xslweb.conf</p>
-</li>
-<li>
-<p>Remove the service:<br>
-java -jar wrapper.jar --remove conf\wrapper.xslweb.conf</p>
-</li>
-<li>
-<p>Make your changes to the wrapper or application configuration.</p>
-</li>
-<li>
-<p>Install the service:<br>
-java -jar wrapper.jar --install conf\wrapper.xslweb.conf</p>
-</li>
-<li>
-<p>Start the service:<br>
-java -jar wrapper.jar --start conf\wrapper.xslweb.conf</p>
-</li>
-</ol>
 </div>
 </div>
 </div>
@@ -5032,7 +5205,7 @@ or</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-08-20 17:02:17 +0200
+Last updated 2020-09-10 13:29:00 +0200
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/agate.min.css">
