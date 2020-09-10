@@ -4342,7 +4342,7 @@ public class MyExtensionFunctions {
 <div class="sect2">
 <h3 id="custom-extension-functions"><a class="anchor" href="#custom-extension-functions"></a><a class="link" href="#custom-extension-functions">12.23. Custom extension functions</a></h3>
 <div class="paragraph">
-<p>It is also possible to write your own custom XPath extension functions in Java and add them to an XSLWeb web application. These extension functions must be <a href="http://www.saxonica.com/html/documentation/extensibility/integratedfunctions/ext-full-J.html">integrated extension functions</a> that use the full interface of Saxon version 9.9.</p>
+<p>It is also possible to write your own custom XPath extension functions in Java and add them to an XSLWeb web application. These extension functions must be <a href="http://www.saxonica.com/html/documentation/extensibility/integratedfunctions/ext-full-J.html">integrated extension functions</a> that use the full interface of Saxon version 10.2.</p>
 </div>
 <div class="paragraph">
 <p>The compiled jar of a custom extension function together with any libraries that the function depend on can be placed in the folder <em>«web-app»/lib</em>. There is no need to restart the application server, XSLWeb will detect the jars and will load and register the extension function automatically.</p>
@@ -4915,7 +4915,7 @@ After a change to the variable <code>MAXMEM</code> in the file <code>&lt;install
 <p>Purchase a PE or EE license from <a href="http://www.saxonica.com/" class="bare">http://www.saxonica.com/</a>.</p>
 </li>
 <li>
-<p>Download the PE of EE package from <a href="https://www.saxonica.com/download/SaxonPE9-9-1-7J.zip" class="bare">https://www.saxonica.com/download/SaxonPE9-9-1-7J.zip</a> or <a href="https://www.saxonica.com/download/SaxonEE9-9-1-7J.zip" class="bare">https://www.saxonica.com/download/SaxonEE9-9-1-7J.zip</a></p>
+<p>Download the PE of EE package from <a href="https://www.saxonica.com/download/SaxonPE10-2J.zip" class="bare">https://www.saxonica.com/download/SaxonPE10-2J.zip</a> or <a href="https://www.saxonica.com/download/SaxonEE10-2J.zip" class="bare">https://www.saxonica.com/download/SaxonEE10-2J.zip</a></p>
 </li>
 <li>
 <p>Extract and register the jars in your local Maven repository using the following commands:</p>
@@ -4926,13 +4926,13 @@ After a change to the variable <code>MAXMEM</code> in the file <code>&lt;install
 <div class="ulist">
 <ul>
 <li>
-<p>mvn install:install-file -Dfile=saxon9pe.jar -DgroupId=net.sf.saxon -DartifactId=Saxon-PE -Dversion=9.9.1-7 -Dpackaging=jar</p>
+<p>mvn install:install-file -Dfile=saxon-pe-10.2.jar -DgroupId=net.sf.saxon -DartifactId=Saxon-PE -Dversion=10.2 -Dpackaging=jar</p>
 </li>
 <li>
-<p>mvn install:install-file -Dfile=saxon9-icu.jar -DgroupId=net.sf.saxon -DartifactId=Saxon-PE-icu -Dversion=9.9.1-7 -Dpackaging=jar</p>
+<p>mvn install:install-file -Dfile=icu4j-59.1.jar -DgroupId=net.sf.saxon -DartifactId=Saxon-PE-icu -Dversion=10.2 -Dpackaging=jar</p>
 </li>
 <li>
-<p>mvn install:install-file -Dfile=saxon9-sql.jar -DgroupId=net.sf.saxon -DartifactId=Saxon-PE-sql -Dversion=9.9.1-7 -Dpackaging=jar</p>
+<p>mvn install:install-file -Dfile=saxon-sql-10.2.jar -DgroupId=net.sf.saxon -DartifactId=Saxon-PE-sql -Dversion=10.2 -Dpackaging=jar</p>
 </li>
 </ul>
 </div>
@@ -4942,13 +4942,13 @@ After a change to the variable <code>MAXMEM</code> in the file <code>&lt;install
 <div class="ulist">
 <ul>
 <li>
-<p>mvn install:install-file -Dfile=saxon9ee.jar -DgroupId=net.sf.saxon -DartifactId=Saxon-EE -Dversion=9.9.1-7 -Dpackaging=jar</p>
+<p>mvn install:install-file -Dfile=saxon-ee-10.2.jar -DgroupId=net.sf.saxon -DartifactId=Saxon-EE -Dversion=10.2 -Dpackaging=jar</p>
 </li>
 <li>
-<p>mvn install:install-file -Dfile=saxon9-icu.jar -DgroupId=net.sf.saxon -DartifactId=Saxon-EE-icu -Dversion=9.9.1-7 -Dpackaging=jar</p>
+<p>mvn install:install-file -Dfile=icu4j-59.1.jar -DgroupId=net.sf.saxon -DartifactId=Saxon-EE-icu -Dversion=10.2 -Dpackaging=jar</p>
 </li>
 <li>
-<p>mvn install:install-file -Dfile=saxon9-sql.jar -DgroupId=net.sf.saxon -DartifactId=Saxon-EE-sql -Dversion=9.9.1-7 -Dpackaging=jar</p>
+<p>mvn install:install-file -Dfile=saxon-sql-10.2.jar -DgroupId=net.sf.saxon -DartifactId=Saxon-EE-sql -Dversion=10.2 -Dpackaging=jar</p>
 </li>
 </ul>
 </div>
@@ -5205,7 +5205,7 @@ or</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-09-10 13:29:00 +0200
+Last updated 2020-09-10 22:30:06 +0200
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/agate.min.css">
