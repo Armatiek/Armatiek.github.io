@@ -497,36 +497,37 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#xpath-extension-function-library">12. XPath extension function library</a>
 <ul class="sectlevel2">
 <li><a href="#built-in-extension-functions">12.1. Built in extension functions</a></li>
-<li><a href="#response-functions">12.2. Response functions</a></li>
-<li><a href="#session-functions">12.3. Session functions</a></li>
-<li><a href="#webapp-functions">12.4. Webapp functions</a></li>
-<li><a href="#context-functions">12.5. Context functions</a></li>
-<li><a href="#security-functions">12.6. Security (authentication/authorzation)</a></li>
-<li><a href="#expath-file-functions">12.7. EXPath File</a>
+<li><a href="#request-functions">12.2. Request functions</a></li>
+<li><a href="#response-functions">12.3. Response functions</a></li>
+<li><a href="#session-functions">12.4. Session functions</a></li>
+<li><a href="#webapp-functions">12.5. Webapp functions</a></li>
+<li><a href="#context-functions">12.6. Context functions</a></li>
+<li><a href="#security-functions">12.7. Security (authentication/authorization)</a></li>
+<li><a href="#expath-file-functions">12.8. EXPath File</a>
 <ul class="sectlevel3">
-<li><a href="#file-properties">12.7.1. File properties</a></li>
-<li><a href="#inputoutput">12.7.2. Input/output</a></li>
-<li><a href="#paths">12.7.3. Paths</a></li>
-<li><a href="#system-properties">12.7.4. System properties</a></li>
+<li><a href="#file-properties">12.8.1. File properties</a></li>
+<li><a href="#inputoutput">12.8.2. Input/output</a></li>
+<li><a href="#paths">12.8.3. Paths</a></li>
+<li><a href="#system-properties">12.8.4. System properties</a></li>
 </ul>
 </li>
-<li><a href="#expath-http-client-functions">12.8. EXPath HTTP Client</a></li>
-<li><a href="#base64-functions">12.9. Base64</a></li>
-<li><a href="#external-functions">12.10. Execute external processes</a></li>
-<li><a href="#logging-functions">12.11. Logging functions</a></li>
-<li><a href="#email-functions">12.12. Email</a></li>
-<li><a href="#serialization-functions">12.13. Serialization</a></li>
-<li><a href="#caching-functions">12.14. Caching</a></li>
-<li><a href="#image-processing-functions">12.15. Image processing</a></li>
-<li><a href="#io-functions">12.16. Input/Output</a></li>
-<li><a href="#util-functions">12.17. Utilities</a></li>
-<li><a href="#zip-functions">12.18. Zip/Unzip</a></li>
-<li><a href="#uuid-functions">12.19. UUID</a></li>
-<li><a href="#json-functions">12.20. JSON</a></li>
-<li><a href="#dynfunc-functions">12.21. Dynamic (scripted) extension functions</a></li>
-<li><a href="#sql-functions">12.22. SQL</a></li>
-<li><a href="#custom-extension-functions">12.23. Custom extension functions</a></li>
-<li><a href="#side-effects">12.24. Extension functions with side effects</a></li>
+<li><a href="#expath-http-client-functions">12.9. EXPath HTTP Client</a></li>
+<li><a href="#base64-functions">12.10. Base64</a></li>
+<li><a href="#external-functions">12.11. Execute external processes</a></li>
+<li><a href="#logging-functions">12.12. Logging functions</a></li>
+<li><a href="#email-functions">12.13. Email</a></li>
+<li><a href="#serialization-functions">12.14. Serialization</a></li>
+<li><a href="#caching-functions">12.15. Caching</a></li>
+<li><a href="#image-processing-functions">12.16. Image processing</a></li>
+<li><a href="#io-functions">12.17. Input/Output</a></li>
+<li><a href="#util-functions">12.18. Utilities</a></li>
+<li><a href="#zip-functions">12.19. Zip/Unzip</a></li>
+<li><a href="#uuid-functions">12.20. UUID</a></li>
+<li><a href="#json-functions">12.21. JSON</a></li>
+<li><a href="#dynfunc-functions">12.22. Dynamic (scripted) extension functions</a></li>
+<li><a href="#sql-functions">12.23. SQL</a></li>
+<li><a href="#custom-extension-functions">12.24. Custom extension functions</a></li>
+<li><a href="#side-effects">12.25. Extension functions with side effects</a></li>
 </ul>
 </li>
 <li><a href="#webdav-access">13. WebDAV access</a></li>
@@ -1846,7 +1847,7 @@ webdav = *
 <p>Because in the Shiro configuration all urls must be relative to the contextpath of the Java servlet, all urls must be prepended with the webapp&#8217;s name. For this you can use the variable ${webapp-name} (see the example above).</p>
 </li>
 <li>
-<p>The Shiro web support contains a <a href="https://shiro.apache.org/web.html#Web-JSP%2FGSPTagLibrary" target="_blank" rel="noopener">JSP/GSP tag Library</a>. Comparable functionality of this tag library is available in XSLWeb as a set of XPath extension functions (see <a href="#security-functions">Security (authentication/authorzation)</a>).</p>
+<p>The Shiro web support contains a <a href="https://shiro.apache.org/web.html#Web-JSP%2FGSPTagLibrary" target="_blank" rel="noopener">JSP/GSP tag Library</a>. Comparable functionality of this tag library is available in XSLWeb as a set of XPath extension functions (see <a href="#security-functions">Security (authentication/authorization)</a>).</p>
 </li>
 </ul>
 </div>
@@ -1905,12 +1906,40 @@ webdav = *
 </div>
 </div>
 <div class="sect2">
-<h3 id="response-functions"><a class="anchor" href="#response-functions"></a><a class="link" href="#response-functions">12.2. Response functions</a></h3>
+<h3 id="request-functions"><a class="anchor" href="#request-functions"></a><a class="link" href="#request-functions">12.2. Request functions</a></h3>
+<div class="paragraph">
+<p>These functions can be used to set/read information in the HTTP request.</p>
+</div>
+<div class="paragraph">
+<p>Namespace uri: <em>http://www.armatiek.com/xslweb/request</em>. In the function signatures below this namespace uri is bound to the prefix <em>req</em>.</p>
+</div>
+<div class="paragraph">
+<p>Functions:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function req:set-attribute($name as xs:string, attr as item()*) as xs:boolean?</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Binds an attribute to this request, using the name specified.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function req:get-attribute($name as xs:string) as item()*</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Returns the attribute bound with the specified $name in this request, or an empty sequence if no attribute is bound under the name.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="response-functions"><a class="anchor" href="#response-functions"></a><a class="link" href="#response-functions">12.3. Response functions</a></h3>
 <div class="paragraph">
 <p>These functions can be used to set/change specific information in the HTTP response. For a large part this information can also be specified in the Response XML document, see <a href="#appendix-response-xml-example">Appendix B: Response XML example</a> for an example of a Response XML document.</p>
 </div>
 <div class="paragraph">
-<p>Namespace uri: <em>http://www.armatiek.com/xslweb/request</em>. In the function signatures below this namespace uri is bound to the prefix <em>resp</em>.</p>
+<p>Namespace uri: <em>http://www.armatiek.com/xslweb/response</em>. In the function signatures below this namespace uri is bound to the prefix <em>resp</em>.</p>
 </div>
 <div class="paragraph">
 <p>Functions:</p>
@@ -2026,7 +2055,7 @@ webdav = *
 </div>
 </div>
 <div class="sect2">
-<h3 id="session-functions"><a class="anchor" href="#session-functions"></a><a class="link" href="#session-functions">12.3. Session functions</a></h3>
+<h3 id="session-functions"><a class="anchor" href="#session-functions"></a><a class="link" href="#session-functions">12.4. Session functions</a></h3>
 <div class="paragraph">
 <p>HTTP protocol and Web Servers are stateless, what it means is that for web server every request is a new request to process and they can’t identify if it’s coming from client that has been sending request previously.</p>
 </div>
@@ -2090,7 +2119,7 @@ webdav = *
 </div>
 </div>
 <div class="sect2">
-<h3 id="webapp-functions"><a class="anchor" href="#webapp-functions"></a><a class="link" href="#webapp-functions">12.4. Webapp functions</a></h3>
+<h3 id="webapp-functions"><a class="anchor" href="#webapp-functions"></a><a class="link" href="#webapp-functions">12.5. Webapp functions</a></h3>
 <div class="paragraph">
 <p>These functions can be used to get and set web application specific attributes. These can be used to share session independent attribute between multiple requests within one web application.</p>
 </div>
@@ -2125,7 +2154,7 @@ webdav = *
 </div>
 </div>
 <div class="sect2">
-<h3 id="context-functions"><a class="anchor" href="#context-functions"></a><a class="link" href="#context-functions">12.5. Context functions</a></h3>
+<h3 id="context-functions"><a class="anchor" href="#context-functions"></a><a class="link" href="#context-functions">12.6. Context functions</a></h3>
 <div class="paragraph">
 <p>These functions can be used to get and set “XSLWeb context” specific attributes. These can be used to share attributes between web applications.</p>
 </div>
@@ -2150,7 +2179,7 @@ webdav = *
 </div>
 </div>
 <div class="sect2">
-<h3 id="security-functions"><a class="anchor" href="#security-functions"></a><a class="link" href="#security-functions">12.6. Security (authentication/authorzation)</a></h3>
+<h3 id="security-functions"><a class="anchor" href="#security-functions"></a><a class="link" href="#security-functions">12.7. Security (authentication/authorization)</a></h3>
 <div class="paragraph">
 <p>These functions can be used to get information about the identity and authorization state of the current subject/user making te request.</p>
 </div>
@@ -2255,7 +2284,7 @@ webdav = *
 </div>
 </div>
 <div class="sect2">
-<h3 id="expath-file-functions"><a class="anchor" href="#expath-file-functions"></a><a class="link" href="#expath-file-functions">12.7. EXPath File</a></h3>
+<h3 id="expath-file-functions"><a class="anchor" href="#expath-file-functions"></a><a class="link" href="#expath-file-functions">12.8. EXPath File</a></h3>
 <div class="paragraph">
 <p>EXPath File is a standard file system API for XPath. It defines extension functions to perform file system related operations such as listing, reading, writing, copying and moving files or directories. The API is described <a href="http://expath.org/spec/file">here</a>.</p>
 </div>
@@ -2266,7 +2295,7 @@ webdav = *
 <p>Functions:</p>
 </div>
 <div class="sect3">
-<h4 id="file-properties"><a class="anchor" href="#file-properties"></a><a class="link" href="#file-properties">12.7.1. File properties</a></h4>
+<h4 id="file-properties"><a class="anchor" href="#file-properties"></a><a class="link" href="#file-properties">12.8.1. File properties</a></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:exists($path as xs:string) as xs:boolean</code></pre>
@@ -2350,7 +2379,7 @@ webdav = *
 </div>
 </div>
 <div class="sect3">
-<h4 id="inputoutput"><a class="anchor" href="#inputoutput"></a><a class="link" href="#inputoutput">12.7.2. Input/output</a></h4>
+<h4 id="inputoutput"><a class="anchor" href="#inputoutput"></a><a class="link" href="#inputoutput">12.8.2. Input/output</a></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:append($file as xs:string, $items as item()*) as xs:boolean?</code></pre>
@@ -3101,7 +3130,7 @@ webdav = *
 </div>
 </div>
 <div class="sect3">
-<h4 id="paths"><a class="anchor" href="#paths"></a><a class="link" href="#paths">12.7.3. Paths</a></h4>
+<h4 id="paths"><a class="anchor" href="#paths"></a><a class="link" href="#paths">12.8.3. Paths</a></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:name($path as xs:string) as xs:string</code></pre>
@@ -3214,7 +3243,7 @@ webdav = *
 </div>
 </div>
 <div class="sect3">
-<h4 id="system-properties"><a class="anchor" href="#system-properties"></a><a class="link" href="#system-properties">12.7.4. System properties</a></h4>
+<h4 id="system-properties"><a class="anchor" href="#system-properties"></a><a class="link" href="#system-properties">12.8.4. System properties</a></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:dir-separator() as xs:string</code></pre>
@@ -3315,7 +3344,7 @@ A generic file system error occurred.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="expath-http-client-functions"><a class="anchor" href="#expath-http-client-functions"></a><a class="link" href="#expath-http-client-functions">12.8. EXPath HTTP Client</a></h3>
+<h3 id="expath-http-client-functions"><a class="anchor" href="#expath-http-client-functions"></a><a class="link" href="#expath-http-client-functions">12.9. EXPath HTTP Client</a></h3>
 <div class="paragraph">
 <p>These functions are an implementation of the specification: <a href="http://expath.org/spec/http-client">EXPath - HTTP Client Module</a> based on the Java HTTP client library <a href="https://square.github.io/okhttp/">OkHttp</a>. It is an XSLWeb “native” implementation. The API defines one extension function to perform HTTP requests and handle responses.</p>
 </div>
@@ -3453,7 +3482,7 @@ A timeout occurred waiting for the response.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="base64-functions"><a class="anchor" href="#base64-functions"></a><a class="link" href="#base64-functions">12.9. Base64</a></h3>
+<h3 id="base64-functions"><a class="anchor" href="#base64-functions"></a><a class="link" href="#base64-functions">12.10. Base64</a></h3>
 <div class="paragraph">
 <p>Namespace uri: <em>http://www.armatiek.com/xslweb/functions/base64</em>. In the function signatures below this namespace uri is bound to the prefix <em>base64</em>.</p>
 </div>
@@ -3478,7 +3507,7 @@ A timeout occurred waiting for the response.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="external-functions"><a class="anchor" href="#external-functions"></a><a class="link" href="#external-functions">12.10. Execute external processes</a></h3>
+<h3 id="external-functions"><a class="anchor" href="#external-functions"></a><a class="link" href="#external-functions">12.11. Execute external processes</a></h3>
 <div class="paragraph">
 <p>Namespace uri: <em>http://www.armatiek.com/xslweb/functions/exec</em>. In the function signatures below this namespace uri is bound to the prefix <em>external</em>.</p>
 </div>
@@ -3500,7 +3529,7 @@ A timeout occurred waiting for the response.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging-functions"><a class="anchor" href="#logging-functions"></a><a class="link" href="#logging-functions">12.11. Logging functions</a></h3>
+<h3 id="logging-functions"><a class="anchor" href="#logging-functions"></a><a class="link" href="#logging-functions">12.12. Logging functions</a></h3>
 <div class="paragraph">
 <p>Logging functionality. The logging information is written to the main XSLWeb log file, default <em>«xslweb-home»</em>/logs/xslweb.log.</p>
 </div>
@@ -3528,7 +3557,7 @@ A timeout occurred waiting for the response.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="email-functions"><a class="anchor" href="#email-functions"></a><a class="link" href="#email-functions">12.12. Email</a></h3>
+<h3 id="email-functions"><a class="anchor" href="#email-functions"></a><a class="link" href="#email-functions">12.13. Email</a></h3>
 <div class="paragraph">
 <p>Functionality for sending e-mail via SMTP.</p>
 </div>
@@ -3548,7 +3577,7 @@ A timeout occurred waiting for the response.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="serialization-functions"><a class="anchor" href="#serialization-functions"></a><a class="link" href="#serialization-functions">12.13. Serialization</a></h3>
+<h3 id="serialization-functions"><a class="anchor" href="#serialization-functions"></a><a class="link" href="#serialization-functions">12.14. Serialization</a></h3>
 <div class="paragraph">
 <p>Functionality for serializing a node to a string.</p>
 </div>
@@ -3580,7 +3609,7 @@ A timeout occurred waiting for the response.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="caching-functions"><a class="anchor" href="#caching-functions"></a><a class="link" href="#caching-functions">12.14. Caching</a></h3>
+<h3 id="caching-functions"><a class="anchor" href="#caching-functions"></a><a class="link" href="#caching-functions">12.15. Caching</a></h3>
 <div class="paragraph">
 <p>Namespace uri: <em>http://www.armatiek.com/xslweb/functions/cache</em>. In the function signatures below this namespace uri is bound to the prefix <em>cache</em>.</p>
 </div>
@@ -3597,7 +3626,7 @@ A timeout occurred waiting for the response.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="image-processing-functions"><a class="anchor" href="#image-processing-functions"></a><a class="link" href="#image-processing-functions">12.15. Image processing</a></h3>
+<h3 id="image-processing-functions"><a class="anchor" href="#image-processing-functions"></a><a class="link" href="#image-processing-functions">12.16. Image processing</a></h3>
 <div class="paragraph">
 <p>Namespace uri: <em>http://www.armatiek.com/xslweb/functions/image</em>. In the function signatures below this namespace uri is bound to the prefix <em>img</em>.</p>
 </div>
@@ -3614,7 +3643,7 @@ A timeout occurred waiting for the response.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="io-functions"><a class="anchor" href="#io-functions"></a><a class="link" href="#io-functions">12.16. Input/Output</a></h3>
+<h3 id="io-functions"><a class="anchor" href="#io-functions"></a><a class="link" href="#io-functions">12.17. Input/Output</a></h3>
 <div class="paragraph">
 <p>Namespace uri: <em>http://www.armatiek.com/xslweb/functions/io</em>. In the function signatures below this namespace uri is bound to the prefix <em>io</em>.</p>
 </div>
@@ -3631,7 +3660,7 @@ A timeout occurred waiting for the response.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="util-functions"><a class="anchor" href="#util-functions"></a><a class="link" href="#util-functions">12.17. Utilities</a></h3>
+<h3 id="util-functions"><a class="anchor" href="#util-functions"></a><a class="link" href="#util-functions">12.18. Utilities</a></h3>
 <div class="paragraph">
 <p>Namespace uri: <em>http://www.armatiek.com/xslweb/functions/util</em>. In the function signatures below this namespace uri is bound to the prefix <em>util</em>.</p>
 </div>
@@ -3668,7 +3697,7 @@ A timeout occurred waiting for the response.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="zip-functions"><a class="anchor" href="#zip-functions"></a><a class="link" href="#zip-functions">12.18. Zip/Unzip</a></h3>
+<h3 id="zip-functions"><a class="anchor" href="#zip-functions"></a><a class="link" href="#zip-functions">12.19. Zip/Unzip</a></h3>
 <div class="paragraph">
 <p>(Un)zip functionality</p>
 </div>
@@ -3699,7 +3728,7 @@ A timeout occurred waiting for the response.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="uuid-functions"><a class="anchor" href="#uuid-functions"></a><a class="link" href="#uuid-functions">12.19. UUID</a></h3>
+<h3 id="uuid-functions"><a class="anchor" href="#uuid-functions"></a><a class="link" href="#uuid-functions">12.20. UUID</a></h3>
 <div class="paragraph">
 <p>Namespace uri: <em>http://www.armatiek.com/xslweb/functions/uuid</em>. In the function signatures below this namespace uri is bound to the prefix <em>uuid</em>.</p>
 </div>
@@ -3716,7 +3745,7 @@ A timeout occurred waiting for the response.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="json-functions"><a class="anchor" href="#json-functions"></a><a class="link" href="#json-functions">12.20. JSON</a></h3>
+<h3 id="json-functions"><a class="anchor" href="#json-functions"></a><a class="link" href="#json-functions">12.21. JSON</a></h3>
 <div class="paragraph">
 <p>(Experimental)</p>
 </div>
@@ -3775,7 +3804,7 @@ Alternative: now you can also use the standard XPath 3.1 functions, see: <a href
 </div>
 </div>
 <div class="sect2">
-<h3 id="dynfunc-functions"><a class="anchor" href="#dynfunc-functions"></a><a class="link" href="#dynfunc-functions">12.21. Dynamic (scripted) extension functions</a></h3>
+<h3 id="dynfunc-functions"><a class="anchor" href="#dynfunc-functions"></a><a class="link" href="#dynfunc-functions">12.22. Dynamic (scripted) extension functions</a></h3>
 <div class="paragraph">
 <p>Namespace uri: <em>http://www.armatiek.com/xslweb/functions/dynfunc</em>. In the function signatures below this namespace uri is bound to the prefix <em>dynfunc</em>.</p>
 </div>
@@ -4234,7 +4263,7 @@ public class MyExtensionFunctions {
 </div>
 </div>
 <div class="sect2">
-<h3 id="sql-functions"><a class="anchor" href="#sql-functions"></a><a class="link" href="#sql-functions">12.22. SQL</a></h3>
+<h3 id="sql-functions"><a class="anchor" href="#sql-functions"></a><a class="link" href="#sql-functions">12.23. SQL</a></h3>
 <div class="paragraph">
 <p>Functionality to query data from and store data in a relational database. These extension functions make use of the <a href="http://en.wikipedia.org/wiki/Java_Database_Connectivity">Java JDBC</a> framework. You can place the JDBC driver for your database in the directory <em>«xslweb-home»/common/lib</em> (restart required). Then you can define a datasource in the <em>datasources</em> section of the application’s <em>webapp.xml</em>, for instance for a <a href="http://www.h2database.com/html/main.html">H2</a> database:</p>
 </div>
@@ -4340,7 +4369,7 @@ public class MyExtensionFunctions {
 </div>
 </div>
 <div class="sect2">
-<h3 id="custom-extension-functions"><a class="anchor" href="#custom-extension-functions"></a><a class="link" href="#custom-extension-functions">12.23. Custom extension functions</a></h3>
+<h3 id="custom-extension-functions"><a class="anchor" href="#custom-extension-functions"></a><a class="link" href="#custom-extension-functions">12.24. Custom extension functions</a></h3>
 <div class="paragraph">
 <p>It is also possible to write your own custom XPath extension functions in Java and add them to an XSLWeb web application. These extension functions must be <a href="http://www.saxonica.com/html/documentation/extensibility/integratedfunctions/ext-full-J.html">integrated extension functions</a> that use the full interface of Saxon version 10.2.</p>
 </div>
@@ -4349,7 +4378,7 @@ public class MyExtensionFunctions {
 </div>
 </div>
 <div class="sect2">
-<h3 id="side-effects"><a class="anchor" href="#side-effects"></a><a class="link" href="#side-effects">12.24. Extension functions with side effects</a></h3>
+<h3 id="side-effects"><a class="anchor" href="#side-effects"></a><a class="link" href="#side-effects">12.25. Extension functions with side effects</a></h3>
 <div class="paragraph">
 <p>A number of the extension functions described in previous sections perform a certain task and thereby change the state of something outside the stylesheet, like write or log to a file, send an e-mail etc. These functions don’t have any return information and should have an empty sequence as their return type. In XSLWeb, the return type of these functions is actually declared as <em>xs:boolean?</em> The reason is that in that case the Saxon XSLT optimizer cannot ignore these functions, because they could add something to the result tree (a boolean value). In reality, these functions never return this boolean value and always return an empty sequence. Therefore it is safe to do something like:</p>
 </div>
@@ -4541,6 +4570,18 @@ webdav = *
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">tar -xvf xslweb-v{xslweb-version}-osx-x64.tar</code></pre>
 </div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Do not install the XSLWeb distribution in a directory that contains spaces.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect3">
@@ -5205,7 +5246,7 @@ or</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-09-17 13:19:07 +0200
+Last updated 2020-11-06 15:30:50 +0100
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/agate.min.css">
