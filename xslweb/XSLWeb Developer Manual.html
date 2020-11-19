@@ -4394,7 +4394,7 @@ public class MyExtensionFunctions {
 <div class="sect2">
 <h3 id="custom-extension-functions"><a class="anchor" href="#custom-extension-functions"></a><a class="link" href="#custom-extension-functions">12.24. Custom extension functions</a></h3>
 <div class="paragraph">
-<p>It is also possible to write your own custom XPath extension functions in Java and add them to an XSLWeb web application. These extension functions must be <a href="http://www.saxonica.com/html/documentation/extensibility/integratedfunctions/ext-full-J.html">integrated extension functions</a> that use the full interface of Saxon version 10.2.</p>
+<p>It is also possible to write your own custom XPath extension functions in Java and add them to an XSLWeb web application. These extension functions must be <a href="http://www.saxonica.com/html/documentation/extensibility/integratedfunctions/ext-full-J.html">integrated extension functions</a> that use the full interface of Saxon version 10.3.</p>
 </div>
 <div class="paragraph">
 <p>The compiled jar of a custom extension function together with any libraries that the function depend on can be placed in the folder <em>«web-app»/lib</em>. There is no need to restart the application server, XSLWeb will detect the jars and will load and register the extension function automatically.</p>
@@ -4990,13 +4990,13 @@ After a change to the variable <code>MAXMEM</code> in the file <code>&lt;install
 <div class="ulist">
 <ul>
 <li>
-<p>mvn install:install-file -Dfile=saxon-pe-10.2.jar -DgroupId=net.sf.saxon -DartifactId=Saxon-PE -Dversion=10.2 -Dpackaging=jar</p>
+<p>mvn install:install-file -Dfile=saxon-pe-10.3.jar -DgroupId=net.sf.saxon -DartifactId=Saxon-PE -Dversion=10.3 -Dpackaging=jar</p>
 </li>
 <li>
-<p>mvn install:install-file -Dfile=icu4j-59.1.jar -DgroupId=net.sf.saxon -DartifactId=Saxon-PE-icu -Dversion=10.2 -Dpackaging=jar</p>
+<p>mvn install:install-file -Dfile=icu4j-59.1.jar -DgroupId=net.sf.saxon -DartifactId=Saxon-PE-icu -Dversion=10.3 -Dpackaging=jar</p>
 </li>
 <li>
-<p>mvn install:install-file -Dfile=saxon-sql-10.2.jar -DgroupId=net.sf.saxon -DartifactId=Saxon-PE-sql -Dversion=10.2 -Dpackaging=jar</p>
+<p>mvn install:install-file -Dfile=saxon-sql-10.3.jar -DgroupId=net.sf.saxon -DartifactId=Saxon-PE-sql -Dversion=10.3 -Dpackaging=jar</p>
 </li>
 </ul>
 </div>
@@ -5006,13 +5006,13 @@ After a change to the variable <code>MAXMEM</code> in the file <code>&lt;install
 <div class="ulist">
 <ul>
 <li>
-<p>mvn install:install-file -Dfile=saxon-ee-10.2.jar -DgroupId=net.sf.saxon -DartifactId=Saxon-EE -Dversion=10.2 -Dpackaging=jar</p>
+<p>mvn install:install-file -Dfile=saxon-ee-10.3.jar -DgroupId=net.sf.saxon -DartifactId=Saxon-EE -Dversion=10.3 -Dpackaging=jar</p>
 </li>
 <li>
-<p>mvn install:install-file -Dfile=icu4j-59.1.jar -DgroupId=net.sf.saxon -DartifactId=Saxon-EE-icu -Dversion=10.2 -Dpackaging=jar</p>
+<p>mvn install:install-file -Dfile=icu4j-59.1.jar -DgroupId=net.sf.saxon -DartifactId=Saxon-EE-icu -Dversion=10.3 -Dpackaging=jar</p>
 </li>
 <li>
-<p>mvn install:install-file -Dfile=saxon-sql-10.2.jar -DgroupId=net.sf.saxon -DartifactId=Saxon-EE-sql -Dversion=10.2 -Dpackaging=jar</p>
+<p>mvn install:install-file -Dfile=saxon-sql-10.3.jar -DgroupId=net.sf.saxon -DartifactId=Saxon-EE-sql -Dversion=10.3 -Dpackaging=jar</p>
 </li>
 </ul>
 </div>
@@ -5269,7 +5269,7 @@ or</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-11-15 13:26:26 +0100
+Last updated 2020-11-19 15:36:22 +0100
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/agate.min.css">
