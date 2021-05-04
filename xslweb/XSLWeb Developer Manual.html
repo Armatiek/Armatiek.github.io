@@ -8,7 +8,7 @@
 <meta name="description" content="XSLWeb Developer Manual">
 <meta name="keywords" content="XSLWeb XML, XSLT, XML Schema, Schematron, Web development">
 <meta name="author" content="Authors: Maarten Kroon, Arjan Loeffen">
-<title>XSLWeb version 4.0.1-RC3 Developer Manual</title>
+<title>XSLWeb version 4.0.1 Developer Manual</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -438,7 +438,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
-<h1>XSLWeb version 4.0.1-RC3 Developer Manual</h1>
+<h1>XSLWeb version 4.0.1 Developer Manual</h1>
 <div class="details">
 <span id="author" class="author">Authors: Maarten Kroon, Arjan Loeffen</span><br>
 </div>
@@ -2028,7 +2028,7 @@ Do not use the value of <em>cache-buster-id</em> as part of the filenames of you
   &lt;security&gt;
     &lt;shiro-ini&gt;&lt;![CDATA[
 [main]
-shiro.loginUrl = /${webapp-name}/security/login.html
+shiro.loginUrl = ${webapp-path}/security/login.html
 shiro.postOnlyLogout = true
 
 authcBasic.enabled = true
@@ -2056,11 +2056,11 @@ user = portal:read,portal:write
 webdav = *
 
 [urls]
-/${webapp-name}/security/login.html = authc
-/${webapp-name}/security/secured-for-admin-role.html = authc, roles[admin]
-/${webapp-name}/security/secured-for-read-permission.html = authc, perms["portal:read"]
-/${webapp-name}/security/logout.html = logout
-/${webapp-name}/webdav/** = authcBasic]]&gt;
+${webapp-path}/security/login.html = authc
+${webapp-path}/security/secured-for-admin-role.html = authc, roles[admin]
+${webapp-path}/security/secured-for-read-permission.html = authc, perms["portal:read"]
+${webapp-path}/security/logout.html = logout
+${webapp-path}/webdav/** = authcBasic]]&gt;
     &lt;/shiro-ini&gt;
   &lt;/security&gt;
 
@@ -4708,7 +4708,7 @@ public class MyExtensionFunctions {
 <div class="sect2">
 <h3 id="custom-extension-functions"><a class="anchor" href="#custom-extension-functions"></a><a class="link" href="#custom-extension-functions">14.25. Custom extension functions</a></h3>
 <div class="paragraph">
-<p>It is also possible to write your own custom XPath extension functions in Java and add them to an XSLWeb web application. These extension functions must be <a href="http://www.saxonica.com/html/documentation/extensibility/integratedfunctions/ext-full-J.html">integrated extension functions</a> that use the full interface of Saxon version 10.3.</p>
+<p>It is also possible to write your own custom XPath extension functions in Java and add them to an XSLWeb web application. These extension functions must be <a href="http://www.saxonica.com/html/documentation/extensibility/integratedfunctions/ext-full-J.html">integrated extension functions</a> that use the full interface of Saxon version 10.5.</p>
 </div>
 <div class="paragraph">
 <p>The compiled jar of a custom extension function together with any libraries that the function depend on can be placed in the folder <em>«web-app»/lib</em>. There is no need to restart the application server, XSLWeb will detect the jars and will load and register the extension function automatically.</p>
@@ -4778,7 +4778,7 @@ public class MyExtensionFunctions {
 <p>You can access the top-level WebDAV folder using the url <a href="http://my-domain:my-port/my-webapp/webdav/" class="bare">http://my-domain:my-port/my-webapp/webdav/</a>, for instance <a href="http://localhost:8080/examples/webdav/" class="bare">http://localhost:8080/examples/webdav/</a>.</p>
 </div>
 <div class="paragraph">
-<p>When you enable WebDAV access you probably want to authenticate users before accessing the resources, see <a href="#security">Security: authentication and authorization</a>. By default there is no authentication.</p>
+<p>When you enable WebDAV access you probably want to authenticate users before accessing the resources, see <a href="#security">Security: authentication and authorization</a>. By default there is no authentication. If a security/shiro-ini configuration is present in webapp.xml, users must have role "webdav" to be able to access the WebDAV functionality.</p>
 </div>
 <div class="paragraph">
 <p>Example how to configure authentication for WebDAV requests:</p>
@@ -4822,7 +4822,7 @@ webdavuser = secret,webdav
 webdav = *
 
 [urls]
-/${webapp-name}/webdav/** = authcBasic]]&gt;
+${webapp-path}/webdav/** = authcBasic]]&gt;
     &lt;/shiro-ini&gt;
   &lt;/security&gt;
 
@@ -4840,7 +4840,7 @@ webdav = *
 <p>The sources of XSLWeb can be found on <a href="https://github.com/Armatiek/xslweb">GitHub</a>. XSLWeb is licensed under the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License version 2.0</a>.</p>
 </div>
 <div class="paragraph">
-<p>Compiled binaries of XSLWeb 4.0.1-RC3 can be downloaded in two distributions:</p>
+<p>Compiled binaries of XSLWeb 4.0.1 can be downloaded in two distributions:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -4862,13 +4862,13 @@ webdav = *
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://armatiek.nl/downloads/xslweb/xslweb-ready-to-run-v4.0.1-RC3-linux-x64.tar.gz" class="bare">https://armatiek.nl/downloads/xslweb/xslweb-ready-to-run-v4.0.1-RC3-linux-x64.tar.gz</a> (for Linux 64-bits machines)</p>
+<p><a href="https://armatiek.nl/downloads/xslweb/xslweb-ready-to-run-v4.0.1-linux-x64.tar.gz" class="bare">https://armatiek.nl/downloads/xslweb/xslweb-ready-to-run-v4.0.1-linux-x64.tar.gz</a> (for Linux 64-bits machines)</p>
 </li>
 <li>
-<p><a href="https://armatiek.nl/downloads/xslweb/xslweb-ready-to-run-v4.0.1-RC3-osx-x64.tar.gz" class="bare">https://armatiek.nl/downloads/xslweb/xslweb-ready-to-run-v4.0.1-RC3-osx-x64.tar.gz</a> (for macOS 64-bits machines)</p>
+<p><a href="https://armatiek.nl/downloads/xslweb/xslweb-ready-to-run-v4.0.1-osx-x64.tar.gz" class="bare">https://armatiek.nl/downloads/xslweb/xslweb-ready-to-run-v4.0.1-osx-x64.tar.gz</a> (for macOS 64-bits machines)</p>
 </li>
 <li>
-<p><a href="https://armatiek.nl/downloads/xslweb/xslweb-ready-to-run-v4.0.1-RC3-windows-x64.zip" class="bare">https://armatiek.nl/downloads/xslweb/xslweb-ready-to-run-v4.0.1-RC3-windows-x64.zip</a> (for Windows 64-bits machines)</p>
+<p><a href="https://armatiek.nl/downloads/xslweb/xslweb-ready-to-run-v4.0.1-windows-x64.zip" class="bare">https://armatiek.nl/downloads/xslweb/xslweb-ready-to-run-v4.0.1-windows-x64.zip</a> (for Windows 64-bits machines)</p>
 </li>
 </ul>
 </div>
@@ -4937,6 +4937,23 @@ To increase or decrease the Java heap memory size that is available to the XSLWe
 </td>
 </tr>
 </table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+If you get an error message on macOS like "java cannot be opened because the developer cannot be verified" you must remove the “quarantine” attribute from the java executable which tells the system that java should not be run automatically before being explicitly approved by the user. This can be done running a command like:
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">xattr -d com.apple.quarantine /path-to-xslweb/xslweb-ready-to-run-v4.0.0-osx-x64/jre/bin/java</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -5239,10 +5256,10 @@ After a change to the variable <code>MAXMEM</code> in the file <code>&lt;install
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://armatiek.nl/downloads/xslweb-war-v4.0.1-RC3.tar.gz" class="bare">https://armatiek.nl/downloads/xslweb-war-v4.0.1-RC3.tar.gz</a> (Linux/macOS)</p>
+<p><a href="https://armatiek.nl/downloads/xslweb-war-v4.0.1.tar.gz" class="bare">https://armatiek.nl/downloads/xslweb-war-v4.0.1.tar.gz</a> (Linux/macOS)</p>
 </li>
 <li>
-<p><a href="https://armatiek.nl/downloads/xslweb-war-v4.0.1-RC3.zip" class="bare">https://armatiek.nl/downloads/xslweb-war-v4.0.1-RC3.zip</a> (Windows)</p>
+<p><a href="https://armatiek.nl/downloads/xslweb-war-v4.0.1.zip" class="bare">https://armatiek.nl/downloads/xslweb-war-v4.0.1.zip</a> (Windows)</p>
 </li>
 </ul>
 </div>
@@ -5544,7 +5561,7 @@ or</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-03-12 15:45:08 +0100
+Last updated 2021-05-04 13:12:37 +0200
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/agate.min.css">
