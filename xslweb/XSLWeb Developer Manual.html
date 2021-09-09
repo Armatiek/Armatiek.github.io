@@ -502,35 +502,36 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#request-functions">14.2. Request functions</a></li>
 <li><a href="#response-functions">14.3. Response functions</a></li>
 <li><a href="#session-functions">14.4. Session functions</a></li>
-<li><a href="#webapp-functions">14.5. Webapp functions</a></li>
-<li><a href="#context-functions">14.6. Context functions</a></li>
-<li><a href="#security-functions">14.7. Security (authentication/authorization)</a></li>
-<li><a href="#expath-file-functions">14.8. EXPath File</a>
+<li><a href="#webapp-functions">14.5. Webapp and caching functions</a></li>
+<li><a href="#cache-configuration">14.6. Cache configuration</a></li>
+<li><a href="#context-functions">14.7. Context functions</a></li>
+<li><a href="#security-functions">14.8. Security (authentication/authorization)</a></li>
+<li><a href="#expath-file-functions">14.9. EXPath File</a>
 <ul class="sectlevel3">
-<li><a href="#file-properties">14.8.1. File properties</a></li>
-<li><a href="#inputoutput">14.8.2. Input/output</a></li>
-<li><a href="#paths">14.8.3. Paths</a></li>
-<li><a href="#system-properties">14.8.4. System properties</a></li>
+<li><a href="#file-properties">14.9.1. File properties</a></li>
+<li><a href="#inputoutput">14.9.2. Input/output</a></li>
+<li><a href="#paths">14.9.3. Paths</a></li>
+<li><a href="#system-properties">14.9.4. System properties</a></li>
 </ul>
 </li>
-<li><a href="#expath-http-client-functions">14.9. EXPath HTTP Client</a></li>
-<li><a href="#base64-functions">14.10. Base64</a></li>
-<li><a href="#external-functions">14.11. Execute external processes</a></li>
-<li><a href="#logging-functions">14.12. Logging functions</a></li>
-<li><a href="#email-functions">14.13. Email</a></li>
-<li><a href="#serialization-functions">14.14. Serialization</a></li>
-<li><a href="#caching-functions">14.15. Caching</a></li>
-<li><a href="#image-processing-functions">14.16. Image processing</a></li>
-<li><a href="#io-functions">14.17. Input/Output</a></li>
-<li><a href="#util-functions">14.18. Utilities</a></li>
-<li><a href="#zip-functions">14.19. Zip/Unzip</a></li>
-<li><a href="#uuid-functions">14.20. UUID</a></li>
-<li><a href="#json-functions">14.21. JSON</a></li>
-<li><a href="#dynfunc-functions">14.22. Dynamic (scripted) extension functions</a></li>
-<li><a href="#sql-functions">14.23. SQL</a></li>
-<li><a href="#transform-functions">14.24. Transformation</a></li>
-<li><a href="#custom-extension-functions">14.25. Custom extension functions</a></li>
-<li><a href="#side-effects">14.26. Extension functions with side effects</a></li>
+<li><a href="#expath-http-client-functions">14.10. EXPath HTTP Client</a></li>
+<li><a href="#base64-functions">14.11. Base64</a></li>
+<li><a href="#external-functions">14.12. Execute external processes</a></li>
+<li><a href="#logging-functions">14.13. Logging functions</a></li>
+<li><a href="#email-functions">14.14. Email</a></li>
+<li><a href="#serialization-functions">14.15. Serialization</a></li>
+<li><a href="#caching-functions">14.16. Caching</a></li>
+<li><a href="#image-processing-functions">14.17. Image processing</a></li>
+<li><a href="#io-functions">14.18. Input/Output</a></li>
+<li><a href="#util-functions">14.19. Utilities</a></li>
+<li><a href="#zip-functions">14.20. Zip/Unzip</a></li>
+<li><a href="#uuid-functions">14.21. UUID</a></li>
+<li><a href="#json-functions">14.22. JSON</a></li>
+<li><a href="#dynfunc-functions">14.23. Dynamic (scripted) extension functions</a></li>
+<li><a href="#sql-functions">14.24. SQL</a></li>
+<li><a href="#transform-functions">14.25. Transformation</a></li>
+<li><a href="#custom-extension-functions">14.26. Custom extension functions</a></li>
+<li><a href="#side-effects">14.27. Extension functions with side effects</a></li>
 </ul>
 </li>
 <li><a href="#webdav-access">15. WebDAV access</a></li>
@@ -819,9 +820,6 @@ If you have comments, remarks or questions about this manual, please use the <a 
 </div>
 <div class="paragraph">
 <p>See <a href="#pipeline-steps">Pipeline steps</a> for a more in depth overview of these different pipeline steps.</p>
-</div>
-<div class="paragraph">
-<p>The output of the pipeline can be cached by specifying extra attributes on the <em>&lt;pipeline:pipeline/&gt;</em> element, see <a href="#response-caching">Response caching</a>.</p>
 </div>
 <div class="paragraph">
 <p>In development-mode, the output of the (intermediate) transformation steps can be logged to a log file, see chapters <a href="#development-mode">Development mode and production mode</a> and <a href="#logging">Logging</a>.</p>
@@ -1218,7 +1216,7 @@ If you have comments, remarks or questions about this manual, please use the <a 
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;pipeline:pipeline&gt;
   &lt;pipeline:transformer
-    name="my-transformation "
+    name="my-transformation"
     xsl-path="my-transformation.xsl"/&gt;
   &lt;pipeline:json-serializer
     name="json-serialization"
@@ -1369,6 +1367,9 @@ If you have comments, remarks or questions about this manual, please use the <a 
 <li>
 <p><strong>content-disposition-filename</strong> (optional): this attribute can be used to force the browser to display a “Save as” dialog (instead of display the file “inline”). The specified filename will be used as the default filename in de dialog.</p>
 </li>
+<li>
+<p><strong>expire-time</strong> (optional): The time the resource may be cached by the client before it expires (in seconds).</p>
+</li>
 </ul>
 </div>
 <div class="paragraph">
@@ -1380,7 +1381,8 @@ If you have comments, remarks or questions about this manual, please use the <a 
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;res:resource-serializer
   path="webapps/examples/xsl/resource/leaves.jpg"
   content-type="image/jpg"
-  content-disposition-filename="my-image.jpg"/&gt;</code></pre>
+  content-disposition-filename="my-image.jpg"
+  expire-time="30"/&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1550,9 +1552,6 @@ If you have comments, remarks or questions about this manual, please use the <a 
 <p>In development mode, compiled XSLT stylesheets are not cached. That means that for every request all stylesheets in the pipeline are reread from disk and recompiled and therefore changes will be visible immediately. In production mode, stylesheets are compiled and cached the first time they are used. However, in production mode, changes in stylesheets will automatically be detected by the file alteration monitor and the complete web application will be reloaded. So there is no need to restart the application server when deploying stylesheets in production mode. The file alteration monitor will also detect and pick up changes in the webapp.xml configuration file and plugin extension function library jars.</p>
 </li>
 <li>
-<p>In development mode, the caching framework (using the cache attributes on the pipeline element) is disabled, so no caching is performed.</p>
-</li>
-<li>
 <p>In development mode, the output of a pipeline is not streamed directly to the client (e.g. the browser) but instead buffered until the complete pipeline is executed. If an error occurs during the execution of the pipeline, the error message and stack trace are sent to the client, making it easier to debug the error. If an error occurs in production mode, only a HTTP status code 500 (internal server error) is sent to the client (that is, if the response is not already committed by the application server).</p>
 </li>
 <li>
@@ -1588,6 +1587,18 @@ If you have comments, remarks or questions about this manual, please use the <a 
 <div class="sect1">
 <h2 id="response-caching"><a class="anchor" href="#response-caching"></a><a class="link" href="#response-caching">7. Response caching</a></h2>
 <div class="sectionbody">
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Because of the upgrade of the Ehcache framework from version 2.6 to 3.9, this functionality will be removed in version 4.1 of XSLWeb (Ehcache dropped the support for SimpleCachingHeadersPageCachingFilter on which the response caching functionality was built).
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>The output of a pipeline can be cached by providing optional caching attributes on the element <em>pipeline:pipeline</em> in the stylesheet <em>request-dispatcher.xsl</em>. The purpose of caching the response output is to gain performance; a response that can be served from cache will be returned quicker because no transformations are necessary and also the load on the server is decreased.</p>
 </div>
@@ -2350,9 +2361,9 @@ ${webapp-path}/webdav/** = authcBasic]]&gt;
 </div>
 </div>
 <div class="sect2">
-<h3 id="webapp-functions"><a class="anchor" href="#webapp-functions"></a><a class="link" href="#webapp-functions">14.5. Webapp functions</a></h3>
+<h3 id="webapp-functions"><a class="anchor" href="#webapp-functions"></a><a class="link" href="#webapp-functions">14.5. Webapp and caching functions</a></h3>
 <div class="paragraph">
-<p>These functions can be used to get and set web application specific attributes. These can be used to share session independent attribute between multiple requests within one web application.</p>
+<p>These functions can be used to get and set web application specific attributes and cache entries. They can be used to share session independent data between multiple requests and multiple users within one web application.</p>
 </div>
 <div class="paragraph">
 <p>Namespace uri: <em>http://www.armatiek.com/xslweb/functions/webapp</em>. In the function signatures below this namespace uri is bound to the prefix <em>webapp</em>.</p>
@@ -2362,30 +2373,191 @@ ${webapp-path}/webdav/** = authcBasic]]&gt;
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function webapp:set-attribute($name as xs:string, attr as item()*) as xs:boolean?</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Stores a sequence <em>$attr</em> under name <em>$name</em> in de webapp context, so it is available over multiple requests and for multiple users within the same webapp.</p>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function webapp:get-attribute($name as xs:string) as item()*</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Retrieves a previously stored sequence with name <em>$name</em> from the webapp context.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function webapp:set-cache-value($cache-name as xs:string, $key-name as xs:string, $value as item()*, $time-to-idle as xs:integer, $time-to-live as xs:integer) as xs:boolean?</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Caches a sequence <em>$value</em> under key <em>$key-name</em> in the cache with name <em>$cache-name</em>. The cache must be configured in the webapp.xml. <em>$time-to-idle</em> is the maximum number of seconds an entry can exist in the cache without being accessed. The entry expires at this limit and will no longer be returned from the cache. The default value is 0, which means no TTI eviction takes place (infinite lifetime). <em>$time-to-live</em> is the maximum number of seconds an entry can exist in the cache regardless of use. The element expires at this limit and will no longer be returned from the cache. The default value is 0, which means no TTL eviction takes place (infinite lifetime).</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This function is deprecated, the caching framework that XSLWeb uses (Ehcache) does not (really) support tti and ttl on individual cache entries anymore. From XSLWeb 4.1 please use <em>webapp:set-cache-value($cache-name as xs:string, $key-name as xs:string, $value as item()*) as xs:boolean?</em> and specify the times in the configuration for a particular cache in webapp.xml.
+</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function webapp:get-cache-value($cache-name as xs:string, $key-name as xs:string) as item()*</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Retrieves a previously cached sequence with key <em>$key-name</em> from the cache with name <em>$cache-name</em>. The cache must be configured in the webapp.xml.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The information below (including section 14.6) does only apply to XSLWeb version 4.1 or the master of XSLWeb git.
+</td>
+</tr>
+</table>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function webapp:set-attribute($name as xs:string, attr as item()*) as xs:boolean?</code></pre>
+<pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function webapp:set-cache-value($cache-name as xs:string, $key-name as xs:string, $value as item()*) as xs:boolean?</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Caches a sequence <em>$value</em> under key <em>$key-name</em> in the cache with name <em>$cache-name</em>. The cache must be configured in the webapp.xml.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function webapp:set-cache-value($cache-name as xs:string, $key-name as xs:string, $attrs as item()*, $time-to-idle as xs:integer, $time-to-live as xs:integer) as xs:boolean?</code></pre>
+<pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function webapp:remove-cache-value($cache-name as xs:string, $key-name as xs:string) as xs:boolean?</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Removes a previously cached sequence with key <em>$key-name</em> from the cache with name <em>$cache-name</em>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cache-configuration"><a class="anchor" href="#cache-configuration"></a><a class="link" href="#cache-configuration">14.6. Cache configuration</a></h3>
+<div class="paragraph">
+<p>Caches must be configured within the webapp.xml. Each webapp.xml can contain zero or more cache configurations. The XML format that is used to configure a cache is exactly the same as the format Ehcache uses to configure a cache in XML, see <a href="https://www.ehcache.org/documentation/3.0/xml.html" target="_blank" rel="noopener">XML Configuration</a>. In fact, the configuration XML schema of Ehcache is imported in the XML schema of webapp.xml, see <em>«xslweb-home»/config/xsd/xslweb/webapp.xsd</em> and <em>«xslweb-home»/config/xsd/ehcache/ehcache-core.xsd</em>.</p>
+</div>
+<div class="paragraph">
+<p>Example of a cache configuration:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;?xml version="1.0"?&gt;
+&lt;webapp
+  xmlns="http://www.armatiek.com/xslweb/webapp"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:saxon-config="http://saxon.sf.net/ns/configuration"
+  xmlns:ehcache="http://www.ehcache.org/v3"
+  xsi:schemaLocation="http://www.armatiek.com/xslweb/webapp ../../config/xsd/xslweb/webapp.xsd"&gt;
+
+  &lt;title&gt;Caching example&lt;/title&gt;
+  &lt;description&gt;Caching example&lt;/description&gt;
+  &lt;development-mode&gt;true&lt;/development-mode&gt;
+
+  &lt;!-- ... --&gt;
+
+  &lt;ehcache:config&gt;
+    &lt;ehcache:persistence directory="${webapp-dir}/cache"/&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+
+    &lt;ehcache:cache-template name="default-template"&gt; <i class="conum" data-value="2"></i><b>(2)</b>
+      &lt;ehcache:key-type&gt;java.lang.String&lt;/ehcache:key-type&gt;
+      &lt;ehcache:value-type&gt;java.util.ArrayList&lt;/ehcache:value-type&gt;
+      &lt;ehcache:expiry&gt;
+        &lt;ehcache:class&gt;nl.armatiek.xslweb.ehcache.DefaultExpiryPolicy&lt;/ehcache:class&gt;
+      &lt;/ehcache:expiry&gt;
+      &lt;ehcache:heap-store-settings&gt;
+        &lt;ehcache:max-object-graph-size&gt;9223372036854775807&lt;/ehcache:max-object-graph-size&gt;
+      &lt;/ehcache:heap-store-settings&gt;
+    &lt;/ehcache:cache-template&gt;
+
+    &lt;ehcache:cache alias="my-cache" uses-template="default-template"&gt; <i class="conum" data-value="3"></i><b>(3)</b>
+      &lt;ehcache:expiry&gt; <i class="conum" data-value="4"></i><b>(4)</b>
+        &lt;ehcache:tti unit="seconds"&gt;900&lt;/ehcache:tti&gt;
+      &lt;/ehcache:expiry&gt;
+      &lt;ehcache:resources&gt; <i class="conum" data-value="5"></i><b>(5)</b>
+        &lt;ehcache:heap unit="entries"&gt;32&lt;/ehcache:heap&gt;
+        &lt;ehcache:offheap unit="MB"&gt;64&lt;/ehcache:offheap&gt; &lt;!-- Also set Java option -XX:MaxDirectMemorySize! --&gt;
+        &lt;ehcache:disk unit="GB" persistent="true"&gt;2&lt;/ehcache:disk&gt;
+      &lt;/ehcache:resources&gt;
+    &lt;/ehcache:cache&gt;
+
+    &lt;ehcache:cache alias="another-cache" uses-template="default-template"&gt;
+      &lt;!-- ... --&gt;
+    &lt;/ehcache:cache&gt;
+
+  &lt;/ehcache:config&gt;
+
+&lt;/webapp&gt;</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The location where cache entries are stored that must be serialized to disk.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The default template that cache definitions can refer to. The information in the default-template <strong>must</strong> be specified for each cache definition.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The definition of a cache named "my-cache". This name must be used in the extension function webapp:set-cache-value()/webapp:get-cache-value().</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>The expiry times for all cache entries within this cache definition. The time-to-idle (tti) <strong>or</strong> time-to-live can be specified here (see Ehcache documentation).</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>The configuration of the capacity of the heap memory (within the JVM), off-heap memory (outside the JVM) and disk that is used for caching entries.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Please note the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Caching in heap memory is the fastest option (especially when nodes are cached), because objects that are cached in heap memory do not have to be serialized and deserialized, unlike objects that are cached off-heap or to disk. However when serialization of nodes is necessary, XSLWeb serializes the node to a compact binary form called the <a href="https://en.wikipedia.org/wiki/Fast_Infoset" target="_blank" rel="noopener">Fast Infoset</a>, that can be deserialized/parsed more quickly than the original XML document.</p>
+</li>
+<li>
+<p>The unit of the capacity of the heap memory can be specified in number of entries, but also in B, kB, MB, GB. (off-heap and disk only in bytes). Because cache entries in the heap are not serialized, their size is far more difficult to calculate than in case of off-heap or disk memory, in which case the entries are serialized. In the case of a byte-sized heap, Ehcache must traverse the object graph of the cache entry, which in the case of XSLWeb can be a node. Byte sizing of the heap therefore has a runtime performance impact that depends on the size and graph complexity of the data cached.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Byte sizing of heap capacity currently does not work within XSLWeb (investigation is ongoing&#8230;&#8203;). Therefore it is recommended for now to only specify the capacity of heap memory in number of entries, not in bytes.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>See example 7 how to use the webapp functions to set and get webapp attributes, and example 14 how to use the caching functions.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="context-functions"><a class="anchor" href="#context-functions"></a><a class="link" href="#context-functions">14.6. Context functions</a></h3>
+<h3 id="context-functions"><a class="anchor" href="#context-functions"></a><a class="link" href="#context-functions">14.7. Context functions</a></h3>
 <div class="paragraph">
 <p>These functions can be used to get and set “XSLWeb context” specific attributes. These can be used to share attributes between web applications.</p>
 </div>
@@ -2410,7 +2582,7 @@ ${webapp-path}/webdav/** = authcBasic]]&gt;
 </div>
 </div>
 <div class="sect2">
-<h3 id="security-functions"><a class="anchor" href="#security-functions"></a><a class="link" href="#security-functions">14.7. Security (authentication/authorization)</a></h3>
+<h3 id="security-functions"><a class="anchor" href="#security-functions"></a><a class="link" href="#security-functions">14.8. Security (authentication/authorization)</a></h3>
 <div class="paragraph">
 <p>These functions can be used to get information about the identity and authorization state of the current subject/user making te request.</p>
 </div>
@@ -2515,7 +2687,7 @@ ${webapp-path}/webdav/** = authcBasic]]&gt;
 </div>
 </div>
 <div class="sect2">
-<h3 id="expath-file-functions"><a class="anchor" href="#expath-file-functions"></a><a class="link" href="#expath-file-functions">14.8. EXPath File</a></h3>
+<h3 id="expath-file-functions"><a class="anchor" href="#expath-file-functions"></a><a class="link" href="#expath-file-functions">14.9. EXPath File</a></h3>
 <div class="paragraph">
 <p>EXPath File is a standard file system API for XPath. It defines extension functions to perform file system related operations such as listing, reading, writing, copying and moving files or directories. The API is described <a href="http://expath.org/spec/file">here</a>.</p>
 </div>
@@ -2526,7 +2698,7 @@ ${webapp-path}/webdav/** = authcBasic]]&gt;
 <p>Functions:</p>
 </div>
 <div class="sect3">
-<h4 id="file-properties"><a class="anchor" href="#file-properties"></a><a class="link" href="#file-properties">14.8.1. File properties</a></h4>
+<h4 id="file-properties"><a class="anchor" href="#file-properties"></a><a class="link" href="#file-properties">14.9.1. File properties</a></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:exists($path as xs:string) as xs:boolean</code></pre>
@@ -2610,7 +2782,7 @@ ${webapp-path}/webdav/** = authcBasic]]&gt;
 </div>
 </div>
 <div class="sect3">
-<h4 id="inputoutput"><a class="anchor" href="#inputoutput"></a><a class="link" href="#inputoutput">14.8.2. Input/output</a></h4>
+<h4 id="inputoutput"><a class="anchor" href="#inputoutput"></a><a class="link" href="#inputoutput">14.9.2. Input/output</a></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:append($file as xs:string, $items as item()*) as xs:boolean?</code></pre>
@@ -3361,7 +3533,7 @@ ${webapp-path}/webdav/** = authcBasic]]&gt;
 </div>
 </div>
 <div class="sect3">
-<h4 id="paths"><a class="anchor" href="#paths"></a><a class="link" href="#paths">14.8.3. Paths</a></h4>
+<h4 id="paths"><a class="anchor" href="#paths"></a><a class="link" href="#paths">14.9.3. Paths</a></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:name($path as xs:string) as xs:string</code></pre>
@@ -3474,7 +3646,7 @@ ${webapp-path}/webdav/** = authcBasic]]&gt;
 </div>
 </div>
 <div class="sect3">
-<h4 id="system-properties"><a class="anchor" href="#system-properties"></a><a class="link" href="#system-properties">14.8.4. System properties</a></h4>
+<h4 id="system-properties"><a class="anchor" href="#system-properties"></a><a class="link" href="#system-properties">14.9.4. System properties</a></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function file:dir-separator() as xs:string</code></pre>
@@ -3575,7 +3747,7 @@ A generic file system error occurred.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="expath-http-client-functions"><a class="anchor" href="#expath-http-client-functions"></a><a class="link" href="#expath-http-client-functions">14.9. EXPath HTTP Client</a></h3>
+<h3 id="expath-http-client-functions"><a class="anchor" href="#expath-http-client-functions"></a><a class="link" href="#expath-http-client-functions">14.10. EXPath HTTP Client</a></h3>
 <div class="paragraph">
 <p>These functions are an implementation of the specification: <a href="http://expath.org/spec/http-client">EXPath - HTTP Client Module</a> based on the Java HTTP client library <a href="https://square.github.io/okhttp/">OkHttp</a>. It is an XSLWeb “native” implementation. The API defines one extension function to perform HTTP requests and handle responses.</p>
 </div>
@@ -3713,7 +3885,7 @@ A timeout occurred waiting for the response.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="base64-functions"><a class="anchor" href="#base64-functions"></a><a class="link" href="#base64-functions">14.10. Base64</a></h3>
+<h3 id="base64-functions"><a class="anchor" href="#base64-functions"></a><a class="link" href="#base64-functions">14.11. Base64</a></h3>
 <div class="paragraph">
 <p>Namespace uri: <em>http://www.armatiek.com/xslweb/functions/base64</em>. In the function signatures below this namespace uri is bound to the prefix <em>base64</em>.</p>
 </div>
@@ -3738,7 +3910,7 @@ A timeout occurred waiting for the response.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="external-functions"><a class="anchor" href="#external-functions"></a><a class="link" href="#external-functions">14.11. Execute external processes</a></h3>
+<h3 id="external-functions"><a class="anchor" href="#external-functions"></a><a class="link" href="#external-functions">14.12. Execute external processes</a></h3>
 <div class="paragraph">
 <p>Namespace uri: <em>http://www.armatiek.com/xslweb/functions/exec</em>. In the function signatures below this namespace uri is bound to the prefix <em>external</em>.</p>
 </div>
@@ -3783,7 +3955,7 @@ A timeout occurred waiting for the response.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging-functions"><a class="anchor" href="#logging-functions"></a><a class="link" href="#logging-functions">14.12. Logging functions</a></h3>
+<h3 id="logging-functions"><a class="anchor" href="#logging-functions"></a><a class="link" href="#logging-functions">14.13. Logging functions</a></h3>
 <div class="paragraph">
 <p>Logging functionality. The logging information is written to the main XSLWeb log file, default <em>«xslweb-home»</em>/logs/xslweb.log.</p>
 </div>
@@ -3842,7 +4014,7 @@ function log:error(
 </div>
 </div>
 <div class="sect2">
-<h3 id="email-functions"><a class="anchor" href="#email-functions"></a><a class="link" href="#email-functions">14.13. Email</a></h3>
+<h3 id="email-functions"><a class="anchor" href="#email-functions"></a><a class="link" href="#email-functions">14.14. Email</a></h3>
 <div class="paragraph">
 <p>Functionality for sending e-mail via SMTP.</p>
 </div>
@@ -3862,7 +4034,7 @@ function log:error(
 </div>
 </div>
 <div class="sect2">
-<h3 id="serialization-functions"><a class="anchor" href="#serialization-functions"></a><a class="link" href="#serialization-functions">14.14. Serialization</a></h3>
+<h3 id="serialization-functions"><a class="anchor" href="#serialization-functions"></a><a class="link" href="#serialization-functions">14.15. Serialization</a></h3>
 <div class="paragraph">
 <p>Functionality for serializing a node to a string.</p>
 </div>
@@ -3894,7 +4066,7 @@ function log:error(
 </div>
 </div>
 <div class="sect2">
-<h3 id="caching-functions"><a class="anchor" href="#caching-functions"></a><a class="link" href="#caching-functions">14.15. Caching</a></h3>
+<h3 id="caching-functions"><a class="anchor" href="#caching-functions"></a><a class="link" href="#caching-functions">14.16. Caching</a></h3>
 <div class="paragraph">
 <p>Namespace uri: <em>http://www.armatiek.com/xslweb/functions/cache</em>. In the function signatures below this namespace uri is bound to the prefix <em>cache</em>.</p>
 </div>
@@ -3911,7 +4083,7 @@ function log:error(
 </div>
 </div>
 <div class="sect2">
-<h3 id="image-processing-functions"><a class="anchor" href="#image-processing-functions"></a><a class="link" href="#image-processing-functions">14.16. Image processing</a></h3>
+<h3 id="image-processing-functions"><a class="anchor" href="#image-processing-functions"></a><a class="link" href="#image-processing-functions">14.17. Image processing</a></h3>
 <div class="paragraph">
 <p>Namespace uri: <em>http://www.armatiek.com/xslweb/functions/image</em>. In the function signatures below this namespace uri is bound to the prefix <em>img</em>.</p>
 </div>
@@ -3928,7 +4100,7 @@ function log:error(
 </div>
 </div>
 <div class="sect2">
-<h3 id="io-functions"><a class="anchor" href="#io-functions"></a><a class="link" href="#io-functions">14.17. Input/Output</a></h3>
+<h3 id="io-functions"><a class="anchor" href="#io-functions"></a><a class="link" href="#io-functions">14.18. Input/Output</a></h3>
 <div class="paragraph">
 <p>Namespace uri: <em>http://www.armatiek.com/xslweb/functions/io</em>. In the function signatures below this namespace uri is bound to the prefix <em>io</em>.</p>
 </div>
@@ -3945,7 +4117,7 @@ function log:error(
 </div>
 </div>
 <div class="sect2">
-<h3 id="util-functions"><a class="anchor" href="#util-functions"></a><a class="link" href="#util-functions">14.18. Utilities</a></h3>
+<h3 id="util-functions"><a class="anchor" href="#util-functions"></a><a class="link" href="#util-functions">14.19. Utilities</a></h3>
 <div class="paragraph">
 <p>Namespace uri: <em>http://www.armatiek.com/xslweb/functions/util</em>. In the function signatures below this namespace uri is bound to the prefix <em>util</em>.</p>
 </div>
@@ -3990,7 +4162,7 @@ function log:error(
 </div>
 </div>
 <div class="sect2">
-<h3 id="zip-functions"><a class="anchor" href="#zip-functions"></a><a class="link" href="#zip-functions">14.19. Zip/Unzip</a></h3>
+<h3 id="zip-functions"><a class="anchor" href="#zip-functions"></a><a class="link" href="#zip-functions">14.20. Zip/Unzip</a></h3>
 <div class="paragraph">
 <p>(Un)zip functionality</p>
 </div>
@@ -4021,7 +4193,7 @@ function log:error(
 </div>
 </div>
 <div class="sect2">
-<h3 id="uuid-functions"><a class="anchor" href="#uuid-functions"></a><a class="link" href="#uuid-functions">14.20. UUID</a></h3>
+<h3 id="uuid-functions"><a class="anchor" href="#uuid-functions"></a><a class="link" href="#uuid-functions">14.21. UUID</a></h3>
 <div class="paragraph">
 <p>Namespace uri: <em>http://www.armatiek.com/xslweb/functions/uuid</em>. In the function signatures below this namespace uri is bound to the prefix <em>uuid</em>.</p>
 </div>
@@ -4038,7 +4210,7 @@ function log:error(
 </div>
 </div>
 <div class="sect2">
-<h3 id="json-functions"><a class="anchor" href="#json-functions"></a><a class="link" href="#json-functions">14.21. JSON</a></h3>
+<h3 id="json-functions"><a class="anchor" href="#json-functions"></a><a class="link" href="#json-functions">14.22. JSON</a></h3>
 <div class="paragraph">
 <p>(Experimental)</p>
 </div>
@@ -4097,7 +4269,7 @@ Alternative: now you can also use the standard XPath 3.1 functions, see: <a href
 </div>
 </div>
 <div class="sect2">
-<h3 id="dynfunc-functions"><a class="anchor" href="#dynfunc-functions"></a><a class="link" href="#dynfunc-functions">14.22. Dynamic (scripted) extension functions</a></h3>
+<h3 id="dynfunc-functions"><a class="anchor" href="#dynfunc-functions"></a><a class="link" href="#dynfunc-functions">14.23. Dynamic (scripted) extension functions</a></h3>
 <div class="paragraph">
 <p>Namespace uri: <em>http://www.armatiek.com/xslweb/functions/dynfunc</em>. In the function signatures below this namespace uri is bound to the prefix <em>dynfunc</em>.</p>
 </div>
@@ -4556,7 +4728,7 @@ public class MyExtensionFunctions {
 </div>
 </div>
 <div class="sect2">
-<h3 id="sql-functions"><a class="anchor" href="#sql-functions"></a><a class="link" href="#sql-functions">14.23. SQL</a></h3>
+<h3 id="sql-functions"><a class="anchor" href="#sql-functions"></a><a class="link" href="#sql-functions">14.24. SQL</a></h3>
 <div class="paragraph">
 <p>Functionality to query data from and store data in a relational database. These extension functions make use of the <a href="http://en.wikipedia.org/wiki/Java_Database_Connectivity">Java JDBC</a> framework. You can place the JDBC driver for your database in the directory <em>«xslweb-home»/common/lib</em> (restart required). Then you can define a datasource in the <em>datasources</em> section of the application’s <em>webapp.xml</em>, for instance for a <a href="http://www.h2database.com/html/main.html">H2</a> database:</p>
 </div>
@@ -4662,7 +4834,7 @@ public class MyExtensionFunctions {
 </div>
 </div>
 <div class="sect2">
-<h3 id="transform-functions"><a class="anchor" href="#transform-functions"></a><a class="link" href="#transform-functions">14.24. Transformation</a></h3>
+<h3 id="transform-functions"><a class="anchor" href="#transform-functions"></a><a class="link" href="#transform-functions">14.25. Transformation</a></h3>
 <div class="paragraph">
 <p>Namespace uri: <em>http://www.armatiek.com/xslweb/functions/transformation</em>. In the function signatures below this namespace uri is bound to the prefix <em>tf</em>.</p>
 </div>
@@ -4706,7 +4878,7 @@ public class MyExtensionFunctions {
 </div>
 </div>
 <div class="sect2">
-<h3 id="custom-extension-functions"><a class="anchor" href="#custom-extension-functions"></a><a class="link" href="#custom-extension-functions">14.25. Custom extension functions</a></h3>
+<h3 id="custom-extension-functions"><a class="anchor" href="#custom-extension-functions"></a><a class="link" href="#custom-extension-functions">14.26. Custom extension functions</a></h3>
 <div class="paragraph">
 <p>It is also possible to write your own custom XPath extension functions in Java and add them to an XSLWeb web application. These extension functions must be <a href="http://www.saxonica.com/html/documentation/extensibility/integratedfunctions/ext-full-J.html">integrated extension functions</a> that use the full interface of Saxon version 10.5.</p>
 </div>
@@ -4715,7 +4887,7 @@ public class MyExtensionFunctions {
 </div>
 </div>
 <div class="sect2">
-<h3 id="side-effects"><a class="anchor" href="#side-effects"></a><a class="link" href="#side-effects">14.26. Extension functions with side effects</a></h3>
+<h3 id="side-effects"><a class="anchor" href="#side-effects"></a><a class="link" href="#side-effects">14.27. Extension functions with side effects</a></h3>
 <div class="paragraph">
 <p>A number of the extension functions described in previous sections perform a certain task and thereby change the state of something outside the stylesheet, like write or log to a file, send an e-mail etc. These functions don’t have any return information and should have an empty sequence as their return type. In XSLWeb, the return type of these functions is actually declared as <em>xs:boolean?</em> The reason is that in that case the Saxon XSLT optimizer cannot ignore these functions, because they could add something to the result tree (a boolean value). In reality, these functions never return this boolean value and always return an empty sequence. Therefore it is safe to do something like:</p>
 </div>
@@ -5561,7 +5733,7 @@ or</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-05-04 13:22:38 +0200
+Last updated 2021-09-09 13:24:22 +0200
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/agate.min.css">
