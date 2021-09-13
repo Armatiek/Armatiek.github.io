@@ -476,7 +476,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#json-serializer-step">2.3.1. json-serializer step</a></li>
 <li><a href="#zip-serializer-step">2.3.2. zip-serializer step</a></li>
 <li><a href="#resource-serializer-step">2.3.3. resource-serializer step</a></li>
-<li><a href="#fop-serializer-step">2.3.4. fop-serializer step</a></li>
+<li><a href="#binary-serializer-step">2.3.4. binary-serializer step</a></li>
+<li><a href="#fop-serializer-step">2.3.5. fop-serializer step</a></li>
 </ul>
 </li>
 </ul>
@@ -812,6 +813,9 @@ If you have comments, remarks or questions about this manual, please use the <a 
 </li>
 <li>
 <p><em>resource-serializer</em>: serializes a text or binary file to the response.</p>
+</li>
+<li>
+<p><em>binary-serializer</em>: serializes xs:base64Binary data to the response.</p>
 </li>
 <li>
 <p><em>fop-serializer</em>: serializes XSL-FO generated in a previous pipeline step to PDF using the Apache FOP XSL-FO processor.</p>
@@ -1205,6 +1209,9 @@ If you have comments, remarks or questions about this manual, please use the <a 
 <p>resource-serializer</p>
 </li>
 <li>
+<p>binary-serializer</p>
+</li>
+<li>
 <p>fop-serializer</p>
 </li>
 </ul>
@@ -1393,7 +1400,39 @@ If you have comments, remarks or questions about this manual, please use the <a 
 </div>
 </div>
 <div class="sect3">
-<h4 id="fop-serializer-step"><a class="anchor" href="#fop-serializer-step"></a><a class="link" href="#fop-serializer-step">2.3.4. fop-serializer step</a></h4>
+<h4 id="binary-serializer-step"><a class="anchor" href="#binary-serializer-step"></a><a class="link" href="#binary-serializer-step">2.3.4. binary-serializer step</a></h4>
+<div class="paragraph">
+<p>The binary serializer returns xs:base64Binary data as a binary file to the client. It is typically used in scenarios where binary data is fetched from a HTTP server using EXPath HttpClient and this data must be returned to the client as a binary file.</p>
+</div>
+<div class="paragraph">
+<p>The binary serializer pipeline step can be added as the last step in a pipeline like this:</p>
+</div>
+<div class="listingblock">
+<div class="title">Binary serializer pipeline step</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;pipeline:pipeline&gt;
+  &lt;pipeline:transformer
+    name="binary-serialization"
+    xsl-path="binary-serialization.xsl"/&gt;
+  &lt;pipeline:binary-serializer name="binary"/&gt;
+&lt;/pipeline:pipeline&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example the stylesheet <em>binary-serialization.xsl</em> must generate a XML fragment containing information that the binary serializer uses to create the desired response. The stylesheet must generate an element <em>binary-serializer</em> in the namespace <em>http://www.armatiek.com/xslweb/binary-serializer</em>. The contents of this element must be an base64 encoded string.</p>
+</div>
+<div class="paragraph">
+<p>An example of the output of the XSLT stylesheet <em>binary-serialization.xsl</em> is:</p>
+</div>
+<div class="listingblock">
+<div class="title">Binary</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;res:binary-serializer&gt;iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==&lt;/res:binary-serializer&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="fop-serializer-step"><a class="anchor" href="#fop-serializer-step"></a><a class="link" href="#fop-serializer-step">2.3.5. fop-serializer step</a></h4>
 <div class="paragraph">
 <p>The fop-serializer step serializes <a href="https://www.w3.org/TR/xsl/">XSL:FO format</a> generated in a previous pipeline step to document formats like PDF or RTF using the <a href="https://xmlgraphics.apache.org/fop/">Apache FOP processor</a> version 2.2.</p>
 </div>
@@ -5736,7 +5775,7 @@ or</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-09-09 13:32:53 +0200
+Last updated 2021-09-13 17:55:15 +0200
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/agate.min.css">
