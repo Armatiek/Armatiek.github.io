@@ -8,7 +8,7 @@
 <meta name="description" content="XSLWeb Developer Manual">
 <meta name="keywords" content="XSLWeb XML, XSLT, XML Schema, Schematron, Web development">
 <meta name="author" content="Authors: Maarten Kroon, Arjan Loeffen">
-<title>XSLWeb version 4.0.1 Developer Manual</title>
+<title>XSLWeb version 4.1.0 Developer Manual</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -438,7 +438,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
-<h1>XSLWeb version 4.0.1 Developer Manual</h1>
+<h1>XSLWeb version 4.1.0 Developer Manual</h1>
 <div class="details">
 <span id="author" class="author">Authors: Maarten Kroon, Arjan Loeffen</span><br>
 </div>
@@ -815,7 +815,7 @@ If you have comments, remarks or questions about this manual, please use the <a 
 <p><em>resource-serializer</em>: serializes a text or binary file to the response.</p>
 </li>
 <li>
-<p><em>binary-serializer</em>: serializes xs:base64Binary data to the response.</p>
+<p><em>binary-serializer</em>: serializes xs:base64Binary data as binary file to the response.</p>
 </li>
 <li>
 <p><em>fop-serializer</em>: serializes XSL-FO generated in a previous pipeline step to PDF using the Apache FOP XSL-FO processor.</p>
@@ -1578,7 +1578,10 @@ If you have comments, remarks or questions about this manual, please use the <a 
 </div>
 </div>
 <div class="paragraph">
-<p>where <em>examples</em> is the name of the webapp of the nested pipeline. The result of the nested pipeline will be available in the calling stylesheet as a document node. The nested pipeline request will follow the flow of a normal HTTP request, including the request dispatcher stylesheet. A nested pipeline call can be seen as an “internal request”, it does not go through the HTTP stack. [<mark>_Response_serialization_1 .anchor]</mark>#</p>
+<p>where <em>examples</em> is the name of the webapp of the nested pipeline. The result of the nested pipeline will be available in the calling stylesheet as a document node. The nested pipeline request will follow the flow of a normal HTTP request, including the request dispatcher stylesheet. A nested pipeline call can be seen as an “internal request”, it does not go through the HTTP stack.</p>
+</div>
+<div class="paragraph">
+<p>You can pass data to the nested pipeline using reqular request parameters added to the url, but you can also pass data as attributes using the <a href="#request-functions">req:set-attribute($name, $value)</a> extension function. These attributes will be available using <a href="#request-functions">req:get-attribute($name)</a> in the nested pipeline. That is especially convenient when you want to pas (sequences) of nodes without the performance penalty of serialization.</p>
 </div>
 </div>
 </div>
@@ -2052,6 +2055,9 @@ Do not use the value of <em>cache-buster-id</em> as part of the filenames of you
 <div class="sectionbody">
 <div class="paragraph">
 <p>For authentication and authorization XSLWeb makes use of the Java security framework <a href="https://shiro.apache.org/" target="_blank" rel="noopener">Apache Shiro</a>. Apache Shiro is a powerful, easy-to-use and "battle-tested" Java security framework that performs authentication (Basic, Token based, LDAP, JDBC, ActiveDirectory, etc), authorization (subject/role/permission based), cryptography, and session management.</p>
+</div>
+<div class="paragraph">
+<p>If you want to use authentication mechanisms like OAuth, SAML, CAS, OpenID Connect, JWT, Kerberos (SPNEGO), REST API or authorization mechanisms like Roles/permissions, Anonymous/remember-me/(fully) authenticated, CORS, CSRF, HTTP Security headers, XSLWeb is bundled with <a href="https://www.pac4j.org/" target="_blank" rel="noopener">PAC4J</a> and especially <a href="https://github.com/bujiio/buji-pac4j" target="_blank" rel="noopener">PAC4J for Apache Shiro</a>. This means you can configure these advanced authentication and authorization mechanisms as part of the Shiro configuration in webapp.xml.</p>
 </div>
 <div class="paragraph">
 <p>All of the Apache Shiro documentation on <a href="https://shiro.apache.org/documentation.html" class="bare" target="_blank" rel="noopener">https://shiro.apache.org/documentation.html</a> and <a href="https://shiro.apache.org/web.html" class="bare" target="_blank" rel="noopener">https://shiro.apache.org/web.html</a> is relevant to the integration of Shiro in XSLWeb except for the following points:</p>
@@ -2581,6 +2587,21 @@ The information below (including section 14.5.1) does only apply to XSLWeb versi
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>If you are byte sizing the heap capacity and you receive errors like: <em>Unable to make java.lang.ClassLoader.defineClass accessible: module java.base does not "opens java.lang" to unnamed module @1941a8ff</em> it may be necessary to specify the following Java options:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">--add-opens jdk.management/com.sun.management.internal=ALL-UNNAMED
+--add-opens jdk.management.jfr/jdk.management.jfr=ALL-UNNAMED
+--add-opens java.base/jdk.internal.ref=ALL-UNNAMED
+--add-opens java.xml/javax.xml.catalog=ALL-UNNAMED
+--add-opens java.base/jdk.internal.loader=ALL-UNNAMED
+--add-opens java.base/java.lang.module=ALL-UNNAMED
+--add-opens java.base/jdk.internal.module=ALL-UNNAMED
+--add-opens java.base/jdk.internal.math=ALL-UNNAMED</code></pre>
+</div>
+</div>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -2588,7 +2609,19 @@ The information below (including section 14.5.1) does only apply to XSLWeb versi
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Byte sizing of heap capacity currently does not work within XSLWeb (investigation is ongoing&#8230;&#8203;). Therefore it is recommended for now to only specify the capacity of heap memory in number of entries, not in bytes.
+Byte sizing of heap capacity currently does not work very accurate for nodes (investigation is ongoing&#8230;&#8203;). Therefore it is recommended that if you want to cache nodes to specify the capacity of heap memory in number of entries, not in bytes.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Do not forget to define in the java options the -XX:MaxDirectMemorySize option, according to the off-heap size you intend to use.
 </td>
 </tr>
 </table>
@@ -2660,35 +2693,45 @@ Byte sizing of heap capacity currently does not work within XSLWeb (investigatio
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function sec:principal() as xs:string?</code></pre>
+<pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function sec:principal() as item()?</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This function will return the Subject’s principal (identifying attribute, like a username). Without any parameters, this function will render the toString() value of the principal.</p>
+<p>This function will return the Subject’s principal (the identifying information of the Subject, like it&#8217;s username). Without any parameters, this function will return (depending on your exact Shiro configuration in webapp.xml):</p>
 </div>
-<div class="paragraph">
-<p>The Java equivalent of this function is:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>an empty sequence if no principal is available for the current subject</p>
+</li>
+<li>
+<p>an xs:string if the principal is only a simple string object</p>
+</li>
+<li>
+<p>a node() containing an XML structure of the principal&#8217;s complex information</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityUtils.getSubject().getPrincipal().toString()</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function sec:principal($type as xs:string?) as xs:string?</code></pre>
+<pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function sec:principal($type as xs:string?) as item()?</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The <em>principal()</em> function assumes by default that the principal to return is the subject.getPrincipal() value. But if you wanted to obtain a value that is not the primary principal, but another value in the Subject&#8217;s <a href="https://shiro.apache.org/static/1.5.3/apidocs/org/apache/shiro/subject/Subject.html#getPrincipals--" target="_blank" rel="noopener">principal collection</a>, you can acquire that principal by type. The type is a qualified Java class name, like "java.lang.Integer".</p>
+<p>The <em>principal()</em> function returns the primary principal. If you want to obtain a non-primary principal, you can acquire that principal by type. The type is a qualified Java class name, like "io.buji.pac4j.subject.Pac4jPrincipal". This function will return (depending on your exact Shiro configuration in webapp.xml):</p>
 </div>
-<div class="paragraph">
-<p>The Java equivalent of this function is:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityUtils.getSubject().getPrincipals().oneByType(Integer.class).toString()</code></pre>
-</div>
+<div class="ulist">
+<ul>
+<li>
+<p>an empty sequence if no principal is available for the current subject</p>
+</li>
+<li>
+<p>an xs:string if the principal is only a simple string object</p>
+</li>
+<li>
+<p>a node() containing an XML structure of the principal&#8217;s complex information</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2696,19 +2739,14 @@ Byte sizing of heap capacity currently does not work within XSLWeb (investigatio
 </div>
 </div>
 <div class="paragraph">
-<p>But what if the principal (either the default primary principal or 'typed' principal above) is a complex object and not a simple string, and you wanted to reference a property on that principal? You can use the <em>$property</em> parameter to indicate the name of the property to obtain (must be accessible via a JavaBeans-compatible getter method). For example (assuming the primary principal is a User object), the Java equivalent of:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">sec:principal('com.foo.User', 'firstName')</code></pre>
-</div>
+<p>In the case the principal (either the default primary principal or 'typed' principal above) is a complex object and not a simple string, you can use this function to get a property on the principal. You can use the <em>$property</em> parameter to indicate the name of the property to obtain (must be accessible via a JavaBeans-compatible getter method).</p>
 </div>
 <div class="paragraph">
-<p>is:</p>
+<p>Example</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityUtils.getSubject().getPrincipals().oneByType(com.foo.User.class).getFirstName().toString()</code></pre>
+<pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">sec:principal('io.buji.pac4j.subject.Pac4jPrincipal', 'name')</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -4068,7 +4106,7 @@ function log:error(
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function email:send-email($email as element(email:email)) as xs:boolean</code></pre>
+<pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function email:send-mail($email as element(email:email)) as xs:boolean</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4922,7 +4960,7 @@ public class MyExtensionFunctions {
 <div class="sect2">
 <h3 id="custom-extension-functions"><a class="anchor" href="#custom-extension-functions"></a><a class="link" href="#custom-extension-functions">14.25. Custom extension functions</a></h3>
 <div class="paragraph">
-<p>It is also possible to write your own custom XPath extension functions in Java and add them to an XSLWeb web application. These extension functions must be <a href="http://www.saxonica.com/html/documentation/extensibility/integratedfunctions/ext-full-J.html">integrated extension functions</a> that use the full interface of Saxon version 10.5.</p>
+<p>It is also possible to write your own custom XPath extension functions in Java and add them to an XSLWeb web application. These extension functions must be <a href="http://www.saxonica.com/html/documentation/extensibility/integratedfunctions/ext-full-J.html">integrated extension functions</a> that use the full interface of Saxon version 10.6.</p>
 </div>
 <div class="paragraph">
 <p>The compiled jar of a custom extension function together with any libraries that the function depend on can be placed in the folder <em>«web-app»/lib</em>. There is no need to restart the application server, XSLWeb will detect the jars and will load and register the extension function automatically.</p>
@@ -5054,7 +5092,7 @@ ${webapp-path}/webdav/** = authcBasic]]&gt;
 <p>The sources of XSLWeb can be found on <a href="https://github.com/Armatiek/xslweb">GitHub</a>. XSLWeb is licensed under the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License version 2.0</a>.</p>
 </div>
 <div class="paragraph">
-<p>Compiled binaries of XSLWeb 4.0.1 can be downloaded in two distributions:</p>
+<p>Compiled binaries of XSLWeb 4.1.0 can be downloaded in two distributions:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -5076,13 +5114,13 @@ ${webapp-path}/webdav/** = authcBasic]]&gt;
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://armatiek.nl/downloads/xslweb/xslweb-ready-to-run-v4.0.1-linux-x64.tar.gz" class="bare">https://armatiek.nl/downloads/xslweb/xslweb-ready-to-run-v4.0.1-linux-x64.tar.gz</a> (for Linux 64-bits machines)</p>
+<p><a href="https://armatiek.nl/downloads/xslweb/xslweb-ready-to-run-v4.1.0-linux-x64.tar.gz" class="bare">https://armatiek.nl/downloads/xslweb/xslweb-ready-to-run-v4.1.0-linux-x64.tar.gz</a> (for Linux 64-bits machines)</p>
 </li>
 <li>
-<p><a href="https://armatiek.nl/downloads/xslweb/xslweb-ready-to-run-v4.0.1-osx-x64.tar.gz" class="bare">https://armatiek.nl/downloads/xslweb/xslweb-ready-to-run-v4.0.1-osx-x64.tar.gz</a> (for macOS 64-bits machines)</p>
+<p><a href="https://armatiek.nl/downloads/xslweb/xslweb-ready-to-run-v4.1.0-osx-x64.tar.gz" class="bare">https://armatiek.nl/downloads/xslweb/xslweb-ready-to-run-v4.1.0-osx-x64.tar.gz</a> (for macOS 64-bits machines)</p>
 </li>
 <li>
-<p><a href="https://armatiek.nl/downloads/xslweb/xslweb-ready-to-run-v4.0.1-windows-x64.zip" class="bare">https://armatiek.nl/downloads/xslweb/xslweb-ready-to-run-v4.0.1-windows-x64.zip</a> (for Windows 64-bits machines)</p>
+<p><a href="https://armatiek.nl/downloads/xslweb/xslweb-ready-to-run-v4.1.0-windows-x64.zip" class="bare">https://armatiek.nl/downloads/xslweb/xslweb-ready-to-run-v4.1.0-windows-x64.zip</a> (for Windows 64-bits machines)</p>
 </li>
 </ul>
 </div>
@@ -5470,10 +5508,10 @@ After a change to the variable <code>MAXMEM</code> in the file <code>&lt;install
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://armatiek.nl/downloads/xslweb/xslweb-war-v4.0.1.tar.gz" class="bare">https://armatiek.nl/downloads/xslweb/xslweb-war-v4.0.1.tar.gz</a> (Linux/macOS)</p>
+<p><a href="https://armatiek.nl/downloads/xslweb/xslweb-war-v4.1.0.tar.gz" class="bare">https://armatiek.nl/downloads/xslweb/xslweb-war-v4.1.0.tar.gz</a> (Linux/macOS)</p>
 </li>
 <li>
-<p><a href="https://armatiek.nl/downloads/xslweb/xslweb-war-v4.0.1.zip" class="bare">https://armatiek.nl/downloads/xslweb/xslweb-war-v4.0.1.zip</a> (Windows)</p>
+<p><a href="https://armatiek.nl/downloads/xslweb/xslweb-war-v4.1.0.zip" class="bare">https://armatiek.nl/downloads/xslweb/xslweb-war-v4.1.0.zip</a> (Windows)</p>
 </li>
 </ul>
 </div>
@@ -5775,7 +5813,7 @@ or</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-09-13 17:55:15 +0200
+Last updated 2021-12-09 10:29:11 +0100
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/agate.min.css">
