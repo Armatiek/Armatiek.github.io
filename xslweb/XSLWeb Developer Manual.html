@@ -562,10 +562,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#run">16.3.3. Run</a></li>
 </ul>
 </li>
-<li><a href="#xslweb-docker">16.4. Installation of XSLWeb inside a Docker container</a>
+<li><a href="#xslweb-docker">16.4. Run XSLWeb inside a Docker container</a>
 <ul class="sectlevel3">
 <li><a href="#requirements">16.4.1. Requirements</a></li>
-<li><a href="#instructions">16.4.2. Instructions</a></li>
+<li><a href="#use-prebuilt-image-from-docker-hub">16.4.2. Use prebuilt image from Docker Hub</a></li>
+<li><a href="#build-your-own-xslweb-docker-image">16.4.3. Build your own XSLWeb docker image</a></li>
 </ul>
 </li>
 </ul>
@@ -5552,7 +5553,7 @@ After a change to the variable <code>MAXMEM</code> in the file <code>&lt;install
 </div>
 </div>
 <div class="sect2">
-<h3 id="xslweb-docker"><a class="anchor" href="#xslweb-docker"></a><a class="link" href="#xslweb-docker">16.4. Installation of XSLWeb inside a Docker container</a></h3>
+<h3 id="xslweb-docker"><a class="anchor" href="#xslweb-docker"></a><a class="link" href="#xslweb-docker">16.4. Run XSLWeb inside a Docker container</a></h3>
 <div class="sect3">
 <h4 id="requirements"><a class="anchor" href="#requirements"></a><a class="link" href="#requirements">16.4.1. Requirements</a></h4>
 <div class="paragraph">
@@ -5560,7 +5561,38 @@ After a change to the variable <code>MAXMEM</code> in the file <code>&lt;install
 </div>
 </div>
 <div class="sect3">
-<h4 id="instructions"><a class="anchor" href="#instructions"></a><a class="link" href="#instructions">16.4.2. Instructions</a></h4>
+<h4 id="use-prebuilt-image-from-docker-hub"><a class="anchor" href="#use-prebuilt-image-from-docker-hub"></a><a class="link" href="#use-prebuilt-image-from-docker-hub">16.4.2. Use prebuilt image from Docker Hub</a></h4>
+<div class="paragraph">
+<p>A prebuilt image is available from <a href="https://hub.docker.com/u/armatiek" target="_blank" rel="noopener">Docker Hub</a>. You can pull and run this image by following these steps:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Pull the image:</p>
+<div class="paragraph">
+<p><code>docker pull armatiek/xslweb:4.1.0</code></p>
+</div>
+</li>
+<li>
+<p>Run the image:</p>
+<div class="paragraph">
+<p><code>docker run -v {XSLWEB-HOME}:/usr/local/xslweb/home -p 8081:8080 --name xslweb-4.1.0 armatiek/xslweb:4.1.0</code></p>
+</div>
+<div class="paragraph">
+<p>where {XSLWEB-HOME} must be changed to your XSLWeb home directory <strong>on your host machine</strong> and port 8080 of the container is bound to TCP port 80 on 127.0.0.1 of your host machine.</p>
+</div>
+</li>
+<li>
+<p>XSLWeb should now be accessible via <code><a href="http://localhost:8081" class="bare">http://localhost:8081</a></code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="build-your-own-xslweb-docker-image"><a class="anchor" href="#build-your-own-xslweb-docker-image"></a><a class="link" href="#build-your-own-xslweb-docker-image">16.4.3. Build your own XSLWeb docker image</a></h4>
+<div class="paragraph">
+<p>You can build your own custom XSLWeb docker image by following these steps:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -5863,7 +5895,7 @@ or</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-12-29 12:09:56 +0100
+Last updated 2021-12-29 17:24:27 +0100
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/agate.min.css">
