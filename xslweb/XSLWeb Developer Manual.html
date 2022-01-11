@@ -8,7 +8,7 @@
 <meta name="description" content="XSLWeb Developer Manual">
 <meta name="keywords" content="XSLWeb XML, XSLT, XML Schema, Schematron, Web development">
 <meta name="author" content="Authors: Maarten Kroon, Arjan Loeffen">
-<title>XSLWeb version 4.1.0 Developer Manual</title>
+<title>XSLWeb version 4.2.0 Developer Manual</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -438,7 +438,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
-<h1>XSLWeb version 4.1.0 Developer Manual</h1>
+<h1>XSLWeb version 4.2.0 Developer Manual</h1>
 <div class="details">
 <span id="author" class="author">Authors: Maarten Kroon, Arjan Loeffen</span><br>
 </div>
@@ -5099,7 +5099,7 @@ ${webapp-path}/webdav/** = authcBasic]]&gt;
 <p>The sources of XSLWeb can be found on <a href="https://github.com/Armatiek/xslweb">GitHub</a>. XSLWeb is licensed under the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License version 2.0</a>.</p>
 </div>
 <div class="paragraph">
-<p>Compiled binaries of XSLWeb 4.1.0 can be downloaded in two distributions:</p>
+<p>Compiled binaries of XSLWeb 4.2.0 can be downloaded in two distributions:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -5121,13 +5121,13 @@ ${webapp-path}/webdav/** = authcBasic]]&gt;
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://armatiek.nl/downloads/xslweb/xslweb-ready-to-run-v4.1.0-linux-x64.tar.gz" class="bare">https://armatiek.nl/downloads/xslweb/xslweb-ready-to-run-v4.1.0-linux-x64.tar.gz</a> (for Linux 64-bits machines)</p>
+<p><a href="https://armatiek.nl/downloads/xslweb/xslweb-ready-to-run-v4.2.0-linux-x64.tar.gz" class="bare">https://armatiek.nl/downloads/xslweb/xslweb-ready-to-run-v4.2.0-linux-x64.tar.gz</a> (for Linux 64-bits machines)</p>
 </li>
 <li>
-<p><a href="https://armatiek.nl/downloads/xslweb/xslweb-ready-to-run-v4.1.0-osx-x64.tar.gz" class="bare">https://armatiek.nl/downloads/xslweb/xslweb-ready-to-run-v4.1.0-osx-x64.tar.gz</a> (for macOS 64-bits machines)</p>
+<p><a href="https://armatiek.nl/downloads/xslweb/xslweb-ready-to-run-v4.2.0-osx-x64.tar.gz" class="bare">https://armatiek.nl/downloads/xslweb/xslweb-ready-to-run-v4.2.0-osx-x64.tar.gz</a> (for macOS 64-bits machines)</p>
 </li>
 <li>
-<p><a href="https://armatiek.nl/downloads/xslweb/xslweb-ready-to-run-v4.1.0-windows-x64.zip" class="bare">https://armatiek.nl/downloads/xslweb/xslweb-ready-to-run-v4.1.0-windows-x64.zip</a> (for Windows 64-bits machines)</p>
+<p><a href="https://armatiek.nl/downloads/xslweb/xslweb-ready-to-run-v4.2.0-windows-x64.zip" class="bare">https://armatiek.nl/downloads/xslweb/xslweb-ready-to-run-v4.2.0-windows-x64.zip</a> (for Windows 64-bits machines)</p>
 </li>
 </ul>
 </div>
@@ -5515,10 +5515,10 @@ After a change to the variable <code>MAXMEM</code> in the file <code>&lt;install
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://armatiek.nl/downloads/xslweb/xslweb-war-v4.1.0.tar.gz" class="bare">https://armatiek.nl/downloads/xslweb/xslweb-war-v4.1.0.tar.gz</a> (Linux/macOS)</p>
+<p><a href="https://armatiek.nl/downloads/xslweb/xslweb-war-v4.2.0.tar.gz" class="bare">https://armatiek.nl/downloads/xslweb/xslweb-war-v4.2.0.tar.gz</a> (Linux/macOS)</p>
 </li>
 <li>
-<p><a href="https://armatiek.nl/downloads/xslweb/xslweb-war-v4.1.0.zip" class="bare">https://armatiek.nl/downloads/xslweb/xslweb-war-v4.1.0.zip</a> (Windows)</p>
+<p><a href="https://armatiek.nl/downloads/xslweb/xslweb-war-v4.2.0.zip" class="bare">https://armatiek.nl/downloads/xslweb/xslweb-war-v4.2.0.zip</a> (Windows)</p>
 </li>
 </ul>
 </div>
@@ -5570,13 +5570,13 @@ After a change to the variable <code>MAXMEM</code> in the file <code>&lt;install
 <li>
 <p>Pull the image:</p>
 <div class="paragraph">
-<p><code>docker pull armatiek/xslweb:4.1.0</code></p>
+<p><code>docker pull armatiek/xslweb:4.2.0</code></p>
 </div>
 </li>
 <li>
 <p>Run the image:</p>
 <div class="paragraph">
-<p><code>docker run -v {XSLWEB-HOME}:/usr/local/xslweb/home -p 8081:8080 --name xslweb armatiek/xslweb:4.1.0</code></p>
+<p><code>docker run -v {XSLWEB-HOME}:/usr/local/xslweb/home -p 8081:8080 --name xslweb armatiek/xslweb:4.2.0</code></p>
 </div>
 <div class="paragraph">
 <p>where {XSLWEB-HOME} must be changed to your XSLWeb home directory <strong>on your host machine</strong> and port 8080 of the container is bound to TCP port 80 on 127.0.0.1 of your host machine.</p>
@@ -5895,7 +5895,7 @@ or</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-12-31 11:23:39 +0100
+Last updated 2022-01-04 08:55:54 +0100
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/agate.min.css">
