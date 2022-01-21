@@ -532,10 +532,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#uuid-functions">14.20. UUID</a></li>
 <li><a href="#json-functions">14.21. JSON</a></li>
 <li><a href="#dynfunc-functions">14.22. Dynamic (scripted) extension functions</a></li>
-<li><a href="#sql-functions">14.23. SQL</a></li>
-<li><a href="#transform-functions">14.24. Transformation</a></li>
-<li><a href="#custom-extension-functions">14.25. Custom extension functions</a></li>
-<li><a href="#side-effects">14.26. Extension functions with side effects</a></li>
+<li><a href="#javascript-functions">14.23. Javascript extension function</a></li>
+<li><a href="#sql-functions">14.24. SQL</a></li>
+<li><a href="#transform-functions">14.25. Transformation</a></li>
+<li><a href="#custom-extension-functions">14.26. Custom extension functions</a></li>
+<li><a href="#side-effects">14.27. Extension functions with side effects</a></li>
 </ul>
 </li>
 <li><a href="#webdav-access">15. WebDAV access</a></li>
@@ -4012,7 +4013,9 @@ A timeout occurred waiting for the response.</p>
   $time-out as xs:integer?,
   $async as xs:boolean?,
   $work-dir as xs:string?,
-  $handle-quoting as xs:boolean?) as xs:integer</code></pre>
+  $handle-quoting as xs:boolean?,
+  $log-stdout-and-stderr as xs:boolean?,
+  $environment-variables as map(*)?) as xs:integer?</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -4034,6 +4037,12 @@ A timeout occurred waiting for the response.</p>
 </li>
 <li>
 <p>$handle-quoting: indicates if the function should automatically handle the quoting (the default) or not.</p>
+</li>
+<li>
+<p>$log-stdout-and-stderr: write stdout/stderr of the executable also to the log file.</p>
+</li>
+<li>
+<p>$environment-variables: a optional map of environment variables for the subprocess.</p>
 </li>
 </ul>
 </div>
@@ -4815,7 +4824,88 @@ public class MyExtensionFunctions {
 </div>
 </div>
 <div class="sect2">
-<h3 id="sql-functions"><a class="anchor" href="#sql-functions"></a><a class="link" href="#sql-functions">14.23. SQL</a></h3>
+<h3 id="javascript-functions"><a class="anchor" href="#javascript-functions"></a><a class="link" href="#javascript-functions">14.23. Javascript extension function</a></h3>
+<div class="paragraph">
+<p>Namespace uri: <em>http://www.armatiek.com/xslweb/functions/script</em>. In the function signatures below this namespace uri is bound to the prefix <em>script</em>.</p>
+</div>
+<div class="paragraph">
+<p>Functions:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xquery hljs" data-lang="xquery">function script:invoke(
+  $javascript as xs:string,
+  $function-name as xs:string,
+  $arg-1 as xs:anyAtomicType*,
+  $arg-2 as xs:anyAtomicType*,
+  .... ,
+  $arg-n as xs:anyAtomicType*) as xs:anyAtomicType*</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This function executes the function <em>$function-name</em> within the Javascript code <em>$javascript</em>. The arguments of the Javascript function can be specified by <em>$arg-1</em> to <em>$arg-n</em>. Each argument can be a single atomic type or an array of atomic types. The arguments must be atomic types that can be converted to a Java/Javascript object equivalent. The result of the Javascript function must be a single object or an array of objects that can be converted back to a (sequence of) atomic type(s) (see <a href="https://en.wikipedia.org/wiki/XQuery_API_for_Java#Default_data_type_mapping" target="_blank" rel="noopener">Default data type mapping</a>).</p>
+</div>
+<div class="paragraph">
+<p>When XSLWeb calls the Javascript function four more arguments (Java objects) are passed to the actual Javascript function: the global XSLWeb Context object, the current Webapp object, the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletRequest.html" target="_blank" rel="noopener">HttpServletRequest</a> object and the <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletResponse.html" target="_blank" rel="noopener">HttpServletResponse</a> object.</p>
+</div>
+<div class="paragraph">
+<p>XSLWeb uses the <a href="https://docs.oracle.com/javase/10/nashorn/introduction.htm#JSNUG136" target="_blank" rel="noopener">Java Nashorn scripting engine</a> to execute the Javascript code.</p>
+</div>
+<div class="paragraph">
+<p>A complete example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;xsl:stylesheet
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:script="http://www.armatiek.com/xslweb/functions/script"
+  exclude-result-prefixes="#all"
+  version="3.0"&gt;
+
+  &lt;!-- ... --&gt;
+
+  &lt;xsl:template name="my-template"&gt;
+
+    &lt;xsl:variable name="script" as="xs:string"&gt;
+      &lt;![CDATA[function getLengthsOfStrings(context, webapp, request, response, arrayOfStrings) {
+        var arrayOfInteger = new Array();
+        for (i = 0; i &lt; arrayOfStrings.length; i++) {
+          arrayOfInteger.push(arrayOfStrings[i].length());
+        }
+        return arrayOfInteger;
+      }
+      ]]&gt;
+    &lt;/xsl:variable&gt;
+
+    &lt;xsl:sequence select="script:invoke($script, 'getLengthsOfStrings', ('France', 'Germany', 'Spain'))"/&gt;
+
+  &lt;/xsl:template&gt;
+
+  &lt;!-- ... --&gt;
+
+&lt;/xsl:stylesheet&gt;</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+With the release of Java 11, Nashorn is deprecated, and has been removed from JDK 15 onwards, but <a href="https://github.com/openjdk/nashorn" target="_blank" rel="noopener">OpenJDK Nashorn</a> supports Java starting with version 15.3.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>See also example 20 of the <em>examples</em> webapp.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sql-functions"><a class="anchor" href="#sql-functions"></a><a class="link" href="#sql-functions">14.24. SQL</a></h3>
 <div class="paragraph">
 <p>Functionality to query data from and store data in a relational database. These extension functions make use of the <a href="http://en.wikipedia.org/wiki/Java_Database_Connectivity">Java JDBC</a> framework. You can place the JDBC driver for your database in the directory <em>«xslweb-home»/common/lib</em> (restart required). Then you can define a datasource in the <em>datasources</em> section of the application’s <em>webapp.xml</em>, for instance for a <a href="http://www.h2database.com/html/main.html">H2</a> database:</p>
 </div>
@@ -4921,7 +5011,7 @@ public class MyExtensionFunctions {
 </div>
 </div>
 <div class="sect2">
-<h3 id="transform-functions"><a class="anchor" href="#transform-functions"></a><a class="link" href="#transform-functions">14.24. Transformation</a></h3>
+<h3 id="transform-functions"><a class="anchor" href="#transform-functions"></a><a class="link" href="#transform-functions">14.25. Transformation</a></h3>
 <div class="paragraph">
 <p>Namespace uri: <em>http://www.armatiek.com/xslweb/functions/transformation</em>. In the function signatures below this namespace uri is bound to the prefix <em>tf</em>.</p>
 </div>
@@ -4965,7 +5055,7 @@ public class MyExtensionFunctions {
 </div>
 </div>
 <div class="sect2">
-<h3 id="custom-extension-functions"><a class="anchor" href="#custom-extension-functions"></a><a class="link" href="#custom-extension-functions">14.25. Custom extension functions</a></h3>
+<h3 id="custom-extension-functions"><a class="anchor" href="#custom-extension-functions"></a><a class="link" href="#custom-extension-functions">14.26. Custom extension functions</a></h3>
 <div class="paragraph">
 <p>It is also possible to write your own custom XPath extension functions in Java and add them to an XSLWeb web application. These extension functions must be <a href="http://www.saxonica.com/html/documentation/extensibility/integratedfunctions/ext-full-J.html">integrated extension functions</a> that use the full interface of Saxon version 10.6.</p>
 </div>
@@ -4974,7 +5064,7 @@ public class MyExtensionFunctions {
 </div>
 </div>
 <div class="sect2">
-<h3 id="side-effects"><a class="anchor" href="#side-effects"></a><a class="link" href="#side-effects">14.26. Extension functions with side effects</a></h3>
+<h3 id="side-effects"><a class="anchor" href="#side-effects"></a><a class="link" href="#side-effects">14.27. Extension functions with side effects</a></h3>
 <div class="paragraph">
 <p>A number of the extension functions described in previous sections perform a certain task and thereby change the state of something outside the stylesheet, like write or log to a file, send an e-mail etc. These functions don’t have any return information and should have an empty sequence as their return type. In XSLWeb, the return type of these functions is actually declared as <em>xs:boolean?</em> The reason is that in that case the Saxon XSLT optimizer cannot ignore these functions, because they could add something to the result tree (a boolean value). In reality, these functions never return this boolean value and always return an empty sequence. Therefore it is safe to do something like:</p>
 </div>
@@ -5895,7 +5985,7 @@ or</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-01-04 08:55:54 +0100
+Last updated 2022-01-21 12:48:12 +0100
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/agate.min.css">
