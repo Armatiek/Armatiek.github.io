@@ -1,0 +1,3012 @@
+openapi: 3.0.1
+info:
+  title: _description_
+  description: _description_
+  contact:
+    url: https://armatiek.nl
+  license:
+    name: "European Union Public License, version 1.2 (EUPL-1.2)"
+    url: https://eupl.eu/1.2/nl/
+  version: 1.2.1
+servers: []
+tags:
+- name: Bankrekening
+  description: Rekening bij een bank.
+- name: Creditcard
+  description: Kaart waarmee op basis van kredieten een betaling wordt gedaan.
+- name: Klant
+  description: Een persoon die een fiets heeft gekocht.
+- name: Leverancier
+  description: Een instelling die een fietsen levert.
+- name: Batterij
+  description: De batterij van de E-Bike.
+- name: Sportfiets
+  description: Een fiets bedoeld voor gebruik in sportieve toepassingen.
+- name: Stadsfiets
+  description: Een fiets die is ingericht op gebruik in het stadsverkeer.
+- name: Winkel
+  description: Een locatie waar fietsen worden verkocht.
+- name: Persoon
+  description: Een natuurlijk persoon.
+paths:
+  /bankrekening:
+    get:
+      tags:
+      - Bankrekening
+      summary: Get all Bankrekening objects
+      description: Retrieves a paginated list of all Bankrekening objects
+      operationId: getAllBankrekening
+      parameters:
+      - name: page
+        in: query
+        description: Page number (0-based)
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        example: 0
+      - name: size
+        in: query
+        description: Number of items per page
+        schema:
+          type: integer
+          format: int32
+          default: 20
+        example: 20
+      - name: sort
+        in: query
+        description: Field to sort by
+        schema:
+          type: string
+          default: id
+        example: name
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedBankrekeningList"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+    post:
+      tags:
+      - Bankrekening
+      summary: Create a new Bankrekening
+      description: Creates a new Bankrekening with the provided information
+      operationId: createBankrekening
+      requestBody:
+        description: Bankrekening creation data
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Bankrekening"
+        required: true
+      responses:
+        "201":
+          description: Bankrekening created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Bankrekening"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+  /bankrekening/{id}:
+    get:
+      tags:
+      - Bankrekening
+      summary: Get Bankrekening by id
+      description: Retrieves a specific Bankrekening by their unique identifier
+      operationId: getBankrekeningById
+      parameters:
+      - name: id
+        in: path
+        description: Bankrekening ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 1
+      responses:
+        "200":
+          description: Bankrekening was found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Bankrekening"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "404":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+    put:
+      tags:
+      - Bankrekening
+      summary: Update Bankrekening
+      description: Completely updates a Bankrekening with new information (replaces
+        all fields)
+      operationId: updateBankrekening
+      parameters:
+      - name: id
+        in: path
+        description: Bankrekening ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 1
+      requestBody:
+        description: Complete Bankrekening update data
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Bankrekening"
+        required: true
+      responses:
+        "200":
+          description: Bankrekening updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Bankrekening"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "404":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+    delete:
+      tags:
+      - Bankrekening
+      summary: Delete Bankrekening
+      description: Permanently deletes a Bankrekening from the system
+      operationId: deleteBankrekening
+      parameters:
+      - name: id
+        in: path
+        description: Bankrekening ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 1
+      responses:
+        "204":
+          description: Bankrekening deleted successfully
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "404":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+    patch:
+      tags:
+      - Bankrekening
+      summary: Partially update Bankrekening
+      description: Partially updates a Bankrekening by modifying only the provided
+        fields
+      operationId: patchBankrekening
+      parameters:
+      - name: id
+        in: path
+        description: Bankrekening ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 1
+      requestBody:
+        description: Complete Bankrekening update data
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Bankrekening"
+        required: true
+      responses:
+        "200":
+          description: Bankrekening updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Bankrekening"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "404":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+  /creditcard:
+    get:
+      tags:
+      - Creditcard
+      summary: Get all Creditcard objects
+      description: Retrieves a paginated list of all Creditcard objects
+      operationId: getAllCreditcard
+      parameters:
+      - name: page
+        in: query
+        description: Page number (0-based)
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        example: 0
+      - name: size
+        in: query
+        description: Number of items per page
+        schema:
+          type: integer
+          format: int32
+          default: 20
+        example: 20
+      - name: sort
+        in: query
+        description: Field to sort by
+        schema:
+          type: string
+          default: id
+        example: name
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedCreditcardList"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+    post:
+      tags:
+      - Creditcard
+      summary: Create a new Creditcard
+      description: Creates a new Creditcard with the provided information
+      operationId: createCreditcard
+      requestBody:
+        description: Creditcard creation data
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Creditcard"
+        required: true
+      responses:
+        "201":
+          description: Creditcard created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Creditcard"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+  /creditcard/{id}:
+    get:
+      tags:
+      - Creditcard
+      summary: Get Creditcard by id
+      description: Retrieves a specific Creditcard by their unique identifier
+      operationId: getCreditcardById
+      parameters:
+      - name: id
+        in: path
+        description: Creditcard ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 1
+      responses:
+        "200":
+          description: Creditcard was found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Creditcard"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "404":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+    put:
+      tags:
+      - Creditcard
+      summary: Update Creditcard
+      description: Completely updates a Creditcard with new information (replaces
+        all fields)
+      operationId: updateCreditcard
+      parameters:
+      - name: id
+        in: path
+        description: Creditcard ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 1
+      requestBody:
+        description: Complete Creditcard update data
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Creditcard"
+        required: true
+      responses:
+        "200":
+          description: Creditcard updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Creditcard"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "404":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+    delete:
+      tags:
+      - Creditcard
+      summary: Delete Creditcard
+      description: Permanently deletes a Creditcard from the system
+      operationId: deleteCreditcard
+      parameters:
+      - name: id
+        in: path
+        description: Creditcard ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 1
+      responses:
+        "204":
+          description: Creditcard deleted successfully
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "404":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+    patch:
+      tags:
+      - Creditcard
+      summary: Partially update Creditcard
+      description: Partially updates a Creditcard by modifying only the provided fields
+      operationId: patchCreditcard
+      parameters:
+      - name: id
+        in: path
+        description: Creditcard ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 1
+      requestBody:
+        description: Complete Creditcard update data
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Creditcard"
+        required: true
+      responses:
+        "200":
+          description: Creditcard updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Creditcard"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "404":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+  /klant:
+    get:
+      tags:
+      - Klant
+      summary: Get all Klant objects filtered by name and/or address
+      description: Retrieves a paginated list of all Klant objects filtered by name
+        and/or address
+      operationId: getKlantenByNameAndAddress
+      parameters:
+      - name: page
+        in: query
+        description: Page number (0-based)
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        example: 0
+      - name: size
+        in: query
+        description: Number of items per page
+        schema:
+          type: integer
+          format: int32
+          default: 20
+        example: 20
+      - name: sort
+        in: query
+        description: Field to sort by
+        schema:
+          type: string
+          default: id
+        example: name
+      - name: naam
+        in: query
+        description: Name of the Klant
+        schema:
+          type: string
+        example: Johan
+      - name: address
+        in: query
+        description: Address of the Klant
+        schema:
+          type: string
+        example: Dorpsstraat 1
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedKlantList"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+    post:
+      tags:
+      - Klant
+      summary: Create a new Klant
+      description: Creates a new Klant with the provided information
+      operationId: createKlant
+      requestBody:
+        description: Klant creation data
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Klant"
+        required: true
+      responses:
+        "201":
+          description: Klant created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Klant"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+  /klant/{id}:
+    get:
+      tags:
+      - Klant
+      summary: Get Klant by id
+      description: Retrieves a specific Klant by their unique identifier
+      operationId: getKlantById
+      parameters:
+      - name: id
+        in: path
+        description: Klant ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 1
+      responses:
+        "200":
+          description: Klant was found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Klant"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "404":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+    put:
+      tags:
+      - Klant
+      summary: Update Klant
+      description: Completely updates a Klant with new information (replaces all fields)
+      operationId: updateKlant
+      parameters:
+      - name: id
+        in: path
+        description: Klant ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 1
+      requestBody:
+        description: Complete Klant update data
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Klant"
+        required: true
+      responses:
+        "200":
+          description: Klant updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Klant"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "404":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+    delete:
+      tags:
+      - Klant
+      summary: Delete Klant
+      description: Permanently deletes a Klant from the system
+      operationId: deleteKlant
+      parameters:
+      - name: id
+        in: path
+        description: Klant ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 1
+      responses:
+        "204":
+          description: Klant deleted successfully
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "404":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+  /leverancier:
+    get:
+      tags:
+      - Leverancier
+      summary: Get all Leverancier objects
+      description: Retrieves a paginated list of all Leverancier objects
+      operationId: getAllLeverancier
+      parameters:
+      - name: page
+        in: query
+        description: Page number (0-based)
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        example: 0
+      - name: size
+        in: query
+        description: Number of items per page
+        schema:
+          type: integer
+          format: int32
+          default: 20
+        example: 20
+      - name: sort
+        in: query
+        description: Field to sort by
+        schema:
+          type: string
+          default: id
+        example: name
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedLeverancierList"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+    post:
+      tags:
+      - Leverancier
+      summary: Create a new Leverancier
+      description: Creates a new Leverancier with the provided information
+      operationId: createLeverancier
+      requestBody:
+        description: Leverancier creation data
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Leverancier"
+        required: true
+      responses:
+        "201":
+          description: Leverancier created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Leverancier"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+  /leverancier/{id}:
+    get:
+      tags:
+      - Leverancier
+      summary: Get Leverancier by id
+      description: Retrieves a specific Leverancier by their unique identifier
+      operationId: getLeverancierById
+      parameters:
+      - name: id
+        in: path
+        description: Leverancier ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 1
+      responses:
+        "200":
+          description: Leverancier was found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Leverancier"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "404":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+    put:
+      tags:
+      - Leverancier
+      summary: Update Leverancier
+      description: Completely updates a Leverancier with new information (replaces
+        all fields)
+      operationId: updateLeverancier
+      parameters:
+      - name: id
+        in: path
+        description: Leverancier ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 1
+      requestBody:
+        description: Complete Leverancier update data
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Leverancier"
+        required: true
+      responses:
+        "200":
+          description: Leverancier updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Leverancier"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "404":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+    delete:
+      tags:
+      - Leverancier
+      summary: Delete Leverancier
+      description: Permanently deletes a Leverancier from the system
+      operationId: deleteLeverancier
+      parameters:
+      - name: id
+        in: path
+        description: Leverancier ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 1
+      responses:
+        "204":
+          description: Leverancier deleted successfully
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "404":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+    patch:
+      tags:
+      - Leverancier
+      summary: Partially update Leverancier
+      description: Partially updates a Leverancier by modifying only the provided
+        fields
+      operationId: patchLeverancier
+      parameters:
+      - name: id
+        in: path
+        description: Leverancier ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 1
+      requestBody:
+        description: Complete Leverancier update data
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Leverancier"
+        required: true
+      responses:
+        "200":
+          description: Leverancier updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Leverancier"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "404":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+  /batterij:
+    get:
+      tags:
+      - Batterij
+      summary: Get all Batterij objects
+      description: Retrieves a paginated list of all Batterij objects
+      operationId: getAllBatterij
+      parameters:
+      - name: page
+        in: query
+        description: Page number (0-based)
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        example: 0
+      - name: size
+        in: query
+        description: Number of items per page
+        schema:
+          type: integer
+          format: int32
+          default: 20
+        example: 20
+      - name: sort
+        in: query
+        description: Field to sort by
+        schema:
+          type: string
+          default: id
+        example: name
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedBatterijList"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+    post:
+      tags:
+      - Batterij
+      summary: Create a new Batterij
+      description: Creates a new Batterij with the provided information
+      operationId: createBatterij
+      requestBody:
+        description: Batterij creation data
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Batterij"
+        required: true
+      responses:
+        "201":
+          description: Batterij created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Batterij"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+  /batterij/{id}:
+    get:
+      tags:
+      - Batterij
+      summary: Get Batterij by id
+      description: Retrieves a specific Batterij by their unique identifier
+      operationId: getBatterijById
+      parameters:
+      - name: id
+        in: path
+        description: Batterij ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 1
+      responses:
+        "200":
+          description: Batterij was found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Batterij"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "404":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+    put:
+      tags:
+      - Batterij
+      summary: Update Batterij
+      description: Completely updates a Batterij with new information (replaces all
+        fields)
+      operationId: updateBatterij
+      parameters:
+      - name: id
+        in: path
+        description: Batterij ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 1
+      requestBody:
+        description: Complete Batterij update data
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Batterij"
+        required: true
+      responses:
+        "200":
+          description: Batterij updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Batterij"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "404":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+    delete:
+      tags:
+      - Batterij
+      summary: Delete Batterij
+      description: Permanently deletes a Batterij from the system
+      operationId: deleteBatterij
+      parameters:
+      - name: id
+        in: path
+        description: Batterij ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 1
+      responses:
+        "204":
+          description: Batterij deleted successfully
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "404":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+    patch:
+      tags:
+      - Batterij
+      summary: Partially update Batterij
+      description: Partially updates a Batterij by modifying only the provided fields
+      operationId: patchBatterij
+      parameters:
+      - name: id
+        in: path
+        description: Batterij ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 1
+      requestBody:
+        description: Complete Batterij update data
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Batterij"
+        required: true
+      responses:
+        "200":
+          description: Batterij updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Batterij"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "404":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+  /sportfiets:
+    get:
+      tags:
+      - Sportfiets
+      summary: Get all Sportfiets objects
+      description: Retrieves a paginated list of all Sportfiets objects
+      operationId: getAllSportfiets
+      parameters:
+      - name: page
+        in: query
+        description: Page number (0-based)
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        example: 0
+      - name: size
+        in: query
+        description: Number of items per page
+        schema:
+          type: integer
+          format: int32
+          default: 20
+        example: 20
+      - name: sort
+        in: query
+        description: Field to sort by
+        schema:
+          type: string
+          default: id
+        example: name
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedSportfietsList"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+    post:
+      tags:
+      - Sportfiets
+      summary: Create a new Sportfiets
+      description: Creates a new Sportfiets with the provided information
+      operationId: createSportfiets
+      requestBody:
+        description: Sportfiets creation data
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Sportfiets"
+        required: true
+      responses:
+        "201":
+          description: Sportfiets created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Sportfiets"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+  /sportfiets/{id}:
+    get:
+      tags:
+      - Sportfiets
+      summary: Get Sportfiets by id
+      description: Retrieves a specific Sportfiets by their unique identifier
+      operationId: getSportfietsById
+      parameters:
+      - name: id
+        in: path
+        description: Sportfiets ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 1
+      responses:
+        "200":
+          description: Sportfiets was found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Sportfiets"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "404":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+    put:
+      tags:
+      - Sportfiets
+      summary: Update Sportfiets
+      description: Completely updates a Sportfiets with new information (replaces
+        all fields)
+      operationId: updateSportfiets
+      parameters:
+      - name: id
+        in: path
+        description: Sportfiets ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 1
+      requestBody:
+        description: Complete Sportfiets update data
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Sportfiets"
+        required: true
+      responses:
+        "200":
+          description: Sportfiets updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Sportfiets"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "404":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+    delete:
+      tags:
+      - Sportfiets
+      summary: Delete Sportfiets
+      description: Permanently deletes a Sportfiets from the system
+      operationId: deleteSportfiets
+      parameters:
+      - name: id
+        in: path
+        description: Sportfiets ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 1
+      responses:
+        "204":
+          description: Sportfiets deleted successfully
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "404":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+    patch:
+      tags:
+      - Sportfiets
+      summary: Partially update Sportfiets
+      description: Partially updates a Sportfiets by modifying only the provided fields
+      operationId: patchSportfiets
+      parameters:
+      - name: id
+        in: path
+        description: Sportfiets ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 1
+      requestBody:
+        description: Complete Sportfiets update data
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Sportfiets"
+        required: true
+      responses:
+        "200":
+          description: Sportfiets updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Sportfiets"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "404":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+  /stadsfiets:
+    get:
+      tags:
+      - Stadsfiets
+      summary: Get all Stadsfiets objects
+      description: Retrieves a paginated list of all Stadsfiets objects
+      operationId: getAllStadsfiets
+      parameters:
+      - name: page
+        in: query
+        description: Page number (0-based)
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        example: 0
+      - name: size
+        in: query
+        description: Number of items per page
+        schema:
+          type: integer
+          format: int32
+          default: 20
+        example: 20
+      - name: sort
+        in: query
+        description: Field to sort by
+        schema:
+          type: string
+          default: id
+        example: name
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedStadsfietsList"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+    post:
+      tags:
+      - Stadsfiets
+      summary: Create a new Stadsfiets
+      description: Creates a new Stadsfiets with the provided information
+      operationId: createStadsfiets
+      requestBody:
+        description: Stadsfiets creation data
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Stadsfiets"
+        required: true
+      responses:
+        "201":
+          description: Stadsfiets created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Stadsfiets"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+  /stadsfiets/{id}:
+    get:
+      tags:
+      - Stadsfiets
+      summary: Get Stadsfiets by id
+      description: Retrieves a specific Stadsfiets by their unique identifier
+      operationId: getStadsfietsById
+      parameters:
+      - name: id
+        in: path
+        description: Stadsfiets ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 1
+      responses:
+        "200":
+          description: Stadsfiets was found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Stadsfiets"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "404":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+    put:
+      tags:
+      - Stadsfiets
+      summary: Update Stadsfiets
+      description: Completely updates a Stadsfiets with new information (replaces
+        all fields)
+      operationId: updateStadsfiets
+      parameters:
+      - name: id
+        in: path
+        description: Stadsfiets ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 1
+      requestBody:
+        description: Complete Stadsfiets update data
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Stadsfiets"
+        required: true
+      responses:
+        "200":
+          description: Stadsfiets updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Stadsfiets"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "404":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+    delete:
+      tags:
+      - Stadsfiets
+      summary: Delete Stadsfiets
+      description: Permanently deletes a Stadsfiets from the system
+      operationId: deleteStadsfiets
+      parameters:
+      - name: id
+        in: path
+        description: Stadsfiets ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 1
+      responses:
+        "204":
+          description: Stadsfiets deleted successfully
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "404":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+    patch:
+      tags:
+      - Stadsfiets
+      summary: Partially update Stadsfiets
+      description: Partially updates a Stadsfiets by modifying only the provided fields
+      operationId: patchStadsfiets
+      parameters:
+      - name: id
+        in: path
+        description: Stadsfiets ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 1
+      requestBody:
+        description: Complete Stadsfiets update data
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Stadsfiets"
+        required: true
+      responses:
+        "200":
+          description: Stadsfiets updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Stadsfiets"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "404":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+  /winkel:
+    get:
+      tags:
+      - Winkel
+      summary: Get all Winkel objects
+      description: Retrieves a paginated list of all Winkel objects
+      operationId: getAllWinkel
+      parameters:
+      - name: page
+        in: query
+        description: Page number (0-based)
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        example: 0
+      - name: size
+        in: query
+        description: Number of items per page
+        schema:
+          type: integer
+          format: int32
+          default: 20
+        example: 20
+      - name: sort
+        in: query
+        description: Field to sort by
+        schema:
+          type: string
+          default: id
+        example: name
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedWinkelList"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+    post:
+      tags:
+      - Winkel
+      summary: Create a new Winkel
+      description: Creates a new Winkel with the provided information
+      operationId: createWinkel
+      requestBody:
+        description: Winkel creation data
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Winkel"
+        required: true
+      responses:
+        "201":
+          description: Winkel created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Winkel"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+  /winkel/{id}:
+    get:
+      tags:
+      - Winkel
+      summary: Get Winkel by id
+      description: Retrieves a specific Winkel by their unique identifier
+      operationId: getWinkelById
+      parameters:
+      - name: id
+        in: path
+        description: Winkel ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 1
+      responses:
+        "200":
+          description: Winkel was found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Winkel"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "404":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+    put:
+      tags:
+      - Winkel
+      summary: Update Winkel
+      description: Completely updates a Winkel with new information (replaces all
+        fields)
+      operationId: updateWinkel
+      parameters:
+      - name: id
+        in: path
+        description: Winkel ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 1
+      requestBody:
+        description: Complete Winkel update data
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Winkel"
+        required: true
+      responses:
+        "200":
+          description: Winkel updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Winkel"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "404":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+    delete:
+      tags:
+      - Winkel
+      summary: Delete Winkel
+      description: Permanently deletes a Winkel from the system
+      operationId: deleteWinkel
+      parameters:
+      - name: id
+        in: path
+        description: Winkel ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 1
+      responses:
+        "204":
+          description: Winkel deleted successfully
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "404":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+    patch:
+      tags:
+      - Winkel
+      summary: Partially update Winkel
+      description: Partially updates a Winkel by modifying only the provided fields
+      operationId: patchWinkel
+      parameters:
+      - name: id
+        in: path
+        description: Winkel ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 1
+      requestBody:
+        description: Complete Winkel update data
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Winkel"
+        required: true
+      responses:
+        "200":
+          description: Winkel updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Winkel"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "404":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+  /persoon:
+    get:
+      tags:
+      - Persoon
+      summary: Get all Persoon objects
+      description: Retrieves a paginated list of all Persoon objects
+      operationId: getAllPersoon
+      parameters:
+      - name: page
+        in: query
+        description: Page number (0-based)
+        schema:
+          type: integer
+          format: int32
+          default: 0
+        example: 0
+      - name: size
+        in: query
+        description: Number of items per page
+        schema:
+          type: integer
+          format: int32
+          default: 20
+        example: 20
+      - name: sort
+        in: query
+        description: Field to sort by
+        schema:
+          type: string
+          default: id
+        example: name
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedPersoonList"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+    post:
+      tags:
+      - Persoon
+      summary: Create a new Persoon
+      description: Creates a new Persoon with the provided information
+      operationId: createPersoon
+      requestBody:
+        description: Persoon creation data
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Persoon"
+        required: true
+      responses:
+        "201":
+          description: Persoon created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Persoon"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+  /persoon/{id}:
+    get:
+      tags:
+      - Persoon
+      summary: Get Persoon by id
+      description: Retrieves a specific Persoon by their unique identifier
+      operationId: getPersoonById
+      parameters:
+      - name: id
+        in: path
+        description: Persoon ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 1
+      responses:
+        "200":
+          description: Persoon was found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Persoon"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "404":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+    put:
+      tags:
+      - Persoon
+      summary: Update Persoon
+      description: Completely updates a Persoon with new information (replaces all
+        fields)
+      operationId: updatePersoon
+      parameters:
+      - name: id
+        in: path
+        description: Persoon ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 1
+      requestBody:
+        description: Complete Persoon update data
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Persoon"
+        required: true
+      responses:
+        "200":
+          description: Persoon updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Persoon"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "404":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+    delete:
+      tags:
+      - Persoon
+      summary: Delete Persoon
+      description: Permanently deletes a Persoon from the system
+      operationId: deletePersoon
+      parameters:
+      - name: id
+        in: path
+        description: Persoon ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 1
+      responses:
+        "204":
+          description: Persoon deleted successfully
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "404":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+    patch:
+      tags:
+      - Persoon
+      summary: Partially update Persoon
+      description: Partially updates a Persoon by modifying only the provided fields
+      operationId: patchPersoon
+      parameters:
+      - name: id
+        in: path
+        description: Persoon ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 1
+      requestBody:
+        description: Complete Persoon update data
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Persoon"
+        required: true
+      responses:
+        "200":
+          description: Persoon updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Persoon"
+        "400":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+        "401":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+        "403":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+        "404":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+        "409":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+        "410":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+        "415":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+        "429":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+        "500":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+        "501":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+        "503":
+          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+components:
+  schemas:
+    Bankrekening:
+      required:
+      - rekeningnummer
+      type: object
+      properties:
+        rekeningnummer:
+          type: string
+          description: Nummer van de rekening.
+      description: Rekening bij een bank.
+    PaginatedBankrekeningList:
+      required:
+      - results
+      type: object
+      allOf:
+      - $ref: "#/components/schemas/PaginatedBase"
+      - type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: "#/components/schemas/Bankrekening"
+    PaginatedBase:
+      type: object
+      properties:
+        next:
+          type: string
+          format: uri
+          nullable: true
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          format: uri
+          nullable: true
+          example: http://api.example.org/accounts/?page=2
+    Creditcard:
+      required:
+      - kaartnummer
+      - verloopdatum
+      type: object
+      properties:
+        kaartnummer:
+          type: string
+          description: Nummer van de kaart.
+        verloopdatum:
+          type: string
+          description: "Verloopdatum van de kaart (jaar, maand)"
+      description: Kaart waarmee op basis van kredieten een betaling wordt gedaan.
+    PaginatedCreditcardList:
+      required:
+      - results
+      type: object
+      allOf:
+      - $ref: "#/components/schemas/PaginatedBase"
+      - type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: "#/components/schemas/Creditcard"
+    Adres:
+      required:
+      - huisnummer
+      - id
+      - postcode
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Field that is not part of the model but added to define an
+            identifying field for this entity
+          format: int64
+        postcode:
+          type: string
+          description: Postcode in een adres.
+        huisnummer:
+          type: string
+          description: Huisnummer met eventuele toevoegingen.
+        punt:
+          $ref: "#/components/schemas/Reference"
+        vlak:
+          $ref: "#/components/schemas/Reference"
+      description: Het adres van een contact.
+    Klant:
+      required:
+      - betalingBankBankrekening
+      - betalingCreditCreditcard
+      - betreftPersoon
+      - naam
+      - nieuwsbrief
+      - postadres
+      type: object
+      properties:
+        naam:
+          type: string
+          description: De naam van het contact.
+        postadres:
+          $ref: "#/components/schemas/Adres"
+        betalingBankBankrekening:
+          type: array
+          description: Een contact doet een betaling met een betaalmiddel.
+          items:
+            $ref: "#/components/schemas/Bankrekening"
+        betalingCreditCreditcard:
+          type: array
+          description: Een contact doet een betaling met een betaalmiddel.
+          items:
+            $ref: "#/components/schemas/Creditcard"
+        nieuwsbrief:
+          type: boolean
+          description: Indicatie dat de klant de nieuwsbrief wenst te ontvangen.
+        betreftPersoon:
+          $ref: "#/components/schemas/Persoon"
+      description: Een persoon die een fiets heeft gekocht.
+    PaginatedKlantList:
+      required:
+      - results
+      type: object
+      allOf:
+      - $ref: "#/components/schemas/PaginatedBase"
+      - type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: "#/components/schemas/Klant"
+    Persoon:
+      required:
+      - achternaam
+      - id
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Field that is not part of the model but added to define an
+            identifying field for this entity
+          format: int64
+        voornaam:
+          type: string
+          description: "De roepnaam van een Persoon , vol uitgeschreven."
+        achternaam:
+          type: string
+          description: De achternaam van de Persoon .
+      description: Een natuurlijk persoon.
+    Reference:
+      required:
+      - id
+      - url
+      type: object
+      properties:
+        id:
+          maxLength: 40
+          minLength: 1
+          type: string
+          description: ID van de resource waarnaar verwezen wordt
+        url:
+          minLength: 1
+          type: string
+          description: URL-referentie naar de resource waarnaar verwezen wordt
+          format: uri
+          readOnly: true
+      description: Reference to another resource
+    Leverancier:
+      required:
+      - betalingBankBankrekening
+      - betalingCreditCreditcard
+      - kvkNummer
+      - naam
+      - postadres
+      type: object
+      properties:
+        naam:
+          type: string
+          description: De naam van het contact.
+        postadres:
+          $ref: "#/components/schemas/Adres"
+        betalingBankBankrekening:
+          type: array
+          description: Een contact doet een betaling met een betaalmiddel.
+          items:
+            $ref: "#/components/schemas/Bankrekening"
+        betalingCreditCreditcard:
+          type: array
+          description: Een contact doet een betaling met een betaalmiddel.
+          items:
+            $ref: "#/components/schemas/Creditcard"
+        kvkNummer:
+          $ref: "#/components/schemas/Reference"
+      description: Een instelling die een fietsen levert.
+    PaginatedLeverancierList:
+      required:
+      - results
+      type: object
+      allOf:
+      - $ref: "#/components/schemas/PaginatedBase"
+      - type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: "#/components/schemas/Leverancier"
+    Batterij:
+      required:
+      - garantienummer
+      - id
+      - omvang
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Field that is not part of the model but added to define an
+            identifying field for this entity
+          format: int64
+        garantienummer:
+          type: string
+          description: Garantienummer op de Batterij (wanneer e-bike).
+        omvang:
+          $ref: "#/components/schemas/Reference"
+      description: De batterij van de E-Bike.
+    PaginatedBatterijList:
+      required:
+      - results
+      type: object
+      allOf:
+      - $ref: "#/components/schemas/PaginatedBase"
+      - type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: "#/components/schemas/Batterij"
+    Sportfiets:
+      required:
+      - geleverdDoorLeverancier
+      - id
+      - kettingaandrijving
+      - leveringsdatum
+      - omvang
+      - snaaraandrijving
+      - type
+      - typenummer
+      - verkoopprijs
+      - volgnummer
+      type: object
+      properties:
+        id:
+          type: string
+          description: De identificatie van de fiets.
+        leveringsdatum:
+          type: string
+          description: Datum waarop de fiets is geleverd aan de winkel.
+          format: date
+        omvang:
+          $ref: "#/components/schemas/Reference"
+        typenummer:
+          type: string
+          description: Het type nummer van de fiets.
+        verkoopprijs:
+          type: number
+          description: "De verkoopprijs van de fiets, met twee decimalen, in Euro."
+        versnellingen:
+          type: integer
+          description: Het aantal versnellingen van de fiets.
+          format: int32
+        volgnummer:
+          type: integer
+          description: Het volgummer van de fiets in één levering.
+          format: int32
+        kettingaandrijving:
+          $ref: "#/components/schemas/Reference"
+        snaaraandrijving:
+          $ref: "#/components/schemas/Reference"
+        aangestuurdDoorBatterij:
+          $ref: "#/components/schemas/Batterij"
+        geleverdDoorLeverancier:
+          $ref: "#/components/schemas/Leverancier"
+        verkochtAanKlant:
+          $ref: "#/components/schemas/Klant"
+        type:
+          $ref: "#/components/schemas/Reference"
+      description: Een fiets bedoeld voor gebruik in sportieve toepassingen.
+    PaginatedSportfietsList:
+      required:
+      - results
+      type: object
+      allOf:
+      - $ref: "#/components/schemas/PaginatedBase"
+      - type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: "#/components/schemas/Sportfiets"
+    Stadsfiets:
+      required:
+      - geleverdDoorLeverancier
+      - id
+      - kettingaandrijving
+      - leveringsdatum
+      - omvang
+      - snaaraandrijving
+      - typenummer
+      - verkoopprijs
+      - volgnummer
+      type: object
+      properties:
+        id:
+          type: string
+          description: De identificatie van de fiets.
+        leveringsdatum:
+          type: string
+          description: Datum waarop de fiets is geleverd aan de winkel.
+          format: date
+        omvang:
+          $ref: "#/components/schemas/Reference"
+        typenummer:
+          type: string
+          description: Het type nummer van de fiets.
+        verkoopprijs:
+          type: number
+          description: "De verkoopprijs van de fiets, met twee decimalen, in Euro."
+        versnellingen:
+          type: integer
+          description: Het aantal versnellingen van de fiets.
+          format: int32
+        volgnummer:
+          type: integer
+          description: Het volgummer van de fiets in één levering.
+          format: int32
+        kettingaandrijving:
+          $ref: "#/components/schemas/Reference"
+        snaaraandrijving:
+          $ref: "#/components/schemas/Reference"
+        aangestuurdDoorBatterij:
+          $ref: "#/components/schemas/Batterij"
+        geleverdDoorLeverancier:
+          $ref: "#/components/schemas/Leverancier"
+        verkochtAanKlant:
+          $ref: "#/components/schemas/Klant"
+      description: Een fiets die is ingericht op gebruik in het stadsverkeer.
+    PaginatedStadsfietsList:
+      required:
+      - results
+      type: object
+      allOf:
+      - $ref: "#/components/schemas/PaginatedBase"
+      - type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: "#/components/schemas/Stadsfiets"
+    Fiets:
+      required:
+      - geleverdDoorLeverancier
+      - id
+      - kettingaandrijving
+      - leveringsdatum
+      - omvang
+      - snaaraandrijving
+      - typenummer
+      - verkoopprijs
+      - volgnummer
+      type: object
+      properties:
+        id:
+          type: string
+          description: De identificatie van de fiets.
+        leveringsdatum:
+          type: string
+          description: Datum waarop de fiets is geleverd aan de winkel.
+          format: date
+        omvang:
+          $ref: "#/components/schemas/Reference"
+        typenummer:
+          type: string
+          description: Het type nummer van de fiets.
+        verkoopprijs:
+          type: number
+          description: "De verkoopprijs van de fiets, met twee decimalen, in Euro."
+        versnellingen:
+          type: integer
+          description: Het aantal versnellingen van de fiets.
+          format: int32
+        volgnummer:
+          type: integer
+          description: Het volgummer van de fiets in één levering.
+          format: int32
+        kettingaandrijving:
+          $ref: "#/components/schemas/Reference"
+        snaaraandrijving:
+          $ref: "#/components/schemas/Reference"
+        aangestuurdDoorBatterij:
+          $ref: "#/components/schemas/Batterij"
+        geleverdDoorLeverancier:
+          $ref: "#/components/schemas/Leverancier"
+        verkochtAanKlant:
+          $ref: "#/components/schemas/Klant"
+      description: Een tweewieler.
+    Winkel:
+      required:
+      - naam
+      - punt
+      - vlak
+      type: object
+      properties:
+        naam:
+          type: string
+          description: Naam van de winkel.
+        punt:
+          $ref: "#/components/schemas/Reference"
+        vlak:
+          $ref: "#/components/schemas/Reference"
+        verhandeltFiets:
+          type: array
+          description: De handelswaar van een fietsenwinkel.
+          items:
+            $ref: "#/components/schemas/Fiets"
+      description: Een locatie waar fietsen worden verkocht.
+    PaginatedWinkelList:
+      required:
+      - results
+      type: object
+      allOf:
+      - $ref: "#/components/schemas/PaginatedBase"
+      - type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: "#/components/schemas/Winkel"
+    PaginatedPersoonList:
+      required:
+      - results
+      type: object
+      allOf:
+      - $ref: "#/components/schemas/PaginatedBase"
+      - type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: "#/components/schemas/Persoon"
