@@ -1,13 +1,14 @@
 openapi: 3.0.1
 info:
-  title: _description_
-  description: _description_
+  title: Fietsenwinkel OpenAPI specificatie
+  description: Dit is een demo OpenAPI specificatie voor registratie van inventaris
+    en betrokken producenten en klanten van fietsenwinkels.
   contact:
     url: https://armatiek.nl
   license:
     name: "European Union Public License, version 1.2 (EUPL-1.2)"
     url: https://eupl.eu/1.2/nl/
-  version: 1.2.1
+  version: 1.2.3
 servers: []
 tags:
 - name: Bankrekening
@@ -29,17 +30,17 @@ tags:
 - name: Persoon
   description: Een natuurlijk persoon.
 paths:
-  /bankrekening:
+  /v1/bankrekening:
     get:
       tags:
       - Bankrekening
-      summary: Get all Bankrekening objects
-      description: Retrieves a paginated list of all Bankrekening objects
+      summary: Retourneert de lijst van alle Bankrekening objecten
+      description: Retourneert een gepagineerde lijst van alle Bankrekening objecten
       operationId: getAllBankrekening
       parameters:
       - name: page
         in: query
-        description: Page number (0-based)
+        description: Pagina nummer (beginnend bij 0)
         schema:
           type: integer
           format: int32
@@ -47,7 +48,7 @@ paths:
         example: 0
       - name: size
         in: query
-        description: Number of items per page
+        description: Aantal objecten per pagina
         schema:
           type: integer
           format: int32
@@ -55,7 +56,7 @@ paths:
         example: 20
       - name: sort
         in: query
-        description: Field to sort by
+        description: Sorteer veld
         schema:
           type: string
           default: id
@@ -63,6 +64,10 @@ paths:
       responses:
         "200":
           description: OK
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
           content:
             application/json:
               schema:
@@ -90,11 +95,12 @@ paths:
     post:
       tags:
       - Bankrekening
-      summary: Create a new Bankrekening
-      description: Creates a new Bankrekening with the provided information
+      summary: Maakt een nieuw Bankrekening object
+      description: Maakt een nieuw Bankrekening object aan op basis van de aangeleverde
+        gegevens
       operationId: createBankrekening
       requestBody:
-        description: Bankrekening creation data
+        description: De gegevens van het Bankrekening object
         content:
           application/json:
             schema:
@@ -102,7 +108,17 @@ paths:
         required: true
       responses:
         "201":
-          description: Bankrekening created successfully
+          description: Bankrekening succesvol aangemaakt
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
+            Location:
+              description: URI van het opgeslagen object
+              style: simple
+              schema:
+                type: string
+                format: uri
           content:
             application/json:
               schema:
@@ -127,12 +143,13 @@ paths:
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
         "503":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
-  /bankrekening/{id}:
+  /v1/bankrekening/{id}:
     get:
       tags:
       - Bankrekening
-      summary: Get Bankrekening by id
-      description: Retrieves a specific Bankrekening by their unique identifier
+      summary: Retourneert een Bankrekening object op basis van zijn unieke identificatie
+      description: Retourneert een individueel Bankrekening object op basis van zijn
+        unieke identificatie
       operationId: getBankrekeningById
       parameters:
       - name: id
@@ -145,7 +162,11 @@ paths:
         example: 1
       responses:
         "200":
-          description: Bankrekening was found
+          description: Bankrekening was gevonden
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
           content:
             application/json:
               schema:
@@ -175,9 +196,9 @@ paths:
     put:
       tags:
       - Bankrekening
-      summary: Update Bankrekening
-      description: Completely updates a Bankrekening with new information (replaces
-        all fields)
+      summary: Maakt nieuw of overschrijft bestaand Bankrekening object
+      description: Maakt een nieuw of overschrijft (volledig) een bestaand Bankrekening
+        object
       operationId: updateBankrekening
       parameters:
       - name: id
@@ -197,7 +218,17 @@ paths:
         required: true
       responses:
         "200":
-          description: Bankrekening updated successfully
+          description: Bankrekening object succesvol aangemaakt/overschreven
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
+            Location:
+              description: URI van het opgeslagen object
+              style: simple
+              schema:
+                type: string
+                format: uri
           content:
             application/json:
               schema:
@@ -227,8 +258,9 @@ paths:
     delete:
       tags:
       - Bankrekening
-      summary: Delete Bankrekening
-      description: Permanently deletes a Bankrekening from the system
+      summary: Verwijderd een Bankrekening object
+      description: Verwijderd een specifiek Bankrekening object permanent uit het
+        systeem
       operationId: deleteBankrekening
       parameters:
       - name: id
@@ -241,7 +273,7 @@ paths:
         example: 1
       responses:
         "204":
-          description: Bankrekening deleted successfully
+          description: Bankrekening object succesvol verwijderd
         "400":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
         "401":
@@ -267,9 +299,9 @@ paths:
     patch:
       tags:
       - Bankrekening
-      summary: Partially update Bankrekening
-      description: Partially updates a Bankrekening by modifying only the provided
-        fields
+      summary: Werkt een bestaand Bankrekening object gedeeltelijk bij
+      description: Werkt een bestaand Bankrekening object gedeeltelijk bij door alleen
+        de aangeleverde velden te overschrijven
       operationId: patchBankrekening
       parameters:
       - name: id
@@ -289,7 +321,11 @@ paths:
         required: true
       responses:
         "200":
-          description: Bankrekening updated successfully
+          description: Bankrekening succesvol bijgewerkt
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
           content:
             application/json:
               schema:
@@ -316,17 +352,17 @@ paths:
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
         "503":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
-  /creditcard:
+  /v1/creditcard:
     get:
       tags:
       - Creditcard
-      summary: Get all Creditcard objects
-      description: Retrieves a paginated list of all Creditcard objects
+      summary: Retourneert de lijst van alle Creditcard objecten
+      description: Retourneert een gepagineerde lijst van alle Creditcard objecten
       operationId: getAllCreditcard
       parameters:
       - name: page
         in: query
-        description: Page number (0-based)
+        description: Pagina nummer (beginnend bij 0)
         schema:
           type: integer
           format: int32
@@ -334,7 +370,7 @@ paths:
         example: 0
       - name: size
         in: query
-        description: Number of items per page
+        description: Aantal objecten per pagina
         schema:
           type: integer
           format: int32
@@ -342,7 +378,7 @@ paths:
         example: 20
       - name: sort
         in: query
-        description: Field to sort by
+        description: Sorteer veld
         schema:
           type: string
           default: id
@@ -350,6 +386,10 @@ paths:
       responses:
         "200":
           description: OK
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
           content:
             application/json:
               schema:
@@ -377,11 +417,12 @@ paths:
     post:
       tags:
       - Creditcard
-      summary: Create a new Creditcard
-      description: Creates a new Creditcard with the provided information
+      summary: Maakt een nieuw Creditcard object
+      description: Maakt een nieuw Creditcard object aan op basis van de aangeleverde
+        gegevens
       operationId: createCreditcard
       requestBody:
-        description: Creditcard creation data
+        description: De gegevens van het Creditcard object
         content:
           application/json:
             schema:
@@ -389,7 +430,17 @@ paths:
         required: true
       responses:
         "201":
-          description: Creditcard created successfully
+          description: Creditcard succesvol aangemaakt
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
+            Location:
+              description: URI van het opgeslagen object
+              style: simple
+              schema:
+                type: string
+                format: uri
           content:
             application/json:
               schema:
@@ -414,12 +465,13 @@ paths:
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
         "503":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
-  /creditcard/{id}:
+  /v1/creditcard/{id}:
     get:
       tags:
       - Creditcard
-      summary: Get Creditcard by id
-      description: Retrieves a specific Creditcard by their unique identifier
+      summary: Retourneert een Creditcard object op basis van zijn unieke identificatie
+      description: Retourneert een individueel Creditcard object op basis van zijn
+        unieke identificatie
       operationId: getCreditcardById
       parameters:
       - name: id
@@ -432,7 +484,11 @@ paths:
         example: 1
       responses:
         "200":
-          description: Creditcard was found
+          description: Creditcard was gevonden
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
           content:
             application/json:
               schema:
@@ -462,9 +518,9 @@ paths:
     put:
       tags:
       - Creditcard
-      summary: Update Creditcard
-      description: Completely updates a Creditcard with new information (replaces
-        all fields)
+      summary: Maakt nieuw of overschrijft bestaand Creditcard object
+      description: Maakt een nieuw of overschrijft (volledig) een bestaand Creditcard
+        object
       operationId: updateCreditcard
       parameters:
       - name: id
@@ -484,7 +540,17 @@ paths:
         required: true
       responses:
         "200":
-          description: Creditcard updated successfully
+          description: Creditcard object succesvol aangemaakt/overschreven
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
+            Location:
+              description: URI van het opgeslagen object
+              style: simple
+              schema:
+                type: string
+                format: uri
           content:
             application/json:
               schema:
@@ -514,8 +580,8 @@ paths:
     delete:
       tags:
       - Creditcard
-      summary: Delete Creditcard
-      description: Permanently deletes a Creditcard from the system
+      summary: Verwijderd een Creditcard object
+      description: Verwijderd een specifiek Creditcard object permanent uit het systeem
       operationId: deleteCreditcard
       parameters:
       - name: id
@@ -528,7 +594,7 @@ paths:
         example: 1
       responses:
         "204":
-          description: Creditcard deleted successfully
+          description: Creditcard object succesvol verwijderd
         "400":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
         "401":
@@ -554,8 +620,9 @@ paths:
     patch:
       tags:
       - Creditcard
-      summary: Partially update Creditcard
-      description: Partially updates a Creditcard by modifying only the provided fields
+      summary: Werkt een bestaand Creditcard object gedeeltelijk bij
+      description: Werkt een bestaand Creditcard object gedeeltelijk bij door alleen
+        de aangeleverde velden te overschrijven
       operationId: patchCreditcard
       parameters:
       - name: id
@@ -575,7 +642,11 @@ paths:
         required: true
       responses:
         "200":
-          description: Creditcard updated successfully
+          description: Creditcard succesvol bijgewerkt
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
           content:
             application/json:
               schema:
@@ -673,14 +744,15 @@ paths:
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
         "503":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+  /v1/klant:
     post:
       tags:
       - Klant
-      summary: Create a new Klant
-      description: Creates a new Klant with the provided information
+      summary: Maakt een nieuw Klant object
+      description: Maakt een nieuw Klant object aan op basis van de aangeleverde gegevens
       operationId: createKlant
       requestBody:
-        description: Klant creation data
+        description: De gegevens van het Klant object
         content:
           application/json:
             schema:
@@ -688,7 +760,17 @@ paths:
         required: true
       responses:
         "201":
-          description: Klant created successfully
+          description: Klant succesvol aangemaakt
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
+            Location:
+              description: URI van het opgeslagen object
+              style: simple
+              schema:
+                type: string
+                format: uri
           content:
             application/json:
               schema:
@@ -713,12 +795,13 @@ paths:
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
         "503":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
-  /klant/{id}:
+  /v1/klant/{id}:
     get:
       tags:
       - Klant
-      summary: Get Klant by id
-      description: Retrieves a specific Klant by their unique identifier
+      summary: Retourneert een Klant object op basis van zijn unieke identificatie
+      description: Retourneert een individueel Klant object op basis van zijn unieke
+        identificatie
       operationId: getKlantById
       parameters:
       - name: id
@@ -731,7 +814,11 @@ paths:
         example: 1
       responses:
         "200":
-          description: Klant was found
+          description: Klant was gevonden
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
           content:
             application/json:
               schema:
@@ -761,8 +848,8 @@ paths:
     put:
       tags:
       - Klant
-      summary: Update Klant
-      description: Completely updates a Klant with new information (replaces all fields)
+      summary: Maakt nieuw of overschrijft bestaand Klant object
+      description: Maakt een nieuw of overschrijft (volledig) een bestaand Klant object
       operationId: updateKlant
       parameters:
       - name: id
@@ -782,7 +869,17 @@ paths:
         required: true
       responses:
         "200":
-          description: Klant updated successfully
+          description: Klant object succesvol aangemaakt/overschreven
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
+            Location:
+              description: URI van het opgeslagen object
+              style: simple
+              schema:
+                type: string
+                format: uri
           content:
             application/json:
               schema:
@@ -812,8 +909,8 @@ paths:
     delete:
       tags:
       - Klant
-      summary: Delete Klant
-      description: Permanently deletes a Klant from the system
+      summary: Verwijderd een Klant object
+      description: Verwijderd een specifiek Klant object permanent uit het systeem
       operationId: deleteKlant
       parameters:
       - name: id
@@ -826,7 +923,7 @@ paths:
         example: 1
       responses:
         "204":
-          description: Klant deleted successfully
+          description: Klant object succesvol verwijderd
         "400":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
         "401":
@@ -849,17 +946,17 @@ paths:
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
         "503":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
-  /leverancier:
+  /v1/leverancier:
     get:
       tags:
       - Leverancier
-      summary: Get all Leverancier objects
-      description: Retrieves a paginated list of all Leverancier objects
+      summary: Retourneert de lijst van alle Leverancier objecten
+      description: Retourneert een gepagineerde lijst van alle Leverancier objecten
       operationId: getAllLeverancier
       parameters:
       - name: page
         in: query
-        description: Page number (0-based)
+        description: Pagina nummer (beginnend bij 0)
         schema:
           type: integer
           format: int32
@@ -867,7 +964,7 @@ paths:
         example: 0
       - name: size
         in: query
-        description: Number of items per page
+        description: Aantal objecten per pagina
         schema:
           type: integer
           format: int32
@@ -875,7 +972,7 @@ paths:
         example: 20
       - name: sort
         in: query
-        description: Field to sort by
+        description: Sorteer veld
         schema:
           type: string
           default: id
@@ -883,6 +980,10 @@ paths:
       responses:
         "200":
           description: OK
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
           content:
             application/json:
               schema:
@@ -910,11 +1011,12 @@ paths:
     post:
       tags:
       - Leverancier
-      summary: Create a new Leverancier
-      description: Creates a new Leverancier with the provided information
+      summary: Maakt een nieuw Leverancier object
+      description: Maakt een nieuw Leverancier object aan op basis van de aangeleverde
+        gegevens
       operationId: createLeverancier
       requestBody:
-        description: Leverancier creation data
+        description: De gegevens van het Leverancier object
         content:
           application/json:
             schema:
@@ -922,7 +1024,17 @@ paths:
         required: true
       responses:
         "201":
-          description: Leverancier created successfully
+          description: Leverancier succesvol aangemaakt
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
+            Location:
+              description: URI van het opgeslagen object
+              style: simple
+              schema:
+                type: string
+                format: uri
           content:
             application/json:
               schema:
@@ -947,12 +1059,13 @@ paths:
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
         "503":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
-  /leverancier/{id}:
+  /v1/leverancier/{id}:
     get:
       tags:
       - Leverancier
-      summary: Get Leverancier by id
-      description: Retrieves a specific Leverancier by their unique identifier
+      summary: Retourneert een Leverancier object op basis van zijn unieke identificatie
+      description: Retourneert een individueel Leverancier object op basis van zijn
+        unieke identificatie
       operationId: getLeverancierById
       parameters:
       - name: id
@@ -965,7 +1078,11 @@ paths:
         example: 1
       responses:
         "200":
-          description: Leverancier was found
+          description: Leverancier was gevonden
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
           content:
             application/json:
               schema:
@@ -995,9 +1112,9 @@ paths:
     put:
       tags:
       - Leverancier
-      summary: Update Leverancier
-      description: Completely updates a Leverancier with new information (replaces
-        all fields)
+      summary: Maakt nieuw of overschrijft bestaand Leverancier object
+      description: Maakt een nieuw of overschrijft (volledig) een bestaand Leverancier
+        object
       operationId: updateLeverancier
       parameters:
       - name: id
@@ -1017,7 +1134,17 @@ paths:
         required: true
       responses:
         "200":
-          description: Leverancier updated successfully
+          description: Leverancier object succesvol aangemaakt/overschreven
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
+            Location:
+              description: URI van het opgeslagen object
+              style: simple
+              schema:
+                type: string
+                format: uri
           content:
             application/json:
               schema:
@@ -1047,8 +1174,8 @@ paths:
     delete:
       tags:
       - Leverancier
-      summary: Delete Leverancier
-      description: Permanently deletes a Leverancier from the system
+      summary: Verwijderd een Leverancier object
+      description: Verwijderd een specifiek Leverancier object permanent uit het systeem
       operationId: deleteLeverancier
       parameters:
       - name: id
@@ -1061,7 +1188,7 @@ paths:
         example: 1
       responses:
         "204":
-          description: Leverancier deleted successfully
+          description: Leverancier object succesvol verwijderd
         "400":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
         "401":
@@ -1087,9 +1214,9 @@ paths:
     patch:
       tags:
       - Leverancier
-      summary: Partially update Leverancier
-      description: Partially updates a Leverancier by modifying only the provided
-        fields
+      summary: Werkt een bestaand Leverancier object gedeeltelijk bij
+      description: Werkt een bestaand Leverancier object gedeeltelijk bij door alleen
+        de aangeleverde velden te overschrijven
       operationId: patchLeverancier
       parameters:
       - name: id
@@ -1109,7 +1236,11 @@ paths:
         required: true
       responses:
         "200":
-          description: Leverancier updated successfully
+          description: Leverancier succesvol bijgewerkt
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
           content:
             application/json:
               schema:
@@ -1136,17 +1267,17 @@ paths:
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
         "503":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
-  /batterij:
+  /v1/batterij:
     get:
       tags:
       - Batterij
-      summary: Get all Batterij objects
-      description: Retrieves a paginated list of all Batterij objects
+      summary: Retourneert de lijst van alle Batterij objecten
+      description: Retourneert een gepagineerde lijst van alle Batterij objecten
       operationId: getAllBatterij
       parameters:
       - name: page
         in: query
-        description: Page number (0-based)
+        description: Pagina nummer (beginnend bij 0)
         schema:
           type: integer
           format: int32
@@ -1154,7 +1285,7 @@ paths:
         example: 0
       - name: size
         in: query
-        description: Number of items per page
+        description: Aantal objecten per pagina
         schema:
           type: integer
           format: int32
@@ -1162,7 +1293,7 @@ paths:
         example: 20
       - name: sort
         in: query
-        description: Field to sort by
+        description: Sorteer veld
         schema:
           type: string
           default: id
@@ -1170,6 +1301,10 @@ paths:
       responses:
         "200":
           description: OK
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
           content:
             application/json:
               schema:
@@ -1197,11 +1332,12 @@ paths:
     post:
       tags:
       - Batterij
-      summary: Create a new Batterij
-      description: Creates a new Batterij with the provided information
+      summary: Maakt een nieuw Batterij object
+      description: Maakt een nieuw Batterij object aan op basis van de aangeleverde
+        gegevens
       operationId: createBatterij
       requestBody:
-        description: Batterij creation data
+        description: De gegevens van het Batterij object
         content:
           application/json:
             schema:
@@ -1209,7 +1345,17 @@ paths:
         required: true
       responses:
         "201":
-          description: Batterij created successfully
+          description: Batterij succesvol aangemaakt
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
+            Location:
+              description: URI van het opgeslagen object
+              style: simple
+              schema:
+                type: string
+                format: uri
           content:
             application/json:
               schema:
@@ -1234,12 +1380,13 @@ paths:
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
         "503":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
-  /batterij/{id}:
+  /v1/batterij/{id}:
     get:
       tags:
       - Batterij
-      summary: Get Batterij by id
-      description: Retrieves a specific Batterij by their unique identifier
+      summary: Retourneert een Batterij object op basis van zijn unieke identificatie
+      description: Retourneert een individueel Batterij object op basis van zijn unieke
+        identificatie
       operationId: getBatterijById
       parameters:
       - name: id
@@ -1252,7 +1399,11 @@ paths:
         example: 1
       responses:
         "200":
-          description: Batterij was found
+          description: Batterij was gevonden
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
           content:
             application/json:
               schema:
@@ -1282,9 +1433,9 @@ paths:
     put:
       tags:
       - Batterij
-      summary: Update Batterij
-      description: Completely updates a Batterij with new information (replaces all
-        fields)
+      summary: Maakt nieuw of overschrijft bestaand Batterij object
+      description: Maakt een nieuw of overschrijft (volledig) een bestaand Batterij
+        object
       operationId: updateBatterij
       parameters:
       - name: id
@@ -1304,7 +1455,17 @@ paths:
         required: true
       responses:
         "200":
-          description: Batterij updated successfully
+          description: Batterij object succesvol aangemaakt/overschreven
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
+            Location:
+              description: URI van het opgeslagen object
+              style: simple
+              schema:
+                type: string
+                format: uri
           content:
             application/json:
               schema:
@@ -1334,8 +1495,8 @@ paths:
     delete:
       tags:
       - Batterij
-      summary: Delete Batterij
-      description: Permanently deletes a Batterij from the system
+      summary: Verwijderd een Batterij object
+      description: Verwijderd een specifiek Batterij object permanent uit het systeem
       operationId: deleteBatterij
       parameters:
       - name: id
@@ -1348,7 +1509,7 @@ paths:
         example: 1
       responses:
         "204":
-          description: Batterij deleted successfully
+          description: Batterij object succesvol verwijderd
         "400":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
         "401":
@@ -1374,8 +1535,9 @@ paths:
     patch:
       tags:
       - Batterij
-      summary: Partially update Batterij
-      description: Partially updates a Batterij by modifying only the provided fields
+      summary: Werkt een bestaand Batterij object gedeeltelijk bij
+      description: Werkt een bestaand Batterij object gedeeltelijk bij door alleen
+        de aangeleverde velden te overschrijven
       operationId: patchBatterij
       parameters:
       - name: id
@@ -1395,7 +1557,11 @@ paths:
         required: true
       responses:
         "200":
-          description: Batterij updated successfully
+          description: Batterij succesvol bijgewerkt
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
           content:
             application/json:
               schema:
@@ -1422,17 +1588,17 @@ paths:
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
         "503":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
-  /sportfiets:
+  /v1/sportfiets:
     get:
       tags:
       - Sportfiets
-      summary: Get all Sportfiets objects
-      description: Retrieves a paginated list of all Sportfiets objects
+      summary: Retourneert de lijst van alle Sportfiets objecten
+      description: Retourneert een gepagineerde lijst van alle Sportfiets objecten
       operationId: getAllSportfiets
       parameters:
       - name: page
         in: query
-        description: Page number (0-based)
+        description: Pagina nummer (beginnend bij 0)
         schema:
           type: integer
           format: int32
@@ -1440,7 +1606,7 @@ paths:
         example: 0
       - name: size
         in: query
-        description: Number of items per page
+        description: Aantal objecten per pagina
         schema:
           type: integer
           format: int32
@@ -1448,7 +1614,7 @@ paths:
         example: 20
       - name: sort
         in: query
-        description: Field to sort by
+        description: Sorteer veld
         schema:
           type: string
           default: id
@@ -1456,6 +1622,10 @@ paths:
       responses:
         "200":
           description: OK
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
           content:
             application/json:
               schema:
@@ -1483,11 +1653,12 @@ paths:
     post:
       tags:
       - Sportfiets
-      summary: Create a new Sportfiets
-      description: Creates a new Sportfiets with the provided information
+      summary: Maakt een nieuw Sportfiets object
+      description: Maakt een nieuw Sportfiets object aan op basis van de aangeleverde
+        gegevens
       operationId: createSportfiets
       requestBody:
-        description: Sportfiets creation data
+        description: De gegevens van het Sportfiets object
         content:
           application/json:
             schema:
@@ -1495,7 +1666,17 @@ paths:
         required: true
       responses:
         "201":
-          description: Sportfiets created successfully
+          description: Sportfiets succesvol aangemaakt
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
+            Location:
+              description: URI van het opgeslagen object
+              style: simple
+              schema:
+                type: string
+                format: uri
           content:
             application/json:
               schema:
@@ -1520,12 +1701,13 @@ paths:
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
         "503":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
-  /sportfiets/{id}:
+  /v1/sportfiets/{id}:
     get:
       tags:
       - Sportfiets
-      summary: Get Sportfiets by id
-      description: Retrieves a specific Sportfiets by their unique identifier
+      summary: Retourneert een Sportfiets object op basis van zijn unieke identificatie
+      description: Retourneert een individueel Sportfiets object op basis van zijn
+        unieke identificatie
       operationId: getSportfietsById
       parameters:
       - name: id
@@ -1538,7 +1720,11 @@ paths:
         example: 1
       responses:
         "200":
-          description: Sportfiets was found
+          description: Sportfiets was gevonden
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
           content:
             application/json:
               schema:
@@ -1568,9 +1754,9 @@ paths:
     put:
       tags:
       - Sportfiets
-      summary: Update Sportfiets
-      description: Completely updates a Sportfiets with new information (replaces
-        all fields)
+      summary: Maakt nieuw of overschrijft bestaand Sportfiets object
+      description: Maakt een nieuw of overschrijft (volledig) een bestaand Sportfiets
+        object
       operationId: updateSportfiets
       parameters:
       - name: id
@@ -1590,7 +1776,17 @@ paths:
         required: true
       responses:
         "200":
-          description: Sportfiets updated successfully
+          description: Sportfiets object succesvol aangemaakt/overschreven
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
+            Location:
+              description: URI van het opgeslagen object
+              style: simple
+              schema:
+                type: string
+                format: uri
           content:
             application/json:
               schema:
@@ -1620,8 +1816,8 @@ paths:
     delete:
       tags:
       - Sportfiets
-      summary: Delete Sportfiets
-      description: Permanently deletes a Sportfiets from the system
+      summary: Verwijderd een Sportfiets object
+      description: Verwijderd een specifiek Sportfiets object permanent uit het systeem
       operationId: deleteSportfiets
       parameters:
       - name: id
@@ -1634,7 +1830,7 @@ paths:
         example: 1
       responses:
         "204":
-          description: Sportfiets deleted successfully
+          description: Sportfiets object succesvol verwijderd
         "400":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
         "401":
@@ -1660,8 +1856,9 @@ paths:
     patch:
       tags:
       - Sportfiets
-      summary: Partially update Sportfiets
-      description: Partially updates a Sportfiets by modifying only the provided fields
+      summary: Werkt een bestaand Sportfiets object gedeeltelijk bij
+      description: Werkt een bestaand Sportfiets object gedeeltelijk bij door alleen
+        de aangeleverde velden te overschrijven
       operationId: patchSportfiets
       parameters:
       - name: id
@@ -1681,7 +1878,11 @@ paths:
         required: true
       responses:
         "200":
-          description: Sportfiets updated successfully
+          description: Sportfiets succesvol bijgewerkt
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
           content:
             application/json:
               schema:
@@ -1708,17 +1909,17 @@ paths:
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
         "503":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
-  /stadsfiets:
+  /v1/stadsfiets:
     get:
       tags:
       - Stadsfiets
-      summary: Get all Stadsfiets objects
-      description: Retrieves a paginated list of all Stadsfiets objects
+      summary: Retourneert de lijst van alle Stadsfiets objecten
+      description: Retourneert een gepagineerde lijst van alle Stadsfiets objecten
       operationId: getAllStadsfiets
       parameters:
       - name: page
         in: query
-        description: Page number (0-based)
+        description: Pagina nummer (beginnend bij 0)
         schema:
           type: integer
           format: int32
@@ -1726,7 +1927,7 @@ paths:
         example: 0
       - name: size
         in: query
-        description: Number of items per page
+        description: Aantal objecten per pagina
         schema:
           type: integer
           format: int32
@@ -1734,7 +1935,7 @@ paths:
         example: 20
       - name: sort
         in: query
-        description: Field to sort by
+        description: Sorteer veld
         schema:
           type: string
           default: id
@@ -1742,6 +1943,10 @@ paths:
       responses:
         "200":
           description: OK
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
           content:
             application/json:
               schema:
@@ -1769,11 +1974,12 @@ paths:
     post:
       tags:
       - Stadsfiets
-      summary: Create a new Stadsfiets
-      description: Creates a new Stadsfiets with the provided information
+      summary: Maakt een nieuw Stadsfiets object
+      description: Maakt een nieuw Stadsfiets object aan op basis van de aangeleverde
+        gegevens
       operationId: createStadsfiets
       requestBody:
-        description: Stadsfiets creation data
+        description: De gegevens van het Stadsfiets object
         content:
           application/json:
             schema:
@@ -1781,7 +1987,17 @@ paths:
         required: true
       responses:
         "201":
-          description: Stadsfiets created successfully
+          description: Stadsfiets succesvol aangemaakt
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
+            Location:
+              description: URI van het opgeslagen object
+              style: simple
+              schema:
+                type: string
+                format: uri
           content:
             application/json:
               schema:
@@ -1806,12 +2022,13 @@ paths:
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
         "503":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
-  /stadsfiets/{id}:
+  /v1/stadsfiets/{id}:
     get:
       tags:
       - Stadsfiets
-      summary: Get Stadsfiets by id
-      description: Retrieves a specific Stadsfiets by their unique identifier
+      summary: Retourneert een Stadsfiets object op basis van zijn unieke identificatie
+      description: Retourneert een individueel Stadsfiets object op basis van zijn
+        unieke identificatie
       operationId: getStadsfietsById
       parameters:
       - name: id
@@ -1824,7 +2041,11 @@ paths:
         example: 1
       responses:
         "200":
-          description: Stadsfiets was found
+          description: Stadsfiets was gevonden
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
           content:
             application/json:
               schema:
@@ -1854,9 +2075,9 @@ paths:
     put:
       tags:
       - Stadsfiets
-      summary: Update Stadsfiets
-      description: Completely updates a Stadsfiets with new information (replaces
-        all fields)
+      summary: Maakt nieuw of overschrijft bestaand Stadsfiets object
+      description: Maakt een nieuw of overschrijft (volledig) een bestaand Stadsfiets
+        object
       operationId: updateStadsfiets
       parameters:
       - name: id
@@ -1876,7 +2097,17 @@ paths:
         required: true
       responses:
         "200":
-          description: Stadsfiets updated successfully
+          description: Stadsfiets object succesvol aangemaakt/overschreven
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
+            Location:
+              description: URI van het opgeslagen object
+              style: simple
+              schema:
+                type: string
+                format: uri
           content:
             application/json:
               schema:
@@ -1906,8 +2137,8 @@ paths:
     delete:
       tags:
       - Stadsfiets
-      summary: Delete Stadsfiets
-      description: Permanently deletes a Stadsfiets from the system
+      summary: Verwijderd een Stadsfiets object
+      description: Verwijderd een specifiek Stadsfiets object permanent uit het systeem
       operationId: deleteStadsfiets
       parameters:
       - name: id
@@ -1920,7 +2151,7 @@ paths:
         example: 1
       responses:
         "204":
-          description: Stadsfiets deleted successfully
+          description: Stadsfiets object succesvol verwijderd
         "400":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
         "401":
@@ -1946,8 +2177,9 @@ paths:
     patch:
       tags:
       - Stadsfiets
-      summary: Partially update Stadsfiets
-      description: Partially updates a Stadsfiets by modifying only the provided fields
+      summary: Werkt een bestaand Stadsfiets object gedeeltelijk bij
+      description: Werkt een bestaand Stadsfiets object gedeeltelijk bij door alleen
+        de aangeleverde velden te overschrijven
       operationId: patchStadsfiets
       parameters:
       - name: id
@@ -1967,7 +2199,11 @@ paths:
         required: true
       responses:
         "200":
-          description: Stadsfiets updated successfully
+          description: Stadsfiets succesvol bijgewerkt
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
           content:
             application/json:
               schema:
@@ -1994,17 +2230,17 @@ paths:
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
         "503":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
-  /winkel:
+  /v1/winkel:
     get:
       tags:
       - Winkel
-      summary: Get all Winkel objects
-      description: Retrieves a paginated list of all Winkel objects
+      summary: Retourneert de lijst van alle Winkel objecten
+      description: Retourneert een gepagineerde lijst van alle Winkel objecten
       operationId: getAllWinkel
       parameters:
       - name: page
         in: query
-        description: Page number (0-based)
+        description: Pagina nummer (beginnend bij 0)
         schema:
           type: integer
           format: int32
@@ -2012,7 +2248,7 @@ paths:
         example: 0
       - name: size
         in: query
-        description: Number of items per page
+        description: Aantal objecten per pagina
         schema:
           type: integer
           format: int32
@@ -2020,7 +2256,7 @@ paths:
         example: 20
       - name: sort
         in: query
-        description: Field to sort by
+        description: Sorteer veld
         schema:
           type: string
           default: id
@@ -2028,6 +2264,10 @@ paths:
       responses:
         "200":
           description: OK
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
           content:
             application/json:
               schema:
@@ -2055,11 +2295,12 @@ paths:
     post:
       tags:
       - Winkel
-      summary: Create a new Winkel
-      description: Creates a new Winkel with the provided information
+      summary: Maakt een nieuw Winkel object
+      description: Maakt een nieuw Winkel object aan op basis van de aangeleverde
+        gegevens
       operationId: createWinkel
       requestBody:
-        description: Winkel creation data
+        description: De gegevens van het Winkel object
         content:
           application/json:
             schema:
@@ -2067,7 +2308,17 @@ paths:
         required: true
       responses:
         "201":
-          description: Winkel created successfully
+          description: Winkel succesvol aangemaakt
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
+            Location:
+              description: URI van het opgeslagen object
+              style: simple
+              schema:
+                type: string
+                format: uri
           content:
             application/json:
               schema:
@@ -2092,12 +2343,13 @@ paths:
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
         "503":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
-  /winkel/{id}:
+  /v1/winkel/{id}:
     get:
       tags:
       - Winkel
-      summary: Get Winkel by id
-      description: Retrieves a specific Winkel by their unique identifier
+      summary: Retourneert een Winkel object op basis van zijn unieke identificatie
+      description: Retourneert een individueel Winkel object op basis van zijn unieke
+        identificatie
       operationId: getWinkelById
       parameters:
       - name: id
@@ -2110,7 +2362,11 @@ paths:
         example: 1
       responses:
         "200":
-          description: Winkel was found
+          description: Winkel was gevonden
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
           content:
             application/json:
               schema:
@@ -2140,9 +2396,9 @@ paths:
     put:
       tags:
       - Winkel
-      summary: Update Winkel
-      description: Completely updates a Winkel with new information (replaces all
-        fields)
+      summary: Maakt nieuw of overschrijft bestaand Winkel object
+      description: Maakt een nieuw of overschrijft (volledig) een bestaand Winkel
+        object
       operationId: updateWinkel
       parameters:
       - name: id
@@ -2162,7 +2418,17 @@ paths:
         required: true
       responses:
         "200":
-          description: Winkel updated successfully
+          description: Winkel object succesvol aangemaakt/overschreven
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
+            Location:
+              description: URI van het opgeslagen object
+              style: simple
+              schema:
+                type: string
+                format: uri
           content:
             application/json:
               schema:
@@ -2192,8 +2458,8 @@ paths:
     delete:
       tags:
       - Winkel
-      summary: Delete Winkel
-      description: Permanently deletes a Winkel from the system
+      summary: Verwijderd een Winkel object
+      description: Verwijderd een specifiek Winkel object permanent uit het systeem
       operationId: deleteWinkel
       parameters:
       - name: id
@@ -2206,7 +2472,7 @@ paths:
         example: 1
       responses:
         "204":
-          description: Winkel deleted successfully
+          description: Winkel object succesvol verwijderd
         "400":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
         "401":
@@ -2232,8 +2498,9 @@ paths:
     patch:
       tags:
       - Winkel
-      summary: Partially update Winkel
-      description: Partially updates a Winkel by modifying only the provided fields
+      summary: Werkt een bestaand Winkel object gedeeltelijk bij
+      description: Werkt een bestaand Winkel object gedeeltelijk bij door alleen de
+        aangeleverde velden te overschrijven
       operationId: patchWinkel
       parameters:
       - name: id
@@ -2253,7 +2520,11 @@ paths:
         required: true
       responses:
         "200":
-          description: Winkel updated successfully
+          description: Winkel succesvol bijgewerkt
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
           content:
             application/json:
               schema:
@@ -2280,17 +2551,17 @@ paths:
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
         "503":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
-  /persoon:
+  /v1/persoon:
     get:
       tags:
       - Persoon
-      summary: Get all Persoon objects
-      description: Retrieves a paginated list of all Persoon objects
+      summary: Retourneert de lijst van alle Persoon objecten
+      description: Retourneert een gepagineerde lijst van alle Persoon objecten
       operationId: getAllPersoon
       parameters:
       - name: page
         in: query
-        description: Page number (0-based)
+        description: Pagina nummer (beginnend bij 0)
         schema:
           type: integer
           format: int32
@@ -2298,7 +2569,7 @@ paths:
         example: 0
       - name: size
         in: query
-        description: Number of items per page
+        description: Aantal objecten per pagina
         schema:
           type: integer
           format: int32
@@ -2306,7 +2577,7 @@ paths:
         example: 20
       - name: sort
         in: query
-        description: Field to sort by
+        description: Sorteer veld
         schema:
           type: string
           default: id
@@ -2314,6 +2585,10 @@ paths:
       responses:
         "200":
           description: OK
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
           content:
             application/json:
               schema:
@@ -2341,11 +2616,12 @@ paths:
     post:
       tags:
       - Persoon
-      summary: Create a new Persoon
-      description: Creates a new Persoon with the provided information
+      summary: Maakt een nieuw Persoon object
+      description: Maakt een nieuw Persoon object aan op basis van de aangeleverde
+        gegevens
       operationId: createPersoon
       requestBody:
-        description: Persoon creation data
+        description: De gegevens van het Persoon object
         content:
           application/json:
             schema:
@@ -2353,7 +2629,17 @@ paths:
         required: true
       responses:
         "201":
-          description: Persoon created successfully
+          description: Persoon succesvol aangemaakt
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
+            Location:
+              description: URI van het opgeslagen object
+              style: simple
+              schema:
+                type: string
+                format: uri
           content:
             application/json:
               schema:
@@ -2378,12 +2664,13 @@ paths:
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
         "503":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
-  /persoon/{id}:
+  /v1/persoon/{id}:
     get:
       tags:
       - Persoon
-      summary: Get Persoon by id
-      description: Retrieves a specific Persoon by their unique identifier
+      summary: Retourneert een Persoon object op basis van zijn unieke identificatie
+      description: Retourneert een individueel Persoon object op basis van zijn unieke
+        identificatie
       operationId: getPersoonById
       parameters:
       - name: id
@@ -2396,7 +2683,11 @@ paths:
         example: 1
       responses:
         "200":
-          description: Persoon was found
+          description: Persoon was gevonden
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
           content:
             application/json:
               schema:
@@ -2426,9 +2717,9 @@ paths:
     put:
       tags:
       - Persoon
-      summary: Update Persoon
-      description: Completely updates a Persoon with new information (replaces all
-        fields)
+      summary: Maakt nieuw of overschrijft bestaand Persoon object
+      description: Maakt een nieuw of overschrijft (volledig) een bestaand Persoon
+        object
       operationId: updatePersoon
       parameters:
       - name: id
@@ -2448,7 +2739,17 @@ paths:
         required: true
       responses:
         "200":
-          description: Persoon updated successfully
+          description: Persoon object succesvol aangemaakt/overschreven
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
+            Location:
+              description: URI van het opgeslagen object
+              style: simple
+              schema:
+                type: string
+                format: uri
           content:
             application/json:
               schema:
@@ -2478,8 +2779,8 @@ paths:
     delete:
       tags:
       - Persoon
-      summary: Delete Persoon
-      description: Permanently deletes a Persoon from the system
+      summary: Verwijderd een Persoon object
+      description: Verwijderd een specifiek Persoon object permanent uit het systeem
       operationId: deletePersoon
       parameters:
       - name: id
@@ -2492,7 +2793,7 @@ paths:
         example: 1
       responses:
         "204":
-          description: Persoon deleted successfully
+          description: Persoon object succesvol verwijderd
         "400":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
         "401":
@@ -2518,8 +2819,9 @@ paths:
     patch:
       tags:
       - Persoon
-      summary: Partially update Persoon
-      description: Partially updates a Persoon by modifying only the provided fields
+      summary: Werkt een bestaand Persoon object gedeeltelijk bij
+      description: Werkt een bestaand Persoon object gedeeltelijk bij door alleen
+        de aangeleverde velden te overschrijven
       operationId: patchPersoon
       parameters:
       - name: id
@@ -2539,7 +2841,11 @@ paths:
         required: true
       responses:
         "200":
-          description: Persoon updated successfully
+          description: Persoon succesvol bijgewerkt
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
           content:
             application/json:
               schema:
