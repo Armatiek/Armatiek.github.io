@@ -274,6 +274,10 @@ paths:
       responses:
         "204":
           description: Bankrekening object succesvol verwijderd
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
         "400":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
         "401":
@@ -595,6 +599,10 @@ paths:
       responses:
         "204":
           description: Creditcard object succesvol verwijderd
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
         "400":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
         "401":
@@ -720,6 +728,16 @@ paths:
       responses:
         "200":
           description: OK
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
+            Location:
+              description: URI van het opgeslagen object
+              style: simple
+              schema:
+                type: string
+                format: uri
           content:
             application/json:
               schema:
@@ -923,6 +941,10 @@ paths:
       responses:
         "204":
           description: Klant object succesvol verwijderd
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
         "400":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
         "401":
@@ -1188,6 +1210,10 @@ paths:
       responses:
         "204":
           description: Leverancier object succesvol verwijderd
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
         "400":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
         "401":
@@ -1509,6 +1535,10 @@ paths:
       responses:
         "204":
           description: Batterij object succesvol verwijderd
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
         "400":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
         "401":
@@ -1830,6 +1860,10 @@ paths:
       responses:
         "204":
           description: Sportfiets object succesvol verwijderd
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
         "400":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
         "401":
@@ -2151,6 +2185,10 @@ paths:
       responses:
         "204":
           description: Stadsfiets object succesvol verwijderd
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
         "400":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
         "401":
@@ -2472,6 +2510,10 @@ paths:
       responses:
         "204":
           description: Winkel object succesvol verwijderd
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
         "400":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
         "401":
@@ -2793,6 +2835,10 @@ paths:
       responses:
         "204":
           description: Persoon object succesvol verwijderd
+          headers:
+            api-version:
+              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              style: simple
         "400":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
         "401":
