@@ -40,7 +40,7 @@ paths:
       parameters:
       - name: page
         in: query
-        description: Pagina nummer (beginnend bij 0)
+        description: Paginanummer (beginnend bij 0)
         schema:
           type: integer
           format: int32
@@ -56,7 +56,7 @@ paths:
         example: 20
       - name: sort
         in: query
-        description: Sorteer veld
+        description: Sorteerveld
         schema:
           type: string
           default: id
@@ -366,7 +366,7 @@ paths:
       parameters:
       - name: page
         in: query
-        description: Pagina nummer (beginnend bij 0)
+        description: Paginanummer (beginnend bij 0)
         schema:
           type: integer
           format: int32
@@ -382,7 +382,7 @@ paths:
         example: 20
       - name: sort
         in: query
-        description: Sorteer veld
+        description: Sorteerveld
         schema:
           type: string
           default: id
@@ -977,7 +977,7 @@ paths:
       parameters:
       - name: page
         in: query
-        description: Pagina nummer (beginnend bij 0)
+        description: Paginanummer (beginnend bij 0)
         schema:
           type: integer
           format: int32
@@ -993,7 +993,7 @@ paths:
         example: 20
       - name: sort
         in: query
-        description: Sorteer veld
+        description: Sorteerveld
         schema:
           type: string
           default: id
@@ -1302,7 +1302,7 @@ paths:
       parameters:
       - name: page
         in: query
-        description: Pagina nummer (beginnend bij 0)
+        description: Paginanummer (beginnend bij 0)
         schema:
           type: integer
           format: int32
@@ -1318,7 +1318,7 @@ paths:
         example: 20
       - name: sort
         in: query
-        description: Sorteer veld
+        description: Sorteerveld
         schema:
           type: string
           default: id
@@ -1627,7 +1627,7 @@ paths:
       parameters:
       - name: page
         in: query
-        description: Pagina nummer (beginnend bij 0)
+        description: Paginanummer (beginnend bij 0)
         schema:
           type: integer
           format: int32
@@ -1643,7 +1643,7 @@ paths:
         example: 20
       - name: sort
         in: query
-        description: Sorteer veld
+        description: Sorteerveld
         schema:
           type: string
           default: id
@@ -1952,7 +1952,7 @@ paths:
       parameters:
       - name: page
         in: query
-        description: Pagina nummer (beginnend bij 0)
+        description: Paginanummer (beginnend bij 0)
         schema:
           type: integer
           format: int32
@@ -1968,7 +1968,7 @@ paths:
         example: 20
       - name: sort
         in: query
-        description: Sorteer veld
+        description: Sorteerveld
         schema:
           type: string
           default: id
@@ -2277,7 +2277,7 @@ paths:
       parameters:
       - name: page
         in: query
-        description: Pagina nummer (beginnend bij 0)
+        description: Paginanummer (beginnend bij 0)
         schema:
           type: integer
           format: int32
@@ -2293,7 +2293,7 @@ paths:
         example: 20
       - name: sort
         in: query
-        description: Sorteer veld
+        description: Sorteerveld
         schema:
           type: string
           default: id
@@ -2602,7 +2602,7 @@ paths:
       parameters:
       - name: page
         in: query
-        description: Pagina nummer (beginnend bij 0)
+        description: Paginanummer (beginnend bij 0)
         schema:
           type: integer
           format: int32
@@ -2618,7 +2618,7 @@ paths:
         example: 20
       - name: sort
         in: query
-        description: Sorteer veld
+        description: Sorteerveld
         schema:
           type: string
           default: id
@@ -3003,9 +3003,9 @@ components:
       description: Het adres van een contact.
     Klant:
       required:
-      - betalingBankBankrekening
-      - betalingCreditCreditcard
-      - betreftPersoon
+      - betalingBank
+      - betalingCredit
+      - betreft
       - naam
       - nieuwsbrief
       - postadres
@@ -3016,12 +3016,12 @@ components:
           description: De naam van het contact.
         postadres:
           $ref: "#/components/schemas/Adres"
-        betalingBankBankrekening:
+        betalingBank:
           type: array
           description: Een contact doet een betaling met een betaalmiddel.
           items:
             $ref: "#/components/schemas/Bankrekening"
-        betalingCreditCreditcard:
+        betalingCredit:
           type: array
           description: Een contact doet een betaling met een betaalmiddel.
           items:
@@ -3029,7 +3029,7 @@ components:
         nieuwsbrief:
           type: boolean
           description: Indicatie dat de klant de nieuwsbrief wenst te ontvangen.
-        betreftPersoon:
+        betreft:
           $ref: "#/components/schemas/Persoon"
       description: Een persoon die een fiets heeft gekocht.
     PaginatedKlantList:
@@ -3082,8 +3082,8 @@ components:
       description: Reference to another resource
     Leverancier:
       required:
-      - betalingBankBankrekening
-      - betalingCreditCreditcard
+      - betalingBank
+      - betalingCredit
       - kvkNummer
       - naam
       - postadres
@@ -3094,12 +3094,12 @@ components:
           description: De naam van het contact.
         postadres:
           $ref: "#/components/schemas/Adres"
-        betalingBankBankrekening:
+        betalingBank:
           type: array
           description: Een contact doet een betaling met een betaalmiddel.
           items:
             $ref: "#/components/schemas/Bankrekening"
-        betalingCreditCreditcard:
+        betalingCredit:
           type: array
           description: Een contact doet een betaling met een betaalmiddel.
           items:
@@ -3151,7 +3151,7 @@ components:
               $ref: "#/components/schemas/Batterij"
     Sportfiets:
       required:
-      - geleverdDoorLeverancier
+      - geleverdDoor
       - id
       - kettingaandrijving
       - leveringsdatum
@@ -3190,14 +3190,21 @@ components:
           $ref: "#/components/schemas/Reference"
         snaaraandrijving:
           $ref: "#/components/schemas/Reference"
-        aangestuurdDoorBatterij:
+        aangestuurdDoor:
           $ref: "#/components/schemas/Batterij"
-        geleverdDoorLeverancier:
+        geleverdDoor:
           $ref: "#/components/schemas/Leverancier"
-        verkochtAanKlant:
+        verkochtAan:
           $ref: "#/components/schemas/Klant"
         type:
-          $ref: "#/components/schemas/Reference"
+          type: string
+          description: "Het type van de sportfiets, een waarde uit een enumeratieve\
+            \ lijst."
+          enum:
+          - CUBE
+          - BIANCHI
+          - GIANT
+          - CANONDALE
       description: Een fiets bedoeld voor gebruik in sportieve toepassingen.
     PaginatedSportfietsList:
       required:
@@ -3213,7 +3220,7 @@ components:
               $ref: "#/components/schemas/Sportfiets"
     Stadsfiets:
       required:
-      - geleverdDoorLeverancier
+      - geleverdDoor
       - id
       - kettingaandrijving
       - leveringsdatum
@@ -3251,11 +3258,11 @@ components:
           $ref: "#/components/schemas/Reference"
         snaaraandrijving:
           $ref: "#/components/schemas/Reference"
-        aangestuurdDoorBatterij:
+        aangestuurdDoor:
           $ref: "#/components/schemas/Batterij"
-        geleverdDoorLeverancier:
+        geleverdDoor:
           $ref: "#/components/schemas/Leverancier"
-        verkochtAanKlant:
+        verkochtAan:
           $ref: "#/components/schemas/Klant"
       description: Een fiets die is ingericht op gebruik in het stadsverkeer.
     PaginatedStadsfietsList:
@@ -3272,7 +3279,7 @@ components:
               $ref: "#/components/schemas/Stadsfiets"
     Fiets:
       required:
-      - geleverdDoorLeverancier
+      - geleverdDoor
       - id
       - kettingaandrijving
       - leveringsdatum
@@ -3310,11 +3317,11 @@ components:
           $ref: "#/components/schemas/Reference"
         snaaraandrijving:
           $ref: "#/components/schemas/Reference"
-        aangestuurdDoorBatterij:
+        aangestuurdDoor:
           $ref: "#/components/schemas/Batterij"
-        geleverdDoorLeverancier:
+        geleverdDoor:
           $ref: "#/components/schemas/Leverancier"
-        verkochtAanKlant:
+        verkochtAan:
           $ref: "#/components/schemas/Klant"
       description: Een tweewieler.
     Winkel:
@@ -3331,7 +3338,7 @@ components:
           $ref: "#/components/schemas/Reference"
         vlak:
           $ref: "#/components/schemas/Reference"
-        verhandeltFiets:
+        verhandelt:
           type: array
           description: De handelswaar van een fietsenwinkel.
           items:
