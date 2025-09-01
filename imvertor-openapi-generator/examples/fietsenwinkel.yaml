@@ -2974,10 +2974,44 @@ components:
           type: string
           description: Huisnummer met eventuele toevoegingen.
         punt:
-          $ref: "#/components/schemas/Reference"
+          $ref: "#/components/schemas/GM_Point"
         vlak:
-          $ref: "#/components/schemas/Reference"
+          $ref: "#/components/schemas/GM_Polygon"
       description: Het adres van een contact.
+    GM_Point:
+      required:
+      - id
+      - url
+      type: object
+      properties:
+        id:
+          minLength: 1
+          type: string
+          description: Unieke identificatie van de resource waarnaar verwezen wordt
+        url:
+          minLength: 1
+          type: string
+          description: URL-referentie naar de resource waarnaar verwezen wordt
+          format: uri
+          readOnly: true
+      description: De geografische plek waar het adres is geregistreerd.
+    GM_Polygon:
+      required:
+      - id
+      - url
+      type: object
+      properties:
+        id:
+          minLength: 1
+          type: string
+          description: Unieke identificatie van de resource waarnaar verwezen wordt
+        url:
+          minLength: 1
+          type: string
+          description: URL-referentie naar de resource waarnaar verwezen wordt
+          format: uri
+          readOnly: true
+      description: De geografische plek waar het adres is geregistreerd.
     Klant:
       required:
       - betalingBank
@@ -3048,24 +3082,32 @@ components:
           type: string
           description: De achternaam van de Persoon .
       description: Een natuurlijk persoon.
-    Reference:
+    KVKLijst:
       required:
+      - bedrijfsnaam
       - id
+      - nummer
       - url
+      - vestigingsadres
       type: object
       properties:
         id:
-          maxLength: 40
           minLength: 1
           type: string
-          description: ID van de resource waarnaar verwezen wordt
+          description: Unieke identificatie van de resource waarnaar verwezen wordt
         url:
           minLength: 1
           type: string
           description: URL-referentie naar de resource waarnaar verwezen wordt
           format: uri
           readOnly: true
-      description: Reference to another resource
+        nummer:
+          type: string
+        bedrijfsnaam:
+          type: string
+        vestigingsadres:
+          type: string
+      description: Lijst van KVK nummers met daaraan gekoppeld de bedrijfsnaam.
     Leverancier:
       required:
       - betalingBank
@@ -3094,7 +3136,7 @@ components:
           items:
             $ref: "#/components/schemas/Creditcard"
         kvkNummer:
-          $ref: "#/components/schemas/Reference"
+          $ref: "#/components/schemas/KVKLijst"
       description: Een instelling die een fietsen levert.
     PaginatedLeverancierList:
       required:
@@ -3130,8 +3172,40 @@ components:
           type: string
           description: Garantienummer op de Batterij (wanneer e-bike).
         omvang:
-          $ref: "#/components/schemas/Reference"
+          $ref: "#/components/schemas/Dimensies"
       description: De batterij van de E-Bike.
+    Dimensies:
+      required:
+      - breedte
+      - hoogte
+      - id
+      - lengte
+      - url
+      type: object
+      properties:
+        id:
+          minLength: 1
+          type: string
+          description: Unieke identificatie van de resource waarnaar verwezen wordt
+        url:
+          minLength: 1
+          type: string
+          description: URL-referentie naar de resource waarnaar verwezen wordt
+          format: uri
+          readOnly: true
+        lengte:
+          type: integer
+          description: Lengte van het object in mm.
+          format: int32
+        breedte:
+          type: integer
+          description: Breedte van het object in mm.
+          format: int32
+        hoogte:
+          type: integer
+          description: Hoogte van het object in mm.
+          format: int32
+      description: De dimensies van een 3-dimensionaal object.
     PaginatedBatterijList:
       required:
       - results
@@ -3144,6 +3218,48 @@ components:
             type: array
             items:
               $ref: "#/components/schemas/Batterij"
+    KettingLijst:
+      required:
+      - id
+      - url
+      - value
+      type: object
+      properties:
+        id:
+          minLength: 1
+          type: string
+          description: Unieke identificatie van de resource waarnaar verwezen wordt
+        url:
+          minLength: 1
+          type: string
+          description: URL-referentie naar de resource waarnaar verwezen wordt
+          format: uri
+          readOnly: true
+        value:
+          type: string
+          description: Lijst van ketting-typen voor fietsen met ketting aandrijving.
+      description: Lijst van ketting-typen voor fietsen met ketting aandrijving.
+    SnaarLijst:
+      required:
+      - id
+      - url
+      - value
+      type: object
+      properties:
+        id:
+          minLength: 1
+          type: string
+          description: Unieke identificatie van de resource waarnaar verwezen wordt
+        url:
+          minLength: 1
+          type: string
+          description: URL-referentie naar de resource waarnaar verwezen wordt
+          format: uri
+          readOnly: true
+        value:
+          type: string
+          description: Lijst van snaar-typen voor fietsen met snaaraandrijving.
+      description: Lijst van snaar-typen voor fietsen met snaaraandrijving.
     Sportfiets:
       required:
       - geleverdDoor
@@ -3169,7 +3285,7 @@ components:
           description: Datum waarop de fiets is geleverd aan de winkel.
           format: date
         omvang:
-          $ref: "#/components/schemas/Reference"
+          $ref: "#/components/schemas/Dimensies"
         typenummer:
           type: string
           description: Het type nummer van de fiets.
@@ -3185,9 +3301,9 @@ components:
           description: Het volgummer van de fiets in één levering.
           format: int32
         kettingaandrijving:
-          $ref: "#/components/schemas/Reference"
+          $ref: "#/components/schemas/KettingLijst"
         snaaraandrijving:
-          $ref: "#/components/schemas/Reference"
+          $ref: "#/components/schemas/SnaarLijst"
         aangestuurdDoor:
           $ref: "#/components/schemas/Batterij"
         geleverdDoor:
@@ -3240,7 +3356,7 @@ components:
           description: Datum waarop de fiets is geleverd aan de winkel.
           format: date
         omvang:
-          $ref: "#/components/schemas/Reference"
+          $ref: "#/components/schemas/Dimensies"
         typenummer:
           type: string
           description: Het type nummer van de fiets.
@@ -3256,9 +3372,9 @@ components:
           description: Het volgummer van de fiets in één levering.
           format: int32
         kettingaandrijving:
-          $ref: "#/components/schemas/Reference"
+          $ref: "#/components/schemas/KettingLijst"
         snaaraandrijving:
-          $ref: "#/components/schemas/Reference"
+          $ref: "#/components/schemas/SnaarLijst"
         aangestuurdDoor:
           $ref: "#/components/schemas/Batterij"
         geleverdDoor:
@@ -3302,7 +3418,7 @@ components:
           description: Datum waarop de fiets is geleverd aan de winkel.
           format: date
         omvang:
-          $ref: "#/components/schemas/Reference"
+          $ref: "#/components/schemas/Dimensies"
         typenummer:
           type: string
           description: Het type nummer van de fiets.
@@ -3318,9 +3434,9 @@ components:
           description: Het volgummer van de fiets in één levering.
           format: int32
         kettingaandrijving:
-          $ref: "#/components/schemas/Reference"
+          $ref: "#/components/schemas/KettingLijst"
         snaaraandrijving:
-          $ref: "#/components/schemas/Reference"
+          $ref: "#/components/schemas/SnaarLijst"
         aangestuurdDoor:
           $ref: "#/components/schemas/Batterij"
         geleverdDoor:
@@ -3342,9 +3458,9 @@ components:
           type: string
           description: Naam van de winkel.
         punt:
-          $ref: "#/components/schemas/Reference"
+          $ref: "#/components/schemas/GM_Point"
         vlak:
-          $ref: "#/components/schemas/Reference"
+          $ref: "#/components/schemas/GM_Polygon"
         verhandelt:
           type: array
           description: De handelswaar van een fietsenwinkel.
