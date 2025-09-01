@@ -143,7 +143,7 @@ paths:
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
         "503":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
-  /v1/bankrekening/{id}:
+  /v1/bankrekening/{rekeningnummer}:
     get:
       tags:
       - Bankrekening
@@ -152,13 +152,12 @@ paths:
         unieke identificatie
       operationId: getBankrekeningById
       parameters:
-      - name: id
+      - name: rekeningnummer
         in: path
         description: Bankrekening ID
         required: true
         schema:
-          type: integer
-          format: int64
+          type: string
         example: 1
       responses:
         "200":
@@ -201,13 +200,12 @@ paths:
         object
       operationId: updateBankrekening
       parameters:
-      - name: id
+      - name: rekeningnummer
         in: path
         description: Bankrekening ID
         required: true
         schema:
-          type: integer
-          format: int64
+          type: string
         example: 1
       requestBody:
         description: Complete Bankrekening update data
@@ -263,13 +261,12 @@ paths:
         systeem
       operationId: deleteBankrekening
       parameters:
-      - name: id
+      - name: rekeningnummer
         in: path
         description: Bankrekening ID
         required: true
         schema:
-          type: integer
-          format: int64
+          type: string
         example: 1
       responses:
         "204":
@@ -308,16 +305,15 @@ paths:
         de aangeleverde velden te overschrijven
       operationId: patchBankrekening
       parameters:
-      - name: id
+      - name: rekeningnummer
         in: path
         description: Bankrekening ID
         required: true
         schema:
-          type: integer
-          format: int64
+          type: string
         example: 1
       requestBody:
-        description: Complete Bankrekening update data
+        description: Bankrekening update data
         content:
           application/json:
             schema:
@@ -469,7 +465,7 @@ paths:
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
         "503":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
-  /v1/creditcard/{id}:
+  /v1/creditcard/{kaartnummer}:
     get:
       tags:
       - Creditcard
@@ -478,13 +474,12 @@ paths:
         unieke identificatie
       operationId: getCreditcardById
       parameters:
-      - name: id
+      - name: kaartnummer
         in: path
         description: Creditcard ID
         required: true
         schema:
-          type: integer
-          format: int64
+          type: string
         example: 1
       responses:
         "200":
@@ -527,13 +522,12 @@ paths:
         object
       operationId: updateCreditcard
       parameters:
-      - name: id
+      - name: kaartnummer
         in: path
         description: Creditcard ID
         required: true
         schema:
-          type: integer
-          format: int64
+          type: string
         example: 1
       requestBody:
         description: Complete Creditcard update data
@@ -588,13 +582,12 @@ paths:
       description: Verwijderd een specifiek Creditcard object permanent uit het systeem
       operationId: deleteCreditcard
       parameters:
-      - name: id
+      - name: kaartnummer
         in: path
         description: Creditcard ID
         required: true
         schema:
-          type: integer
-          format: int64
+          type: string
         example: 1
       responses:
         "204":
@@ -633,16 +626,15 @@ paths:
         de aangeleverde velden te overschrijven
       operationId: patchCreditcard
       parameters:
-      - name: id
+      - name: kaartnummer
         in: path
         description: Creditcard ID
         required: true
         schema:
-          type: integer
-          format: int64
+          type: string
         example: 1
       requestBody:
-        description: Complete Creditcard update data
+        description: Creditcard update data
         content:
           application/json:
             schema:
@@ -812,7 +804,7 @@ paths:
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
         "503":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
-  /v1/klant/{id}:
+  /v1/klant/{naam}:
     get:
       tags:
       - Klant
@@ -821,13 +813,12 @@ paths:
         identificatie
       operationId: getKlantById
       parameters:
-      - name: id
+      - name: naam
         in: path
         description: Klant ID
         required: true
         schema:
-          type: integer
-          format: int64
+          type: string
         example: 1
       responses:
         "200":
@@ -869,13 +860,12 @@ paths:
       description: Maakt een nieuw of overschrijft (volledig) een bestaand Klant object
       operationId: updateKlant
       parameters:
-      - name: id
+      - name: naam
         in: path
         description: Klant ID
         required: true
         schema:
-          type: integer
-          format: int64
+          type: string
         example: 1
       requestBody:
         description: Complete Klant update data
@@ -930,13 +920,12 @@ paths:
       description: Verwijderd een specifiek Klant object permanent uit het systeem
       operationId: deleteKlant
       parameters:
-      - name: id
+      - name: naam
         in: path
         description: Klant ID
         required: true
         schema:
-          type: integer
-          format: int64
+          type: string
         example: 1
       responses:
         "204":
@@ -1080,7 +1069,7 @@ paths:
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
         "503":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
-  /v1/leverancier/{id}:
+  /v1/leverancier/{naam}:
     get:
       tags:
       - Leverancier
@@ -1089,13 +1078,12 @@ paths:
         unieke identificatie
       operationId: getLeverancierById
       parameters:
-      - name: id
+      - name: naam
         in: path
         description: Leverancier ID
         required: true
         schema:
-          type: integer
-          format: int64
+          type: string
         example: 1
       responses:
         "200":
@@ -1138,13 +1126,12 @@ paths:
         object
       operationId: updateLeverancier
       parameters:
-      - name: id
+      - name: naam
         in: path
         description: Leverancier ID
         required: true
         schema:
-          type: integer
-          format: int64
+          type: string
         example: 1
       requestBody:
         description: Complete Leverancier update data
@@ -1199,13 +1186,12 @@ paths:
       description: Verwijderd een specifiek Leverancier object permanent uit het systeem
       operationId: deleteLeverancier
       parameters:
-      - name: id
+      - name: naam
         in: path
         description: Leverancier ID
         required: true
         schema:
-          type: integer
-          format: int64
+          type: string
         example: 1
       responses:
         "204":
@@ -1244,16 +1230,15 @@ paths:
         de aangeleverde velden te overschrijven
       operationId: patchLeverancier
       parameters:
-      - name: id
+      - name: naam
         in: path
         description: Leverancier ID
         required: true
         schema:
-          type: integer
-          format: int64
+          type: string
         example: 1
       requestBody:
-        description: Complete Leverancier update data
+        description: Leverancier update data
         content:
           application/json:
             schema:
@@ -1419,8 +1404,7 @@ paths:
         description: Batterij ID
         required: true
         schema:
-          type: integer
-          format: int64
+          type: string
         example: 1
       responses:
         "200":
@@ -1468,8 +1452,7 @@ paths:
         description: Batterij ID
         required: true
         schema:
-          type: integer
-          format: int64
+          type: string
         example: 1
       requestBody:
         description: Complete Batterij update data
@@ -1529,8 +1512,7 @@ paths:
         description: Batterij ID
         required: true
         schema:
-          type: integer
-          format: int64
+          type: string
         example: 1
       responses:
         "204":
@@ -1574,11 +1556,10 @@ paths:
         description: Batterij ID
         required: true
         schema:
-          type: integer
-          format: int64
+          type: string
         example: 1
       requestBody:
-        description: Complete Batterij update data
+        description: Batterij update data
         content:
           application/json:
             schema:
@@ -1744,8 +1725,7 @@ paths:
         description: Sportfiets ID
         required: true
         schema:
-          type: integer
-          format: int64
+          type: string
         example: 1
       responses:
         "200":
@@ -1793,8 +1773,7 @@ paths:
         description: Sportfiets ID
         required: true
         schema:
-          type: integer
-          format: int64
+          type: string
         example: 1
       requestBody:
         description: Complete Sportfiets update data
@@ -1854,8 +1833,7 @@ paths:
         description: Sportfiets ID
         required: true
         schema:
-          type: integer
-          format: int64
+          type: string
         example: 1
       responses:
         "204":
@@ -1899,11 +1877,10 @@ paths:
         description: Sportfiets ID
         required: true
         schema:
-          type: integer
-          format: int64
+          type: string
         example: 1
       requestBody:
-        description: Complete Sportfiets update data
+        description: Sportfiets update data
         content:
           application/json:
             schema:
@@ -2069,8 +2046,7 @@ paths:
         description: Stadsfiets ID
         required: true
         schema:
-          type: integer
-          format: int64
+          type: string
         example: 1
       responses:
         "200":
@@ -2118,8 +2094,7 @@ paths:
         description: Stadsfiets ID
         required: true
         schema:
-          type: integer
-          format: int64
+          type: string
         example: 1
       requestBody:
         description: Complete Stadsfiets update data
@@ -2179,8 +2154,7 @@ paths:
         description: Stadsfiets ID
         required: true
         schema:
-          type: integer
-          format: int64
+          type: string
         example: 1
       responses:
         "204":
@@ -2224,11 +2198,10 @@ paths:
         description: Stadsfiets ID
         required: true
         schema:
-          type: integer
-          format: int64
+          type: string
         example: 1
       requestBody:
-        description: Complete Stadsfiets update data
+        description: Stadsfiets update data
         content:
           application/json:
             schema:
@@ -2380,7 +2353,7 @@ paths:
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
         "503":
           $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
-  /v1/winkel/{id}:
+  /v1/winkel/{naam}:
     get:
       tags:
       - Winkel
@@ -2389,13 +2362,12 @@ paths:
         identificatie
       operationId: getWinkelById
       parameters:
-      - name: id
+      - name: naam
         in: path
         description: Winkel ID
         required: true
         schema:
-          type: integer
-          format: int64
+          type: string
         example: 1
       responses:
         "200":
@@ -2438,13 +2410,12 @@ paths:
         object
       operationId: updateWinkel
       parameters:
-      - name: id
+      - name: naam
         in: path
         description: Winkel ID
         required: true
         schema:
-          type: integer
-          format: int64
+          type: string
         example: 1
       requestBody:
         description: Complete Winkel update data
@@ -2499,13 +2470,12 @@ paths:
       description: Verwijderd een specifiek Winkel object permanent uit het systeem
       operationId: deleteWinkel
       parameters:
-      - name: id
+      - name: naam
         in: path
         description: Winkel ID
         required: true
         schema:
-          type: integer
-          format: int64
+          type: string
         example: 1
       responses:
         "204":
@@ -2544,16 +2514,15 @@ paths:
         aangeleverde velden te overschrijven
       operationId: patchWinkel
       parameters:
-      - name: id
+      - name: naam
         in: path
         description: Winkel ID
         required: true
         schema:
-          type: integer
-          format: int64
+          type: string
         example: 1
       requestBody:
-        description: Complete Winkel update data
+        description: Winkel update data
         content:
           application/json:
             schema:
@@ -2719,8 +2688,7 @@ paths:
         description: Persoon ID
         required: true
         schema:
-          type: integer
-          format: int64
+          type: string
         example: 1
       responses:
         "200":
@@ -2768,8 +2736,7 @@ paths:
         description: Persoon ID
         required: true
         schema:
-          type: integer
-          format: int64
+          type: string
         example: 1
       requestBody:
         description: Complete Persoon update data
@@ -2829,8 +2796,7 @@ paths:
         description: Persoon ID
         required: true
         schema:
-          type: integer
-          format: int64
+          type: string
         example: 1
       responses:
         "204":
@@ -2874,11 +2840,10 @@ paths:
         description: Persoon ID
         required: true
         schema:
-          type: integer
-          format: int64
+          type: string
         example: 1
       requestBody:
-        description: Complete Persoon update data
+        description: Persoon update data
         content:
           application/json:
             schema:
@@ -2924,6 +2889,9 @@ components:
       - rekeningnummer
       type: object
       properties:
+        url:
+          type: string
+          writeOnly: true
         rekeningnummer:
           type: string
           description: Nummer van de rekening.
@@ -2959,6 +2927,9 @@ components:
       - verloopdatum
       type: object
       properties:
+        url:
+          type: string
+          writeOnly: true
         kaartnummer:
           type: string
           description: Nummer van de kaart.
@@ -2983,13 +2954,19 @@ components:
       - huisnummer
       - id
       - postcode
+      - url
       type: object
       properties:
         id:
-          type: integer
-          description: Field that is not part of the model but added to define an
-            identifying field for this entity
-          format: int64
+          minLength: 1
+          type: string
+          description: Unieke identificatie van de resource waarnaar verwezen wordt
+        url:
+          minLength: 1
+          type: string
+          description: URL-referentie naar de resource waarnaar verwezen wordt
+          format: uri
+          readOnly: true
         postcode:
           type: string
           description: Postcode in een adres.
@@ -3011,6 +2988,9 @@ components:
       - postadres
       type: object
       properties:
+        url:
+          type: string
+          writeOnly: true
         naam:
           type: string
           description: De naam van het contact.
@@ -3048,13 +3028,19 @@ components:
       required:
       - achternaam
       - id
+      - url
       type: object
       properties:
         id:
-          type: integer
-          description: Field that is not part of the model but added to define an
-            identifying field for this entity
-          format: int64
+          minLength: 1
+          type: string
+          description: Unieke identificatie van de resource waarnaar verwezen wordt
+        url:
+          minLength: 1
+          type: string
+          description: URL-referentie naar de resource waarnaar verwezen wordt
+          format: uri
+          readOnly: true
         voornaam:
           type: string
           description: "De roepnaam van een Persoon , vol uitgeschreven."
@@ -3089,6 +3075,9 @@ components:
       - postadres
       type: object
       properties:
+        url:
+          type: string
+          writeOnly: true
         naam:
           type: string
           description: De naam van het contact.
@@ -3124,13 +3113,19 @@ components:
       - garantienummer
       - id
       - omvang
+      - url
       type: object
       properties:
         id:
-          type: integer
-          description: Field that is not part of the model but added to define an
-            identifying field for this entity
-          format: int64
+          minLength: 1
+          type: string
+          description: Unieke identificatie van de resource waarnaar verwezen wordt
+        url:
+          minLength: 1
+          type: string
+          description: URL-referentie naar de resource waarnaar verwezen wordt
+          format: uri
+          readOnly: true
         garantienummer:
           type: string
           description: Garantienummer op de Batterij (wanneer e-bike).
@@ -3163,6 +3158,9 @@ components:
       - volgnummer
       type: object
       properties:
+        url:
+          type: string
+          writeOnly: true
         id:
           type: string
           description: De identificatie van de fiets.
@@ -3231,6 +3229,9 @@ components:
       - volgnummer
       type: object
       properties:
+        url:
+          type: string
+          writeOnly: true
         id:
           type: string
           description: De identificatie van de fiets.
@@ -3290,6 +3291,9 @@ components:
       - volgnummer
       type: object
       properties:
+        url:
+          type: string
+          writeOnly: true
         id:
           type: string
           description: De identificatie van de fiets.
@@ -3331,6 +3335,9 @@ components:
       - vlak
       type: object
       properties:
+        url:
+          type: string
+          writeOnly: true
         naam:
           type: string
           description: Naam van de winkel.
