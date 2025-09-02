@@ -56,12 +56,12 @@ components:
       description: No content
       headers:
         api-version:
-          $ref: "#/components/headers/api_version"
+          $ref: "#/components/headers/API-Version"
     '400':
       description: Bad Request
       headers:
         api-version:
-          $ref: "#/components/headers/api_version"
+          $ref: "#/components/headers/API-Version"
       content:
         application/problem+json:
           schema:
@@ -82,7 +82,7 @@ components:
       description: Unauthorized
       headers:
         api-version:
-          $ref: "#/components/headers/api_version"
+          $ref: "#/components/headers/API-Version"
       content:
         application/problem+json:
           schema:
@@ -98,7 +98,7 @@ components:
       description: Forbidden
       headers:
         api-version:
-          $ref: "#/components/headers/api_version"
+          $ref: "#/components/headers/API-Version"
       content:
         application/problem+json:
           schema:
@@ -114,7 +114,7 @@ components:
       description: Not Found
       headers:
         api-version:
-          $ref: "#/components/headers/api_version"
+          $ref: "#/components/headers/API-Version"
       content:
         application/problem+json:
           schema:
@@ -130,7 +130,7 @@ components:
       description: Method Not Allowed
       headers:
         api-version:
-          $ref: "#/components/headers/api_version"
+          $ref: "#/components/headers/API-Version"
       content:
         application/problem+json:
           schema:
@@ -146,7 +146,7 @@ components:
       description: Not Acceptable
       headers:
         api-version:
-          $ref: "#/components/headers/api_version"
+          $ref: "#/components/headers/API-Version"
       content:
         application/problem+json:
           schema:
@@ -162,7 +162,7 @@ components:
       description: Conflict
       headers:
         api-version:
-          $ref: "#/components/headers/api_version"
+          $ref: "#/components/headers/API-Version"
       content:
         application/problem+json:
           schema:
@@ -178,7 +178,7 @@ components:
       description: Gone
       headers:
         api-version:
-          $ref: "#/components/headers/api_version"
+          $ref: "#/components/headers/API-Version"
       content:
         application/problem+json:
           schema:
@@ -194,7 +194,7 @@ components:
       description: Precondition failed
       headers:
         api-version:
-          $ref: "#/components/headers/api_version"
+          $ref: "#/components/headers/API-Version"
       content:
         application/problem+json:
           schema:
@@ -210,7 +210,7 @@ components:
       description: Unsupported Media Type
       headers:
         api-version:
-          $ref: "#/components/headers/api_version"
+          $ref: "#/components/headers/API-Version"
       content:
         application/problem+json:
           schema:
@@ -226,7 +226,7 @@ components:
       description: Unprocessable entity
       headers:
         api-version:
-          $ref: "#/components/headers/api_version"
+          $ref: "#/components/headers/API-Version"
       content:
         application/problem+json:
           schema:
@@ -242,7 +242,7 @@ components:
       description: Too Many Requests
       headers:
         api-version:
-          $ref: "#/components/headers/api_version"
+          $ref: "#/components/headers/API-Version"
       content:
         application/problem+json:
           schema:
@@ -258,7 +258,7 @@ components:
       description: Internal Server Error
       headers:
         api-version:
-          $ref: "#/components/headers/api_version"
+          $ref: "#/components/headers/API-Version"
       content:
         application/problem+json:
           schema:
@@ -274,7 +274,7 @@ components:
       description: Not Implemented
       headers:
         api-version:
-          $ref: "#/components/headers/api_version"
+          $ref: "#/components/headers/API-Version"
       content:
         application/problem+json:
           schema:
@@ -290,7 +290,7 @@ components:
       description: Service Unavailable
       headers:
         api-version:
-          $ref: "#/components/headers/api_version"
+          $ref: "#/components/headers/API-Version"
       content:
         application/problem+json:
           schema:
@@ -306,7 +306,7 @@ components:
       description: Er is een onverwachte fout opgetreden
       headers:
         api-version:
-          $ref: "#/components/headers/api_version"
+          $ref: "#/components/headers/API-Version"
       content:
         application/problem+json:
           schema:
