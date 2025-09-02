@@ -38,60 +38,40 @@ paths:
       description: Retourneert een gepagineerde lijst van alle Bankrekening objecten
       operationId: getAllBankrekening
       parameters:
-      - name: page
-        in: query
-        description: Paginanummer (beginnend bij 0)
-        schema:
-          type: integer
-          format: int32
-          default: 0
-        example: 0
-      - name: size
-        in: query
-        description: Aantal objecten per pagina
-        schema:
-          type: integer
-          format: int32
-          default: 20
-        example: 20
-      - name: sort
-        in: query
-        description: Sorteerveld
-        schema:
-          type: string
-          default: id
-        example: name
+      - $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/page
+      - $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/pageSize
+      - $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/sortField
       responses:
         "200":
           description: OK
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/PaginatedBankrekeningList"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
     post:
       tags:
       - Bankrekening
@@ -111,7 +91,7 @@ paths:
           description: Bankrekening succesvol aangemaakt
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
             Location:
               description: URI van het opgeslagen object
@@ -124,25 +104,25 @@ paths:
               schema:
                 $ref: "#/components/schemas/Bankrekening"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
   /v1/bankrekening/{rekeningnummer}:
     get:
       tags:
@@ -164,34 +144,34 @@ paths:
           description: Bankrekening was gevonden
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Bankrekening"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "404":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
     put:
       tags:
       - Bankrekening
@@ -219,7 +199,7 @@ paths:
           description: Bankrekening object succesvol aangemaakt/overschreven
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
             Location:
               description: URI van het opgeslagen object
@@ -232,27 +212,27 @@ paths:
               schema:
                 $ref: "#/components/schemas/Bankrekening"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "404":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
     delete:
       tags:
       - Bankrekening
@@ -273,30 +253,30 @@ paths:
           description: Bankrekening object succesvol verwijderd
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "404":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
     patch:
       tags:
       - Bankrekening
@@ -324,34 +304,34 @@ paths:
           description: Bankrekening succesvol bijgewerkt
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Bankrekening"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "404":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
   /v1/creditcard:
     get:
       tags:
@@ -360,60 +340,40 @@ paths:
       description: Retourneert een gepagineerde lijst van alle Creditcard objecten
       operationId: getAllCreditcard
       parameters:
-      - name: page
-        in: query
-        description: Paginanummer (beginnend bij 0)
-        schema:
-          type: integer
-          format: int32
-          default: 0
-        example: 0
-      - name: size
-        in: query
-        description: Aantal objecten per pagina
-        schema:
-          type: integer
-          format: int32
-          default: 20
-        example: 20
-      - name: sort
-        in: query
-        description: Sorteerveld
-        schema:
-          type: string
-          default: id
-        example: name
+      - $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/page
+      - $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/pageSize
+      - $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/sortField
       responses:
         "200":
           description: OK
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/PaginatedCreditcardList"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
     post:
       tags:
       - Creditcard
@@ -433,7 +393,7 @@ paths:
           description: Creditcard succesvol aangemaakt
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
             Location:
               description: URI van het opgeslagen object
@@ -446,25 +406,25 @@ paths:
               schema:
                 $ref: "#/components/schemas/Creditcard"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
   /v1/creditcard/{kaartnummer}:
     get:
       tags:
@@ -486,34 +446,34 @@ paths:
           description: Creditcard was gevonden
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Creditcard"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "404":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
     put:
       tags:
       - Creditcard
@@ -541,7 +501,7 @@ paths:
           description: Creditcard object succesvol aangemaakt/overschreven
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
             Location:
               description: URI van het opgeslagen object
@@ -554,27 +514,27 @@ paths:
               schema:
                 $ref: "#/components/schemas/Creditcard"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "404":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
     delete:
       tags:
       - Creditcard
@@ -594,30 +554,30 @@ paths:
           description: Creditcard object succesvol verwijderd
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "404":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
     patch:
       tags:
       - Creditcard
@@ -645,34 +605,34 @@ paths:
           description: Creditcard succesvol bijgewerkt
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Creditcard"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "404":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
   /v1/klant:
     get:
       tags:
@@ -682,29 +642,9 @@ paths:
         and/or address
       operationId: getKlantenByNameAndAddress
       parameters:
-      - name: page
-        in: query
-        description: Page number (0-based)
-        schema:
-          type: integer
-          format: int32
-          default: 0
-        example: 0
-      - name: size
-        in: query
-        description: Number of items per page
-        schema:
-          type: integer
-          format: int32
-          default: 20
-        example: 20
-      - name: sort
-        in: query
-        description: Field to sort by
-        schema:
-          type: string
-          default: id
-        example: name
+      - $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/page
+      - $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/pageSize
+      - $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/sortField
       - name: naam
         in: query
         description: Name of the Klant
@@ -722,7 +662,7 @@ paths:
           description: OK
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
             Location:
               description: URI van het opgeslagen object
@@ -772,7 +712,7 @@ paths:
           description: Klant succesvol aangemaakt
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
             Location:
               description: URI van het opgeslagen object
@@ -785,25 +725,25 @@ paths:
               schema:
                 $ref: "#/components/schemas/Klant"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
   /v1/klant/{naam}:
     get:
       tags:
@@ -825,34 +765,34 @@ paths:
           description: Klant was gevonden
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Klant"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "404":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
     put:
       tags:
       - Klant
@@ -879,7 +819,7 @@ paths:
           description: Klant object succesvol aangemaakt/overschreven
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
             Location:
               description: URI van het opgeslagen object
@@ -892,27 +832,27 @@ paths:
               schema:
                 $ref: "#/components/schemas/Klant"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "404":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
     delete:
       tags:
       - Klant
@@ -932,30 +872,30 @@ paths:
           description: Klant object succesvol verwijderd
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "404":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
   /v1/leverancier:
     get:
       tags:
@@ -964,60 +904,40 @@ paths:
       description: Retourneert een gepagineerde lijst van alle Leverancier objecten
       operationId: getAllLeverancier
       parameters:
-      - name: page
-        in: query
-        description: Paginanummer (beginnend bij 0)
-        schema:
-          type: integer
-          format: int32
-          default: 0
-        example: 0
-      - name: size
-        in: query
-        description: Aantal objecten per pagina
-        schema:
-          type: integer
-          format: int32
-          default: 20
-        example: 20
-      - name: sort
-        in: query
-        description: Sorteerveld
-        schema:
-          type: string
-          default: id
-        example: name
+      - $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/page
+      - $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/pageSize
+      - $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/sortField
       responses:
         "200":
           description: OK
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/PaginatedLeverancierList"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
     post:
       tags:
       - Leverancier
@@ -1037,7 +957,7 @@ paths:
           description: Leverancier succesvol aangemaakt
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
             Location:
               description: URI van het opgeslagen object
@@ -1050,25 +970,25 @@ paths:
               schema:
                 $ref: "#/components/schemas/Leverancier"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
   /v1/leverancier/{naam}:
     get:
       tags:
@@ -1090,34 +1010,34 @@ paths:
           description: Leverancier was gevonden
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Leverancier"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "404":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
     put:
       tags:
       - Leverancier
@@ -1145,7 +1065,7 @@ paths:
           description: Leverancier object succesvol aangemaakt/overschreven
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
             Location:
               description: URI van het opgeslagen object
@@ -1158,27 +1078,27 @@ paths:
               schema:
                 $ref: "#/components/schemas/Leverancier"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "404":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
     delete:
       tags:
       - Leverancier
@@ -1198,30 +1118,30 @@ paths:
           description: Leverancier object succesvol verwijderd
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "404":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
     patch:
       tags:
       - Leverancier
@@ -1249,34 +1169,34 @@ paths:
           description: Leverancier succesvol bijgewerkt
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Leverancier"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "404":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
   /v1/batterij:
     get:
       tags:
@@ -1285,60 +1205,40 @@ paths:
       description: Retourneert een gepagineerde lijst van alle Batterij objecten
       operationId: getAllBatterij
       parameters:
-      - name: page
-        in: query
-        description: Paginanummer (beginnend bij 0)
-        schema:
-          type: integer
-          format: int32
-          default: 0
-        example: 0
-      - name: size
-        in: query
-        description: Aantal objecten per pagina
-        schema:
-          type: integer
-          format: int32
-          default: 20
-        example: 20
-      - name: sort
-        in: query
-        description: Sorteerveld
-        schema:
-          type: string
-          default: id
-        example: name
+      - $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/page
+      - $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/pageSize
+      - $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/sortField
       responses:
         "200":
           description: OK
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/PaginatedBatterijList"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
     post:
       tags:
       - Batterij
@@ -1358,7 +1258,7 @@ paths:
           description: Batterij succesvol aangemaakt
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
             Location:
               description: URI van het opgeslagen object
@@ -1371,25 +1271,25 @@ paths:
               schema:
                 $ref: "#/components/schemas/Batterij"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
   /v1/batterij/{id}:
     get:
       tags:
@@ -1411,34 +1311,34 @@ paths:
           description: Batterij was gevonden
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Batterij"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "404":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
     put:
       tags:
       - Batterij
@@ -1466,7 +1366,7 @@ paths:
           description: Batterij object succesvol aangemaakt/overschreven
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
             Location:
               description: URI van het opgeslagen object
@@ -1479,27 +1379,27 @@ paths:
               schema:
                 $ref: "#/components/schemas/Batterij"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "404":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
     delete:
       tags:
       - Batterij
@@ -1519,30 +1419,30 @@ paths:
           description: Batterij object succesvol verwijderd
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "404":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
     patch:
       tags:
       - Batterij
@@ -1570,34 +1470,34 @@ paths:
           description: Batterij succesvol bijgewerkt
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Batterij"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "404":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
   /v1/sportfiets:
     get:
       tags:
@@ -1606,60 +1506,40 @@ paths:
       description: Retourneert een gepagineerde lijst van alle Sportfiets objecten
       operationId: getAllSportfiets
       parameters:
-      - name: page
-        in: query
-        description: Paginanummer (beginnend bij 0)
-        schema:
-          type: integer
-          format: int32
-          default: 0
-        example: 0
-      - name: size
-        in: query
-        description: Aantal objecten per pagina
-        schema:
-          type: integer
-          format: int32
-          default: 20
-        example: 20
-      - name: sort
-        in: query
-        description: Sorteerveld
-        schema:
-          type: string
-          default: id
-        example: name
+      - $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/page
+      - $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/pageSize
+      - $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/sortField
       responses:
         "200":
           description: OK
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/PaginatedSportfietsList"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
     post:
       tags:
       - Sportfiets
@@ -1679,7 +1559,7 @@ paths:
           description: Sportfiets succesvol aangemaakt
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
             Location:
               description: URI van het opgeslagen object
@@ -1692,25 +1572,25 @@ paths:
               schema:
                 $ref: "#/components/schemas/Sportfiets"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
   /v1/sportfiets/{id}:
     get:
       tags:
@@ -1732,34 +1612,34 @@ paths:
           description: Sportfiets was gevonden
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Sportfiets"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "404":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
     put:
       tags:
       - Sportfiets
@@ -1787,7 +1667,7 @@ paths:
           description: Sportfiets object succesvol aangemaakt/overschreven
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
             Location:
               description: URI van het opgeslagen object
@@ -1800,27 +1680,27 @@ paths:
               schema:
                 $ref: "#/components/schemas/Sportfiets"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "404":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
     delete:
       tags:
       - Sportfiets
@@ -1840,30 +1720,30 @@ paths:
           description: Sportfiets object succesvol verwijderd
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "404":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
     patch:
       tags:
       - Sportfiets
@@ -1891,34 +1771,34 @@ paths:
           description: Sportfiets succesvol bijgewerkt
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Sportfiets"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "404":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
   /v1/stadsfiets:
     get:
       tags:
@@ -1927,60 +1807,40 @@ paths:
       description: Retourneert een gepagineerde lijst van alle Stadsfiets objecten
       operationId: getAllStadsfiets
       parameters:
-      - name: page
-        in: query
-        description: Paginanummer (beginnend bij 0)
-        schema:
-          type: integer
-          format: int32
-          default: 0
-        example: 0
-      - name: size
-        in: query
-        description: Aantal objecten per pagina
-        schema:
-          type: integer
-          format: int32
-          default: 20
-        example: 20
-      - name: sort
-        in: query
-        description: Sorteerveld
-        schema:
-          type: string
-          default: id
-        example: name
+      - $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/page
+      - $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/pageSize
+      - $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/sortField
       responses:
         "200":
           description: OK
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/PaginatedStadsfietsList"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
     post:
       tags:
       - Stadsfiets
@@ -2000,7 +1860,7 @@ paths:
           description: Stadsfiets succesvol aangemaakt
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
             Location:
               description: URI van het opgeslagen object
@@ -2013,25 +1873,25 @@ paths:
               schema:
                 $ref: "#/components/schemas/Stadsfiets"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
   /v1/stadsfiets/{id}:
     get:
       tags:
@@ -2053,34 +1913,34 @@ paths:
           description: Stadsfiets was gevonden
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Stadsfiets"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "404":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
     put:
       tags:
       - Stadsfiets
@@ -2108,7 +1968,7 @@ paths:
           description: Stadsfiets object succesvol aangemaakt/overschreven
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
             Location:
               description: URI van het opgeslagen object
@@ -2121,27 +1981,27 @@ paths:
               schema:
                 $ref: "#/components/schemas/Stadsfiets"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "404":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
     delete:
       tags:
       - Stadsfiets
@@ -2161,30 +2021,30 @@ paths:
           description: Stadsfiets object succesvol verwijderd
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "404":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
     patch:
       tags:
       - Stadsfiets
@@ -2212,34 +2072,34 @@ paths:
           description: Stadsfiets succesvol bijgewerkt
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Stadsfiets"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "404":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
   /v1/winkel:
     get:
       tags:
@@ -2248,60 +2108,40 @@ paths:
       description: Retourneert een gepagineerde lijst van alle Winkel objecten
       operationId: getAllWinkel
       parameters:
-      - name: page
-        in: query
-        description: Paginanummer (beginnend bij 0)
-        schema:
-          type: integer
-          format: int32
-          default: 0
-        example: 0
-      - name: size
-        in: query
-        description: Aantal objecten per pagina
-        schema:
-          type: integer
-          format: int32
-          default: 20
-        example: 20
-      - name: sort
-        in: query
-        description: Sorteerveld
-        schema:
-          type: string
-          default: id
-        example: name
+      - $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/page
+      - $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/pageSize
+      - $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/sortField
       responses:
         "200":
           description: OK
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/PaginatedWinkelList"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
     post:
       tags:
       - Winkel
@@ -2321,7 +2161,7 @@ paths:
           description: Winkel succesvol aangemaakt
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
             Location:
               description: URI van het opgeslagen object
@@ -2334,25 +2174,25 @@ paths:
               schema:
                 $ref: "#/components/schemas/Winkel"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
   /v1/winkel/{naam}:
     get:
       tags:
@@ -2374,34 +2214,34 @@ paths:
           description: Winkel was gevonden
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Winkel"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "404":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
     put:
       tags:
       - Winkel
@@ -2429,7 +2269,7 @@ paths:
           description: Winkel object succesvol aangemaakt/overschreven
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
             Location:
               description: URI van het opgeslagen object
@@ -2442,27 +2282,27 @@ paths:
               schema:
                 $ref: "#/components/schemas/Winkel"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "404":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
     delete:
       tags:
       - Winkel
@@ -2482,30 +2322,30 @@ paths:
           description: Winkel object succesvol verwijderd
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "404":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
     patch:
       tags:
       - Winkel
@@ -2533,34 +2373,34 @@ paths:
           description: Winkel succesvol bijgewerkt
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Winkel"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "404":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
   /v1/persoon:
     get:
       tags:
@@ -2569,60 +2409,40 @@ paths:
       description: Retourneert een gepagineerde lijst van alle Persoon objecten
       operationId: getAllPersoon
       parameters:
-      - name: page
-        in: query
-        description: Paginanummer (beginnend bij 0)
-        schema:
-          type: integer
-          format: int32
-          default: 0
-        example: 0
-      - name: size
-        in: query
-        description: Aantal objecten per pagina
-        schema:
-          type: integer
-          format: int32
-          default: 20
-        example: 20
-      - name: sort
-        in: query
-        description: Sorteerveld
-        schema:
-          type: string
-          default: id
-        example: name
+      - $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/page
+      - $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/pageSize
+      - $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/sortField
       responses:
         "200":
           description: OK
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/PaginatedPersoonList"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
     post:
       tags:
       - Persoon
@@ -2642,7 +2462,7 @@ paths:
           description: Persoon succesvol aangemaakt
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
             Location:
               description: URI van het opgeslagen object
@@ -2655,25 +2475,25 @@ paths:
               schema:
                 $ref: "#/components/schemas/Persoon"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
   /v1/persoon/{id}:
     get:
       tags:
@@ -2695,34 +2515,34 @@ paths:
           description: Persoon was gevonden
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Persoon"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "404":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
     put:
       tags:
       - Persoon
@@ -2750,7 +2570,7 @@ paths:
           description: Persoon object succesvol aangemaakt/overschreven
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
             Location:
               description: URI van het opgeslagen object
@@ -2763,27 +2583,27 @@ paths:
               schema:
                 $ref: "#/components/schemas/Persoon"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "404":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
     delete:
       tags:
       - Persoon
@@ -2803,30 +2623,30 @@ paths:
           description: Persoon object succesvol verwijderd
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "404":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
     patch:
       tags:
       - Persoon
@@ -2854,34 +2674,34 @@ paths:
           description: Persoon succesvol bijgewerkt
           headers:
             api-version:
-              $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/headers/api_version
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Persoon"
         "400":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/400
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/401
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/403
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
         "404":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/404
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404
         "409":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/409
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "410":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/410
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/410
         "415":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/415
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
         "429":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/429
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/500
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "501":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/501
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
-          $ref: https://raw.githubusercontent.com/VNG-Realisatie/API-Kennisbank/master/common/common.yaml#/components/responses/503
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
 components:
   schemas:
     Bankrekening:
