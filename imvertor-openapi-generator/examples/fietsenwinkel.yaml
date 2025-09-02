@@ -30,7 +30,7 @@ tags:
 - name: Persoon
   description: Een natuurlijk persoon.
 paths:
-  /v1/bankrekening:
+  /v1/bankrekeningen:
     get:
       tags:
       - Bankrekening
@@ -123,7 +123,7 @@ paths:
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
-  /v1/bankrekening/{rekeningnummer}:
+  /v1/bankrekeningen/{rekeningnummer}:
     get:
       tags:
       - Bankrekening
@@ -332,7 +332,7 @@ paths:
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
-  /v1/creditcard:
+  /v1/creditcards:
     get:
       tags:
       - Creditcard
@@ -425,7 +425,7 @@ paths:
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
-  /v1/creditcard/{kaartnummer}:
+  /v1/creditcards/{kaartnummer}:
     get:
       tags:
       - Creditcard
@@ -633,7 +633,7 @@ paths:
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
-  /v1/klant:
+  /v1/klanten:
     get:
       tags:
       - Klant
@@ -744,7 +744,7 @@ paths:
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
-  /v1/klant/{naam}:
+  /v1/klanten/{naam}:
     get:
       tags:
       - Klant
@@ -896,7 +896,7 @@ paths:
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
-  /v1/leverancier:
+  /v1/leveranciers:
     get:
       tags:
       - Leverancier
@@ -989,7 +989,7 @@ paths:
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
-  /v1/leverancier/{naam}:
+  /v1/leveranciers/{naam}:
     get:
       tags:
       - Leverancier
@@ -1197,7 +1197,7 @@ paths:
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
-  /v1/batterij:
+  /v1/batterijen:
     get:
       tags:
       - Batterij
@@ -1290,7 +1290,7 @@ paths:
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
-  /v1/batterij/{id}:
+  /v1/batterijen/{id}:
     get:
       tags:
       - Batterij
@@ -1498,7 +1498,7 @@ paths:
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
-  /v1/sportfiets:
+  /v1/sportfietsen:
     get:
       tags:
       - Sportfiets
@@ -1591,7 +1591,7 @@ paths:
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
-  /v1/sportfiets/{id}:
+  /v1/sportfietsen/{id}:
     get:
       tags:
       - Sportfiets
@@ -1799,7 +1799,7 @@ paths:
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
-  /v1/stadsfiets:
+  /v1/stadsfietsen:
     get:
       tags:
       - Stadsfiets
@@ -1892,7 +1892,7 @@ paths:
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
-  /v1/stadsfiets/{id}:
+  /v1/stadsfietsen/{id}:
     get:
       tags:
       - Stadsfiets
@@ -2100,7 +2100,7 @@ paths:
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
-  /v1/winkel:
+  /v1/winkels:
     get:
       tags:
       - Winkel
@@ -2193,7 +2193,7 @@ paths:
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
-  /v1/winkel/{naam}:
+  /v1/winkels/{naam}:
     get:
       tags:
       - Winkel
@@ -2401,7 +2401,7 @@ paths:
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
-  /v1/persoon:
+  /v1/personen:
     get:
       tags:
       - Persoon
@@ -2494,7 +2494,7 @@ paths:
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/501
         "503":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
-  /v1/persoon/{id}:
+  /v1/personen/{id}:
     get:
       tags:
       - Persoon
