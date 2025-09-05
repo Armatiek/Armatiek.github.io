@@ -1,0 +1,4644 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "Fietsenwinkel",
+    "description" : "Dit is een logisch model voor registratie van inventaris en betrokken producenten en klanten van fietsenwinkels. Het is gebaseerd op het corresponderende conceptueel model.",
+    "contact" : {
+      "name" : "Maarten Kroon",
+      "url" : "https://armatiek.nl",
+      "email" : "info@armatiek.nl"
+    },
+    "license" : {
+      "name" : "European Union Public License, version 1.2 (EUPL-1.2)",
+      "url" : "https://eupl.eu/1.2/nl/"
+    },
+    "version" : "2.0.1"
+  },
+  "tags" : [ {
+    "name" : "Batterij (custom operations)",
+    "description" : "Alle bevragingen mbt batterijen"
+  }, {
+    "name" : "Sportfiets",
+    "description" : "Alle bevragingen mbt fietsen"
+  }, {
+    "name" : "Bankrekening",
+    "description" : "Rekening bij een bank, via banktransactie."
+  }, {
+    "name" : "Creditcard",
+    "description" : "Kaart waarmee op basis van kredieten een betaling wordt gedaan."
+  }, {
+    "name" : "Klant",
+    "description" : "Een persoon die een fiets heeft gekocht."
+  }, {
+    "name" : "Leverancier",
+    "description" : "Een instelling die een fietsen levert."
+  }, {
+    "name" : "Verkoop",
+    "description" : "Details omtrent de verkoop van een Fiets aan een Klant ."
+  }, {
+    "name" : "Batterij",
+    "description" : "De batterij van de E-Bike."
+  }, {
+    "name" : "Stadsfiets",
+    "description" : "Een fiets die is ingericht op gebruik in het stadsverkeer."
+  }, {
+    "name" : "Winkel",
+    "description" : "Een locatie waar fietsen worden verkocht."
+  }, {
+    "name" : "Persoon",
+    "description" : "Een natuurlijk persoon."
+  } ],
+  "paths" : {
+    "/v3/batterij/{id}" : {
+      "get" : {
+        "tags" : [ "Batterij (custom operations)" ],
+        "summary" : "Dit is de summary",
+        "description" : "Haal batterij op op basis van ID. ",
+        "operationId" : "GetBatterijByID",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "De ID van de batterij",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : "batterij-8927"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Batterij"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      }
+    },
+    "/v3/batterij" : {
+      "post" : {
+        "tags" : [ "Batterij (custom operations)" ],
+        "summary" : "kweenie",
+        "description" : "Bewaar een geleverde batterij",
+        "operationId" : "PostBatterij",
+        "requestBody" : {
+          "description" : "De gegevens van het Batterij object",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Batterij"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Batterij succesvol aangemaakt",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              },
+              "Location" : {
+                "description" : "URI van het opgeslagen object",
+                "style" : "simple",
+                "schema" : {
+                  "type" : "string",
+                  "format" : "uri"
+                }
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Batterij"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "409" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "422" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/422"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      }
+    },
+    "/v3/stadsfietsen-custom" : {
+      "get" : {
+        "tags" : [ "Sportfiets" ],
+        "summary" : "Zoek stadsfietsen in pricerange",
+        "description" : "Operatie om een stadsfietsen te zoeken binnen een bepaalde prijsrange",
+        "operationId" : "ZoekStadsfietsOpPrijs",
+        "parameters" : [ {
+          "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/page"
+        }, {
+          "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/pageSize"
+        }, {
+          "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/sortField"
+        }, {
+          "name" : "maximum",
+          "in" : "query",
+          "description" : "De maximum prijs van een fiets",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "example" : "Maximum"
+        }, {
+          "name" : "minimum",
+          "in" : "query",
+          "description" : "Minimum prijs van een fiets",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "example" : "Minimum"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PaginatedStadsfietsList"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      }
+    },
+    "/v3/bankrekening" : {
+      "get" : {
+        "tags" : [ "Bankrekening" ],
+        "summary" : "Retourneert de lijst van alle Bankrekening objecten",
+        "description" : "Retourneert een gepagineerde lijst van alle Bankrekening objecten",
+        "operationId" : "getAllBankrekening",
+        "parameters" : [ {
+          "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/page"
+        }, {
+          "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/pageSize"
+        }, {
+          "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/sortField"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PaginatedBankrekeningList"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Bankrekening" ],
+        "summary" : "Maakt een nieuw Bankrekening object",
+        "description" : "Maakt een nieuw Bankrekening object aan op basis van de aangeleverde gegevens",
+        "operationId" : "createBankrekening",
+        "requestBody" : {
+          "description" : "De gegevens van het Bankrekening object",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Bankrekening"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Bankrekening succesvol aangemaakt",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              },
+              "Location" : {
+                "description" : "URI van het opgeslagen object",
+                "style" : "simple",
+                "schema" : {
+                  "type" : "string",
+                  "format" : "uri"
+                }
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Bankrekening"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "409" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "422" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/422"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      }
+    },
+    "/v3/bankrekening/{rekeningnummer}" : {
+      "get" : {
+        "tags" : [ "Bankrekening" ],
+        "summary" : "Retourneert een Bankrekening object op basis van zijn unieke identificatie",
+        "description" : "Retourneert een individueel Bankrekening object op basis van zijn unieke identificatie",
+        "operationId" : "getBankrekeningById",
+        "parameters" : [ {
+          "name" : "rekeningnummer",
+          "in" : "path",
+          "description" : "Bankrekening ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : 123
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Bankrekening"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Bankrekening" ],
+        "summary" : "Maakt nieuw of overschrijft bestaand Bankrekening object",
+        "description" : "Maakt een nieuw of overschrijft (volledig) een bestaand Bankrekening object",
+        "operationId" : "updateBankrekening",
+        "parameters" : [ {
+          "name" : "rekeningnummer",
+          "in" : "path",
+          "description" : "Bankrekening ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : 123
+        } ],
+        "requestBody" : {
+          "description" : "De gegevens van het Bankrekening object",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Bankrekening"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Bankrekening"
+                }
+              }
+            }
+          },
+          "201" : {
+            "description" : "Bankrekening succesvol aangemaakt",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              },
+              "Location" : {
+                "description" : "URI van het opgeslagen object",
+                "style" : "simple",
+                "schema" : {
+                  "type" : "string",
+                  "format" : "uri"
+                }
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Bankrekening"
+                }
+              }
+            }
+          },
+          "204" : {
+            "description" : "Object succesvol verwijderd",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "409" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Bankrekening" ],
+        "summary" : "Verwijderd een Bankrekening object",
+        "description" : "Verwijderd een specifiek Bankrekening object permanent uit het systeem",
+        "operationId" : "deleteBankrekening",
+        "parameters" : [ {
+          "name" : "rekeningnummer",
+          "in" : "path",
+          "description" : "Bankrekening ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : 123
+        } ],
+        "responses" : {
+          "202" : {
+            "description" : "Object zal worden verwijderd",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            }
+          },
+          "204" : {
+            "description" : "Object succesvol verwijderd",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            }
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "409" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      }
+    },
+    "/v3/creditcard" : {
+      "get" : {
+        "tags" : [ "Creditcard" ],
+        "summary" : "Retourneert de lijst van alle Creditcard objecten",
+        "description" : "Retourneert een gepagineerde lijst van alle Creditcard objecten",
+        "operationId" : "getAllCreditcard",
+        "parameters" : [ {
+          "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/page"
+        }, {
+          "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/pageSize"
+        }, {
+          "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/sortField"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PaginatedCreditcardList"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Creditcard" ],
+        "summary" : "Maakt een nieuw Creditcard object",
+        "description" : "Maakt een nieuw Creditcard object aan op basis van de aangeleverde gegevens",
+        "operationId" : "createCreditcard",
+        "requestBody" : {
+          "description" : "De gegevens van het Creditcard object",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Creditcard"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Creditcard succesvol aangemaakt",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              },
+              "Location" : {
+                "description" : "URI van het opgeslagen object",
+                "style" : "simple",
+                "schema" : {
+                  "type" : "string",
+                  "format" : "uri"
+                }
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Creditcard"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "409" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "422" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/422"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      }
+    },
+    "/v3/creditcard/{kaartnummer}" : {
+      "get" : {
+        "tags" : [ "Creditcard" ],
+        "summary" : "Retourneert een Creditcard object op basis van zijn unieke identificatie",
+        "description" : "Retourneert een individueel Creditcard object op basis van zijn unieke identificatie",
+        "operationId" : "getCreditcardById",
+        "parameters" : [ {
+          "name" : "kaartnummer",
+          "in" : "path",
+          "description" : "Creditcard ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : 123
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Creditcard"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Creditcard" ],
+        "summary" : "Maakt nieuw of overschrijft bestaand Creditcard object",
+        "description" : "Maakt een nieuw of overschrijft (volledig) een bestaand Creditcard object",
+        "operationId" : "updateCreditcard",
+        "parameters" : [ {
+          "name" : "kaartnummer",
+          "in" : "path",
+          "description" : "Creditcard ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : 123
+        } ],
+        "requestBody" : {
+          "description" : "De gegevens van het Creditcard object",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Creditcard"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Creditcard"
+                }
+              }
+            }
+          },
+          "201" : {
+            "description" : "Creditcard succesvol aangemaakt",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              },
+              "Location" : {
+                "description" : "URI van het opgeslagen object",
+                "style" : "simple",
+                "schema" : {
+                  "type" : "string",
+                  "format" : "uri"
+                }
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Creditcard"
+                }
+              }
+            }
+          },
+          "204" : {
+            "description" : "Object succesvol verwijderd",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "409" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Creditcard" ],
+        "summary" : "Verwijderd een Creditcard object",
+        "description" : "Verwijderd een specifiek Creditcard object permanent uit het systeem",
+        "operationId" : "deleteCreditcard",
+        "parameters" : [ {
+          "name" : "kaartnummer",
+          "in" : "path",
+          "description" : "Creditcard ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : 123
+        } ],
+        "responses" : {
+          "202" : {
+            "description" : "Object zal worden verwijderd",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            }
+          },
+          "204" : {
+            "description" : "Object succesvol verwijderd",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            }
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "409" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      }
+    },
+    "/v3/klant" : {
+      "get" : {
+        "tags" : [ "Klant" ],
+        "summary" : "Retourneert de lijst van alle Klant objecten",
+        "description" : "Retourneert een gepagineerde lijst van alle Klant objecten",
+        "operationId" : "getAllKlant",
+        "parameters" : [ {
+          "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/page"
+        }, {
+          "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/pageSize"
+        }, {
+          "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/sortField"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PaginatedKlantList"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Klant" ],
+        "summary" : "Maakt een nieuw Klant object",
+        "description" : "Maakt een nieuw Klant object aan op basis van de aangeleverde gegevens",
+        "operationId" : "createKlant",
+        "requestBody" : {
+          "description" : "De gegevens van het Klant object",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Klant"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Klant succesvol aangemaakt",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              },
+              "Location" : {
+                "description" : "URI van het opgeslagen object",
+                "style" : "simple",
+                "schema" : {
+                  "type" : "string",
+                  "format" : "uri"
+                }
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Klant"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "409" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "422" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/422"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      }
+    },
+    "/v3/klant/{naam}" : {
+      "get" : {
+        "tags" : [ "Klant" ],
+        "summary" : "Retourneert een Klant object op basis van zijn unieke identificatie",
+        "description" : "Retourneert een individueel Klant object op basis van zijn unieke identificatie",
+        "operationId" : "getKlantById",
+        "parameters" : [ {
+          "name" : "naam",
+          "in" : "path",
+          "description" : "Klant ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : 123
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Klant"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Klant" ],
+        "summary" : "Maakt nieuw of overschrijft bestaand Klant object",
+        "description" : "Maakt een nieuw of overschrijft (volledig) een bestaand Klant object",
+        "operationId" : "updateKlant",
+        "parameters" : [ {
+          "name" : "naam",
+          "in" : "path",
+          "description" : "Klant ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : 123
+        } ],
+        "requestBody" : {
+          "description" : "De gegevens van het Klant object",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Klant"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Klant"
+                }
+              }
+            }
+          },
+          "201" : {
+            "description" : "Klant succesvol aangemaakt",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              },
+              "Location" : {
+                "description" : "URI van het opgeslagen object",
+                "style" : "simple",
+                "schema" : {
+                  "type" : "string",
+                  "format" : "uri"
+                }
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Klant"
+                }
+              }
+            }
+          },
+          "204" : {
+            "description" : "Object succesvol verwijderd",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "409" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Klant" ],
+        "summary" : "Verwijderd een Klant object",
+        "description" : "Verwijderd een specifiek Klant object permanent uit het systeem",
+        "operationId" : "deleteKlant",
+        "parameters" : [ {
+          "name" : "naam",
+          "in" : "path",
+          "description" : "Klant ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : 123
+        } ],
+        "responses" : {
+          "202" : {
+            "description" : "Object zal worden verwijderd",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            }
+          },
+          "204" : {
+            "description" : "Object succesvol verwijderd",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            }
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "409" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      }
+    },
+    "/v3/leverancier" : {
+      "get" : {
+        "tags" : [ "Leverancier" ],
+        "summary" : "Retourneert de lijst van alle Leverancier objecten",
+        "description" : "Retourneert een gepagineerde lijst van alle Leverancier objecten",
+        "operationId" : "getAllLeverancier",
+        "parameters" : [ {
+          "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/page"
+        }, {
+          "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/pageSize"
+        }, {
+          "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/sortField"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PaginatedLeverancierList"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Leverancier" ],
+        "summary" : "Maakt een nieuw Leverancier object",
+        "description" : "Maakt een nieuw Leverancier object aan op basis van de aangeleverde gegevens",
+        "operationId" : "createLeverancier",
+        "requestBody" : {
+          "description" : "De gegevens van het Leverancier object",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Leverancier"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Leverancier succesvol aangemaakt",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              },
+              "Location" : {
+                "description" : "URI van het opgeslagen object",
+                "style" : "simple",
+                "schema" : {
+                  "type" : "string",
+                  "format" : "uri"
+                }
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Leverancier"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "409" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "422" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/422"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      }
+    },
+    "/v3/leverancier/{naam}" : {
+      "get" : {
+        "tags" : [ "Leverancier" ],
+        "summary" : "Retourneert een Leverancier object op basis van zijn unieke identificatie",
+        "description" : "Retourneert een individueel Leverancier object op basis van zijn unieke identificatie",
+        "operationId" : "getLeverancierById",
+        "parameters" : [ {
+          "name" : "naam",
+          "in" : "path",
+          "description" : "Leverancier ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : 123
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Leverancier"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Leverancier" ],
+        "summary" : "Maakt nieuw of overschrijft bestaand Leverancier object",
+        "description" : "Maakt een nieuw of overschrijft (volledig) een bestaand Leverancier object",
+        "operationId" : "updateLeverancier",
+        "parameters" : [ {
+          "name" : "naam",
+          "in" : "path",
+          "description" : "Leverancier ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : 123
+        } ],
+        "requestBody" : {
+          "description" : "De gegevens van het Leverancier object",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Leverancier"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Leverancier"
+                }
+              }
+            }
+          },
+          "201" : {
+            "description" : "Leverancier succesvol aangemaakt",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              },
+              "Location" : {
+                "description" : "URI van het opgeslagen object",
+                "style" : "simple",
+                "schema" : {
+                  "type" : "string",
+                  "format" : "uri"
+                }
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Leverancier"
+                }
+              }
+            }
+          },
+          "204" : {
+            "description" : "Object succesvol verwijderd",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "409" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Leverancier" ],
+        "summary" : "Verwijderd een Leverancier object",
+        "description" : "Verwijderd een specifiek Leverancier object permanent uit het systeem",
+        "operationId" : "deleteLeverancier",
+        "parameters" : [ {
+          "name" : "naam",
+          "in" : "path",
+          "description" : "Leverancier ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : 123
+        } ],
+        "responses" : {
+          "202" : {
+            "description" : "Object zal worden verwijderd",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            }
+          },
+          "204" : {
+            "description" : "Object succesvol verwijderd",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            }
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "409" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      }
+    },
+    "/v3/verkoop" : {
+      "get" : {
+        "tags" : [ "Verkoop" ],
+        "summary" : "Retourneert de lijst van alle Verkoop objecten",
+        "description" : "Retourneert een gepagineerde lijst van alle Verkoop objecten",
+        "operationId" : "getAllVerkoop",
+        "parameters" : [ {
+          "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/page"
+        }, {
+          "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/pageSize"
+        }, {
+          "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/sortField"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PaginatedVerkoopList"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Verkoop" ],
+        "summary" : "Maakt een nieuw Verkoop object",
+        "description" : "Maakt een nieuw Verkoop object aan op basis van de aangeleverde gegevens",
+        "operationId" : "createVerkoop",
+        "requestBody" : {
+          "description" : "De gegevens van het Verkoop object",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Verkoop"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Verkoop succesvol aangemaakt",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              },
+              "Location" : {
+                "description" : "URI van het opgeslagen object",
+                "style" : "simple",
+                "schema" : {
+                  "type" : "string",
+                  "format" : "uri"
+                }
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Verkoop"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "409" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "422" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/422"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      }
+    },
+    "/v3/verkoop/{id}" : {
+      "get" : {
+        "tags" : [ "Verkoop" ],
+        "summary" : "Retourneert een Verkoop object op basis van zijn unieke identificatie",
+        "description" : "Retourneert een individueel Verkoop object op basis van zijn unieke identificatie",
+        "operationId" : "getVerkoopById",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Verkoop ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : 123
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Verkoop"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Verkoop" ],
+        "summary" : "Maakt nieuw of overschrijft bestaand Verkoop object",
+        "description" : "Maakt een nieuw of overschrijft (volledig) een bestaand Verkoop object",
+        "operationId" : "updateVerkoop",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Verkoop ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : 123
+        } ],
+        "requestBody" : {
+          "description" : "De gegevens van het Verkoop object",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Verkoop"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Verkoop"
+                }
+              }
+            }
+          },
+          "201" : {
+            "description" : "Verkoop succesvol aangemaakt",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              },
+              "Location" : {
+                "description" : "URI van het opgeslagen object",
+                "style" : "simple",
+                "schema" : {
+                  "type" : "string",
+                  "format" : "uri"
+                }
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Verkoop"
+                }
+              }
+            }
+          },
+          "204" : {
+            "description" : "Object succesvol verwijderd",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "409" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Verkoop" ],
+        "summary" : "Verwijderd een Verkoop object",
+        "description" : "Verwijderd een specifiek Verkoop object permanent uit het systeem",
+        "operationId" : "deleteVerkoop",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Verkoop ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : 123
+        } ],
+        "responses" : {
+          "202" : {
+            "description" : "Object zal worden verwijderd",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            }
+          },
+          "204" : {
+            "description" : "Object succesvol verwijderd",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            }
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "409" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      }
+    },
+    "/v3/kweenie" : {
+      "get" : {
+        "tags" : [ "Batterij" ],
+        "summary" : "Retourneert de lijst van alle Batterij objecten",
+        "description" : "Retourneert een gepagineerde lijst van alle Batterij objecten",
+        "operationId" : "getAllBatterij",
+        "parameters" : [ {
+          "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/page"
+        }, {
+          "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/pageSize"
+        }, {
+          "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/sortField"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PaginatedBatterijList"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Batterij" ],
+        "summary" : "Maakt een nieuw Batterij object",
+        "description" : "Maakt een nieuw Batterij object aan op basis van de aangeleverde gegevens",
+        "operationId" : "createBatterij",
+        "requestBody" : {
+          "description" : "De gegevens van het Batterij object",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Batterij"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Batterij succesvol aangemaakt",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              },
+              "Location" : {
+                "description" : "URI van het opgeslagen object",
+                "style" : "simple",
+                "schema" : {
+                  "type" : "string",
+                  "format" : "uri"
+                }
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Batterij"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "409" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "422" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/422"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      }
+    },
+    "/v3/kweenie/{id}" : {
+      "get" : {
+        "tags" : [ "Batterij" ],
+        "summary" : "Retourneert een Batterij object op basis van zijn unieke identificatie",
+        "description" : "Retourneert een individueel Batterij object op basis van zijn unieke identificatie",
+        "operationId" : "getBatterijById",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Batterij ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : 123
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Batterij"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Batterij" ],
+        "summary" : "Maakt nieuw of overschrijft bestaand Batterij object",
+        "description" : "Maakt een nieuw of overschrijft (volledig) een bestaand Batterij object",
+        "operationId" : "updateBatterij",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Batterij ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : 123
+        } ],
+        "requestBody" : {
+          "description" : "De gegevens van het Batterij object",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Batterij"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Batterij"
+                }
+              }
+            }
+          },
+          "201" : {
+            "description" : "Batterij succesvol aangemaakt",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              },
+              "Location" : {
+                "description" : "URI van het opgeslagen object",
+                "style" : "simple",
+                "schema" : {
+                  "type" : "string",
+                  "format" : "uri"
+                }
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Batterij"
+                }
+              }
+            }
+          },
+          "204" : {
+            "description" : "Object succesvol verwijderd",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "409" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      }
+    },
+    "/v3/sportfiets" : {
+      "get" : {
+        "tags" : [ "Sportfiets" ],
+        "summary" : "Retourneert de lijst van alle Sportfiets objecten",
+        "description" : "Retourneert een gepagineerde lijst van alle Sportfiets objecten",
+        "operationId" : "getAllSportfiets",
+        "parameters" : [ {
+          "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/page"
+        }, {
+          "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/pageSize"
+        }, {
+          "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/sortField"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PaginatedSportfietsList"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Sportfiets" ],
+        "summary" : "Maakt een nieuw Sportfiets object",
+        "description" : "Maakt een nieuw Sportfiets object aan op basis van de aangeleverde gegevens",
+        "operationId" : "createSportfiets",
+        "requestBody" : {
+          "description" : "De gegevens van het Sportfiets object",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Sportfiets"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Sportfiets succesvol aangemaakt",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              },
+              "Location" : {
+                "description" : "URI van het opgeslagen object",
+                "style" : "simple",
+                "schema" : {
+                  "type" : "string",
+                  "format" : "uri"
+                }
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Sportfiets"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "409" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "422" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/422"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      }
+    },
+    "/v3/sportfiets/{id}" : {
+      "get" : {
+        "tags" : [ "Sportfiets" ],
+        "summary" : "Retourneert een Sportfiets object op basis van zijn unieke identificatie",
+        "description" : "Retourneert een individueel Sportfiets object op basis van zijn unieke identificatie",
+        "operationId" : "getSportfietsById",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Sportfiets ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : 123
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Sportfiets"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Sportfiets" ],
+        "summary" : "Maakt nieuw of overschrijft bestaand Sportfiets object",
+        "description" : "Maakt een nieuw of overschrijft (volledig) een bestaand Sportfiets object",
+        "operationId" : "updateSportfiets",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Sportfiets ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : 123
+        } ],
+        "requestBody" : {
+          "description" : "De gegevens van het Sportfiets object",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Sportfiets"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Sportfiets"
+                }
+              }
+            }
+          },
+          "201" : {
+            "description" : "Sportfiets succesvol aangemaakt",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              },
+              "Location" : {
+                "description" : "URI van het opgeslagen object",
+                "style" : "simple",
+                "schema" : {
+                  "type" : "string",
+                  "format" : "uri"
+                }
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Sportfiets"
+                }
+              }
+            }
+          },
+          "204" : {
+            "description" : "Object succesvol verwijderd",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "409" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Sportfiets" ],
+        "summary" : "Verwijderd een Sportfiets object",
+        "description" : "Verwijderd een specifiek Sportfiets object permanent uit het systeem",
+        "operationId" : "deleteSportfiets",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Sportfiets ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : 123
+        } ],
+        "responses" : {
+          "202" : {
+            "description" : "Object zal worden verwijderd",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            }
+          },
+          "204" : {
+            "description" : "Object succesvol verwijderd",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            }
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "409" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      }
+    },
+    "/v3/stadsfiets" : {
+      "get" : {
+        "tags" : [ "Stadsfiets" ],
+        "summary" : "Retourneert de lijst van alle Stadsfiets objecten",
+        "description" : "Retourneert een gepagineerde lijst van alle Stadsfiets objecten",
+        "operationId" : "getAllStadsfiets",
+        "parameters" : [ {
+          "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/page"
+        }, {
+          "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/pageSize"
+        }, {
+          "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/sortField"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PaginatedStadsfietsList"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Stadsfiets" ],
+        "summary" : "Maakt een nieuw Stadsfiets object",
+        "description" : "Maakt een nieuw Stadsfiets object aan op basis van de aangeleverde gegevens",
+        "operationId" : "createStadsfiets",
+        "requestBody" : {
+          "description" : "De gegevens van het Stadsfiets object",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Stadsfiets"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Stadsfiets succesvol aangemaakt",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              },
+              "Location" : {
+                "description" : "URI van het opgeslagen object",
+                "style" : "simple",
+                "schema" : {
+                  "type" : "string",
+                  "format" : "uri"
+                }
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Stadsfiets"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "409" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "422" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/422"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      }
+    },
+    "/v3/stadsfiets/{id}" : {
+      "get" : {
+        "tags" : [ "Stadsfiets" ],
+        "summary" : "Retourneert een Stadsfiets object op basis van zijn unieke identificatie",
+        "description" : "Retourneert een individueel Stadsfiets object op basis van zijn unieke identificatie",
+        "operationId" : "getStadsfietsById",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Stadsfiets ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : 123
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Stadsfiets"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Stadsfiets" ],
+        "summary" : "Maakt nieuw of overschrijft bestaand Stadsfiets object",
+        "description" : "Maakt een nieuw of overschrijft (volledig) een bestaand Stadsfiets object",
+        "operationId" : "updateStadsfiets",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Stadsfiets ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : 123
+        } ],
+        "requestBody" : {
+          "description" : "De gegevens van het Stadsfiets object",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Stadsfiets"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Stadsfiets"
+                }
+              }
+            }
+          },
+          "201" : {
+            "description" : "Stadsfiets succesvol aangemaakt",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              },
+              "Location" : {
+                "description" : "URI van het opgeslagen object",
+                "style" : "simple",
+                "schema" : {
+                  "type" : "string",
+                  "format" : "uri"
+                }
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Stadsfiets"
+                }
+              }
+            }
+          },
+          "204" : {
+            "description" : "Object succesvol verwijderd",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "409" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Stadsfiets" ],
+        "summary" : "Verwijderd een Stadsfiets object",
+        "description" : "Verwijderd een specifiek Stadsfiets object permanent uit het systeem",
+        "operationId" : "deleteStadsfiets",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Stadsfiets ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : 123
+        } ],
+        "responses" : {
+          "202" : {
+            "description" : "Object zal worden verwijderd",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            }
+          },
+          "204" : {
+            "description" : "Object succesvol verwijderd",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            }
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "409" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      }
+    },
+    "/v3/winkel" : {
+      "get" : {
+        "tags" : [ "Winkel" ],
+        "summary" : "Retourneert de lijst van alle Winkel objecten",
+        "description" : "Retourneert een gepagineerde lijst van alle Winkel objecten",
+        "operationId" : "getAllWinkel",
+        "parameters" : [ {
+          "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/page"
+        }, {
+          "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/pageSize"
+        }, {
+          "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/sortField"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PaginatedWinkelList"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Winkel" ],
+        "summary" : "Maakt een nieuw Winkel object",
+        "description" : "Maakt een nieuw Winkel object aan op basis van de aangeleverde gegevens",
+        "operationId" : "createWinkel",
+        "requestBody" : {
+          "description" : "De gegevens van het Winkel object",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Winkel"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Winkel succesvol aangemaakt",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              },
+              "Location" : {
+                "description" : "URI van het opgeslagen object",
+                "style" : "simple",
+                "schema" : {
+                  "type" : "string",
+                  "format" : "uri"
+                }
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Winkel"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "409" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "422" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/422"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      }
+    },
+    "/v3/winkel/{naam}" : {
+      "get" : {
+        "tags" : [ "Winkel" ],
+        "summary" : "Retourneert een Winkel object op basis van zijn unieke identificatie",
+        "description" : "Retourneert een individueel Winkel object op basis van zijn unieke identificatie",
+        "operationId" : "getWinkelById",
+        "parameters" : [ {
+          "name" : "naam",
+          "in" : "path",
+          "description" : "Winkel ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : 123
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Winkel"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Winkel" ],
+        "summary" : "Maakt nieuw of overschrijft bestaand Winkel object",
+        "description" : "Maakt een nieuw of overschrijft (volledig) een bestaand Winkel object",
+        "operationId" : "updateWinkel",
+        "parameters" : [ {
+          "name" : "naam",
+          "in" : "path",
+          "description" : "Winkel ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : 123
+        } ],
+        "requestBody" : {
+          "description" : "De gegevens van het Winkel object",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Winkel"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Winkel"
+                }
+              }
+            }
+          },
+          "201" : {
+            "description" : "Winkel succesvol aangemaakt",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              },
+              "Location" : {
+                "description" : "URI van het opgeslagen object",
+                "style" : "simple",
+                "schema" : {
+                  "type" : "string",
+                  "format" : "uri"
+                }
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Winkel"
+                }
+              }
+            }
+          },
+          "204" : {
+            "description" : "Object succesvol verwijderd",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "409" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Winkel" ],
+        "summary" : "Verwijderd een Winkel object",
+        "description" : "Verwijderd een specifiek Winkel object permanent uit het systeem",
+        "operationId" : "deleteWinkel",
+        "parameters" : [ {
+          "name" : "naam",
+          "in" : "path",
+          "description" : "Winkel ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : 123
+        } ],
+        "responses" : {
+          "202" : {
+            "description" : "Object zal worden verwijderd",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            }
+          },
+          "204" : {
+            "description" : "Object succesvol verwijderd",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            }
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "409" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      }
+    },
+    "/v3/persoon" : {
+      "get" : {
+        "tags" : [ "Persoon" ],
+        "summary" : "Retourneert de lijst van alle Persoon objecten",
+        "description" : "Retourneert een gepagineerde lijst van alle Persoon objecten",
+        "operationId" : "getAllPersoon",
+        "parameters" : [ {
+          "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/page"
+        }, {
+          "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/pageSize"
+        }, {
+          "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/sortField"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PaginatedPersoonList"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Persoon" ],
+        "summary" : "Maakt een nieuw Persoon object",
+        "description" : "Maakt een nieuw Persoon object aan op basis van de aangeleverde gegevens",
+        "operationId" : "createPersoon",
+        "requestBody" : {
+          "description" : "De gegevens van het Persoon object",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Persoon"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Persoon succesvol aangemaakt",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              },
+              "Location" : {
+                "description" : "URI van het opgeslagen object",
+                "style" : "simple",
+                "schema" : {
+                  "type" : "string",
+                  "format" : "uri"
+                }
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Persoon"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "409" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "422" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/422"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      }
+    },
+    "/v3/persoon/{id}" : {
+      "get" : {
+        "tags" : [ "Persoon" ],
+        "summary" : "Retourneert een Persoon object op basis van zijn unieke identificatie",
+        "description" : "Retourneert een individueel Persoon object op basis van zijn unieke identificatie",
+        "operationId" : "getPersoonById",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Persoon ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : 123
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Persoon"
+                }
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Persoon" ],
+        "summary" : "Maakt nieuw of overschrijft bestaand Persoon object",
+        "description" : "Maakt een nieuw of overschrijft (volledig) een bestaand Persoon object",
+        "operationId" : "updatePersoon",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Persoon ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : 123
+        } ],
+        "requestBody" : {
+          "description" : "De gegevens van het Persoon object",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Persoon"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Persoon"
+                }
+              }
+            }
+          },
+          "201" : {
+            "description" : "Persoon succesvol aangemaakt",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              },
+              "Location" : {
+                "description" : "URI van het opgeslagen object",
+                "style" : "simple",
+                "schema" : {
+                  "type" : "string",
+                  "format" : "uri"
+                }
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Persoon"
+                }
+              }
+            }
+          },
+          "204" : {
+            "description" : "Object succesvol verwijderd",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            }
+          },
+          "400" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400"
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "409" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Persoon" ],
+        "summary" : "Verwijderd een Persoon object",
+        "description" : "Verwijderd een specifiek Persoon object permanent uit het systeem",
+        "operationId" : "deletePersoon",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Persoon ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : 123
+        } ],
+        "responses" : {
+          "202" : {
+            "description" : "Object zal worden verwijderd",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            }
+          },
+          "204" : {
+            "description" : "Object succesvol verwijderd",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version",
+                "style" : "simple"
+              }
+            }
+          },
+          "401" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401"
+          },
+          "403" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403"
+          },
+          "404" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404"
+          },
+          "405" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405"
+          },
+          "409" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409"
+          },
+          "415" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415"
+          },
+          "429" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429"
+          },
+          "500" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500"
+          },
+          "503" : {
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503"
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Batterij" : {
+        "required" : [ "garantienummer", "id", "omvang", "url" ],
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "minLength" : 1,
+            "type" : "string",
+            "description" : "Unieke identificatie van de resource waarnaar verwezen wordt"
+          },
+          "url" : {
+            "minLength" : 1,
+            "type" : "string",
+            "description" : "URL-referentie naar de resource waarnaar verwezen wordt",
+            "format" : "uri",
+            "readOnly" : true
+          },
+          "garantienummer" : {
+            "type" : "string",
+            "description" : "Garantienummer op de Batterij (wanneer e-bike)."
+          },
+          "omvang" : {
+            "$ref" : "#/components/schemas/Dimensies"
+          }
+        },
+        "description" : "De batterij van de E-Bike."
+      },
+      "Dimensies" : {
+        "required" : [ "breedte", "hoogte", "id", "lengte", "url" ],
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "minLength" : 1,
+            "type" : "string",
+            "description" : "Unieke identificatie van de resource waarnaar verwezen wordt"
+          },
+          "url" : {
+            "minLength" : 1,
+            "type" : "string",
+            "description" : "URL-referentie naar de resource waarnaar verwezen wordt",
+            "format" : "uri",
+            "readOnly" : true
+          },
+          "breedte" : {
+            "type" : "integer",
+            "description" : "Breedte van het object in mm.",
+            "format" : "int32"
+          },
+          "hoogte" : {
+            "type" : "integer",
+            "description" : "Hoogte van het object in mm.",
+            "format" : "int32"
+          },
+          "lengte" : {
+            "type" : "integer",
+            "description" : "Lengte van het object in mm.",
+            "format" : "int32"
+          }
+        },
+        "description" : "De dimensies van een 3-dimensionaal object."
+      },
+      "Adres" : {
+        "required" : [ "huisnummer", "id", "postcode", "url" ],
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "minLength" : 1,
+            "type" : "string",
+            "description" : "Unieke identificatie van de resource waarnaar verwezen wordt"
+          },
+          "url" : {
+            "minLength" : 1,
+            "type" : "string",
+            "description" : "URL-referentie naar de resource waarnaar verwezen wordt",
+            "format" : "uri",
+            "readOnly" : true
+          },
+          "huisnummer" : {
+            "type" : "string",
+            "description" : "Huisnummer met eventuele toevoegingen."
+          },
+          "postcode" : {
+            "type" : "string",
+            "description" : "Postcode in een adres."
+          },
+          "locatie" : {
+            "$ref" : "#/components/schemas/GeografischeLocatie"
+          }
+        },
+        "description" : "Het adres van een contact."
+      },
+      "Bankrekening" : {
+        "required" : [ "rekeningnummer" ],
+        "type" : "object",
+        "properties" : {
+          "url" : {
+            "type" : "string",
+            "writeOnly" : true
+          },
+          "rekeningnummer" : {
+            "type" : "string",
+            "description" : "Nummer van de rekening."
+          }
+        },
+        "description" : "Rekening bij een bank, via banktransactie."
+      },
+      "Creditcard" : {
+        "required" : [ "kaartnummer", "verloopdatum" ],
+        "type" : "object",
+        "properties" : {
+          "url" : {
+            "type" : "string",
+            "writeOnly" : true
+          },
+          "kaartnummer" : {
+            "type" : "string",
+            "description" : "Nummer van de kaart."
+          },
+          "verloopdatum" : {
+            "type" : "string",
+            "description" : "Verloopdatum van de kaart (jaar, maand)"
+          }
+        },
+        "description" : "Kaart waarmee op basis van kredieten een betaling wordt gedaan."
+      },
+      "GM_Point" : {
+        "required" : [ "id", "url" ],
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "minLength" : 1,
+            "type" : "string",
+            "description" : "Unieke identificatie van de resource waarnaar verwezen wordt"
+          },
+          "url" : {
+            "minLength" : 1,
+            "type" : "string",
+            "description" : "URL-referentie naar de resource waarnaar verwezen wordt",
+            "format" : "uri",
+            "readOnly" : true
+          }
+        },
+        "description" : "De geografische plek waar het adres is geregistreerd. Het betreft een punt op de kaart."
+      },
+      "GM_Polygon" : {
+        "required" : [ "id", "url" ],
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "minLength" : 1,
+            "type" : "string",
+            "description" : "Unieke identificatie van de resource waarnaar verwezen wordt"
+          },
+          "url" : {
+            "minLength" : 1,
+            "type" : "string",
+            "description" : "URL-referentie naar de resource waarnaar verwezen wordt",
+            "format" : "uri",
+            "readOnly" : true
+          }
+        },
+        "description" : "De geografische plek waar het adres is geregistreerd. Het betreft een vlak binnen de kaart."
+      },
+      "GeografischeLocatie" : {
+        "required" : [ "id", "url" ],
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "minLength" : 1,
+            "type" : "string",
+            "description" : "Unieke identificatie van de resource waarnaar verwezen wordt"
+          },
+          "url" : {
+            "minLength" : 1,
+            "type" : "string",
+            "description" : "URL-referentie naar de resource waarnaar verwezen wordt",
+            "format" : "uri",
+            "readOnly" : true
+          },
+          "locatiePunt" : {
+            "$ref" : "#/components/schemas/GM_Point"
+          },
+          "locatieVlak" : {
+            "$ref" : "#/components/schemas/GM_Polygon"
+          }
+        },
+        "description" : "Een keuze tussen twee attributen die de geografisch locatie vastleggen: een punt of een vlak."
+      },
+      "KVKLijst" : {
+        "required" : [ "bedrijfsnaam", "id", "nummer", "url", "vestigingsadres" ],
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "minLength" : 1,
+            "type" : "string",
+            "description" : "Unieke identificatie van de resource waarnaar verwezen wordt"
+          },
+          "url" : {
+            "minLength" : 1,
+            "type" : "string",
+            "description" : "URL-referentie naar de resource waarnaar verwezen wordt",
+            "format" : "uri",
+            "readOnly" : true
+          },
+          "bedrijfsnaam" : {
+            "type" : "string"
+          },
+          "nummer" : {
+            "type" : "string"
+          },
+          "vestigingsadres" : {
+            "type" : "string"
+          }
+        },
+        "description" : "Lijst van KVK nummers met daaraan gekoppeld de bedrijfsnaam."
+      },
+      "KettingLijst" : {
+        "required" : [ "id", "url", "value" ],
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "minLength" : 1,
+            "type" : "string",
+            "description" : "Unieke identificatie van de resource waarnaar verwezen wordt"
+          },
+          "url" : {
+            "minLength" : 1,
+            "type" : "string",
+            "description" : "URL-referentie naar de resource waarnaar verwezen wordt",
+            "format" : "uri",
+            "readOnly" : true
+          },
+          "value" : {
+            "type" : "string",
+            "description" : "Lijst van ketting-typen voor fietsen met ketting aandrijving."
+          }
+        },
+        "description" : "Lijst van ketting-typen voor fietsen met ketting aandrijving."
+      },
+      "Klant" : {
+        "required" : [ "betreft", "naam", "nieuwsbrief", "postadres" ],
+        "type" : "object",
+        "properties" : {
+          "url" : {
+            "type" : "string",
+            "writeOnly" : true
+          },
+          "naam" : {
+            "type" : "string",
+            "description" : "De naam van het contact."
+          },
+          "postadres" : {
+            "$ref" : "#/components/schemas/Adres"
+          },
+          "betaalmiddelCreditcard" : {
+            "$ref" : "#/components/schemas/Creditcard"
+          },
+          "betaalmiddelBankrekening" : {
+            "$ref" : "#/components/schemas/Bankrekening"
+          },
+          "nieuwsbrief" : {
+            "type" : "boolean",
+            "description" : "Indicatie dat de klant de nieuwsbrief wenst te ontvangen."
+          },
+          "betreft" : {
+            "$ref" : "#/components/schemas/Persoon"
+          }
+        },
+        "description" : "Een persoon die een fiets heeft gekocht."
+      },
+      "Leverancier" : {
+        "required" : [ "kvkNummer", "naam", "postadres" ],
+        "type" : "object",
+        "properties" : {
+          "url" : {
+            "type" : "string",
+            "writeOnly" : true
+          },
+          "naam" : {
+            "type" : "string",
+            "description" : "De naam van het contact."
+          },
+          "postadres" : {
+            "$ref" : "#/components/schemas/Adres"
+          },
+          "betaalmiddelCreditcard" : {
+            "$ref" : "#/components/schemas/Creditcard"
+          },
+          "betaalmiddelBankrekening" : {
+            "$ref" : "#/components/schemas/Bankrekening"
+          },
+          "kvkNummer" : {
+            "$ref" : "#/components/schemas/KVKLijst"
+          }
+        },
+        "description" : "Een instelling die een fietsen levert."
+      },
+      "PaginatedBase" : {
+        "type" : "object",
+        "properties" : {
+          "next" : {
+            "type" : "string",
+            "format" : "uri",
+            "nullable" : true,
+            "example" : "http://api.example.org/accounts/?page=4"
+          },
+          "previous" : {
+            "type" : "string",
+            "format" : "uri",
+            "nullable" : true,
+            "example" : "http://api.example.org/accounts/?page=2"
+          }
+        }
+      },
+      "PaginatedStadsfietsList" : {
+        "required" : [ "results" ],
+        "type" : "object",
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/PaginatedBase"
+        }, {
+          "type" : "object",
+          "properties" : {
+            "results" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/components/schemas/Stadsfiets"
+              }
+            }
+          }
+        } ]
+      },
+      "Persoon" : {
+        "required" : [ "achternaam", "id", "url" ],
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "minLength" : 1,
+            "type" : "string",
+            "description" : "Unieke identificatie van de resource waarnaar verwezen wordt"
+          },
+          "url" : {
+            "minLength" : 1,
+            "type" : "string",
+            "description" : "URL-referentie naar de resource waarnaar verwezen wordt",
+            "format" : "uri",
+            "readOnly" : true
+          },
+          "achternaam" : {
+            "type" : "string",
+            "description" : "De achternaam van de Persoon ."
+          },
+          "voornaam" : {
+            "type" : "string",
+            "description" : "De roepnaam van een Persoon , vol uitgeschreven."
+          }
+        },
+        "description" : "Een natuurlijk persoon."
+      },
+      "SnaarLijst" : {
+        "required" : [ "id", "url", "value" ],
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "minLength" : 1,
+            "type" : "string",
+            "description" : "Unieke identificatie van de resource waarnaar verwezen wordt"
+          },
+          "url" : {
+            "minLength" : 1,
+            "type" : "string",
+            "description" : "URL-referentie naar de resource waarnaar verwezen wordt",
+            "format" : "uri",
+            "readOnly" : true
+          },
+          "value" : {
+            "type" : "string",
+            "description" : "Lijst van snaar-typen voor fietsen met snaaraandrijving."
+          }
+        },
+        "description" : "Lijst van snaar-typen voor fietsen met snaaraandrijving."
+      },
+      "Stadsfiets" : {
+        "required" : [ "geleverdDoor", "id", "leveringsdatum", "omvang", "typenummer", "verkoopGegevens", "verkoopprijs", "volgnummer" ],
+        "type" : "object",
+        "properties" : {
+          "url" : {
+            "type" : "string",
+            "writeOnly" : true
+          },
+          "id" : {
+            "type" : "string",
+            "description" : "De identificatie van de fiets."
+          },
+          "kettingaandrijving" : {
+            "$ref" : "#/components/schemas/KettingLijst"
+          },
+          "leveringsdatum" : {
+            "type" : "string",
+            "description" : "Datum waarop de fiets is geleverd aan de winkel.",
+            "format" : "date"
+          },
+          "omvang" : {
+            "$ref" : "#/components/schemas/Dimensies"
+          },
+          "snaaraandrijving" : {
+            "$ref" : "#/components/schemas/SnaarLijst"
+          },
+          "typenummer" : {
+            "type" : "string",
+            "description" : "Het type nummer van de fiets."
+          },
+          "verkoopprijs" : {
+            "type" : "number",
+            "description" : "De verkoopprijs van de fiets, met twee decimalen, in Euro."
+          },
+          "versnellingen" : {
+            "type" : "integer",
+            "description" : "Het aantal versnellingen van de fiets.",
+            "format" : "int32"
+          },
+          "volgnummer" : {
+            "type" : "integer",
+            "description" : "Het volgummer van de fiets in één levering.",
+            "format" : "int32"
+          },
+          "verkoopGegevens" : {
+            "$ref" : "#/components/schemas/Verkoop"
+          },
+          "aangestuurdDoor" : {
+            "$ref" : "#/components/schemas/Batterij"
+          },
+          "geleverdDoor" : {
+            "$ref" : "#/components/schemas/Leverancier"
+          }
+        },
+        "description" : "Een fiets die is ingericht op gebruik in het stadsverkeer."
+      },
+      "Verkoop" : {
+        "required" : [ "garantienummer", "id", "url", "verkoopAan", "verkoopdatum" ],
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "minLength" : 1,
+            "type" : "string",
+            "description" : "Unieke identificatie van de resource waarnaar verwezen wordt"
+          },
+          "url" : {
+            "minLength" : 1,
+            "type" : "string",
+            "description" : "URL-referentie naar de resource waarnaar verwezen wordt",
+            "format" : "uri",
+            "readOnly" : true
+          },
+          "garantienummer" : {
+            "type" : "string",
+            "description" : "Garantienummer van de Fiets . Wanneer E-Bike, dan heeft de Batterij een apart garantienummer."
+          },
+          "verkoopdatum" : {
+            "type" : "string",
+            "description" : "Datum van verkoop van de Fiets .",
+            "format" : "date"
+          },
+          "verkoopAan" : {
+            "$ref" : "#/components/schemas/Klant"
+          }
+        },
+        "description" : "Details omtrent de verkoop van een Fiets aan een Klant ."
+      },
+      "PaginatedBankrekeningList" : {
+        "required" : [ "results" ],
+        "type" : "object",
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/PaginatedBase"
+        }, {
+          "type" : "object",
+          "properties" : {
+            "results" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/components/schemas/Bankrekening"
+              }
+            }
+          }
+        } ]
+      },
+      "PaginatedCreditcardList" : {
+        "required" : [ "results" ],
+        "type" : "object",
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/PaginatedBase"
+        }, {
+          "type" : "object",
+          "properties" : {
+            "results" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/components/schemas/Creditcard"
+              }
+            }
+          }
+        } ]
+      },
+      "PaginatedKlantList" : {
+        "required" : [ "results" ],
+        "type" : "object",
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/PaginatedBase"
+        }, {
+          "type" : "object",
+          "properties" : {
+            "results" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/components/schemas/Klant"
+              }
+            }
+          }
+        } ]
+      },
+      "PaginatedLeverancierList" : {
+        "required" : [ "results" ],
+        "type" : "object",
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/PaginatedBase"
+        }, {
+          "type" : "object",
+          "properties" : {
+            "results" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/components/schemas/Leverancier"
+              }
+            }
+          }
+        } ]
+      },
+      "PaginatedVerkoopList" : {
+        "required" : [ "results" ],
+        "type" : "object",
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/PaginatedBase"
+        }, {
+          "type" : "object",
+          "properties" : {
+            "results" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/components/schemas/Verkoop"
+              }
+            }
+          }
+        } ]
+      },
+      "PaginatedBatterijList" : {
+        "required" : [ "results" ],
+        "type" : "object",
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/PaginatedBase"
+        }, {
+          "type" : "object",
+          "properties" : {
+            "results" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/components/schemas/Batterij"
+              }
+            }
+          }
+        } ]
+      },
+      "Sportfiets" : {
+        "required" : [ "geleverdDoor", "id", "leveringsdatum", "omvang", "type", "typenummer", "verkoopGegevens", "verkoopprijs", "volgnummer" ],
+        "type" : "object",
+        "properties" : {
+          "url" : {
+            "type" : "string",
+            "writeOnly" : true
+          },
+          "id" : {
+            "type" : "string",
+            "description" : "De identificatie van de fiets."
+          },
+          "kettingaandrijving" : {
+            "$ref" : "#/components/schemas/KettingLijst"
+          },
+          "leveringsdatum" : {
+            "type" : "string",
+            "description" : "Datum waarop de fiets is geleverd aan de winkel.",
+            "format" : "date"
+          },
+          "omvang" : {
+            "$ref" : "#/components/schemas/Dimensies"
+          },
+          "snaaraandrijving" : {
+            "$ref" : "#/components/schemas/SnaarLijst"
+          },
+          "typenummer" : {
+            "type" : "string",
+            "description" : "Het type nummer van de fiets."
+          },
+          "verkoopprijs" : {
+            "type" : "number",
+            "description" : "De verkoopprijs van de fiets, met twee decimalen, in Euro."
+          },
+          "versnellingen" : {
+            "type" : "integer",
+            "description" : "Het aantal versnellingen van de fiets.",
+            "format" : "int32"
+          },
+          "volgnummer" : {
+            "type" : "integer",
+            "description" : "Het volgummer van de fiets in één levering.",
+            "format" : "int32"
+          },
+          "verkoopGegevens" : {
+            "$ref" : "#/components/schemas/Verkoop"
+          },
+          "aangestuurdDoor" : {
+            "$ref" : "#/components/schemas/Batterij"
+          },
+          "geleverdDoor" : {
+            "$ref" : "#/components/schemas/Leverancier"
+          },
+          "type" : {
+            "type" : "string",
+            "description" : "Het type van de sportfiets, een waarde uit een enumeratieve lijst.",
+            "enum" : [ "BIANCHI", "CANONDALE", "CUBE", "GIANT" ]
+          }
+        },
+        "description" : "Een fiets bedoeld voor gebruik in sportieve toepassingen."
+      },
+      "PaginatedSportfietsList" : {
+        "required" : [ "results" ],
+        "type" : "object",
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/PaginatedBase"
+        }, {
+          "type" : "object",
+          "properties" : {
+            "results" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/components/schemas/Sportfiets"
+              }
+            }
+          }
+        } ]
+      },
+      "Fiets" : {
+        "required" : [ "geleverdDoor", "id", "leveringsdatum", "omvang", "typenummer", "verkoopGegevens", "verkoopprijs", "volgnummer" ],
+        "type" : "object",
+        "properties" : {
+          "url" : {
+            "type" : "string",
+            "writeOnly" : true
+          },
+          "id" : {
+            "type" : "string",
+            "description" : "De identificatie van de fiets."
+          },
+          "kettingaandrijving" : {
+            "$ref" : "#/components/schemas/KettingLijst"
+          },
+          "leveringsdatum" : {
+            "type" : "string",
+            "description" : "Datum waarop de fiets is geleverd aan de winkel.",
+            "format" : "date"
+          },
+          "omvang" : {
+            "$ref" : "#/components/schemas/Dimensies"
+          },
+          "snaaraandrijving" : {
+            "$ref" : "#/components/schemas/SnaarLijst"
+          },
+          "typenummer" : {
+            "type" : "string",
+            "description" : "Het type nummer van de fiets."
+          },
+          "verkoopprijs" : {
+            "type" : "number",
+            "description" : "De verkoopprijs van de fiets, met twee decimalen, in Euro."
+          },
+          "versnellingen" : {
+            "type" : "integer",
+            "description" : "Het aantal versnellingen van de fiets.",
+            "format" : "int32"
+          },
+          "volgnummer" : {
+            "type" : "integer",
+            "description" : "Het volgummer van de fiets in één levering.",
+            "format" : "int32"
+          },
+          "verkoopGegevens" : {
+            "$ref" : "#/components/schemas/Verkoop"
+          },
+          "aangestuurdDoor" : {
+            "$ref" : "#/components/schemas/Batterij"
+          },
+          "geleverdDoor" : {
+            "$ref" : "#/components/schemas/Leverancier"
+          }
+        },
+        "description" : "Een tweewieler."
+      },
+      "Winkel" : {
+        "required" : [ "naam" ],
+        "type" : "object",
+        "properties" : {
+          "url" : {
+            "type" : "string",
+            "writeOnly" : true
+          },
+          "naam" : {
+            "type" : "string",
+            "description" : "Naam van de winkel."
+          },
+          "locatie" : {
+            "$ref" : "#/components/schemas/GeografischeLocatie"
+          },
+          "verhandelt" : {
+            "type" : "array",
+            "description" : "De handelswaar van een fietsenwinkel.",
+            "items" : {
+              "$ref" : "#/components/schemas/Fiets"
+            }
+          }
+        },
+        "description" : "Een locatie waar fietsen worden verkocht."
+      },
+      "PaginatedWinkelList" : {
+        "required" : [ "results" ],
+        "type" : "object",
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/PaginatedBase"
+        }, {
+          "type" : "object",
+          "properties" : {
+            "results" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/components/schemas/Winkel"
+              }
+            }
+          }
+        } ]
+      },
+      "PaginatedPersoonList" : {
+        "required" : [ "results" ],
+        "type" : "object",
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/PaginatedBase"
+        }, {
+          "type" : "object",
+          "properties" : {
+            "results" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/components/schemas/Persoon"
+              }
+            }
+          }
+        } ]
+      }
+    }
+  }
+}
