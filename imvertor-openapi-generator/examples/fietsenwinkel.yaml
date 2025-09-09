@@ -2789,11 +2789,15 @@ components:
     Bankrekening:
       required:
       - rekeningnummer
+      - url
       type: object
       properties:
         url:
+          minLength: 1
           type: string
-          writeOnly: true
+          description: URL-referentie naar de resource waarnaar verwezen wordt
+          format: uri
+          readOnly: true
         rekeningnummer:
           type: string
           description: Nummer van de rekening.
@@ -2801,12 +2805,16 @@ components:
     Creditcard:
       required:
       - kaartnummer
+      - url
       - verloopdatum
       type: object
       properties:
         url:
+          minLength: 1
           type: string
-          writeOnly: true
+          description: URL-referentie naar de resource waarnaar verwezen wordt
+          format: uri
+          readOnly: true
         kaartnummer:
           type: string
           description: Nummer van de kaart.
@@ -2925,11 +2933,15 @@ components:
       - naam
       - nieuwsbrief
       - postadres
+      - url
       type: object
       properties:
         url:
+          minLength: 1
           type: string
-          writeOnly: true
+          description: URL-referentie naar de resource waarnaar verwezen wordt
+          format: uri
+          readOnly: true
         naam:
           type: string
           description: De naam van het contact.
@@ -2950,11 +2962,15 @@ components:
       - kvkNummer
       - naam
       - postadres
+      - url
       type: object
       properties:
         url:
+          minLength: 1
           type: string
-          writeOnly: true
+          description: URL-referentie naar de resource waarnaar verwezen wordt
+          format: uri
+          readOnly: true
         naam:
           type: string
           description: De naam van het contact.
@@ -2974,12 +2990,12 @@ components:
           type: string
           format: uri
           nullable: true
-          example: http://api.example.org/accounts/?page=4
+          example: "http://api.example.org/accounts/?pagina=4&paginaGrootte=10&sorteer=name,-geboorteDatum"
         previous:
           type: string
           format: uri
           nullable: true
-          example: http://api.example.org/accounts/?page=2
+          example: "http://api.example.org/accounts/?pagina=2&paginaGrootte=10&sorteer=name,-geboorteDatum"
     PaginatedStadsfietsList:
       required:
       - results
@@ -3044,14 +3060,18 @@ components:
       - leveringsdatum
       - omvang
       - typenummer
+      - url
       - verkoopGegevens
       - verkoopprijs
       - volgnummer
       type: object
       properties:
         url:
+          minLength: 1
           type: string
-          writeOnly: true
+          description: URL-referentie naar de resource waarnaar verwezen wordt
+          format: uri
+          readOnly: true
         id:
           type: string
           description: De identificatie van de fiets.
@@ -3196,14 +3216,18 @@ components:
       - omvang
       - type
       - typenummer
+      - url
       - verkoopGegevens
       - verkoopprijs
       - volgnummer
       type: object
       properties:
         url:
+          minLength: 1
           type: string
-          writeOnly: true
+          description: URL-referentie naar de resource waarnaar verwezen wordt
+          format: uri
+          readOnly: true
         id:
           type: string
           description: De identificatie van de fiets.
@@ -3266,14 +3290,18 @@ components:
       - leveringsdatum
       - omvang
       - typenummer
+      - url
       - verkoopGegevens
       - verkoopprijs
       - volgnummer
       type: object
       properties:
         url:
+          minLength: 1
           type: string
-          writeOnly: true
+          description: URL-referentie naar de resource waarnaar verwezen wordt
+          format: uri
+          readOnly: true
         id:
           type: string
           description: De identificatie van de fiets.
@@ -3311,11 +3339,15 @@ components:
     Winkel:
       required:
       - naam
+      - url
       type: object
       properties:
         url:
+          minLength: 1
           type: string
-          writeOnly: true
+          description: URL-referentie naar de resource waarnaar verwezen wordt
+          format: uri
+          readOnly: true
         naam:
           type: string
           description: Naam van de winkel.

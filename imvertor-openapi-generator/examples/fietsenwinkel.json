@@ -3968,12 +3968,15 @@
         "description" : "Het adres van een contact."
       },
       "Bankrekening" : {
-        "required" : [ "rekeningnummer" ],
+        "required" : [ "rekeningnummer", "url" ],
         "type" : "object",
         "properties" : {
           "url" : {
+            "minLength" : 1,
             "type" : "string",
-            "writeOnly" : true
+            "description" : "URL-referentie naar de resource waarnaar verwezen wordt",
+            "format" : "uri",
+            "readOnly" : true
           },
           "rekeningnummer" : {
             "type" : "string",
@@ -3983,12 +3986,15 @@
         "description" : "Rekening bij een bank, via banktransactie."
       },
       "Creditcard" : {
-        "required" : [ "kaartnummer", "verloopdatum" ],
+        "required" : [ "kaartnummer", "url", "verloopdatum" ],
         "type" : "object",
         "properties" : {
           "url" : {
+            "minLength" : 1,
             "type" : "string",
-            "writeOnly" : true
+            "description" : "URL-referentie naar de resource waarnaar verwezen wordt",
+            "format" : "uri",
+            "readOnly" : true
           },
           "kaartnummer" : {
             "type" : "string",
@@ -4116,12 +4122,15 @@
         "description" : "Lijst van ketting-typen voor fietsen met ketting aandrijving."
       },
       "Klant" : {
-        "required" : [ "betreft", "naam", "nieuwsbrief", "postadres" ],
+        "required" : [ "betreft", "naam", "nieuwsbrief", "postadres", "url" ],
         "type" : "object",
         "properties" : {
           "url" : {
+            "minLength" : 1,
             "type" : "string",
-            "writeOnly" : true
+            "description" : "URL-referentie naar de resource waarnaar verwezen wordt",
+            "format" : "uri",
+            "readOnly" : true
           },
           "naam" : {
             "type" : "string",
@@ -4147,12 +4156,15 @@
         "description" : "Een persoon die een fiets heeft gekocht."
       },
       "Leverancier" : {
-        "required" : [ "kvkNummer", "naam", "postadres" ],
+        "required" : [ "kvkNummer", "naam", "postadres", "url" ],
         "type" : "object",
         "properties" : {
           "url" : {
+            "minLength" : 1,
             "type" : "string",
-            "writeOnly" : true
+            "description" : "URL-referentie naar de resource waarnaar verwezen wordt",
+            "format" : "uri",
+            "readOnly" : true
           },
           "naam" : {
             "type" : "string",
@@ -4180,13 +4192,13 @@
             "type" : "string",
             "format" : "uri",
             "nullable" : true,
-            "example" : "http://api.example.org/accounts/?page=4"
+            "example" : "http://api.example.org/accounts/?pagina=4&paginaGrootte=10&sorteer=name,-geboorteDatum"
           },
           "previous" : {
             "type" : "string",
             "format" : "uri",
             "nullable" : true,
-            "example" : "http://api.example.org/accounts/?page=2"
+            "example" : "http://api.example.org/accounts/?pagina=2&paginaGrootte=10&sorteer=name,-geboorteDatum"
           }
         }
       },
@@ -4258,12 +4270,15 @@
         "description" : "Lijst van snaar-typen voor fietsen met snaaraandrijving."
       },
       "Stadsfiets" : {
-        "required" : [ "geleverdDoor", "id", "leveringsdatum", "omvang", "typenummer", "verkoopGegevens", "verkoopprijs", "volgnummer" ],
+        "required" : [ "geleverdDoor", "id", "leveringsdatum", "omvang", "typenummer", "url", "verkoopGegevens", "verkoopprijs", "volgnummer" ],
         "type" : "object",
         "properties" : {
           "url" : {
+            "minLength" : 1,
             "type" : "string",
-            "writeOnly" : true
+            "description" : "URL-referentie naar de resource waarnaar verwezen wordt",
+            "format" : "uri",
+            "readOnly" : true
           },
           "id" : {
             "type" : "string",
@@ -4447,12 +4462,15 @@
         } ]
       },
       "Sportfiets" : {
-        "required" : [ "geleverdDoor", "id", "leveringsdatum", "omvang", "type", "typenummer", "verkoopGegevens", "verkoopprijs", "volgnummer" ],
+        "required" : [ "geleverdDoor", "id", "leveringsdatum", "omvang", "type", "typenummer", "url", "verkoopGegevens", "verkoopprijs", "volgnummer" ],
         "type" : "object",
         "properties" : {
           "url" : {
+            "minLength" : 1,
             "type" : "string",
-            "writeOnly" : true
+            "description" : "URL-referentie naar de resource waarnaar verwezen wordt",
+            "format" : "uri",
+            "readOnly" : true
           },
           "id" : {
             "type" : "string",
@@ -4525,12 +4543,15 @@
         } ]
       },
       "Fiets" : {
-        "required" : [ "geleverdDoor", "id", "leveringsdatum", "omvang", "typenummer", "verkoopGegevens", "verkoopprijs", "volgnummer" ],
+        "required" : [ "geleverdDoor", "id", "leveringsdatum", "omvang", "typenummer", "url", "verkoopGegevens", "verkoopprijs", "volgnummer" ],
         "type" : "object",
         "properties" : {
           "url" : {
+            "minLength" : 1,
             "type" : "string",
-            "writeOnly" : true
+            "description" : "URL-referentie naar de resource waarnaar verwezen wordt",
+            "format" : "uri",
+            "readOnly" : true
           },
           "id" : {
             "type" : "string",
@@ -4581,12 +4602,15 @@
         "description" : "Een tweewieler."
       },
       "Winkel" : {
-        "required" : [ "naam" ],
+        "required" : [ "naam", "url" ],
         "type" : "object",
         "properties" : {
           "url" : {
+            "minLength" : 1,
             "type" : "string",
-            "writeOnly" : true
+            "description" : "URL-referentie naar de resource waarnaar verwezen wordt",
+            "format" : "uri",
+            "readOnly" : true
           },
           "naam" : {
             "type" : "string",
