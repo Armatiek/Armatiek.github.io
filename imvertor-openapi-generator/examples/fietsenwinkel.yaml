@@ -12,10 +12,12 @@ info:
     name: "European Union Public License, version 1.2 (EUPL-1.2)"
     url: https://eupl.eu/1.2/nl/
   version: 2.0.1
+servers:
+- url: https://armatiek.nl/fietsenwinkel
 tags:
 - name: Batterij (custom operations)
   description: Alle bevragingen mbt batterijen
-- name: Sportfiets
+- name: Fiets
   description: Alle bevragingen mbt fietsen
 - name: Bankrekening
   description: "Rekening bij een bank, via banktransactie."
@@ -29,6 +31,8 @@ tags:
   description: Details omtrent de verkoop van een Fiets aan een Klant .
 - name: Batterij
   description: De batterij van de E-Bike.
+- name: Sportfiets
+  description: Een fiets bedoeld voor gebruik in sportieve toepassingen.
 - name: Stadsfiets
   description: Een fiets die is ingericht op gebruik in het stadsverkeer.
 - name: Winkel
@@ -36,13 +40,13 @@ tags:
 - name: Persoon
   description: Een natuurlijk persoon.
 paths:
-  /v3/batterij/{id}:
+  /v3/fietsen/{id}/batterij:
     get:
       tags:
       - Batterij (custom operations)
-      summary: Dit is de summary
-      description: 'Haal batterij op op basis van ID. '
-      operationId: GetBatterijByID
+      summary: Haal batterij op basis van fiets identifier
+      description: Haal batterij op basis van de identifier van de fiets
+      operationId: haalBatterijVanFietsOp
       parameters:
       - name: id
         in: path
@@ -80,51 +84,100 @@ paths:
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "503":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
-  /v3/batterij:
-    post:
+  /v3/fietsen/{winkelId}/fiets/{fietsId}:
+    get:
       tags:
-      - Batterij (custom operations)
-      summary: kweenie
-      description: Bewaar een geleverde batterij
-      operationId: PostBatterij
-      requestBody:
-        description: De gegevens van het Batterij object
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Batterij"
+      - Fiets
+      summary: Specifieke fiets uit specifieke winkel
+      description: Vraag een een specifieke fiets op uit een specifieke winkel
+      operationId: haalFietsUitWinkelOp
+      parameters:
+      - name: fietsId
+        in: path
+        description: De unieke identificatie van een fiets
         required: true
+        schema:
+          type: integer
+          format: int32
+        example: 115
+      - name: winkelId
+        in: path
+        description: De unieke identificatie van een winkel
+        required: true
+        schema:
+          type: integer
+          format: int32
+        example: 101
       responses:
-        "201":
-          description: Batterij succesvol aangemaakt
+        "200":
+          description: OK
           headers:
             api-version:
               $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
               style: simple
-            Location:
-              description: URI van het opgeslagen object
-              style: simple
-              schema:
-                type: string
-                format: uri
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Batterij"
+                $ref: "#/components/schemas/Sportfiets"
         "400":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/400
         "401":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
         "403":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
+        "404":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404
+        "405":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405
+        "415":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
+        "429":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
+        "500":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
+        "503":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
+  /v3/fietsen:
+    delete:
+      tags:
+      - Fiets
+      summary: Verwijder fietsen van winkel
+      description: Verwijder alle fietsen van een specifieke winkel
+      operationId: verwijderFietsenVanWinkel
+      parameters:
+      - name: winkelId
+        in: query
+        description: De unieke identifier van een winkel
+        required: true
+        schema:
+          type: integer
+          format: int32
+        example: 13
+      responses:
+        "202":
+          description: Object zal worden verwijderd
+          headers:
+            api-version:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
+              style: simple
+        "204":
+          description: Object succesvol verwijderd
+          headers:
+            api-version:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/headers/API-Version
+              style: simple
+        "401":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/401
+        "403":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/403
+        "404":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/404
         "405":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/405
         "409":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/409
         "415":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/415
-        "422":
-          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/422
         "429":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/429
         "500":
@@ -134,10 +187,10 @@ paths:
   /v3/stadsfietsen-custom:
     get:
       tags:
-      - Sportfiets
+      - Stadsfiets
       summary: Zoek stadsfietsen in pricerange
       description: Operatie om een stadsfietsen te zoeken binnen een bepaalde prijsrange
-      operationId: ZoekStadsfietsOpPrijs
+      operationId: vindStadsfietsenOpPrijs
       parameters:
       - $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/page
       - $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/parameters/pageSize
@@ -1466,7 +1519,7 @@ paths:
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "503":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
-  /v3/kweenie:
+  /v3/batterijen:
     get:
       tags:
       - Batterij
@@ -1557,7 +1610,7 @@ paths:
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "503":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
-  /v3/kweenie/{id}:
+  /v3/batterijen/{id}:
     get:
       tags:
       - Batterij
@@ -1933,7 +1986,7 @@ paths:
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "503":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
-  /v3/stadsfiets:
+  /v3/stadsfietsen:
     get:
       tags:
       - Stadsfiets
@@ -2024,7 +2077,7 @@ paths:
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/500
         "503":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/generiek.yaml#/components/responses/503
-  /v3/stadsfiets/{id}:
+  /v3/stadsfietsen/{id}:
     get:
       tags:
       - Stadsfiets
@@ -2983,31 +3036,6 @@ components:
         kvkNummer:
           $ref: "#/components/schemas/KVKLijst"
       description: Een instelling die een fietsen levert.
-    PaginatedBase:
-      type: object
-      properties:
-        next:
-          type: string
-          format: uri
-          nullable: true
-          example: "http://api.example.org/accounts/?pagina=4&paginaGrootte=10&sorteer=name,-geboorteDatum"
-        previous:
-          type: string
-          format: uri
-          nullable: true
-          example: "http://api.example.org/accounts/?pagina=2&paginaGrootte=10&sorteer=name,-geboorteDatum"
-    PaginatedStadsfietsList:
-      required:
-      - results
-      type: object
-      allOf:
-      - $ref: "#/components/schemas/PaginatedBase"
-      - type: object
-        properties:
-          results:
-            type: array
-            items:
-              $ref: "#/components/schemas/Stadsfiets"
     Persoon:
       required:
       - achternaam
@@ -3053,6 +3081,124 @@ components:
           type: string
           description: Lijst van snaar-typen voor fietsen met snaaraandrijving.
       description: Lijst van snaar-typen voor fietsen met snaaraandrijving.
+    Sportfiets:
+      required:
+      - geleverdDoor
+      - id
+      - leveringsdatum
+      - omvang
+      - type
+      - typenummer
+      - url
+      - verkoopGegevens
+      - verkoopprijs
+      - volgnummer
+      type: object
+      properties:
+        url:
+          minLength: 1
+          type: string
+          description: URL-referentie naar de resource waarnaar verwezen wordt
+          format: uri
+          readOnly: true
+        id:
+          type: string
+          description: De identificatie van de fiets.
+        kettingaandrijving:
+          $ref: "#/components/schemas/KettingLijst"
+        leveringsdatum:
+          type: string
+          description: Datum waarop de fiets is geleverd aan de winkel.
+          format: date
+        omvang:
+          $ref: "#/components/schemas/Dimensies"
+        snaaraandrijving:
+          $ref: "#/components/schemas/SnaarLijst"
+        typenummer:
+          type: string
+          description: Het type nummer van de fiets.
+        verkoopprijs:
+          type: number
+          description: "De verkoopprijs van de fiets, met twee decimalen, in Euro."
+        versnellingen:
+          type: integer
+          description: Het aantal versnellingen van de fiets.
+          format: int32
+        volgnummer:
+          type: integer
+          description: Het volgummer van de fiets in één levering.
+          format: int32
+        verkoopGegevens:
+          $ref: "#/components/schemas/Verkoop"
+        aangestuurdDoor:
+          $ref: "#/components/schemas/Batterij"
+        geleverdDoor:
+          $ref: "#/components/schemas/Leverancier"
+        type:
+          type: string
+          description: "Het type van de sportfiets, een waarde uit een enumeratieve\
+            \ lijst."
+          enum:
+          - BIANCHI
+          - CANONDALE
+          - CUBE
+          - GIANT
+      description: Een fiets bedoeld voor gebruik in sportieve toepassingen.
+    Verkoop:
+      required:
+      - garantienummer
+      - id
+      - url
+      - verkoopAan
+      - verkoopdatum
+      type: object
+      properties:
+        id:
+          minLength: 1
+          type: string
+          description: Unieke identificatie van de resource waarnaar verwezen wordt
+        url:
+          minLength: 1
+          type: string
+          description: URL-referentie naar de resource waarnaar verwezen wordt
+          format: uri
+          readOnly: true
+        garantienummer:
+          type: string
+          description: "Garantienummer van de Fiets . Wanneer E-Bike, dan heeft de\
+            \ Batterij een apart garantienummer."
+        verkoopdatum:
+          type: string
+          description: Datum van verkoop van de Fiets .
+          format: date
+        verkoopAan:
+          $ref: "#/components/schemas/Klant"
+      description: Details omtrent de verkoop van een Fiets aan een Klant .
+    PaginatedBase:
+      type: object
+      properties:
+        next:
+          type: string
+          format: uri
+          nullable: true
+          example: "http://api.example.org/accounts/?pagina=4&paginaGrootte=10&sorteer=name,-geboorteDatum"
+        previous:
+          type: string
+          format: uri
+          nullable: true
+          example: "http://api.example.org/accounts/?pagina=2&paginaGrootte=10&sorteer=name,-geboorteDatum"
+    PaginatedStadsfietsList:
+      required:
+      - results
+      type: object
+      allOf:
+      - $ref: "#/components/schemas/PaginatedBase"
+      - type: object
+        properties:
+          results:
+            type: array
+            items:
+              $ref: "#/components/schemas/Stadsfiets"
     Stadsfiets:
       required:
       - geleverdDoor
@@ -3106,36 +3252,6 @@ components:
         geleverdDoor:
           $ref: "#/components/schemas/Leverancier"
       description: Een fiets die is ingericht op gebruik in het stadsverkeer.
-    Verkoop:
-      required:
-      - garantienummer
-      - id
-      - url
-      - verkoopAan
-      - verkoopdatum
-      type: object
-      properties:
-        id:
-          minLength: 1
-          type: string
-          description: Unieke identificatie van de resource waarnaar verwezen wordt
-        url:
-          minLength: 1
-          type: string
-          description: URL-referentie naar de resource waarnaar verwezen wordt
-          format: uri
-          readOnly: true
-        garantienummer:
-          type: string
-          description: "Garantienummer van de Fiets . Wanneer E-Bike, dan heeft de\
-            \ Batterij een apart garantienummer."
-        verkoopdatum:
-          type: string
-          description: Datum van verkoop van de Fiets .
-          format: date
-        verkoopAan:
-          $ref: "#/components/schemas/Klant"
-      description: Details omtrent de verkoop van een Fiets aan een Klant .
     PaginatedBankrekeningList:
       required:
       - results
@@ -3208,69 +3324,6 @@ components:
             type: array
             items:
               $ref: "#/components/schemas/Batterij"
-    Sportfiets:
-      required:
-      - geleverdDoor
-      - id
-      - leveringsdatum
-      - omvang
-      - type
-      - typenummer
-      - url
-      - verkoopGegevens
-      - verkoopprijs
-      - volgnummer
-      type: object
-      properties:
-        url:
-          minLength: 1
-          type: string
-          description: URL-referentie naar de resource waarnaar verwezen wordt
-          format: uri
-          readOnly: true
-        id:
-          type: string
-          description: De identificatie van de fiets.
-        kettingaandrijving:
-          $ref: "#/components/schemas/KettingLijst"
-        leveringsdatum:
-          type: string
-          description: Datum waarop de fiets is geleverd aan de winkel.
-          format: date
-        omvang:
-          $ref: "#/components/schemas/Dimensies"
-        snaaraandrijving:
-          $ref: "#/components/schemas/SnaarLijst"
-        typenummer:
-          type: string
-          description: Het type nummer van de fiets.
-        verkoopprijs:
-          type: number
-          description: "De verkoopprijs van de fiets, met twee decimalen, in Euro."
-        versnellingen:
-          type: integer
-          description: Het aantal versnellingen van de fiets.
-          format: int32
-        volgnummer:
-          type: integer
-          description: Het volgummer van de fiets in één levering.
-          format: int32
-        verkoopGegevens:
-          $ref: "#/components/schemas/Verkoop"
-        aangestuurdDoor:
-          $ref: "#/components/schemas/Batterij"
-        geleverdDoor:
-          $ref: "#/components/schemas/Leverancier"
-        type:
-          type: string
-          description: "Het type van de sportfiets, een waarde uit een enumeratieve\
-            \ lijst."
-          enum:
-          - BIANCHI
-          - CANONDALE
-          - CUBE
-          - GIANT
-      description: Een fiets bedoeld voor gebruik in sportieve toepassingen.
     PaginatedSportfietsList:
       required:
       - results
