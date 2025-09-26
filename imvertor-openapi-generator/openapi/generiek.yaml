@@ -23,26 +23,31 @@ components:
     page:
       name: pagina
       in: query
-      description: Paginanummer (beginnend bij 0)
-      schema:
-        type: integer
-        format: int32
-        default: 0
-      example: 0
-    pageSize:
-      name: paginaGrootte
-      in: query
-      description: Aantal objecten per pagina
+      description: Paginanummer (beginnend bij 1)
+      required: false
       schema:
         type: integer
         format: int32
         minimum: 1
-        default: 10
-      example: 20
+        default: 1
+      example: 3
+    pageSize:
+      name: paginaGrootte
+      in: query
+      description: Aantal objecten per pagina
+      required: false   
+      schema:
+        type: integer
+        format: int32
+        minimum: 10
+        maximum: 100
+        default: 20
+      example: 50
     sortField:
       name: sorteer
       in: query
       description: Komma gescheiden lijst van velden waarop gesorteerd moet worden. Door een minteken (-) voor de veldnaam te zetten wordt het veld in aflopende sorteervolgorde gesorteerd.
+      required: false
       schema:
         type: string
         default: id
