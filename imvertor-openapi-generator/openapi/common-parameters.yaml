@@ -1,0 +1,47 @@
+openapi: 3.0.1
+info:
+  title: Generieke en herbruikbare parameter components voor API-specificaties
+  description: |
+    De definitie van generieke parameter components die worden gebruikt bij het opstellen van API-specificaties.
+  version: '1.0.0'
+  contact:
+    name: Armatiek BV
+    url: https://armatiek.nl
+  license:
+    name: European Union Public License, version 1.2 (EUPL-1.2)
+    url: https://eupl.eu/1.2/nl/
+paths: {}
+components:
+  parameters:
+    page:
+      name: pagina
+      in: query
+      description: Paginanummer (beginnend bij 1)
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        default: 1
+      example: 3
+    pageSize:
+      name: paginaGrootte
+      in: query
+      description: Aantal objecten per pagina
+      required: false   
+      schema:
+        type: integer
+        format: int32
+        minimum: 10
+        maximum: 100
+        default: 20
+      example: 50
+    sortField:
+      name: sorteer
+      in: query
+      description: Komma gescheiden lijst van velden waarop gesorteerd moet worden. Door een minteken (-) voor de veldnaam te zetten wordt het veld in aflopende sorteervolgorde gesorteerd.
+      required: false
+      schema:
+        type: string
+        default: id
+      example: name,-geboorteDatum

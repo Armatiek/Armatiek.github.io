@@ -1,0 +1,84 @@
+openapi: 3.0.1
+info:
+  title: Generieke en herbruikbare header components voor API-specificaties
+  description: |
+    De definitie van generieke header components die worden gebruikt bij het opstellen van API-specificaties.
+  version: '1.0.0'
+  contact:
+    name: Armatiek BV
+    url: https://armatiek.nl
+  license:
+    name: European Union Public License, version 1.2 (EUPL-1.2)
+    url: https://eupl.eu/1.2/nl/
+paths: {}
+components:
+  headers:
+    API-Version:
+      description: Geeft een specifieke API-versie aan in de context van een specifieke
+        aanroep.
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: 1.0.1
+    RateLimit-Limit:
+      description: Aantal requests dat is toegestaan per seconde.
+      required: false
+      style: simple
+      explode: false
+      schema:
+        type: integer
+        example: 10
+    RateLimit-Remaining:
+      description: Het resterende aantal requests voordat de limiet wordt bereikt.
+      required: false
+      style: simple
+      explode: false
+      schema:
+        type: integer
+        example: 6
+    RateLimit-Reset:
+      description: Het aantal seconden totdat de limiet wordt geupdate.
+      required: false
+      style: simple
+      explode: false
+      schema:
+        type: integer
+        format: int64
+    Warning:
+      description: "Zie RFC 7234. \nIn het geval een major versie wordt uitgefaseerd,\
+        \ gebruiken we warn-code 299 (\"Miscellaneous Persistent Warning\") en het\
+        \ API end-point (inclusief versienummer) als de warn-agent van de warning,\
+        \ gevolgd door de warn-text met de human-readable waarschuwing.\n"
+      required: false
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: "299 https://service.../api/.../v1 \"Deze versie van de API is verouderd\
+          \ en zal uit dienst worden genomen op 2018-02-01. Raadpleeg voor meer informatie\
+          \ hier de documentatie: https://omgevingswet.../api/.../v1\"."
+    X-Pagination-Limit:
+      description: Aantal resultaten per pagina.
+      required: false
+      style: simple
+      explode: false
+      schema:
+        type: integer
+        example: 20
+    X-Pagination-Page:
+      description: Huidige pagina.
+      required: false
+      style: simple
+      explode: false
+      schema:
+        type: integer
+        example: 3
+    Location:
+      description: URI van het opgeslagen object
+      required: false
+      style: simple
+      schema:
+        type: string
+        format: uri
