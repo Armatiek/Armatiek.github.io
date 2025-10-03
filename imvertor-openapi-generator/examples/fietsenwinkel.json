@@ -1,10 +1,10 @@
 {
   "openapi" : "3.0.1",
   "info" : {
-    "title" : "Fietsenwinkel",
-    "description" : "API voor benaderen van fietsenwinkel informatie. Dit is een **test** met rijke tekst:\n\n\n\n- Optie 1\n- Optie 2\n- Optie 3 met [hyperlink](https://armatiek.nl).",
+    "title" : "Fietsenwinkel API",
+    "description" : "API voor het benaderen van fietsenwinkel informatie. De volgende type fietsen kunnen worden opgevraagd:\n\n- Sportfietsen\n- [Stadsfietsen](https://nl.wikipedia.org/wiki/Stadsfiets) of *citybikes*\n- Elektrische fietsen",
     "contact" : {
-      "name" : "Maarten Kroon",
+      "name" : "Armatiek BV",
       "url" : "https://armatiek.nl",
       "email" : "info@armatiek.nl"
     },
@@ -5979,7 +5979,7 @@
             "description" : "Indicatie dat de klant de nieuwsbrief wenst te ontvangen."
           },
           "betreft" : {
-            "$ref" : "#/components/schemas/Persoon"
+            "$ref" : "https://developer.rvig.nl/brp-api/personen/_attachments/openapi.yaml#/components/schemas/Persoon"
           }
         },
         "description" : "Een persoon die een fiets heeft gekocht."
@@ -6013,35 +6013,6 @@
           }
         },
         "description" : "Een instelling die een fietsen levert."
-      },
-      "Persoon" : {
-        "required" : [ "achternaam", "id", "url" ],
-        "type" : "object",
-        "properties" : {
-          "id" : {
-            "minLength" : 1,
-            "type" : "string",
-            "description" : "Unieke identificatie van de resource waarnaar verwezen wordt",
-            "readOnly" : true
-          },
-          "url" : {
-            "minLength" : 1,
-            "type" : "string",
-            "description" : "URL-referentie naar de resource waarnaar verwezen wordt",
-            "format" : "uri",
-            "readOnly" : true
-          },
-          "achternaam" : {
-            "type" : "string",
-            "description" : "De achternaam van de **Persoon**."
-          },
-          "voornaam" : {
-            "type" : "string",
-            "description" : "De roepnaam van een **Persoon**, vol uitgeschreven.",
-            "nullable" : true
-          }
-        },
-        "description" : "Een natuurlijk persoon."
       },
       "SnaarLijst" : {
         "required" : [ "id", "url", "value" ],
@@ -6172,21 +6143,49 @@
         "description" : "Details omtrent de verkoop van een **Fiets** aan een **Klant**."
       },
       "GepagineerdBase" : {
+        "required" : [ "pagina", "paginaGrootte" ],
         "type" : "object",
         "properties" : {
+          "pagina" : {
+            "minimum" : 1,
+            "type" : "integer",
+            "description" : "Huidig paginanummer",
+            "format" : "int32"
+          },
+          "paginaGrootte" : {
+            "maximum" : 100,
+            "type" : "integer",
+            "description" : "Aantal objecten per pagina",
+            "format" : "int32"
+          },
+          "totaalAantal" : {
+            "minimum" : 0,
+            "type" : "integer",
+            "description" : "Totaal aantal beschikbare objecten",
+            "format" : "int32",
+            "nullable" : true
+          },
+          "sorteer" : {
+            "type" : "string",
+            "description" : "Komma gescheiden lijst van velden waarop gesorteerd moet worden. Door een minteken (-) voor de veldnaam te zetten wordt het veld in aflopende sorteervolgorde gesorteerd.",
+            "example" : "name,-geboorteDatum"
+          },
           "volgende" : {
             "type" : "string",
+            "description" : "Link naar de volgende pagina",
             "format" : "uri",
             "nullable" : true,
             "example" : "http://mijn-api.org/api/v1/klanten/?pagina=4&paginaGrootte=10&sorteer=name,-geboorteDatum"
           },
           "vorige" : {
             "type" : "string",
+            "description" : "Link naar de vorige pagina",
             "format" : "uri",
             "nullable" : true,
             "example" : "http://mijn-api.org/api/v1/klanten/?pagina=2&paginaGrootte=10&sorteer=name,-geboorteDatum"
           }
-        }
+        },
+        "description" : "Basis schema voor gepagineerde resultaten"
       },
       "GepagineerdStadsfietsLijst" : {
         "required" : [ "resultaten" ],
@@ -6515,6 +6514,35 @@
             }
           }
         } ]
+      },
+      "Persoon" : {
+        "required" : [ "achternaam", "id", "url" ],
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "minLength" : 1,
+            "type" : "string",
+            "description" : "Unieke identificatie van de resource waarnaar verwezen wordt",
+            "readOnly" : true
+          },
+          "url" : {
+            "minLength" : 1,
+            "type" : "string",
+            "description" : "URL-referentie naar de resource waarnaar verwezen wordt",
+            "format" : "uri",
+            "readOnly" : true
+          },
+          "achternaam" : {
+            "type" : "string",
+            "description" : "De achternaam van de **Persoon**."
+          },
+          "voornaam" : {
+            "type" : "string",
+            "description" : "De roepnaam van een **Persoon**, vol uitgeschreven.",
+            "nullable" : true
+          }
+        },
+        "description" : "Een natuurlijk persoon."
       }
     }
   }
