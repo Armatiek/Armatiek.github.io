@@ -422,6 +422,103 @@ paths:
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/500
         "503":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/503
+    patch:
+      tags:
+      - Bankrekening
+      summary: Werkt een bestaand Bankrekening object gedeeltelijk bij
+      description: Werkt een bestaand Bankrekening object gedeeltelijk bij door alleen
+        de aangeleverde velden te overschrijven
+      operationId: pasBankrekeningAan
+      parameters:
+      - name: rekeningnummer
+        in: path
+        description: Bankrekening ID
+        required: true
+        schema:
+          type: string
+        example: 123
+      requestBody:
+        description: De gegevens van het Bankrekening object
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Bankrekening"
+        required: true
+      responses:
+        "200":
+          description: OK
+          headers:
+            RateLimit-Remaining:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Remaining
+              style: simple
+            Warning:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/Warning
+              style: simple
+            RateLimit-Reset:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Reset
+              style: simple
+            X-Pagination-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Limit
+              style: simple
+            X-Pagination-Page:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Page
+              style: simple
+            RateLimit-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Limit
+              style: simple
+            API-Version:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/API-Version
+              style: simple
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Bankrekening"
+        "204":
+          description: OK
+          headers:
+            RateLimit-Remaining:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Remaining
+              style: simple
+            Warning:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/Warning
+              style: simple
+            RateLimit-Reset:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Reset
+              style: simple
+            X-Pagination-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Limit
+              style: simple
+            X-Pagination-Page:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Page
+              style: simple
+            RateLimit-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Limit
+              style: simple
+            API-Version:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/API-Version
+              style: simple
+        "400":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/400
+        "401":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/401
+        "403":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/403
+        "404":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/404
+        "405":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/405
+        "409":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/409
+        "415":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/415
+        "422":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/422
+        "429":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/429
+        "500":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/500
+        "503":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/503
   /v3/batterij:
     get:
       tags:
@@ -797,6 +894,103 @@ paths:
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/409
         "415":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/415
+        "429":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/429
+        "500":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/500
+        "503":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/503
+    patch:
+      tags:
+      - Batterij
+      summary: Werkt een bestaand Batterij object gedeeltelijk bij
+      description: Werkt een bestaand Batterij object gedeeltelijk bij door alleen
+        de aangeleverde velden te overschrijven
+      operationId: pasBatterijAan
+      parameters:
+      - name: id
+        in: path
+        description: Batterij ID
+        required: true
+        schema:
+          type: string
+        example: 123
+      requestBody:
+        description: De gegevens van het Batterij object
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Batterij"
+        required: true
+      responses:
+        "200":
+          description: OK
+          headers:
+            RateLimit-Remaining:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Remaining
+              style: simple
+            Warning:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/Warning
+              style: simple
+            RateLimit-Reset:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Reset
+              style: simple
+            X-Pagination-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Limit
+              style: simple
+            X-Pagination-Page:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Page
+              style: simple
+            RateLimit-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Limit
+              style: simple
+            API-Version:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/API-Version
+              style: simple
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Batterij"
+        "204":
+          description: OK
+          headers:
+            RateLimit-Remaining:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Remaining
+              style: simple
+            Warning:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/Warning
+              style: simple
+            RateLimit-Reset:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Reset
+              style: simple
+            X-Pagination-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Limit
+              style: simple
+            X-Pagination-Page:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Page
+              style: simple
+            RateLimit-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Limit
+              style: simple
+            API-Version:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/API-Version
+              style: simple
+        "400":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/400
+        "401":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/401
+        "403":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/403
+        "404":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/404
+        "405":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/405
+        "409":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/409
+        "415":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/415
+        "422":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/422
         "429":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/429
         "500":
@@ -1184,6 +1378,103 @@ paths:
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/500
         "503":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/503
+    patch:
+      tags:
+      - Creditcard
+      summary: Werkt een bestaand Creditcard object gedeeltelijk bij
+      description: Werkt een bestaand Creditcard object gedeeltelijk bij door alleen
+        de aangeleverde velden te overschrijven
+      operationId: pasCreditcardAan
+      parameters:
+      - name: kaartnummer
+        in: path
+        description: Creditcard ID
+        required: true
+        schema:
+          type: string
+        example: 123
+      requestBody:
+        description: De gegevens van het Creditcard object
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Creditcard"
+        required: true
+      responses:
+        "200":
+          description: OK
+          headers:
+            RateLimit-Remaining:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Remaining
+              style: simple
+            Warning:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/Warning
+              style: simple
+            RateLimit-Reset:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Reset
+              style: simple
+            X-Pagination-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Limit
+              style: simple
+            X-Pagination-Page:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Page
+              style: simple
+            RateLimit-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Limit
+              style: simple
+            API-Version:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/API-Version
+              style: simple
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Creditcard"
+        "204":
+          description: OK
+          headers:
+            RateLimit-Remaining:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Remaining
+              style: simple
+            Warning:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/Warning
+              style: simple
+            RateLimit-Reset:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Reset
+              style: simple
+            X-Pagination-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Limit
+              style: simple
+            X-Pagination-Page:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Page
+              style: simple
+            RateLimit-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Limit
+              style: simple
+            API-Version:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/API-Version
+              style: simple
+        "400":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/400
+        "401":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/401
+        "403":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/403
+        "404":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/404
+        "405":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/405
+        "409":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/409
+        "415":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/415
+        "422":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/422
+        "429":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/429
+        "500":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/500
+        "503":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/503
   /v3/klant:
     get:
       tags:
@@ -1557,6 +1848,103 @@ paths:
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/409
         "415":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/415
+        "429":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/429
+        "500":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/500
+        "503":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/503
+    patch:
+      tags:
+      - Klant
+      summary: Werkt een bestaand Klant object gedeeltelijk bij
+      description: Werkt een bestaand Klant object gedeeltelijk bij door alleen de
+        aangeleverde velden te overschrijven
+      operationId: pasKlantAan
+      parameters:
+      - name: naam
+        in: path
+        description: Klant ID
+        required: true
+        schema:
+          type: string
+        example: 123
+      requestBody:
+        description: De gegevens van het Klant object
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Klant"
+        required: true
+      responses:
+        "200":
+          description: OK
+          headers:
+            RateLimit-Remaining:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Remaining
+              style: simple
+            Warning:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/Warning
+              style: simple
+            RateLimit-Reset:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Reset
+              style: simple
+            X-Pagination-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Limit
+              style: simple
+            X-Pagination-Page:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Page
+              style: simple
+            RateLimit-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Limit
+              style: simple
+            API-Version:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/API-Version
+              style: simple
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Klant"
+        "204":
+          description: OK
+          headers:
+            RateLimit-Remaining:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Remaining
+              style: simple
+            Warning:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/Warning
+              style: simple
+            RateLimit-Reset:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Reset
+              style: simple
+            X-Pagination-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Limit
+              style: simple
+            X-Pagination-Page:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Page
+              style: simple
+            RateLimit-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Limit
+              style: simple
+            API-Version:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/API-Version
+              style: simple
+        "400":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/400
+        "401":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/401
+        "403":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/403
+        "404":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/404
+        "405":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/405
+        "409":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/409
+        "415":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/415
+        "422":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/422
         "429":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/429
         "500":
@@ -1944,6 +2332,103 @@ paths:
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/500
         "503":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/503
+    patch:
+      tags:
+      - Leverancier
+      summary: Werkt een bestaand Leverancier object gedeeltelijk bij
+      description: Werkt een bestaand Leverancier object gedeeltelijk bij door alleen
+        de aangeleverde velden te overschrijven
+      operationId: pasLeverancierAan
+      parameters:
+      - name: naam
+        in: path
+        description: Leverancier ID
+        required: true
+        schema:
+          type: string
+        example: 123
+      requestBody:
+        description: De gegevens van het Leverancier object
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Leverancier"
+        required: true
+      responses:
+        "200":
+          description: OK
+          headers:
+            RateLimit-Remaining:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Remaining
+              style: simple
+            Warning:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/Warning
+              style: simple
+            RateLimit-Reset:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Reset
+              style: simple
+            X-Pagination-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Limit
+              style: simple
+            X-Pagination-Page:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Page
+              style: simple
+            RateLimit-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Limit
+              style: simple
+            API-Version:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/API-Version
+              style: simple
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Leverancier"
+        "204":
+          description: OK
+          headers:
+            RateLimit-Remaining:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Remaining
+              style: simple
+            Warning:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/Warning
+              style: simple
+            RateLimit-Reset:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Reset
+              style: simple
+            X-Pagination-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Limit
+              style: simple
+            X-Pagination-Page:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Page
+              style: simple
+            RateLimit-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Limit
+              style: simple
+            API-Version:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/API-Version
+              style: simple
+        "400":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/400
+        "401":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/401
+        "403":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/403
+        "404":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/404
+        "405":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/405
+        "409":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/409
+        "415":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/415
+        "422":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/422
+        "429":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/429
+        "500":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/500
+        "503":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/503
   /v3/persoon:
     get:
       tags:
@@ -2319,6 +2804,103 @@ paths:
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/409
         "415":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/415
+        "429":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/429
+        "500":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/500
+        "503":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/503
+    patch:
+      tags:
+      - Persoon
+      summary: Werkt een bestaand Persoon object gedeeltelijk bij
+      description: Werkt een bestaand Persoon object gedeeltelijk bij door alleen
+        de aangeleverde velden te overschrijven
+      operationId: pasPersoonAan
+      parameters:
+      - name: id
+        in: path
+        description: Persoon ID
+        required: true
+        schema:
+          type: string
+        example: 123
+      requestBody:
+        description: De gegevens van het Persoon object
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Persoon"
+        required: true
+      responses:
+        "200":
+          description: OK
+          headers:
+            RateLimit-Remaining:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Remaining
+              style: simple
+            Warning:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/Warning
+              style: simple
+            RateLimit-Reset:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Reset
+              style: simple
+            X-Pagination-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Limit
+              style: simple
+            X-Pagination-Page:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Page
+              style: simple
+            RateLimit-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Limit
+              style: simple
+            API-Version:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/API-Version
+              style: simple
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Persoon"
+        "204":
+          description: OK
+          headers:
+            RateLimit-Remaining:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Remaining
+              style: simple
+            Warning:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/Warning
+              style: simple
+            RateLimit-Reset:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Reset
+              style: simple
+            X-Pagination-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Limit
+              style: simple
+            X-Pagination-Page:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Page
+              style: simple
+            RateLimit-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Limit
+              style: simple
+            API-Version:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/API-Version
+              style: simple
+        "400":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/400
+        "401":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/401
+        "403":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/403
+        "404":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/404
+        "405":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/405
+        "409":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/409
+        "415":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/415
+        "422":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/422
         "429":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/429
         "500":
@@ -2706,6 +3288,103 @@ paths:
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/500
         "503":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/503
+    patch:
+      tags:
+      - Sportfiets
+      summary: Werkt een bestaand Sportfiets object gedeeltelijk bij
+      description: Werkt een bestaand Sportfiets object gedeeltelijk bij door alleen
+        de aangeleverde velden te overschrijven
+      operationId: pasSportfietsAan
+      parameters:
+      - name: id
+        in: path
+        description: Sportfiets ID
+        required: true
+        schema:
+          type: string
+        example: 123
+      requestBody:
+        description: De gegevens van het Sportfiets object
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Sportfiets"
+        required: true
+      responses:
+        "200":
+          description: OK
+          headers:
+            RateLimit-Remaining:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Remaining
+              style: simple
+            Warning:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/Warning
+              style: simple
+            RateLimit-Reset:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Reset
+              style: simple
+            X-Pagination-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Limit
+              style: simple
+            X-Pagination-Page:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Page
+              style: simple
+            RateLimit-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Limit
+              style: simple
+            API-Version:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/API-Version
+              style: simple
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Sportfiets"
+        "204":
+          description: OK
+          headers:
+            RateLimit-Remaining:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Remaining
+              style: simple
+            Warning:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/Warning
+              style: simple
+            RateLimit-Reset:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Reset
+              style: simple
+            X-Pagination-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Limit
+              style: simple
+            X-Pagination-Page:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Page
+              style: simple
+            RateLimit-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Limit
+              style: simple
+            API-Version:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/API-Version
+              style: simple
+        "400":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/400
+        "401":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/401
+        "403":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/403
+        "404":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/404
+        "405":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/405
+        "409":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/409
+        "415":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/415
+        "422":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/422
+        "429":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/429
+        "500":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/500
+        "503":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/503
   /v3/stadsfiets:
     get:
       tags:
@@ -3081,6 +3760,103 @@ paths:
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/409
         "415":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/415
+        "429":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/429
+        "500":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/500
+        "503":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/503
+    patch:
+      tags:
+      - Stadsfiets
+      summary: Werkt een bestaand Stadsfiets object gedeeltelijk bij
+      description: Werkt een bestaand Stadsfiets object gedeeltelijk bij door alleen
+        de aangeleverde velden te overschrijven
+      operationId: pasStadsfietsAan
+      parameters:
+      - name: id
+        in: path
+        description: Stadsfiets ID
+        required: true
+        schema:
+          type: string
+        example: 123
+      requestBody:
+        description: De gegevens van het Stadsfiets object
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Stadsfiets"
+        required: true
+      responses:
+        "200":
+          description: OK
+          headers:
+            RateLimit-Remaining:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Remaining
+              style: simple
+            Warning:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/Warning
+              style: simple
+            RateLimit-Reset:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Reset
+              style: simple
+            X-Pagination-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Limit
+              style: simple
+            X-Pagination-Page:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Page
+              style: simple
+            RateLimit-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Limit
+              style: simple
+            API-Version:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/API-Version
+              style: simple
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Stadsfiets"
+        "204":
+          description: OK
+          headers:
+            RateLimit-Remaining:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Remaining
+              style: simple
+            Warning:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/Warning
+              style: simple
+            RateLimit-Reset:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Reset
+              style: simple
+            X-Pagination-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Limit
+              style: simple
+            X-Pagination-Page:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Page
+              style: simple
+            RateLimit-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Limit
+              style: simple
+            API-Version:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/API-Version
+              style: simple
+        "400":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/400
+        "401":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/401
+        "403":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/403
+        "404":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/404
+        "405":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/405
+        "409":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/409
+        "415":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/415
+        "422":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/422
         "429":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/429
         "500":
@@ -3468,6 +4244,103 @@ paths:
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/500
         "503":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/503
+    patch:
+      tags:
+      - Verkoop
+      summary: Werkt een bestaand Verkoop object gedeeltelijk bij
+      description: Werkt een bestaand Verkoop object gedeeltelijk bij door alleen
+        de aangeleverde velden te overschrijven
+      operationId: pasVerkoopAan
+      parameters:
+      - name: id
+        in: path
+        description: Verkoop ID
+        required: true
+        schema:
+          type: string
+        example: 123
+      requestBody:
+        description: De gegevens van het Verkoop object
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Verkoop"
+        required: true
+      responses:
+        "200":
+          description: OK
+          headers:
+            RateLimit-Remaining:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Remaining
+              style: simple
+            Warning:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/Warning
+              style: simple
+            RateLimit-Reset:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Reset
+              style: simple
+            X-Pagination-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Limit
+              style: simple
+            X-Pagination-Page:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Page
+              style: simple
+            RateLimit-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Limit
+              style: simple
+            API-Version:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/API-Version
+              style: simple
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Verkoop"
+        "204":
+          description: OK
+          headers:
+            RateLimit-Remaining:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Remaining
+              style: simple
+            Warning:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/Warning
+              style: simple
+            RateLimit-Reset:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Reset
+              style: simple
+            X-Pagination-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Limit
+              style: simple
+            X-Pagination-Page:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Page
+              style: simple
+            RateLimit-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Limit
+              style: simple
+            API-Version:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/API-Version
+              style: simple
+        "400":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/400
+        "401":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/401
+        "403":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/403
+        "404":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/404
+        "405":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/405
+        "409":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/409
+        "415":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/415
+        "422":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/422
+        "429":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/429
+        "500":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/500
+        "503":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/503
   /v3/winkel:
     get:
       tags:
@@ -3843,6 +4716,103 @@ paths:
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/409
         "415":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/415
+        "429":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/429
+        "500":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/500
+        "503":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/503
+    patch:
+      tags:
+      - Winkel
+      summary: Werkt een bestaand Winkel object gedeeltelijk bij
+      description: Werkt een bestaand Winkel object gedeeltelijk bij door alleen de
+        aangeleverde velden te overschrijven
+      operationId: pasWinkelAan
+      parameters:
+      - name: naam
+        in: path
+        description: Winkel ID
+        required: true
+        schema:
+          type: string
+        example: 123
+      requestBody:
+        description: De gegevens van het Winkel object
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Winkel"
+        required: true
+      responses:
+        "200":
+          description: OK
+          headers:
+            RateLimit-Remaining:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Remaining
+              style: simple
+            Warning:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/Warning
+              style: simple
+            RateLimit-Reset:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Reset
+              style: simple
+            X-Pagination-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Limit
+              style: simple
+            X-Pagination-Page:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Page
+              style: simple
+            RateLimit-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Limit
+              style: simple
+            API-Version:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/API-Version
+              style: simple
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Winkel"
+        "204":
+          description: OK
+          headers:
+            RateLimit-Remaining:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Remaining
+              style: simple
+            Warning:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/Warning
+              style: simple
+            RateLimit-Reset:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Reset
+              style: simple
+            X-Pagination-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Limit
+              style: simple
+            X-Pagination-Page:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/X-Pagination-Page
+              style: simple
+            RateLimit-Limit:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/RateLimit-Limit
+              style: simple
+            API-Version:
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-headers.yaml#/components/headers/API-Version
+              style: simple
+        "400":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/400
+        "401":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/401
+        "403":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/403
+        "404":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/404
+        "405":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/405
+        "409":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/409
+        "415":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/415
+        "422":
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/422
         "429":
           $ref: https://armatiek.github.io/imvertor-openapi-generator/openapi/common-responses.yaml#/components/responses/429
         "500":
