@@ -1,0 +1,42 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "Fietsenwinkel",
+    "description" : "Dit is een model voor registratie van inventaris en betrokken producenten en klanten van fietsenwinkels.\nDit model heeft alleen tot doel de aard en toepassing van constructies te illustreren, en is opgezet als een UML realisatie van de in MIM besproken modelelementen.\nHet model staat bekend als IMFW.\nHet model is ontwikkeld onder toezicht van de IFO: Internationale Fietsenwinkels Organisatie.\nDit model is opgezet conform [MIM 1.2]().",
+    "version" : "1.0.0"
+  },
+  "components" : {
+    "schemas" : {
+      "Leverancier" : {
+        "required" : [ "kvk nummer", "naam", "postadres", "url" ],
+        "type" : "object",
+        "properties" : {
+          "url" : {
+            "minLength" : 1,
+            "type" : "string",
+            "description" : "URL-referentie naar de resource waarnaar verwezen wordt",
+            "format" : "uri",
+            "readOnly" : true
+          },
+          "naam" : {
+            "type" : "string",
+            "description" : "De naam van het contact."
+          },
+          "postadres" : {
+            "$ref" : "./Adres.yaml#/components/schemas/Adres"
+          },
+          "betaling" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "./Betaalmiddel.yaml#/components/schemas/Betaalmiddel"
+            }
+          },
+          "kvk nummer" : {
+            "$ref" : "./KVKLijst.yaml#/components/schemas/KVKLijst"
+          }
+        },
+        "description" : "Een instelling die een fietsen levert."
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+openapi: 3.0.1
+info:
+  title: Fietsenwinkel
+  description: |-
+    Dit is een model voor registratie van inventaris en betrokken producenten en klanten van fietsenwinkels.
+    Dit model heeft alleen tot doel de aard en toepassing van constructies te illustreren, en is opgezet als een UML realisatie van de in MIM besproken modelelementen.
+    Het model staat bekend als IMFW.
+    Het model is ontwikkeld onder toezicht van de IFO: Internationale Fietsenwinkels Organisatie.
+    Dit model is opgezet conform [MIM 1.2]().
+  version: 1.0.0
+components:
+  schemas:
+    GepagineerdBatterijLijst:
+      required:
+      - resultaten
+      type: object
+      allOf:
+      - $ref: ./GepagineerdBase.yaml#/components/schemas/GepagineerdBase
+      - type: object
+        properties:
+          resultaten:
+            type: array
+            items:
+              $ref: ./Batterij.yaml#/components/schemas/Batterij

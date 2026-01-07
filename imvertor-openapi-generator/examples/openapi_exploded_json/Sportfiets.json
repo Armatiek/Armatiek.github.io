@@ -1,0 +1,74 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "Fietsenwinkel",
+    "description" : "Dit is een model voor registratie van inventaris en betrokken producenten en klanten van fietsenwinkels.\nDit model heeft alleen tot doel de aard en toepassing van constructies te illustreren, en is opgezet als een UML realisatie van de in MIM besproken modelelementen.\nHet model staat bekend als IMFW.\nHet model is ontwikkeld onder toezicht van de IFO: Internationale Fietsenwinkels Organisatie.\nDit model is opgezet conform [MIM 1.2]().",
+    "version" : "1.0.0"
+  },
+  "components" : {
+    "schemas" : {
+      "Sportfiets" : {
+        "required" : [ "aandrijving", "geleverd door", "id", "leveringsdatum", "omvang", "type", "typenummer", "url", "verkoopprijs", "volgnummer" ],
+        "type" : "object",
+        "properties" : {
+          "url" : {
+            "minLength" : 1,
+            "type" : "string",
+            "description" : "URL-referentie naar de resource waarnaar verwezen wordt",
+            "format" : "uri",
+            "readOnly" : true
+          },
+          "id" : {
+            "type" : "string",
+            "description" : "De identificatie van de fiets."
+          },
+          "leveringsdatum" : {
+            "type" : "string",
+            "description" : "Datum waarop de fiets is geleverd aan de winkel.",
+            "format" : "date"
+          },
+          "omvang" : {
+            "$ref" : "./Dimensies.yaml#/components/schemas/Dimensies"
+          },
+          "typenummer" : {
+            "type" : "string",
+            "description" : "Het type nummer van de fiets."
+          },
+          "verkoopprijs" : {
+            "type" : "number",
+            "description" : "De verkoopprijs van de fiets, met twee decimalen, in Euro."
+          },
+          "versnellingen" : {
+            "type" : "integer",
+            "description" : "Het aantal versnellingen van de fiets.",
+            "format" : "int32",
+            "nullable" : true
+          },
+          "volgnummer" : {
+            "type" : "integer",
+            "description" : "Het volgummer van de fiets in één levering.",
+            "format" : "int32"
+          },
+          "aangestuurd door" : {
+            "$ref" : "./Batterij.yaml#/components/schemas/Batterij"
+          },
+          "geleverd door" : {
+            "$ref" : "./Leverancier.yaml#/components/schemas/Leverancier"
+          },
+          "verkocht aan" : {
+            "$ref" : "./Klant.yaml#/components/schemas/Klant"
+          },
+          "aandrijving" : {
+            "$ref" : "./Aandrijving.yaml#/components/schemas/Aandrijving"
+          },
+          "type" : {
+            "type" : "string",
+            "description" : "Dit is een lijst van alle typen sportfietsen.",
+            "enum" : [ "CUBE", "BIANCHI", "GIANT", "CANONDALE" ]
+          }
+        },
+        "description" : "Een fiets bedoeld voor gebruik in sportieve toepassingen."
+      }
+    }
+  }
+}

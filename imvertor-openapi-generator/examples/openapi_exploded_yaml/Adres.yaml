@@ -1,0 +1,42 @@
+openapi: 3.0.1
+info:
+  title: Fietsenwinkel
+  description: |-
+    Dit is een model voor registratie van inventaris en betrokken producenten en klanten van fietsenwinkels.
+    Dit model heeft alleen tot doel de aard en toepassing van constructies te illustreren, en is opgezet als een UML realisatie van de in MIM besproken modelelementen.
+    Het model staat bekend als IMFW.
+    Het model is ontwikkeld onder toezicht van de IFO: Internationale Fietsenwinkels Organisatie.
+    Dit model is opgezet conform [MIM 1.2]().
+  version: 1.0.0
+components:
+  schemas:
+    Adres:
+      required:
+      - huisnummer
+      - id
+      - postcode
+      - url
+      type: object
+      properties:
+        id:
+          minLength: 1
+          type: string
+          description: Unieke identificatie van de resource waarnaar verwezen wordt
+          readOnly: true
+        url:
+          minLength: 1
+          type: string
+          description: URL-referentie naar de resource waarnaar verwezen wordt
+          format: uri
+          readOnly: true
+        postcode:
+          pattern: "[0-9]{4}[A-Z]{2}"
+          type: string
+          description: Postcode in een adres.
+        huisnummer:
+          type: string
+          description: Huisnummer met eventuele toevoegingen.
+          nullable: true
+        locatie:
+          $ref: ./GeografischeLocatie.yaml#/components/schemas/GeografischeLocatie
+      description: Het adres van een contact.

@@ -1,0 +1,53 @@
+openapi: 3.0.1
+info:
+  title: Fietsenwinkel
+  description: |-
+    Dit is een model voor registratie van inventaris en betrokken producenten en klanten van fietsenwinkels.
+    Dit model heeft alleen tot doel de aard en toepassing van constructies te illustreren, en is opgezet als een UML realisatie van de in MIM besproken modelelementen.
+    Het model staat bekend als IMFW.
+    Het model is ontwikkeld onder toezicht van de IFO: Internationale Fietsenwinkels Organisatie.
+    Dit model is opgezet conform [MIM 1.2]().
+  version: 1.0.0
+components:
+  schemas:
+    GepagineerdBase:
+      required:
+      - pagina
+      - paginaGrootte
+      type: object
+      properties:
+        pagina:
+          minimum: 1
+          type: integer
+          description: Huidig paginanummer
+          format: int32
+        paginaGrootte:
+          maximum: 100
+          type: integer
+          description: Aantal objecten per pagina
+          format: int32
+        totaalAantal:
+          minimum: 0
+          type: integer
+          description: Totaal aantal beschikbare objecten
+          format: int32
+          nullable: true
+        sorteer:
+          type: string
+          description: Komma gescheiden lijst van velden waarop gesorteerd moet worden.
+            Door een minteken (-) voor de veldnaam te zetten wordt het veld in aflopende
+            sorteervolgorde gesorteerd.
+          example: "name,-geboorteDatum"
+        volgende:
+          type: string
+          description: Link naar de volgende pagina
+          format: uri
+          nullable: true
+          example: "http://mijn-api.org/api/v1/klanten/?pagina=4&paginaGrootte=10&sorteer=name,-geboorteDatum"
+        vorige:
+          type: string
+          description: Link naar de vorige pagina
+          format: uri
+          nullable: true
+          example: "http://mijn-api.org/api/v1/klanten/?pagina=2&paginaGrootte=10&sorteer=name,-geboorteDatum"
+      description: Basis schema voor gepagineerde resultaten

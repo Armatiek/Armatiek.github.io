@@ -1,0 +1,35 @@
+openapi: 3.0.1
+info:
+  title: Fietsenwinkel
+  description: |-
+    Dit is een model voor registratie van inventaris en betrokken producenten en klanten van fietsenwinkels.
+    Dit model heeft alleen tot doel de aard en toepassing van constructies te illustreren, en is opgezet als een UML realisatie van de in MIM besproken modelelementen.
+    Het model staat bekend als IMFW.
+    Het model is ontwikkeld onder toezicht van de IFO: Internationale Fietsenwinkels Organisatie.
+    Dit model is opgezet conform [MIM 1.2]().
+  version: 1.0.0
+components:
+  schemas:
+    Creditcard:
+      required:
+      - Kaartnummer
+      - Verloopdatum
+      - url
+      type: object
+      properties:
+        url:
+          minLength: 1
+          type: string
+          description: URL-referentie naar de resource waarnaar verwezen wordt
+          format: uri
+          readOnly: true
+        Kaartnummer:
+          maxLength: 16
+          minLength: 16
+          type: string
+          description: Nummer van de kaart.
+        Verloopdatum:
+          pattern: "\\d{2}/\\d{2}"
+          type: string
+          description: "Verloopdatum van de kaart (jaar, maand)"
+      description: Kaart waarmee op basis van kredieten een betaling wordt gedaan.
