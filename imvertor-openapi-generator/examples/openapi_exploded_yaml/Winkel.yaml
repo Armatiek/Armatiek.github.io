@@ -8,6 +8,7 @@ info:
     Het model is ontwikkeld onder toezicht van de IFO: Internationale Fietsenwinkels Organisatie.
     Dit model is opgezet conform [MIM 1.2]().
   version: 1.0.0
+paths: {}
 components:
   schemas:
     Winkel:
@@ -27,9 +28,9 @@ components:
           type: string
           description: Naam van de winkel.
         locatie:
-          $ref: ./GeografischeLocatie.yaml#/components/schemas/GeografischeLocatie
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/examples/openapi_exploded_yaml/GeografischeLocatie.yaml#/components/schemas/GeografischeLocatie
         verhandelt:
           type: array
           items:
-            $ref: ./Fiets.yaml#/components/schemas/Fiets
+            $ref: https://armatiek.github.io/imvertor-openapi-generator/examples/openapi_exploded_yaml/Fiets.yaml#/components/schemas/Fiets
       description: Een locatie waar fietsen worden verkocht.

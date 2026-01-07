@@ -8,6 +8,7 @@ info:
     Het model is ontwikkeld onder toezicht van de IFO: Internationale Fietsenwinkels Organisatie.
     Dit model is opgezet conform [MIM 1.2]().
   version: 1.0.0
+paths: {}
 components:
   schemas:
     Batterij:
@@ -34,6 +35,6 @@ components:
           type: string
           description: Garantienummer op de **Batterij** (wanneer e-bike).
         omvang:
-          $ref: ./Dimensies.yaml#/components/schemas/Dimensies
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/examples/openapi_exploded_yaml/Dimensies.yaml#/components/schemas/Dimensies
       description: De batterij van de E-Bike.
       nullable: true

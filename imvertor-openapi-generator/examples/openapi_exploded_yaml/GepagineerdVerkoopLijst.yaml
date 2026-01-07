@@ -8,6 +8,7 @@ info:
     Het model is ontwikkeld onder toezicht van de IFO: Internationale Fietsenwinkels Organisatie.
     Dit model is opgezet conform [MIM 1.2]().
   version: 1.0.0
+paths: {}
 components:
   schemas:
     GepagineerdVerkoopLijst:
@@ -15,10 +16,10 @@ components:
       - resultaten
       type: object
       allOf:
-      - $ref: ./GepagineerdBase.yaml#/components/schemas/GepagineerdBase
+      - $ref: https://armatiek.github.io/imvertor-openapi-generator/examples/openapi_exploded_yaml/GepagineerdBase.yaml#/components/schemas/GepagineerdBase
       - type: object
         properties:
           resultaten:
             type: array
             items:
-              $ref: ./Verkoop.yaml#/components/schemas/Verkoop
+              $ref: https://armatiek.github.io/imvertor-openapi-generator/examples/openapi_exploded_yaml/Verkoop.yaml#/components/schemas/Verkoop

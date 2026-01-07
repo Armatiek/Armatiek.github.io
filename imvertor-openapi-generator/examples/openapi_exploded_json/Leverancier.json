@@ -5,6 +5,7 @@
     "description" : "Dit is een model voor registratie van inventaris en betrokken producenten en klanten van fietsenwinkels.\nDit model heeft alleen tot doel de aard en toepassing van constructies te illustreren, en is opgezet als een UML realisatie van de in MIM besproken modelelementen.\nHet model staat bekend als IMFW.\nHet model is ontwikkeld onder toezicht van de IFO: Internationale Fietsenwinkels Organisatie.\nDit model is opgezet conform [MIM 1.2]().",
     "version" : "1.0.0"
   },
+  "paths" : { },
   "components" : {
     "schemas" : {
       "Leverancier" : {
@@ -23,16 +24,16 @@
             "description" : "De naam van het contact."
           },
           "postadres" : {
-            "$ref" : "./Adres.yaml#/components/schemas/Adres"
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/examples/openapi_exploded_yaml/Adres.json#/components/schemas/Adres"
           },
           "betaling" : {
             "type" : "array",
             "items" : {
-              "$ref" : "./Betaalmiddel.yaml#/components/schemas/Betaalmiddel"
+              "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/examples/openapi_exploded_yaml/Betaalmiddel.json#/components/schemas/Betaalmiddel"
             }
           },
           "kvk nummer" : {
-            "$ref" : "./KVKLijst.yaml#/components/schemas/KVKLijst"
+            "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/examples/openapi_exploded_yaml/KVKLijst.json#/components/schemas/KVKLijst"
           }
         },
         "description" : "Een instelling die een fietsen levert."

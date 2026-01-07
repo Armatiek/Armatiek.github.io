@@ -8,6 +8,7 @@ info:
     Het model is ontwikkeld onder toezicht van de IFO: Internationale Fietsenwinkels Organisatie.
     Dit model is opgezet conform [MIM 1.2]().
   version: 1.0.0
+paths: {}
 components:
   schemas:
     Stadsfiets:
@@ -37,7 +38,7 @@ components:
           description: Datum waarop de fiets is geleverd aan de winkel.
           format: date
         omvang:
-          $ref: ./Dimensies.yaml#/components/schemas/Dimensies
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/examples/openapi_exploded_yaml/Dimensies.yaml#/components/schemas/Dimensies
         typenummer:
           type: string
           description: Het type nummer van de fiets.
@@ -54,11 +55,11 @@ components:
           description: Het volgummer van de fiets in één levering.
           format: int32
         aangestuurd door:
-          $ref: ./Batterij.yaml#/components/schemas/Batterij
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/examples/openapi_exploded_yaml/Batterij.yaml#/components/schemas/Batterij
         geleverd door:
-          $ref: ./Leverancier.yaml#/components/schemas/Leverancier
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/examples/openapi_exploded_yaml/Leverancier.yaml#/components/schemas/Leverancier
         verkocht aan:
-          $ref: ./Klant.yaml#/components/schemas/Klant
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/examples/openapi_exploded_yaml/Klant.yaml#/components/schemas/Klant
         aandrijving:
-          $ref: ./Aandrijving.yaml#/components/schemas/Aandrijving
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/examples/openapi_exploded_yaml/Aandrijving.yaml#/components/schemas/Aandrijving
       description: Een fiets die is ingericht op gebruik in het stadsverkeer.

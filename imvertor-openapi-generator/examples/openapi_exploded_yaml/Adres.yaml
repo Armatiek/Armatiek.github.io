@@ -8,6 +8,7 @@ info:
     Het model is ontwikkeld onder toezicht van de IFO: Internationale Fietsenwinkels Organisatie.
     Dit model is opgezet conform [MIM 1.2]().
   version: 1.0.0
+paths: {}
 components:
   schemas:
     Adres:
@@ -38,5 +39,5 @@ components:
           description: Huisnummer met eventuele toevoegingen.
           nullable: true
         locatie:
-          $ref: ./GeografischeLocatie.yaml#/components/schemas/GeografischeLocatie
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/examples/openapi_exploded_yaml/GeografischeLocatie.yaml#/components/schemas/GeografischeLocatie
       description: Het adres van een contact.

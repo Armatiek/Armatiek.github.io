@@ -8,11 +8,12 @@ info:
     Het model is ontwikkeld onder toezicht van de IFO: Internationale Fietsenwinkels Organisatie.
     Dit model is opgezet conform [MIM 1.2]().
   version: 1.0.0
+paths: {}
 components:
   schemas:
     Aandrijving:
       type: object
       description: De aandrijving van een fiets.
       anyOf:
-      - $ref: ./KettingLijst.yaml#/components/schemas/KettingLijst
-      - $ref: ./SnaarLijst.yaml#/components/schemas/SnaarLijst
+      - $ref: https://armatiek.github.io/imvertor-openapi-generator/examples/openapi_exploded_yaml/KettingLijst.yaml#/components/schemas/KettingLijst
+      - $ref: https://armatiek.github.io/imvertor-openapi-generator/examples/openapi_exploded_yaml/SnaarLijst.yaml#/components/schemas/SnaarLijst

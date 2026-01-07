@@ -5,20 +5,21 @@
     "description" : "Dit is een model voor registratie van inventaris en betrokken producenten en klanten van fietsenwinkels.\nDit model heeft alleen tot doel de aard en toepassing van constructies te illustreren, en is opgezet als een UML realisatie van de in MIM besproken modelelementen.\nHet model staat bekend als IMFW.\nHet model is ontwikkeld onder toezicht van de IFO: Internationale Fietsenwinkels Organisatie.\nDit model is opgezet conform [MIM 1.2]().",
     "version" : "1.0.0"
   },
+  "paths" : { },
   "components" : {
     "schemas" : {
       "GepagineerdLeverancierLijst" : {
         "required" : [ "resultaten" ],
         "type" : "object",
         "allOf" : [ {
-          "$ref" : "./GepagineerdBase.yaml#/components/schemas/GepagineerdBase"
+          "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/examples/openapi_exploded_yaml/GepagineerdBase.json#/components/schemas/GepagineerdBase"
         }, {
           "type" : "object",
           "properties" : {
             "resultaten" : {
               "type" : "array",
               "items" : {
-                "$ref" : "./Leverancier.yaml#/components/schemas/Leverancier"
+                "$ref" : "https://armatiek.github.io/imvertor-openapi-generator/examples/openapi_exploded_yaml/Leverancier.json#/components/schemas/Leverancier"
               }
             }
           }

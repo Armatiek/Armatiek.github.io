@@ -8,6 +8,7 @@ info:
     Het model is ontwikkeld onder toezicht van de IFO: Internationale Fietsenwinkels Organisatie.
     Dit model is opgezet conform [MIM 1.2]().
   version: 1.0.0
+paths: {}
 components:
   schemas:
     Verkoop:
@@ -40,5 +41,5 @@ components:
           description: Datum van verkoop van de **Fiets**.
           format: date
         verkoop aan:
-          $ref: ./Klant.yaml#/components/schemas/Klant
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/examples/openapi_exploded_yaml/Klant.yaml#/components/schemas/Klant
       description: Details omtrent de verkoop van een **Fiets** aan een **Klant**.

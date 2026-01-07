@@ -8,11 +8,12 @@ info:
     Het model is ontwikkeld onder toezicht van de IFO: Internationale Fietsenwinkels Organisatie.
     Dit model is opgezet conform [MIM 1.2]().
   version: 1.0.0
+paths: {}
 components:
   schemas:
     Betaalmiddel:
       type: object
       description: Middel waarmee de financiering wordt gerealiseerd.
       anyOf:
-      - $ref: ./Bankrekening.yaml#/components/schemas/Bankrekening
-      - $ref: ./Creditcard.yaml#/components/schemas/Creditcard
+      - $ref: https://armatiek.github.io/imvertor-openapi-generator/examples/openapi_exploded_yaml/Bankrekening.yaml#/components/schemas/Bankrekening
+      - $ref: https://armatiek.github.io/imvertor-openapi-generator/examples/openapi_exploded_yaml/Creditcard.yaml#/components/schemas/Creditcard

@@ -8,6 +8,7 @@ info:
     Het model is ontwikkeld onder toezicht van de IFO: Internationale Fietsenwinkels Organisatie.
     Dit model is opgezet conform [MIM 1.2]().
   version: 1.0.0
+paths: {}
 components:
   schemas:
     Leverancier:
@@ -28,11 +29,11 @@ components:
           type: string
           description: De naam van het contact.
         postadres:
-          $ref: ./Adres.yaml#/components/schemas/Adres
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/examples/openapi_exploded_yaml/Adres.yaml#/components/schemas/Adres
         betaling:
           type: array
           items:
-            $ref: ./Betaalmiddel.yaml#/components/schemas/Betaalmiddel
+            $ref: https://armatiek.github.io/imvertor-openapi-generator/examples/openapi_exploded_yaml/Betaalmiddel.yaml#/components/schemas/Betaalmiddel
         kvk nummer:
-          $ref: ./KVKLijst.yaml#/components/schemas/KVKLijst
+          $ref: https://armatiek.github.io/imvertor-openapi-generator/examples/openapi_exploded_yaml/KVKLijst.yaml#/components/schemas/KVKLijst
       description: Een instelling die een fietsen levert.
